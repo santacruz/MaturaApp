@@ -29,9 +29,10 @@
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
-	if( (self=[super init] )) {
+	if( (self=[super initWithColor:ccc4(220,220,220,255)] )) {
 		
-		CCLabel* label = [CCLabel labelWithString:@"Start" fontName:@"Helvetica" fontSize:40];
+		CCLabel* label = [CCLabel labelWithString:@"start" fontName:@"Helvetica" fontSize:100];
+		label.color = ccc3(30,30,30);
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(runGame:)];
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,nil];
 		[self addChild:myMenu];
