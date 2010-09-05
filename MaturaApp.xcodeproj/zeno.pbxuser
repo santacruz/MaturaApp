@@ -23,7 +23,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = AA312F991233D88A0098711E /* MaturaApp */;
-		activeSDKPreference = iphoneos4.0;
+		activeSDKPreference = iphonesimulator4.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* MaturaApp */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* MaturaApp */,
@@ -60,7 +60,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					301,
+					387,
 					60,
 					20,
 					48,
@@ -77,8 +77,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 305391448;
-			PBXWorkspaceStateSaveDate = 305391448;
+			PBXPerProjectTemplateStateSaveDate = 305397717;
+			PBXWorkspaceStateSaveDate = 305397717;
 		};
 		perUserProjectItems = {
 			AA3131BF1233DBA00098711E /* PBXTextBookmark */ = AA3131BF1233DBA00098711E /* PBXTextBookmark */;
@@ -90,13 +90,14 @@
 			AA31335E1233E3E60098711E /* PBXTextBookmark */ = AA31335E1233E3E60098711E /* PBXTextBookmark */;
 			AA3133631233E40D0098711E /* PBXTextBookmark */ = AA3133631233E40D0098711E /* PBXTextBookmark */;
 			AA3133CE1233E5590098711E /* PBXTextBookmark */ = AA3133CE1233E5590098711E /* PBXTextBookmark */;
-			AA3133CF1233E5590098711E /* PBXBookmark */ = AA3133CF1233E5590098711E /* PBXBookmark */;
 			AA3133D01233E5590098711E /* PBXTextBookmark */ = AA3133D01233E5590098711E /* PBXTextBookmark */;
 			AA3133D11233E5590098711E /* PBXTextBookmark */ = AA3133D11233E5590098711E /* PBXTextBookmark */;
 			AA31347D1233E8C70098711E /* PBXTextBookmark */ = AA31347D1233E8C70098711E /* PBXTextBookmark */;
 			AA31347E1233E8C70098711E /* PBXBookmark */ = AA31347E1233E8C70098711E /* PBXBookmark */;
-			AA31347F1233E8C70098711E /* PBXBookmark */ = AA31347F1233E8C70098711E /* PBXBookmark */;
-			AA3134801233E8C70098711E /* PBXBookmark */ = AA3134801233E8C70098711E /* PBXBookmark */;
+			AA31348F1233EA6F0098711E /* PBXBookmark */ = AA31348F1233EA6F0098711E /* PBXBookmark */;
+			AA3134901233EA6F0098711E /* PBXBookmark */ = AA3134901233EA6F0098711E /* PBXBookmark */;
+			AA3135531233FFDF0098711E /* PlistBookmark */ = AA3135531233FFDF0098711E /* PlistBookmark */;
+			AA3135A1123400030098711E /* PlistBookmark */ = AA3135A1123400030098711E /* PlistBookmark */;
 		};
 		sourceControlManager = AA312FAA1233D8960098711E /* Source Control */;
 		userBuildSettings = {
@@ -212,13 +213,6 @@
 			sepNavVisRange = "{512, 565}";
 		};
 	};
-	AA31325F1233DDB60098711E /* blank.png */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = image.png;
-		name = blank.png;
-		path = /Users/zeno/Desktop/Matura/MaturaApp/blank.png;
-		sourceTree = "<absolute>";
-	};
 	AA31326E1233DEA10098711E /* GameScene.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {605, 416}}";
@@ -314,10 +308,6 @@
 		vrLen = 521;
 		vrLoc = 987;
 	};
-	AA3133CF1233E5590098711E /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = AA31325F1233DDB60098711E /* blank.png */;
-	};
 	AA3133D01233E5590098711E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = AA31324F1233DD760098711E /* EnemySphere.h */;
@@ -352,12 +342,34 @@
 		isa = PBXBookmark;
 		fRef = AA3134541233E8110098711E /* level2.png */;
 	};
-	AA31347F1233E8C70098711E /* PBXBookmark */ = {
+	AA31348F1233EA6F0098711E /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = AA3134561233E8110098711E /* level3.png */;
 	};
-	AA3134801233E8C70098711E /* PBXBookmark */ = {
+	AA3134901233EA6F0098711E /* PBXBookmark */ = {
 		isa = PBXBookmark;
-		fRef = AA3134561233E8110098711E /* level3.png */;
+		fRef = AA31346B1233E8850098711E /* Icon.png */;
+	};
+	AA3135531233FFDF0098711E /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = AA31346C1233E8850098711E /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/zeno/Dropbox/Matura/MaturaApp/Resources/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	AA3135A1123400030098711E /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = AA31346C1233E8850098711E /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/zeno/Dropbox/Matura/MaturaApp/Resources/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
 	};
 }

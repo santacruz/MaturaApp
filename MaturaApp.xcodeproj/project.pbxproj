@@ -49,7 +49,6 @@
 		AA31346D1233E8850098711E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AA3134691233E8850098711E /* Default.png */; };
 		AA31346E1233E8850098711E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = AA31346A1233E8850098711E /* fps_images.png */; };
 		AA31346F1233E8850098711E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA31346B1233E8850098711E /* Icon.png */; };
-		AA3134701233E8850098711E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA31346C1233E8850098711E /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1338,7 +1337,6 @@
 				AA31346D1233E8850098711E /* Default.png in Resources */,
 				AA31346E1233E8850098711E /* fps_images.png in Resources */,
 				AA31346F1233E8850098711E /* Icon.png in Resources */,
-				AA3134701233E8850098711E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
