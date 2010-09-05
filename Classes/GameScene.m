@@ -4,6 +4,7 @@
 
 
 #import "GameScene.h"
+#import "HelloWorldScene.h"
 #import "CCTouchDispatcher.h"
 
 #define kBallCollisionType	1
@@ -130,25 +131,34 @@ id action;
 	switch(moment)
     {
         case COLLISION_BEGIN:
-			//do something at the beginning
+			//Auslagern?
 			NSLog(@"Collision detected!");
 			cpCCSprite *sprite = (cpCCSprite*)b->data;
-			if (sprite)
-			{	
-				[sprite.parent removeChild:sprite cleanup:YES];
-				[smgr scheduleToRemoveAndFreeShape:b];
-				b->data = nil;
+			NSLog(@"Mass:%f",sprite.shape->body->m);
+			if (sprite.shape->body->m > sphere.level+0.1) {
+				//Hier später Gefressenwerd-Animation einbauen, vorerst wird nur Spiel gestoppt
+				[smgr stop];
+				[[CCDirector sharedDirector] replaceScene:
+				 [CCFadeTransition transitionWithDuration:0.5f scene:[HelloWorld scene]]];
+			} else {
+				if (sprite)
+				{	
+					[sprite.parent removeChild:sprite cleanup:YES];
+					[smgr scheduleToRemoveAndFreeShape:b];
+					b->data = nil;
+				}
+				if (sphere) {
+					prevSize = sphere.level;
+					prevPos = sphere.sprite.position;
+					prevVelocity = sphere.sprite.shape->body->v;
+					NSLog(@"prevV:%f,%f",prevVelocity.x,prevVelocity.y);
+					isThereASphere = NO;
+					[self removeChild:sphere cleanup:YES];
+					[smgr scheduleToRemoveAndFreeShape:a];
+					a->data = nil;
+				}
 			}
-			if (sphere) {
-				prevSize = sphere.level;
-				prevPos = sphere.sprite.position;
-				prevVelocity = sphere.sprite.shape->body->v;
-				NSLog(@"prevV:%f,%f",prevVelocity.x,prevVelocity.y);
-				isThereASphere = NO;
-				[self removeChild:sphere cleanup:YES];
-				[smgr scheduleToRemoveAndFreeShape:a];
-				a->data = nil;
-			}
+
 			break;
         case COLLISION_PRESOLVE:
 			//arb->e = 5;

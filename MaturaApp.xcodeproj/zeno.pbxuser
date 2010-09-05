@@ -11,7 +11,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {663, 1144}}";
 			sepNavSelRange = "{1224, 0}";
-			sepNavVisRange = "{1135, 541}";
+			sepNavVisRange = "{733, 619}";
 		};
 	};
 	1D6058900D05DD3D006BFB54 /* MaturaApp */ = {
@@ -23,7 +23,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = AA312F991233D88A0098711E /* MaturaApp */;
-		activeSDKPreference = iphonesimulator4.0;
+		activeSDKPreference = iphoneos4.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* MaturaApp */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* MaturaApp */,
@@ -33,6 +33,20 @@
 			AA312F991233D88A0098711E /* MaturaApp */,
 		);
 		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXBookmarksDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBookmarksDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					200,
+					236.58349609375,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBookmarksDataSource_LocationID,
+					PBXBookmarksDataSource_NameID,
+					PBXBookmarksDataSource_CommentsID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
@@ -77,27 +91,27 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 305397717;
-			PBXWorkspaceStateSaveDate = 305397717;
+			PBXPerProjectTemplateStateSaveDate = 305414009;
+			PBXWorkspaceStateSaveDate = 305414009;
 		};
 		perUserProjectItems = {
+			AA1BAB6C1234422300F37390 /* PlistBookmark */ = AA1BAB6C1234422300F37390 /* PlistBookmark */;
+			AA1BAB6D1234422300F37390 /* PBXTextBookmark */ = AA1BAB6D1234422300F37390 /* PBXTextBookmark */;
+			AA1BAB6E1234422300F37390 /* PBXTextBookmark */ = AA1BAB6E1234422300F37390 /* PBXTextBookmark */;
+			AA1BAB6F1234422300F37390 /* PBXTextBookmark */ = AA1BAB6F1234422300F37390 /* PBXTextBookmark */;
+			AA1BAB701234422300F37390 /* PBXTextBookmark */ = AA1BAB701234422300F37390 /* PBXTextBookmark */;
+			AA1BAB711234422300F37390 /* PBXTextBookmark */ = AA1BAB711234422300F37390 /* PBXTextBookmark */;
+			AA1BAB721234422300F37390 /* PBXTextBookmark */ = AA1BAB721234422300F37390 /* PBXTextBookmark */;
+			AA1BAB731234422300F37390 /* PBXTextBookmark */ = AA1BAB731234422300F37390 /* PBXTextBookmark */;
 			AA3131BF1233DBA00098711E /* PBXTextBookmark */ = AA3131BF1233DBA00098711E /* PBXTextBookmark */;
 			AA31327E1233E1730098711E /* PBXTextBookmark */ = AA31327E1233E1730098711E /* PBXTextBookmark */;
 			AA31327F1233E1730098711E /* PBXTextBookmark */ = AA31327F1233E1730098711E /* PBXTextBookmark */;
 			AA3132821233E1730098711E /* PBXTextBookmark */ = AA3132821233E1730098711E /* PBXTextBookmark */;
 			AA3133431233E26F0098711E /* PBXTextBookmark */ = AA3133431233E26F0098711E /* PBXTextBookmark */;
-			AA3133511233E30B0098711E /* PBXTextBookmark */ = AA3133511233E30B0098711E /* PBXTextBookmark */;
 			AA31335E1233E3E60098711E /* PBXTextBookmark */ = AA31335E1233E3E60098711E /* PBXTextBookmark */;
-			AA3133631233E40D0098711E /* PBXTextBookmark */ = AA3133631233E40D0098711E /* PBXTextBookmark */;
-			AA3133CE1233E5590098711E /* PBXTextBookmark */ = AA3133CE1233E5590098711E /* PBXTextBookmark */;
-			AA3133D01233E5590098711E /* PBXTextBookmark */ = AA3133D01233E5590098711E /* PBXTextBookmark */;
-			AA3133D11233E5590098711E /* PBXTextBookmark */ = AA3133D11233E5590098711E /* PBXTextBookmark */;
-			AA31347D1233E8C70098711E /* PBXTextBookmark */ = AA31347D1233E8C70098711E /* PBXTextBookmark */;
 			AA31347E1233E8C70098711E /* PBXBookmark */ = AA31347E1233E8C70098711E /* PBXBookmark */;
 			AA31348F1233EA6F0098711E /* PBXBookmark */ = AA31348F1233EA6F0098711E /* PBXBookmark */;
 			AA3134901233EA6F0098711E /* PBXBookmark */ = AA3134901233EA6F0098711E /* PBXBookmark */;
-			AA3135531233FFDF0098711E /* PlistBookmark */ = AA3135531233FFDF0098711E /* PlistBookmark */;
-			AA3135A1123400030098711E /* PlistBookmark */ = AA3135A1123400030098711E /* PlistBookmark */;
 		};
 		sourceControlManager = AA312FAA1233D8960098711E /* Source Control */;
 		userBuildSettings = {
@@ -116,6 +130,87 @@
 			sepNavSelRange = "{328, 0}";
 			sepNavVisRange = "{0, 336}";
 		};
+	};
+	AA1BAB6C1234422300F37390 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = AA31346C1233E8850098711E /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/zeno/Dropbox/Matura/MaturaApp/Resources/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	AA1BAB6D1234422300F37390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AA31324F1233DD760098711E /* EnemySphere.h */;
+		name = "EnemySphere.h: 2";
+		rLen = 0;
+		rLoc = 12;
+		rType = 0;
+		vrLen = 381;
+		vrLoc = 0;
+	};
+	AA1BAB6E1234422300F37390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AA3132501233DD760098711E /* EnemySphere.m */;
+		name = "EnemySphere.m: 2";
+		rLen = 0;
+		rLoc = 12;
+		rType = 0;
+		vrLen = 609;
+		vrLoc = 463;
+	};
+	AA1BAB6F1234422300F37390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AA31319C1233DABE0098711E /* HelloWorldScene.h */;
+		name = "HelloWorldScene.h: 10";
+		rLen = 0;
+		rLoc = 178;
+		rType = 0;
+		vrLen = 314;
+		vrLoc = 0;
+	};
+	AA1BAB701234422300F37390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AA31319D1233DABE0098711E /* HelloWorldScene.m */;
+		name = "HelloWorldScene.m: 44";
+		rLen = 118;
+		rLoc = 1048;
+		rType = 0;
+		vrLen = 519;
+		vrLoc = 984;
+	};
+	AA1BAB711234422300F37390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MaturaAppAppDelegate.m */;
+		name = "MaturaAppAppDelegate.m: 38";
+		rLen = 0;
+		rLoc = 1224;
+		rType = 0;
+		vrLen = 619;
+		vrLoc = 733;
+	};
+	AA1BAB721234422300F37390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AA31326F1233DEA10098711E /* GameScene.m */;
+		name = "GameScene.m: 137";
+		rLen = 0;
+		rLoc = 4330;
+		rType = 0;
+		vrLen = 675;
+		vrLoc = 4085;
+	};
+	AA1BAB731234422300F37390 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AA31326F1233DEA10098711E /* GameScene.m */;
+		name = "GameScene.m: 7";
+		rLen = 0;
+		rLoc = 84;
+		rType = 0;
+		vrLen = 625;
+		vrLoc = 4435;
 	};
 	AA312F991233D88A0098711E /* MaturaApp */ = {
 		isa = PBXExecutable;
@@ -163,7 +258,7 @@
 	};
 	AA31319C1233DABE0098711E /* HelloWorldScene.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {605, 276}}";
+			sepNavIntBoundsRect = "{{0, 0}, {605, 261}}";
 			sepNavSelRange = "{178, 0}";
 			sepNavVisRange = "{0, 314}";
 		};
@@ -171,8 +266,8 @@
 	AA31319D1233DABE0098711E /* HelloWorldScene.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {817, 767}}";
-			sepNavSelRange = "{715, 0}";
-			sepNavVisRange = "{987, 521}";
+			sepNavSelRange = "{1048, 118}";
+			sepNavVisRange = "{984, 519}";
 		};
 	};
 	AA3131BF1233DBA00098711E /* PBXTextBookmark */ = {
@@ -201,7 +296,7 @@
 	};
 	AA31324F1233DD760098711E /* EnemySphere.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {605, 260}}";
+			sepNavIntBoundsRect = "{{0, 0}, {605, 261}}";
 			sepNavSelRange = "{12, 0}";
 			sepNavVisRange = "{0, 381}";
 		};
@@ -210,7 +305,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {740, 572}}";
 			sepNavSelRange = "{12, 0}";
-			sepNavVisRange = "{512, 565}";
+			sepNavVisRange = "{463, 609}";
 		};
 	};
 	AA31326E1233DEA10098711E /* GameScene.h */ = {
@@ -222,9 +317,9 @@
 	};
 	AA31326F1233DEA10098711E /* GameScene.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {971, 2795}}";
-			sepNavSelRange = "{787, 30}";
-			sepNavVisRange = "{2780, 869}";
+			sepNavIntBoundsRect = "{{0, 0}, {971, 2938}}";
+			sepNavSelRange = "{84, 0}";
+			sepNavVisRange = "{4435, 625}";
 			sepNavWindowFrame = "{{15, 92}, {1027, 686}}";
 		};
 	};
@@ -268,16 +363,6 @@
 		vrLen = 374;
 		vrLoc = 0;
 	};
-	AA3133511233E30B0098711E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* MaturaAppAppDelegate.m */;
-		name = "MaturaAppAppDelegate.m: 38";
-		rLen = 0;
-		rLoc = 1224;
-		rType = 0;
-		vrLen = 541;
-		vrLoc = 1135;
-	};
 	AA31335E1233E3E60098711E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = AA31326E1233DEA10098711E /* GameScene.h */;
@@ -287,56 +372,6 @@
 		rType = 0;
 		vrLen = 370;
 		vrLoc = 0;
-	};
-	AA3133631233E40D0098711E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA31319C1233DABE0098711E /* HelloWorldScene.h */;
-		name = "HelloWorldScene.h: 10";
-		rLen = 0;
-		rLoc = 178;
-		rType = 0;
-		vrLen = 314;
-		vrLoc = 0;
-	};
-	AA3133CE1233E5590098711E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA31319D1233DABE0098711E /* HelloWorldScene.m */;
-		name = "HelloWorldScene.m: 34";
-		rLen = 0;
-		rLoc = 715;
-		rType = 0;
-		vrLen = 521;
-		vrLoc = 987;
-	};
-	AA3133D01233E5590098711E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA31324F1233DD760098711E /* EnemySphere.h */;
-		name = "EnemySphere.h: 2";
-		rLen = 0;
-		rLoc = 12;
-		rType = 0;
-		vrLen = 381;
-		vrLoc = 0;
-	};
-	AA3133D11233E5590098711E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA3132501233DD760098711E /* EnemySphere.m */;
-		name = "EnemySphere.m: 2";
-		rLen = 0;
-		rLoc = 12;
-		rType = 0;
-		vrLen = 565;
-		vrLoc = 512;
-	};
-	AA31347D1233E8C70098711E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA31326F1233DEA10098711E /* GameScene.m */;
-		name = "GameScene.m: 41";
-		rLen = 30;
-		rLoc = 787;
-		rType = 0;
-		vrLen = 869;
-		vrLoc = 2780;
 	};
 	AA31347E1233E8C70098711E /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -349,27 +384,5 @@
 	AA3134901233EA6F0098711E /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = AA31346B1233E8850098711E /* Icon.png */;
-	};
-	AA3135531233FFDF0098711E /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = AA31346C1233E8850098711E /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = /Users/zeno/Dropbox/Matura/MaturaApp/Resources/Info.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
-	};
-	AA3135A1123400030098711E /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = AA31346C1233E8850098711E /* Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = /Users/zeno/Dropbox/Matura/MaturaApp/Resources/Info.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
 	};
 }
