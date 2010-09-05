@@ -1,0 +1,254 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* MaturaAppAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 245}}";
+			sepNavSelRange = "{191, 0}";
+			sepNavVisRange = "{0, 316}";
+		};
+	};
+	1D3623250D0F684500981E51 /* MaturaAppAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {663, 1183}}";
+			sepNavSelRange = "{264, 0}";
+			sepNavVisRange = "{40, 557}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* MaturaApp */ = {
+		activeExec = 0;
+		executables = (
+			AA312F991233D88A0098711E /* MaturaApp */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = AA312F991233D88A0098711E /* MaturaApp */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* MaturaApp */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* MaturaApp */,
+		);
+		codeSenseManager = AA312FAB1233D8960098711E /* Code sense */;
+		executables = (
+			AA312F991233D88A0098711E /* MaturaApp */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					301,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 305387658;
+			PBXWorkspaceStateSaveDate = 305387658;
+		};
+		perUserProjectItems = {
+			AA3131BF1233DBA00098711E /* PBXTextBookmark */ = AA3131BF1233DBA00098711E /* PBXTextBookmark */;
+			AA3131C01233DBA00098711E /* PBXTextBookmark */ = AA3131C01233DBA00098711E /* PBXTextBookmark */;
+			AA3131C11233DBA00098711E /* PBXTextBookmark */ = AA3131C11233DBA00098711E /* PBXTextBookmark */;
+			AA3131C21233DBA00098711E /* PBXBookmark */ = AA3131C21233DBA00098711E /* PBXBookmark */;
+			AA3131C31233DBA00098711E /* PBXBookmark */ = AA3131C31233DBA00098711E /* PBXBookmark */;
+			AA3131C41233DBA00098711E /* PlistBookmark */ = AA3131C41233DBA00098711E /* PlistBookmark */;
+			AA3131C51233DBCC0098711E /* PlistBookmark */ = AA3131C51233DBCC0098711E /* PlistBookmark */;
+			AA3131C71233DC0A0098711E /* PlistBookmark */ = AA3131C71233DC0A0098711E /* PlistBookmark */;
+			AA3131C81233DC0A0098711E /* PBXBookmark */ = AA3131C81233DC0A0098711E /* PBXBookmark */;
+			AA3131C91233DC0A0098711E /* PBXTextBookmark */ = AA3131C91233DC0A0098711E /* PBXTextBookmark */;
+		};
+		sourceControlManager = AA312FAA1233D8960098711E /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {551, 245}}";
+			sepNavSelRange = "{339, 0}";
+			sepNavVisRange = "{0, 383}";
+		};
+	};
+	32CA4F630368D1EE00C91783 /* MaturaApp_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {642, 222}}";
+			sepNavSelRange = "{328, 0}";
+			sepNavVisRange = "{0, 336}";
+		};
+	};
+	AA312F991233D88A0098711E /* MaturaApp */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = MaturaApp;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	AA312FAA1233D8960098711E /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	AA312FAB1233D8960098711E /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	AA3131B71233DB7A0098711E /* Default.png */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.png;
+		name = Default.png;
+		path = /Users/zeno/Desktop/Matura/MaturaApp/Resources/Default.png;
+		sourceTree = "<absolute>";
+	};
+	AA3131BA1233DB7A0098711E /* Info.plist */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = text.plist.xml;
+		name = Info.plist;
+		path = /Users/zeno/Desktop/Matura/MaturaApp/Resources/Info.plist;
+		sourceTree = "<absolute>";
+	};
+	AA3131BF1233DBA00098711E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 14";
+		rLen = 0;
+		rLoc = 339;
+		rType = 0;
+		vrLen = 383;
+		vrLoc = 0;
+	};
+	AA3131C01233DBA00098711E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* MaturaAppAppDelegate.h */;
+		name = "MaturaAppAppDelegate.h: 11";
+		rLen = 0;
+		rLoc = 191;
+		rType = 0;
+		vrLen = 316;
+		vrLoc = 0;
+	};
+	AA3131C11233DBA00098711E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* MaturaAppAppDelegate.m */;
+		name = "MaturaAppAppDelegate.m: 13";
+		rLen = 0;
+		rLoc = 264;
+		rType = 0;
+		vrLen = 557;
+		vrLoc = 40;
+	};
+	AA3131C21233DBA00098711E /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = AA3131B71233DB7A0098711E /* Default.png */;
+	};
+	AA3131C31233DBA00098711E /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = AA3131BA1233DB7A0098711E /* Info.plist */;
+	};
+	AA3131C41233DBA00098711E /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = AA3131BA1233DB7A0098711E /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/zeno/Desktop/Matura/MaturaApp/Resources/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	AA3131C51233DBCC0098711E /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = AA3131BA1233DB7A0098711E /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/zeno/Desktop/Matura/MaturaApp/Resources/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	AA3131C71233DC0A0098711E /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = AA3131BA1233DB7A0098711E /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = /Users/zeno/Desktop/Matura/MaturaApp/Resources/Info.plist;
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	AA3131C81233DC0A0098711E /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* MaturaApp_Prefix.pch */;
+	};
+	AA3131C91233DC0A0098711E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* MaturaApp_Prefix.pch */;
+		name = "MaturaApp_Prefix.pch: 14";
+		rLen = 0;
+		rLoc = 328;
+		rType = 0;
+		vrLen = 336;
+		vrLoc = 0;
+	};
+}
