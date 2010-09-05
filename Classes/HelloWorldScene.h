@@ -1,10 +1,6 @@
 //
-//  HelloWorldLayer.h
-//  example
-//
-//  Created by Zeno Koller on 14.08.10.
-//  Copyright __MyCompanyName__ 2010. All rights reserved.
-//
+//  HelloWorldScene.h
+//  MaturaApp
 
 
 // When you import this file, you import all the cocos2d classes
@@ -17,5 +13,5 @@
 
 // returns a Scene that contains the HelloWorld as the only child
 +(id) scene;
-
+-(void)runGame:(CCMenuItem  *) menuItem;
 @end

@@ -1,10 +1,6 @@
 //
-//  exampleAppDelegate.m
-//  example
-//
-//  Created by Zeno Koller on 14.08.10.
-//  Copyright __MyCompanyName__ 2010. All rights reserved.
-//
+//  MaturaAppAppDelegate.m
+//  MaturaApp
 
 #import "MaturaAppAppDelegate.h"
 #import "cocos2d.h"
@@ -36,6 +32,10 @@
 	// Sets landscape mode
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 	
+	//Temporärer Resolution-Fix (in Bälde achhaltiger Fix by Apple?) 
+	if( [[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+		[[CCDirector sharedDirector] setContentScaleFactor: [[UIScreen mainScreen] scale] ];
+	}
 	// Turn on display FPS
 	[director setDisplayFPS:YES];
 	

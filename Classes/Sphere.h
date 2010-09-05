@@ -1,0 +1,19 @@
+//
+//  Sphere.h
+//  MaturaApp
+
+#import "cocos2d.h"
+#import "SpaceManager.h"
+#import "cpCCSprite.h"
+
+@interface Sphere : CCSprite {
+	float radius;
+	int level;
+	cpCCSprite *sprite;
+}
+
+@property(nonatomic,retain)	cpCCSprite *sprite;
+@property(readwrite,assign) float radius;
+@property(readwrite,assign) int level;
+-(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
+@end

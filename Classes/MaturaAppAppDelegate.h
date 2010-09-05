@@ -1,10 +1,6 @@
 //
-//  exampleAppDelegate.h
-//  example
-//
-//  Created by Zeno Koller on 14.08.10.
-//  Copyright __MyCompanyName__ 2010. All rights reserved.
-//
+//  MaturaAppAppDelegate.h
+//  MaturaApp
 
 #import <UIKit/UIKit.h>
 

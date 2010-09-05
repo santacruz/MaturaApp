@@ -1,13 +1,10 @@
 //
-//  HelloWorldLayer.m
-//  example
-//
-//  Created by Zeno Koller on 14.08.10.
-//  Copyright __MyCompanyName__ 2010. All rights reserved.
-//
+//  HelloWorldScene.m
+//  MaturaApp
 
 // Import the interfaces
 #import "HelloWorldScene.h"
+#import "GameScene.h"
 
 // HelloWorld implementation
 @implementation HelloWorld
@@ -34,19 +31,17 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init] )) {
 		
-		// create and initialize a Label
-		CCLabel* label = [CCLabel labelWithString:@"Hello, Project!" fontName:@"Marker Felt" fontSize:64];
-
-		// ask director the the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
-	
-		// position the label on the center of the screen
-		label.position =  ccp( size.width /2 , size.height/2 );
-		
-		// add the label as a child to this Layer
-		[self addChild: label];
+		CCLabel* label = [CCLabel labelWithString:@"Start" fontName:@"Helvetica" fontSize:40];
+		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(runGame:)];
+		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,nil];
+		[self addChild:myMenu];
 	}
 	return self;
+}
+
+-(void) runGame:(CCMenuItem  *) menuItem  {
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCFadeTransition transitionWithDuration:0.5f scene:[GameScene scene]]];
 }
 
 // on "dealloc" you need to release all your retained objects
