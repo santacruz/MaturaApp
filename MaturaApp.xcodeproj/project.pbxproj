@@ -13,6 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		AA1BAD601236BC8A00F37390 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1BAD5F1236BC8A00F37390 /* GameData.m */; };
 		AA31314B1233D96F0098711E /* libChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3130C31233D8FE0098711E /* libChipmunk.a */; };
 		AA31314C1233D96F0098711E /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3130C51233D8FE0098711E /* libcocos2d.a */; };
 		AA31319E1233DABE0098711E /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31319D1233DABE0098711E /* HelloWorldScene.m */; };
@@ -533,6 +534,8 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MaturaApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaturaApp_Prefix.pch; sourceTree = "<group>"; };
+		AA1BAD5E1236BC8A00F37390 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		AA1BAD5F1236BC8A00F37390 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		AA312FAE1233D8D30098711E /* cocos2d-iphone.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "cocos2d-iphone.xcodeproj"; sourceTree = COCOS2D_SOURCE; };
 		AA31319C1233DABE0098711E /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
 		AA31319D1233DABE0098711E /* HelloWorldScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldScene.m; sourceTree = "<group>"; };
@@ -619,6 +622,8 @@
 				1D3623250D0F684500981E51 /* MaturaAppAppDelegate.m */,
 				AA31326E1233DEA10098711E /* GameScene.h */,
 				AA31326F1233DEA10098711E /* GameScene.m */,
+				AA1BAD5E1236BC8A00F37390 /* GameData.h */,
+				AA1BAD5F1236BC8A00F37390 /* GameData.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1364,6 +1369,7 @@
 				AA3132511233DD760098711E /* Sphere.m in Sources */,
 				AA3132521233DD760098711E /* EnemySphere.m in Sources */,
 				AA3132701233DEA10098711E /* GameScene.m in Sources */,
+				AA1BAD601236BC8A00F37390 /* GameData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

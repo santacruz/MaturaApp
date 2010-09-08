@@ -7,8 +7,8 @@
 #import "HelloWorldScene.h"
 #import "CCTouchDispatcher.h"
 
-#define kBallCollisionType	1
-#define kCircleCollisionType	2
+#define kBallCollisionType	1	//Spielfigur
+#define kCircleCollisionType	2 //Feind
 #define kRectCollisionType	3
 #define kFragShapeCollisionType	4
 
@@ -17,7 +17,7 @@ id action;
 @implementation GameScene
 
 @synthesize smgr, prevSize, isThereASphere, prevPos, prevVelocity;
-@synthesize sphere;
+@synthesize sphere, enemySpawnBuffer;
 
 +(id) scene
 {
@@ -46,6 +46,10 @@ id action;
 		//Accelerometer benützen
 		self.isAccelerometerEnabled = YES;
 		
+		//enemySpawnBuffer intialisieren
+		NSMutableArray *array = [[NSMutableArray alloc] init];
+		self.enemySpawnBuffer = array;
+		[array release];
 		
 		//Touches benützen können:
 		//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -89,29 +93,35 @@ id action;
 		
 		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1];
 		feind.sprite.position = ccp(200,80);
-		[feind.sprite applyImpulse:ccp(150,110)];
+		[feind.sprite applyImpulse:ccp(300,220)];
 		[self addChild:feind];
 		
 		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2];
 		feind2.sprite.position = ccp(-300,-200);
-		[feind2.sprite applyImpulse:ccp(-150,20)];
+		[feind2.sprite applyImpulse:ccp(-300,40)];
 		[self addChild:feind2];
 		
 		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1];
 		feind3.sprite.position = ccp(100,-200);
-		[feind3.sprite applyImpulse:ccp(200,-220)];
+		[feind3.sprite applyImpulse:ccp(400,-440)];
 		[self addChild:feind3];
 		
 		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1];
 		feind4.sprite.position = ccp(-400,150);
-		[feind4.sprite applyImpulse:ccp(100,-50)];
+		[feind4.sprite applyImpulse:ccp(200,-100)];
 		[self addChild:feind4];
 		
-		//Registriere den Collision handler:
+		//Registriere den Collision handler für Spielfigur:
 		[smgr addCollisionCallbackBetweenType:kBallCollisionType
 									otherType:kCircleCollisionType
 									   target:self 
-									 selector:@selector(handleCollision:arbiter:space:)];
+									 selector:@selector(handleOwnCollision:arbiter:space:)];
+		
+		//Registriere den Collision handler für Spielfigur:
+		[smgr addCollisionCallbackBetweenType:kCircleCollisionType
+									otherType:kCircleCollisionType
+									   target:self 
+									 selector:@selector(handleEnemyCollision:arbiter:space:)];
 		
 	}
 	return self;
@@ -125,7 +135,7 @@ id action;
 }
 
 //COLLISION HANDLING
-- (void) handleCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space
+- (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space
 {
 	CP_ARBITER_GET_SHAPES(arb,a,b);
 	switch(moment)
@@ -135,7 +145,7 @@ id action;
 			NSLog(@"Collision detected!");
 			cpCCSprite *sprite = (cpCCSprite*)b->data;
 			NSLog(@"Mass:%f",sprite.shape->body->m);
-			if (sprite.shape->body->m > sphere.level+0.1) {
+			if ((int)round(sprite.shape->body->m) > sphere.level) { //To int!!
 				//Hier später Gefressenwerd-Animation einbauen, vorerst wird nur Spiel gestoppt
 				[smgr stop];
 				[[CCDirector sharedDirector] replaceScene:
@@ -177,6 +187,28 @@ id action;
     }
 	
 }
+- (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space
+{
+	CP_ARBITER_GET_SHAPES(arb,a,b);
+	if (moment == COLLISION_BEGIN) {
+
+		NSLog(@"Collision detected!");
+		cpCCSprite *sprite = (cpCCSprite*)a->data;
+		cpCCSprite *sprite2 = (cpCCSprite*)b->data;
+		int newMass = (int)round(fabs(sprite.shape->body->m))+(int)round(fabs(sprite2.shape->body->m));
+		[sprite.parent removeChild:sprite cleanup:YES];
+		[smgr scheduleToRemoveAndFreeShape:a];
+		a->data = nil;
+		[sprite2.parent removeChild:sprite2 cleanup:YES];
+		[smgr scheduleToRemoveAndFreeShape:b];
+		b->data = nil;
+		
+		//Daten in EnemySpawnBuffer laden (prevPos, v, newMass)
+
+	}
+				
+}
+
 
 
 //GAME LOGIK
@@ -189,7 +221,6 @@ id action;
 		CCFiniteTimeAction *shrinkAction = [CCScaleTo actionWithDuration:0.1f scale:1];// zoom out
 		CCSequence *actions = [CCSequence actions:zoomAction, shrinkAction, nil];// zoom in, then zoom out
 		[sphere runAction:actions];// now
-		
 	}
 }
 
@@ -220,11 +251,8 @@ id action;
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
+	[enemySpawnBuffer release];
+	[smgr release];
 	[super dealloc];
 }
 @end

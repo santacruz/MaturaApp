@@ -16,14 +16,18 @@
 	int prevSize;
 	CGPoint prevVelocity;
 	BOOL isThereASphere;
+	NSMutableArray *enemySpawnBuffer; //Später in GameData
 }
 
 @property(nonatomic,retain)Sphere *sphere;
 @property(nonatomic,retain)SpaceManager *smgr;
+@property(nonatomic,retain)NSMutableArray *enemySpawnBuffer;
 @property(readwrite,assign) int prevSize;
 @property(readwrite,assign) BOOL isThereASphere;
 @property(readwrite,assign) CGPoint prevPos, prevVelocity;
 
 +(id) scene;
-- (void) handleCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
+- (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
+- (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
+
 @end
