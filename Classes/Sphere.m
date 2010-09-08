@@ -32,13 +32,18 @@
 		sprite = [cpCCSprite spriteWithShape:ball file:[NSString stringWithFormat:@"level%ir.png",size]];
 		sprite.position = location;
 		sprite.shape->body->v = velocity;
-		//sprite.scale = 0.5;
 		[self addChild:sprite];
 		
 		self.position = ccp(screenSize.width/2,screenSize.height/2);
 
 	}
 	return self;
+}
+
+- (void) dealloc
+{
+
+	[super dealloc];
 }
 
 @end

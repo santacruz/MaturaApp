@@ -273,7 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>14</integer>
+									<integer>6</integer>
 									<integer>4</integer>
 									<integer>0</integer>
 								</array>
@@ -316,7 +316,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GameScene.m</string>
+								<string>Sphere.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,11 +324,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GameScene.m</string>
+										<string>Sphere.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>AA1BAE7B1237EAAD00F37390</string>
+										<string>AA1BAECA1237EB9D00F37390</string>
 										<key>history</key>
 										<array>
 											<string>AA3131BF1233DBA00098711E</string>
@@ -338,18 +338,18 @@
 											<string>AA3134901233EA6F0098711E</string>
 											<string>AA1BAB6C1234422300F37390</string>
 											<string>AA1BAE0C1237E84B00F37390</string>
-											<string>AA1BAE681237EA6100F37390</string>
 											<string>AA1BAE691237EA6100F37390</string>
 											<string>AA1BAE6A1237EA6100F37390</string>
-											<string>AA1BAE6B1237EA6100F37390</string>
 											<string>AA1BAE6C1237EA6100F37390</string>
 											<string>AA1BAE6D1237EA6100F37390</string>
 											<string>AA1BAE6E1237EA6100F37390</string>
-											<string>AA1BAE701237EA6100F37390</string>
-											<string>AA1BAE711237EA6100F37390</string>
 											<string>AA1BAE791237EAAD00F37390</string>
 											<string>AA1BAE7A1237EAAD00F37390</string>
-											<string>AA1BAE721237EA6100F37390</string>
+											<string>AA1BAEC51237EB9D00F37390</string>
+											<string>AA1BAEC61237EB9D00F37390</string>
+											<string>AA1BAEC71237EB9D00F37390</string>
+											<string>AA1BAEC81237EB9D00F37390</string>
+											<string>AA1BAEC91237EB9D00F37390</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -361,14 +361,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1072, 499}}</string>
+								<string>{{0, 0}, {1072, 496}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 138 1280 640 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>499pt</string>
+							<string>496pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -381,14 +381,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 504}, {1072, 95}}</string>
+								<string>{{0, 501}, {1072, 98}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 138 1280 640 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>95pt</string>
+							<string>98pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -407,9 +407,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>AA1BAE751237EA6100F37390</string>
+				<string>AA1BAECB1237EB9D00F37390</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>AA1BAE761237EA6100F37390</string>
+				<string>AA1BAECC1237EB9D00F37390</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -547,8 +547,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>AA312FA81233D8960098711E</string>
 		<string>/Users/zeno/Dropbox/Matura/MaturaApp/MaturaApp.xcodeproj</string>
 	</array>
@@ -574,7 +572,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>cpCCSprite.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -591,8 +589,6 @@
 							<string>91pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -632,7 +628,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>AA312FA81233D8960098711E</string>
-				<string>AA1BAE601237EA6000F37390</string>
+				<string>AA1BAECD1237EB9D00F37390</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
