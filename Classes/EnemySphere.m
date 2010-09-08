@@ -12,7 +12,7 @@
 
 @implementation EnemySphere
 @synthesize radius, sprite, level;
--(id) initWithMgr:(SpaceManager *)mgr level:(int)size
+-(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super" return value
@@ -30,7 +30,8 @@
 		cpShape *ball = [mgr addCircleAt:ccp(0,0) mass:size radius:radius];
 		ball->collision_type = kCircleCollisionType;
 		sprite = [cpCCSprite spriteWithShape:ball file:[NSString stringWithFormat:@"level%i.png",size]];
-		sprite.position = ccp(screenSize.width*0.25,screenSize.height*0.25);
+		sprite.position = location;
+		sprite.shape->body->v = velocity;
 		[self addChild:sprite];
 		
 		self.position = ccp(screenSize.width/2,screenSize.height/2);

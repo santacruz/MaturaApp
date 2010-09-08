@@ -15,5 +15,5 @@
 @property(nonatomic,retain)	cpCCSprite *sprite;
 @property(readwrite,assign) float radius;
 @property(readwrite,assign) int level;
--(id) initWithMgr:(SpaceManager *)mgr level:(int)size;
+-(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
 @end

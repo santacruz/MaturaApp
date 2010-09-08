@@ -91,24 +91,14 @@ id action;
 		sphere = [[Sphere alloc] initWithMgr:self.smgr level:1 position:ccp(0,0) velocity:ccp(0,0)];
 		[self addChild:sphere];
 		
-		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1];
-		feind.sprite.position = ccp(200,80);
-		[feind.sprite applyImpulse:ccp(300,220)];
+		//Feinde hinzufügen
+		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(200,80) velocity:ccp(300,220)];
 		[self addChild:feind];
-		
-		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2];
-		feind2.sprite.position = ccp(-300,-200);
-		[feind2.sprite applyImpulse:ccp(-300,40)];
+		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-300,-200) velocity:ccp(-300,40)];
 		[self addChild:feind2];
-		
-		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1];
-		feind3.sprite.position = ccp(100,-200);
-		[feind3.sprite applyImpulse:ccp(400,-440)];
+		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(100,-200) velocity:ccp(400,-440)];
 		[self addChild:feind3];
-		
-		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1];
-		feind4.sprite.position = ccp(-400,150);
-		[feind4.sprite applyImpulse:ccp(200,-100)];
+		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(-400,150) velocity:ccp(200,-100)];
 		[self addChild:feind4];
 		
 		//Registriere den Collision handler für Spielfigur:
