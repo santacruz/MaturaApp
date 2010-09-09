@@ -14,14 +14,15 @@
 	Sphere *sphere;
 	CGPoint prevPos;
 	int prevSize;
-	CGPoint prevVelocity;
+	CGPoint prevVelocity; //Später in GameData
 	BOOL isThereASphere;
 	NSMutableArray *enemySpawnBuffer; //Später in GameData
+	NSMutableArray *enemyArray; //Später in GameData
 }
 
 @property(nonatomic,retain)Sphere *sphere;
 @property(nonatomic,retain)SpaceManager *smgr;
-@property(nonatomic,retain)NSMutableArray *enemySpawnBuffer;
+@property(nonatomic,retain)NSMutableArray *enemySpawnBuffer, *enemyArray;
 @property(readwrite,assign) int prevSize;
 @property(readwrite,assign) BOOL isThereASphere;
 @property(readwrite,assign) CGPoint prevPos, prevVelocity;
