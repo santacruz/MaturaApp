@@ -46,8 +46,9 @@ id action;
 		//Accelerometer benützen
 		self.isAccelerometerEnabled = YES;
 				
-		//GameData initialisieren
-		GameData *levelData = [GameData sharedData];
+		//Level initialisieren
+		//Später: level von LevelAuswahl heraus initialisieren
+		[[GameData sharedData] initLevel];
 		
 		//Touches benützen können:
 		//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -260,7 +261,6 @@ id action;
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
-	[[GameData sharedData] release];
 	[sphere release];
 	[smgr release];
 	[super dealloc];

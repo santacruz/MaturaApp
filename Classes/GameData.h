@@ -24,4 +24,5 @@
 @property(nonatomic,retain)NSMutableArray *enemySpawnBuffer, *enemyArray;
 
 +(GameData *) sharedData;
+-(void)initLevel;
 @end

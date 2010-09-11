@@ -30,6 +30,16 @@ static GameData *sharedData = NULL;
 	
 }
 
+-(void)initLevel
+{
+	heroPrevSize = 1;
+	isThereAHero = YES;
+	heroPrevPos = ccp(0,0);
+	heroPrevVelocity = ccp(0,0);
+	[enemySpawnBuffer removeAllObjects];
+	[enemyArray removeAllObjects];
+}
+
 + (GameData *)sharedData
 {
 	@synchronized([GameData class])

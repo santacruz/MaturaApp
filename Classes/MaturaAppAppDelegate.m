@@ -29,6 +29,9 @@
 	// Obtain the shared director in order to...
 	CCDirector *director = [CCDirector sharedDirector];
 	
+	//GameData initialisieren
+	GameData *levelData = [GameData sharedData];
+	
 	// Sets landscape mode
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
 	//[director setDeviceOrientation:kCCDeviceOrientationPortrait];
@@ -83,6 +86,7 @@
 }
 
 - (void)dealloc {
+	[[GameData sharedData] release];
 	[[CCDirector sharedDirector] release];
 	[window release];
 	[super dealloc];
