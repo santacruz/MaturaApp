@@ -13,14 +13,18 @@ static GameData *sharedData = NULL;
 
 @implementation GameData
 
+@synthesize heroPrevSize, isThereAHero, heroPrevPos, heroPrevVelocity, enemySpawnBuffer, enemyArray;
+
 - (id)init
 {
 	if ( self = [super init] )
 	{
-		//Hier GameDaten initialisieren
-		//Variabeln für Anz. Feinde, Score, Powerups gegessen etc, 
-		//Hier evtl. level aus xml lesen
-		//Hier enemySpawnBuffer Array behalten
+		heroPrevSize = 1;
+		isThereAHero = YES;
+		heroPrevPos = ccp(0,0);
+		heroPrevVelocity = ccp(0,0);
+		enemySpawnBuffer = [[NSMutableArray alloc] init];
+		enemyArray = [[NSMutableArray alloc] init];
 	}
 	return self;
 	
@@ -43,7 +47,8 @@ static GameData *sharedData = NULL;
 {
 	NSLog(@"Deallocating singleton...");
 	//release allocated stuff
-	
+	[enemySpawnBuffer release];
+	[enemyArray release];
 	[super dealloc];
 }
 

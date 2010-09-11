@@ -6,26 +6,18 @@
 #import "Sphere.h"
 #import "EnemySphere.h"
 #import "SpaceManager.h"
+#import "GameData.h"
 
 
 // HelloWorld Layer
 @interface GameScene : CCColorLayer
 {
 	Sphere *sphere;
-	CGPoint prevPos;
-	int prevSize;
-	CGPoint prevVelocity; //Später in GameData
-	BOOL isThereASphere;
-	NSMutableArray *enemySpawnBuffer; //Später in GameData
-	NSMutableArray *enemyArray; //Später in GameData
+	SpaceManager *smgr;
 }
 
 @property(nonatomic,retain)Sphere *sphere;
 @property(nonatomic,retain)SpaceManager *smgr;
-@property(nonatomic,retain)NSMutableArray *enemySpawnBuffer, *enemyArray;
-@property(readwrite,assign) int prevSize;
-@property(readwrite,assign) BOOL isThereASphere;
-@property(readwrite,assign) CGPoint prevPos, prevVelocity;
 
 +(id) scene;
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;

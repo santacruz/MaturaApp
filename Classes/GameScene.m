@@ -16,8 +16,7 @@ id action;
 
 @implementation GameScene
 
-@synthesize smgr, prevSize, isThereASphere, prevPos, prevVelocity;
-@synthesize sphere, enemySpawnBuffer, enemyArray;
+@synthesize sphere, smgr;
 
 +(id) scene
 {
@@ -41,27 +40,18 @@ id action;
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super initWithColor:ccc4(0,0,0,255)] )) {
 		//Bildschirmgrösse bekommen für Mitte-Positionierung
+		//TBD in AppData auslagern
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
 		
 		//Accelerometer benützen
 		self.isAccelerometerEnabled = YES;
-		
-		//enemySpawnBuffer intialisieren
-		NSMutableArray *array = [[NSMutableArray alloc] init];
-		self.enemySpawnBuffer = array;
-		[array release];
-		
-		//enemyArray initialisieren
-		NSMutableArray *array2 = [[NSMutableArray alloc] init];
-		self.enemyArray  = array2;
-		[array2 release];
+				
+		//GameData initialisieren
+		GameData *levelData = [GameData sharedData];
 		
 		//Touches benützen können:
 		//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-		
-		//No Sphere:
-		isThereASphere = YES;
-		
+				
 		//Gamelogik initialisieren:
 		[self schedule:@selector(nextFrame:)];
 		
@@ -72,7 +62,7 @@ id action;
 		[smgr start];	
 		
 		//Wände
-		
+		//TBD: Auslagern
 		cpShape *bottomRect = [smgr addRectAt:cpv(0,-1*screenSize.height/2) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
 		cpCCSprite *sBottomSprite = [cpCCSprite spriteWithShape:bottomRect file:@"blank.png"];
 		sBottomSprite.position = ccp(0,0);
@@ -92,12 +82,13 @@ id action;
 		[self addChild:sRightSprite];
 		
 		
-		//Spielfigur initialisieren (Später: Level-Layouts aus Tabellen lesen):
+		//Spielfigur initialisieren
 		sphere = [[Sphere alloc] initWithMgr:self.smgr level:1 position:ccp(0,0) velocity:ccp(0,0)];
 		[self addChild:sphere];
 		
 		//Feinde hinzufügen
-		//jeweils Feind zu Array hinzufügen
+		//TBD: jeweils Feind zu Array hinzufügen
+		//TBD: aus XML lesen
 		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(200,80) velocity:ccp(300,220)];
 		[self addChild:feind];
 		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-300,-200) velocity:ccp(-300,40)];
@@ -126,7 +117,6 @@ id action;
 -(void) onEnter
 {
 	[super onEnter];
-	
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
 }
 
@@ -137,11 +127,10 @@ id action;
 	switch(moment)
     {
         case COLLISION_BEGIN:
-			//Auslagern?
 			NSLog(@"Collision detected!");
 			cpCCSprite *sprite = (cpCCSprite*)b->data;
 			NSLog(@"Mass:%f",sprite.shape->body->m);
-			if ((int)round(sprite.shape->body->m) > sphere.level) { //To int!!
+			if ((int)round(sprite.shape->body->m) > sphere.level) {
 				//Hier später Gefressenwerd-Animation einbauen, vorerst wird nur Spiel gestoppt
 				[smgr stop];
 				[[CCDirector sharedDirector] replaceScene:
@@ -154,11 +143,10 @@ id action;
 					b->data = nil;
 				}
 				if (sphere) {
-					prevSize = sphere.level;
-					prevPos = sphere.sprite.position;
-					prevVelocity = sphere.sprite.shape->body->v;
-					NSLog(@"prevV:%f,%f",prevVelocity.x,prevVelocity.y);
-					isThereASphere = NO;
+					[GameData sharedData].heroPrevSize = sphere.level;
+					[GameData sharedData].heroPrevPos = sphere.sprite.position;
+					[GameData sharedData].heroPrevVelocity = sphere.sprite.shape->body->v;
+					[GameData sharedData].isThereAHero = NO;
 					[self removeChild:sphere cleanup:YES];
 					[smgr scheduleToRemoveAndFreeShape:a];
 					a->data = nil;
@@ -171,11 +159,6 @@ id action;
 			//Zum beispiel abstossende grössere feinde
 			break;
         case COLLISION_POSTSOLVE:
-			//if grösser als etc
-			//ZB sprite entfernen
-			//[smgr scheduleToRemoveAndFreeShape:b];
-			//b = nil;
-			//neues Sprite spawnen
 			break;
         case COLLISION_SEPARATE:
 			//shapes separated, do something awesome!
@@ -191,15 +174,15 @@ id action;
 		NSLog(@"Collision detected!");
 		cpCCSprite *sprite = (cpCCSprite*)a->data;
 		cpCCSprite *sprite2 = (cpCCSprite*)b->data;
-		int aMass = (int)round(fabs(sprite.shape->body->m));
-		int bMass = (int)round(fabs(sprite2.shape->body->m));
-		int newEnemyMass = aMass + bMass;
+		int aSize = (int)round(fabs(sprite.shape->body->m));
+		int bSize = (int)round(fabs(sprite2.shape->body->m));
+		int newEnemySize = aSize + bSize;
 		
 		CGPoint newEnemyPosition = ccp(0,0);
 		
-		if (aMass > bMass) {
+		if (aSize > bSize) {
 			newEnemyPosition = sprite.position;
-		} else if (bMass > aMass) {
+		} else if (bSize > aSize) {
 			newEnemyPosition = sprite2.position;
 		} else {
 			newEnemyPosition = ccpMidpoint(sprite.position, sprite2.position);
@@ -217,23 +200,22 @@ id action;
 		//Daten in EnemySpawnBuffer laden (prevPos, v, newMass)
 		NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] init];
 		//Array mit Daten: size, position, velocity
-		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newEnemyMass]];
+		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newEnemySize]];
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyPosition]];
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyVelocity]];
-		[enemySpawnBuffer addObject:enemyToBeSpawned];
+		[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
 	}
 				
 }
 
 
-
 //GAME LOGIK
 - (void) nextFrame:(ccTime)dt {
 	//neue Sphere
-	if (!isThereASphere) {
-		sphere = [[Sphere alloc] initWithMgr:smgr level:prevSize+1 position:prevPos velocity:prevVelocity];
+	if (![GameData sharedData].isThereAHero) {
+		sphere = [[Sphere alloc] initWithMgr:smgr level:[GameData sharedData].heroPrevSize+1 position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
 		[self addChild:sphere];
-		isThereASphere = YES;
+		[GameData sharedData].isThereAHero = YES;
 		CCFiniteTimeAction *zoomAction = [CCScaleTo actionWithDuration:0.1f scale:1.1f];// zoom in
 		CCFiniteTimeAction *shrinkAction = [CCScaleTo actionWithDuration:0.1f scale:1];// zoom out
 		CCSequence *actions = [CCSequence actions:zoomAction, shrinkAction, nil];// zoom in, then zoom out
@@ -241,11 +223,13 @@ id action;
 	}
 	//neuer Feind
 	//bis jetzt nur einer pro Frame
-	if ([enemySpawnBuffer count] != 0) {
-		NSMutableArray *enemyToBeSpawned = (NSMutableArray *)[enemySpawnBuffer objectAtIndex:0];
+	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
+		//NSMutableArray *enemyToBeSpawned = (NSMutableArray *)[levelData.enemySpawnBuffer objectAtIndex:0];
+		NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:0]];
 		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:[[enemyToBeSpawned objectAtIndex:0]intValue] position:[[enemyToBeSpawned objectAtIndex:1] CGPointValue] velocity:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 		[self addChild:feind];
-		[enemySpawnBuffer removeObjectAtIndex:0];
+		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
+		[enemyToBeSpawned release];
 	}
 }
 
@@ -266,7 +250,7 @@ id action;
 	
 	CGPoint v = ccp( -1*accelY, accelX);
 	
-	if (isThereASphere) {
+	if ([GameData sharedData].isThereAHero) {
 		[sphere.sprite applyImpulse:ccpMult(v, 15)];
 	}
 	
@@ -276,10 +260,8 @@ id action;
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
-	//Feinde in array releasen
+	[[GameData sharedData] release];
 	[sphere release];
-	[enemySpawnBuffer release];
-	[enemyArray release];
 	[smgr release];
 	[super dealloc];
 }

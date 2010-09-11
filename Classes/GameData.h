@@ -10,8 +10,18 @@
 
 
 @interface GameData : NSObject {
-
+	CGPoint heroPrevPos;
+	CGPoint heroPrevVelocity;
+	int heroPrevSize;
+	BOOL isThereAHero;
+	NSMutableArray *enemySpawnBuffer;
+	NSMutableArray *enemyArray; 
 }
+
+@property(readwrite,assign) CGPoint heroPrevPos, heroPrevVelocity;
+@property(readwrite,assign) int heroPrevSize;
+@property(readwrite,assign) BOOL isThereAHero;
+@property(nonatomic,retain)NSMutableArray *enemySpawnBuffer, *enemyArray;
 
 +(GameData *) sharedData;
 @end
