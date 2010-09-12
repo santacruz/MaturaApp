@@ -31,7 +31,7 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super initWithColor:ccc4(220,220,220,255)] )) {
 		
-		CCLabel* label = [CCLabel labelWithString:@"start" fontName:@"Helvetica" fontSize:100];
+		CCLabelTTF* label = [CCLabelTTF labelWithString:@"start" fontName:@"Helvetica" fontSize:50];
 		label.color = ccc3(30,30,30);
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(runGame:)];
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,nil];
@@ -42,7 +42,7 @@
 
 -(void) runGame:(CCMenuItem  *) menuItem  {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCFadeTransition transitionWithDuration:0.5f scene:[GameScene scene]]];
+	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
 }
 
 // on "dealloc" you need to release all your retained objects

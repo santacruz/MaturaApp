@@ -64,6 +64,7 @@ id action;
 		
 		//Wände
 		//TBD: Auslagern
+		//TBD ins point system umschreiben
 		cpShape *bottomRect = [smgr addRectAt:cpv(0,-1*screenSize.height/2) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
 		cpCCSprite *sBottomSprite = [cpCCSprite spriteWithShape:bottomRect file:@"blank.png"];
 		sBottomSprite.position = ccp(0,0);
@@ -90,13 +91,13 @@ id action;
 		//Feinde hinzufügen
 		//TBD: jeweils Feind zu Array hinzufügen
 		//TBD: aus XML lesen
-		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(200,80) velocity:ccp(300,220)];
+		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(100,40) velocity:ccp(300,220)];
 		[self addChild:feind];
-		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-300,-200) velocity:ccp(-300,40)];
+		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-150,-100) velocity:ccp(-300,40)];
 		[self addChild:feind2];
-		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(100,-200) velocity:ccp(400,-440)];
+		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(50,-100) velocity:ccp(400,-440)];
 		[self addChild:feind3];
-		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(-400,150) velocity:ccp(200,-100)];
+		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(-200,75) velocity:ccp(200,-100)];
 		[self addChild:feind4];
 		
 		//Registriere den Collision handler für Spielfigur:
@@ -135,7 +136,7 @@ id action;
 				//Hier später Gefressenwerd-Animation einbauen, vorerst wird nur Spiel gestoppt
 				[smgr stop];
 				[[CCDirector sharedDirector] replaceScene:
-				 [CCFadeTransition transitionWithDuration:0.5f scene:[HelloWorld scene]]];
+				 [CCTransitionFade transitionWithDuration:0.5f scene:[HelloWorld scene]]];
 			} else {
 				if (sprite)
 				{	
@@ -217,10 +218,10 @@ id action;
 		sphere = [[Sphere alloc] initWithMgr:smgr level:[GameData sharedData].heroPrevSize+1 position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
 		[self addChild:sphere];
 		[GameData sharedData].isThereAHero = YES;
-		CCFiniteTimeAction *zoomAction = [CCScaleTo actionWithDuration:0.1f scale:1.1f];// zoom in
-		CCFiniteTimeAction *shrinkAction = [CCScaleTo actionWithDuration:0.1f scale:1];// zoom out
-		CCSequence *actions = [CCSequence actions:zoomAction, shrinkAction, nil];// zoom in, then zoom out
-		[sphere runAction:actions];// now
+		//CCFiniteTimeAction *zoomAction = [CCScaleTo actionWithDuration:0.1f scale:1.1f];// zoom in
+		//CCFiniteTimeAction *shrinkAction = [CCScaleTo actionWithDuration:0.1f scale:1];// zoom out
+		//CCSequence *actions = [CCSequence actions:zoomAction, shrinkAction, nil];// zoom in, then zoom out
+		//[sphere runAction:actions];// now
 	}
 	//neuer Feind
 	//bis jetzt nur einer pro Frame

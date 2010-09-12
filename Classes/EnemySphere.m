@@ -9,6 +9,7 @@
 #define kCircleCollisionType	2
 #define kRectCollisionType	3
 #define kFragShapeCollisionType	4
+#define kInitSize 12.5
 
 @implementation EnemySphere
 @synthesize radius, sprite, level;
@@ -20,11 +21,7 @@
 		//Set Level
 		level = size;
 		
-		//TBD 
-		//unhardcode->kommt mit hi res fix
-		CGSize screenSize = [CCDirector sharedDirector].winSize;
-		radius = size*screenSize.width/(19.2*2);
-		NSLog(@"Radius:%f",radius);
+		radius = level*kInitSize;
 		
 		//Sprite hinzufügen
 		cpShape *ball = [mgr addCircleAt:ccp(0,0) mass:size radius:radius];
@@ -34,7 +31,7 @@
 		sprite.shape->body->v = velocity;
 		[self addChild:sprite];
 		
-		self.position = ccp(screenSize.width/2,screenSize.height/2);
+		self.position = ccp(240,160);
 		
 	}
 	return self;
