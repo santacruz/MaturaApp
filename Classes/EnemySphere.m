@@ -21,7 +21,7 @@
 		//Set Level
 		level = size;
 		
-		radius = level*kInitSize;
+		radius = sqrt(level*pow(kInitSize,2));
 		
 		//Sprite hinzufügen
 		cpShape *ball = [mgr addCircleAt:ccp(0,0) mass:size radius:radius];

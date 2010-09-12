@@ -13,13 +13,13 @@ static GameData *sharedData = NULL;
 
 @implementation GameData
 
-@synthesize heroPrevSize, isThereAHero, heroPrevPos, heroPrevVelocity, enemySpawnBuffer, enemyArray;
+@synthesize heroNewSize, isThereAHero, heroPrevPos, heroPrevVelocity, enemySpawnBuffer, enemyArray;
 
 - (id)init
 {
 	if ( self = [super init] )
 	{
-		heroPrevSize = 1;
+		heroNewSize = 1;
 		isThereAHero = YES;
 		heroPrevPos = ccp(0,0);
 		heroPrevVelocity = ccp(0,0);
@@ -32,7 +32,7 @@ static GameData *sharedData = NULL;
 
 -(void)initLevel
 {
-	heroPrevSize = 1;
+	heroNewSize = 1;
 	isThereAHero = YES;
 	heroPrevPos = ccp(0,0);
 	heroPrevVelocity = ccp(0,0);

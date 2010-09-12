@@ -134,8 +134,8 @@ id action;
         case COLLISION_BEGIN:
 			NSLog(@"Collision detected!");
 			cpCCSprite *sprite = (cpCCSprite*)b->data;
-			NSLog(@"Mass:%f",sprite.shape->body->m);
-			if ((int)round(sprite.shape->body->m) > sphere.level) {
+			int enemyMass = (int)round(fabs(sprite.shape->body->m));		
+			if (enemyMass > sphere.level) {
 				//Hier später Gefressenwerd-Animation einbauen, vorerst wird nur Spiel gestoppt
 				[smgr stop];
 				[[CCDirector sharedDirector] replaceScene:
@@ -148,7 +148,7 @@ id action;
 					b->data = nil;
 				}
 				if (sphere) {
-					[GameData sharedData].heroPrevSize = sphere.level;
+					[GameData sharedData].heroNewSize = sphere.level+enemyMass;
 					[GameData sharedData].heroPrevPos = sphere.sprite.position;
 					[GameData sharedData].heroPrevVelocity = sphere.sprite.shape->body->v;
 					[GameData sharedData].isThereAHero = NO;
@@ -182,7 +182,6 @@ id action;
 		int aSize = (int)round(fabs(sprite.shape->body->m));
 		int bSize = (int)round(fabs(sprite2.shape->body->m));
 		int newEnemySize = aSize + bSize;
-		
 		CGPoint newEnemyPosition = ccp(0,0);
 		
 		if (aSize > bSize) {
@@ -218,7 +217,7 @@ id action;
 - (void) nextFrame:(ccTime)dt {
 	//neue Sphere
 	if (![GameData sharedData].isThereAHero) {
-		sphere = [[Sphere alloc] initWithMgr:smgr level:[GameData sharedData].heroPrevSize+1 position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
+		sphere = [[Sphere alloc] initWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
 		[self addChild:sphere];
 		[GameData sharedData].isThereAHero = YES;
 		//CCFiniteTimeAction *zoomAction = [CCScaleTo actionWithDuration:0.1f scale:1.1f];// zoom in
