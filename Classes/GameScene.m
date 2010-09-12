@@ -65,39 +65,42 @@ id action;
 		//Wände
 		//TBD: Auslagern
 		//TBD ins point system umschreiben
-		cpShape *bottomRect = [smgr addRectAt:cpv(0,-1*screenSize.height/2) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
+		
+		cpShape *bottomRect = [smgr addRectAt:cpv(-80,-160) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
 		cpCCSprite *sBottomSprite = [cpCCSprite spriteWithShape:bottomRect file:@"blank.png"];
 		sBottomSprite.position = ccp(0,0);
 		//bottomRect->e=2.0;
 		[self addChild:sBottomSprite];
-		cpShape *upperRect = [smgr addRectAt:cpv(0,screenSize.height/2) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
+		cpShape *upperRect = [smgr addRectAt:cpv(-80,320) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
 		cpCCSprite *sUpperSprite = [cpCCSprite spriteWithShape:upperRect file:@"blank.png"];
 		sUpperSprite.position = ccp(0,0);
 		[self addChild:sUpperSprite];		
-		cpShape *leftRect = [smgr addRectAt:cpv(-1*screenSize.width/2,0) mass:STATIC_MASS width:1 height:screenSize.height rotation:0];
+		cpShape *leftRect = [smgr addRectAt:cpv(-240,80) mass:STATIC_MASS width:1 height:screenSize.height rotation:0];
 		cpCCSprite *sLeftSprite = [cpCCSprite spriteWithShape:leftRect file:@"blank.png"];
 		sLeftSprite.position = ccp(0,0);
 		[self addChild:sLeftSprite];		
-		cpShape *rightRect = [smgr addRectAt:cpv(screenSize.width/2,0) mass:STATIC_MASS width:1 height:screenSize.height rotation:0];
+		cpShape *rightRect = [smgr addRectAt:cpv(80,80) mass:STATIC_MASS width:1 height:screenSize.height rotation:0];
 		cpCCSprite *sRightSprite = [cpCCSprite spriteWithShape:rightRect file:@"blank.png"];
 		sRightSprite.position = ccp(0,0);
 		[self addChild:sRightSprite];
 		
 		
 		//Spielfigur initialisieren
-		sphere = [[Sphere alloc] initWithMgr:self.smgr level:1 position:ccp(0,0) velocity:ccp(0,0)];
+		
+		sphere = [[Sphere alloc] initWithMgr:self.smgr level:1 position:ccp(-80,80) velocity:ccp(0,0)];
 		[self addChild:sphere];
 		
 		//Feinde hinzufügen
 		//TBD: jeweils Feind zu Array hinzufügen
 		//TBD: aus XML lesen
-		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(100,40) velocity:ccp(300,220)];
+		
+		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(-35,-40) velocity:ccp(300,220)];
 		[self addChild:feind];
-		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-150,-100) velocity:ccp(-300,40)];
+		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-140,-110) velocity:ccp(-300,40)];
 		[self addChild:feind2];
-		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(50,-100) velocity:ccp(400,-440)];
+		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(60,-80) velocity:ccp(400,-440)];
 		[self addChild:feind3];
-		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(-200,75) velocity:ccp(200,-100)];
+		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(40,140) velocity:ccp(200,-100)];
 		[self addChild:feind4];
 		
 		//Registriere den Collision handler für Spielfigur:
@@ -250,7 +253,7 @@ id action;
 	prevY = accelY;
 	prevZ = accelZ;
 	
-	CGPoint v = ccp( -1*accelY, accelX);
+	CGPoint v = ccp( accelX, accelY);
 	
 	if ([GameData sharedData].isThereAHero) {
 		[sphere.sprite applyImpulse:ccpMult(v, 15)];

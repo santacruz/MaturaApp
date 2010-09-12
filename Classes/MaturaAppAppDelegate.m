@@ -33,8 +33,8 @@
 	GameData *levelData = [GameData sharedData];
 	
 	// Sets landscape mode
-	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-	//[director setDeviceOrientation:kCCDeviceOrientationPortrait];
+	//[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 
 	//Temporärer Resolution-Fix (in Bälde achhaltiger Fix by Apple?) 
 	if( [[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
