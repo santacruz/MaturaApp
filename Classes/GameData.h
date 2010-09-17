@@ -1,10 +1,7 @@
 //
 //  GameData.h
 //  MaturaApp
-//
-//  Created by Zeno Koller on 07.09.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 
@@ -16,10 +13,11 @@
 	BOOL isThereAHero;
 	NSMutableArray *enemySpawnBuffer;
 	NSMutableArray *enemyArray; 
+	int enemyCount;
 }
 
 @property(readwrite,assign) CGPoint heroPrevPos, heroPrevVelocity;
-@property(readwrite,assign) int heroNewSize;
+@property(readwrite,assign) int heroNewSize, enemyCount;
 @property(readwrite,assign) BOOL isThereAHero;
 @property(nonatomic,retain)NSMutableArray *enemySpawnBuffer, *enemyArray;
 

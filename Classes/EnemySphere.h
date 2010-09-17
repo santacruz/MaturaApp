@@ -5,8 +5,9 @@
 #import "cocos2d.h"
 #import "SpaceManager.h"
 #import "cpCCSprite.h"
+#import "GameData.h"
 
-@interface EnemySphere : CCSprite {
+@interface EnemySphere : CCNode {
 	float radius;
 	int level;
 	cpCCSprite *sprite;

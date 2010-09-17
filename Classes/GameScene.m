@@ -7,10 +7,10 @@
 #import "HelloWorldScene.h"
 #import "CCTouchDispatcher.h"
 
-#define kBallCollisionType	1	//Spielfigur
-#define kCircleCollisionType	2 //Feind
-#define kRectCollisionType	3
-#define kFragShapeCollisionType	4
+#define kHeroCollisionType	1
+#define kEnemyCollisionType	2 
+#define kInitSize 12.5
+#define kFilterFactor 0.5f
 
 id action;
 
@@ -20,52 +20,38 @@ id action;
 
 +(id) scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
 	GameScene *layer = [GameScene node];
-	
-	// add layer as a child to scene
 	[scene addChild: layer];
-	
-	// return the scene
 	return scene;
 }
 
-// on "init" you need to initialize your instance
+//INITIALISIERE INSTANZ
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super initWithColor:ccc4(0,0,0,255)] )) {
-		//Bildschirmgrösse bekommen für Mitte-Positionierung
-		//TBD in AppData auslagern
+		
+		//BILDSCHIRMGRÖSSE
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
 		
-		//Accelerometer benützen
+		//ACCELEROMETER BENÜTZEN
 		self.isAccelerometerEnabled = YES;
-				
-		//Level initialisieren
-		//Später: level von LevelAuswahl heraus initialisieren
+		
+		//LEVELDATEN INITIALISIEREN
 		[[GameData sharedData] initLevel];
 		
-		//Touches benützen können:
+		//TOUCHES BENÜTZEN (UNCOMMENT)
 		//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-				
-		//Gamelogik initialisieren:
+		
+		//GAMELOGIK REGISTRIEREN
 		[self schedule:@selector(nextFrame:)];
 		
-		//SpaceMgr
-		//SpaceMgr initialisation plus Fenster-Wände
+		//SPACEMGR
 		smgr = [[SpaceManager alloc] init];
 		smgr.gravity=ccp(0,0);
 		[smgr start];	
 		
-		//Wände
-		//TBD: Auslagern
-		//TBD ins point system umschreiben
-		
+		//WÄNDE
 		cpShape *bottomRect = [smgr addRectAt:cpv(-80,-160) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
 		cpCCSprite *sBottomSprite = [cpCCSprite spriteWithShape:bottomRect file:@"blank.png"];
 		sBottomSprite.position = ccp(0,0);
@@ -85,15 +71,11 @@ id action;
 		[self addChild:sRightSprite];
 		
 		
-		//Spielfigur initialisieren
-		
+		//HELD INITIALISIEREN
 		sphere = [[Sphere alloc] initWithMgr:self.smgr level:1 position:ccp(-80,80) velocity:ccp(0,0)];
 		[self addChild:sphere];
 		
-		//Feinde hinzufügen
-		//TBD: jeweils Feind zu Array hinzufügen
-		//TBD: aus XML lesen
-		
+		//FEINDE HINZUFÜGEN
 		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(-35,-40) velocity:ccp(300,220)];
 		[self addChild:feind];
 		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-140,-110) velocity:ccp(-300,40)];
@@ -103,15 +85,16 @@ id action;
 		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(40,140) velocity:ccp(200,-100)];
 		[self addChild:feind4];
 		
-		//Registriere den Collision handler für Spielfigur:
-		[smgr addCollisionCallbackBetweenType:kBallCollisionType
-									otherType:kCircleCollisionType
+
+		//REGISTRIERE COLLISION HANDLER FÜR HELD
+		[smgr addCollisionCallbackBetweenType:kHeroCollisionType
+									otherType:kEnemyCollisionType
 									   target:self 
 									 selector:@selector(handleOwnCollision:arbiter:space:)];
 		
-		//Registriere den Collision handler für Spielfigur:
-		[smgr addCollisionCallbackBetweenType:kCircleCollisionType
-									otherType:kCircleCollisionType
+		//REGISTRIERE COLLISION HANDLER FÜR FEINDE
+		[smgr addCollisionCallbackBetweenType:kEnemyCollisionType
+									otherType:kEnemyCollisionType
 									   target:self 
 									 selector:@selector(handleEnemyCollision:arbiter:space:)];
 		
@@ -119,63 +102,41 @@ id action;
 	return self;
 }
 
--(void) onEnter
-{
-	[super onEnter];
-	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
-}
-
 //COLLISION HANDLING
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space
 {
 	CP_ARBITER_GET_SHAPES(arb,a,b);
-	switch(moment)
-    {
-        case COLLISION_BEGIN:
-			NSLog(@"Collision detected!");
-			cpCCSprite *sprite = (cpCCSprite*)b->data;
-			int enemyMass = (int)round(fabs(sprite.shape->body->m));		
-			if (enemyMass > sphere.level) {
-				//Hier später Gefressenwerd-Animation einbauen, vorerst wird nur Spiel gestoppt
-				[smgr stop];
-				[[CCDirector sharedDirector] replaceScene:
-				 [CCTransitionFade transitionWithDuration:0.5f scene:[HelloWorld scene]]];
-			} else {
-				if (sprite)
-				{	
-					[sprite.parent removeChild:sprite cleanup:YES];
-					[smgr scheduleToRemoveAndFreeShape:b];
-					b->data = nil;
-				}
-				if (sphere) {
-					[GameData sharedData].heroNewSize = sphere.level+enemyMass;
-					[GameData sharedData].heroPrevPos = sphere.sprite.position;
-					[GameData sharedData].heroPrevVelocity = sphere.sprite.shape->body->v;
-					[GameData sharedData].isThereAHero = NO;
-					[self removeChild:sphere cleanup:YES];
-					[smgr scheduleToRemoveAndFreeShape:a];
-					a->data = nil;
-				}
+	if (moment == COLLISION_BEGIN) {
+		NSLog(@"Collision detected!");
+		cpCCSprite *sprite = (cpCCSprite*)b->data;
+		int enemyMass = (int)round(fabs(sprite.shape->body->m));		
+		if (enemyMass > sphere.level) {
+			[self endGame];
+		} else {
+			if (sprite)
+			{	
+				[sprite.parent.parent removeChild:sprite.parent cleanup:YES];
+				[smgr scheduleToRemoveAndFreeShape:b];
+				b->data = nil;
+				[GameData sharedData].enemyCount -= 1;
 			}
-
-			break;
-        case COLLISION_PRESOLVE:
-			//arb->e = 5;
-			//Zum beispiel abstossende grössere feinde
-			break;
-        case COLLISION_POSTSOLVE:
-			break;
-        case COLLISION_SEPARATE:
-			//shapes separated, do something awesome!
-			break;
-    }
-	
+			if (sphere) {
+				[GameData sharedData].heroNewSize = sphere.level+enemyMass;
+				[GameData sharedData].heroPrevPos = sphere.sprite.position;
+				[GameData sharedData].heroPrevVelocity = sphere.sprite.shape->body->v;
+				[GameData sharedData].isThereAHero = NO;
+				[self removeChild:sphere cleanup:YES];
+				[smgr scheduleToRemoveAndFreeShape:a];
+				a->data = nil;
+			}
+		}
+    }	
 }
 - (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space
 {
 	CP_ARBITER_GET_SHAPES(arb,a,b);
 	if (moment == COLLISION_BEGIN) {
-
+		
 		NSLog(@"Collision detected!");
 		cpCCSprite *sprite = (cpCCSprite*)a->data;
 		cpCCSprite *sprite2 = (cpCCSprite*)b->data;
@@ -193,57 +154,56 @@ id action;
 		}
 		
 		CGPoint newEnemyVelocity = ccpAdd(sprite.shape->body->v, sprite2.shape->body->v);
-
-		[sprite.parent removeChild:sprite cleanup:YES];
+		
+		[sprite.parent.parent removeChild:sprite.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:a];
 		a->data = nil;
-		[sprite2.parent removeChild:sprite2 cleanup:YES];
+		[sprite2.parent.parent removeChild:sprite2.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:b];
 		b->data = nil;
 		
-		//Daten in EnemySpawnBuffer laden (prevPos, v, newMass)
+		[GameData sharedData].enemyCount -= 2;
+
+		
+		//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
 		NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] init];
-		//Array mit Daten: size, position, velocity
+		//ARRAY MIT DATEN FÜLLEN:GRÖSSE, POSITION, GESCHWINDIGKEIT
 		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newEnemySize]];
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyPosition]];
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyVelocity]];
 		[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
 	}
-				
+	
 }
 
 
 //GAME LOGIK
 - (void) nextFrame:(ccTime)dt {
-	//neue Sphere
+	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
 		sphere = [[Sphere alloc] initWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
 		[self addChild:sphere];
 		[GameData sharedData].isThereAHero = YES;
-		//CCFiniteTimeAction *zoomAction = [CCScaleTo actionWithDuration:0.1f scale:1.1f];// zoom in
-		//CCFiniteTimeAction *shrinkAction = [CCScaleTo actionWithDuration:0.1f scale:1];// zoom out
-		//CCSequence *actions = [CCSequence actions:zoomAction, shrinkAction, nil];// zoom in, then zoom out
-		//[sphere runAction:actions];// now
 	}
-	//neuer Feind
-	//bis jetzt nur einer pro Frame
+	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
-		//NSMutableArray *enemyToBeSpawned = (NSMutableArray *)[levelData.enemySpawnBuffer objectAtIndex:0];
 		NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:0]];
 		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:[[enemyToBeSpawned objectAtIndex:0]intValue] position:[[enemyToBeSpawned objectAtIndex:1] CGPointValue] velocity:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
 	}
-}
+		
+	if ([GameData sharedData].enemyCount == 0) {
+		[self endGame];
+	}
 
+}
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
 	static float prevX=0, prevY=0, prevZ;
-	
-#define kFilterFactor 0.5f
-	
+		
 	float accelX = (float) acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;
 	float accelY = (float) acceleration.y * kFilterFactor + (1- kFilterFactor)*prevY;
 	float accelZ = (float) acceleration.z * kFilterFactor + (1- kFilterFactor)*prevZ;
@@ -260,11 +220,25 @@ id action;
 	
 }
 
+-(void) onEnter
+{
+	[super onEnter];
+	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
+}
 
-// on "dealloc" you need to release all your retained objects
+-(void)endGame
+{
+	NSLog(@"Ending Game");
+	[self unschedule:@selector(nextFrame:)];
+	[smgr removeCollisionCallbackBetweenType:kHeroCollisionType otherType:kEnemyCollisionType];
+	[smgr removeCollisionCallbackBetweenType:kEnemyCollisionType otherType:kEnemyCollisionType];
+	[smgr stop];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[HelloWorld scene]]];
+}
+
 - (void) dealloc
 {
-	[sphere release];
+	NSLog(@"Deallocating GameLayer");
 	[smgr release];
 	[super dealloc];
 }

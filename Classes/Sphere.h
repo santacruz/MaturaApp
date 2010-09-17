@@ -6,7 +6,7 @@
 #import "SpaceManager.h"
 #import "cpCCSprite.h"
 
-@interface Sphere : CCSprite {
+@interface Sphere : CCNode {
 	float radius;
 	int level;
 	cpCCSprite *sprite;

@@ -28,15 +28,11 @@
 	
 	// Obtain the shared director in order to...
 	CCDirector *director = [CCDirector sharedDirector];
-	
+		
 	//GameData initialisieren
 	GameData *levelData = [GameData sharedData];
 	
-	// Sets landscape mode
-	//[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
-
-	//Temporärer Resolution-Fix (in Bälde achhaltiger Fix by Apple?) 
+	//Temporärer Resolution-Fix 
 	if( [[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
 		[[CCDirector sharedDirector] setContentScaleFactor: [[UIScreen mainScreen] scale] ];
 	}
@@ -46,7 +42,6 @@
 	// Turn on multiple touches
 	EAGLView *view = [director openGLView];
 	[view setMultipleTouchEnabled:YES];
-	
 	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
 	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
 	// You can change anytime.

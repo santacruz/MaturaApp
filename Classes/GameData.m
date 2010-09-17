@@ -1,19 +1,17 @@
 //
 //  GameData.m
 //  MaturaApp
-//
-//  Created by Zeno Koller on 07.09.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+
 
 #import "GameData.h"
+#define kInitSize 12.5
 
-//Singleton stuff
+//SINGLETON RELATED
 static GameData *sharedData = NULL;
 
 @implementation GameData
 
-@synthesize heroNewSize, isThereAHero, heroPrevPos, heroPrevVelocity, enemySpawnBuffer, enemyArray;
+@synthesize heroNewSize, isThereAHero, heroPrevPos, heroPrevVelocity, enemySpawnBuffer, enemyArray, enemyCount;
 
 - (id)init
 {
@@ -25,6 +23,7 @@ static GameData *sharedData = NULL;
 		heroPrevVelocity = ccp(0,0);
 		enemySpawnBuffer = [[NSMutableArray alloc] init];
 		enemyArray = [[NSMutableArray alloc] init];
+		enemyCount = 0;
 	}
 	return self;
 	
@@ -38,6 +37,7 @@ static GameData *sharedData = NULL;
 	heroPrevVelocity = ccp(0,0);
 	[enemySpawnBuffer removeAllObjects];
 	[enemyArray removeAllObjects];
+	enemyCount = 0;
 }
 
 + (GameData *)sharedData
@@ -56,7 +56,6 @@ static GameData *sharedData = NULL;
 - (void)dealloc
 {
 	NSLog(@"Deallocating singleton...");
-	//release allocated stuff
 	[enemySpawnBuffer release];
 	[enemyArray release];
 	[super dealloc];
