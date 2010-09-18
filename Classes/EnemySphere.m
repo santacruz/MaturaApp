@@ -11,6 +11,14 @@
 
 @implementation EnemySphere
 @synthesize radius, sprite, level;
+
++(id) enemyWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
+{
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity] autorelease];
+}
+
+
+
 -(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
 {
 
@@ -38,7 +46,6 @@
 - (void) dealloc
 {
 	NSLog(@"Deallocating Enemy");
-	[sprite release];
 	[super dealloc];
 }
 

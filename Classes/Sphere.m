@@ -11,6 +11,13 @@
 
 @implementation Sphere
 @synthesize radius, sprite, level;
+
++(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
+{
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity] autorelease];
+}
+
+
 -(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
 {
 	
@@ -36,7 +43,6 @@
 - (void) dealloc
 {
 	NSLog(@"Deallocating Hero");
-	[sprite release];
 	[super dealloc];
 }
 

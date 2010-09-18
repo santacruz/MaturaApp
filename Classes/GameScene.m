@@ -72,17 +72,17 @@ id action;
 		
 		
 		//HELD INITIALISIEREN
-		sphere = [[Sphere alloc] initWithMgr:self.smgr level:1 position:ccp(-80,80) velocity:ccp(0,0)];
+		sphere = [Sphere sphereWithMgr:self.smgr level:1 position:ccp(-80,80) velocity:ccp(0,0)];
 		[self addChild:sphere];
 		
 		//FEINDE HINZUFÜGEN
-		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(-35,-40) velocity:ccp(300,220)];
+		EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr level:1 position:ccp(-35,-40) velocity:ccp(300,220)];
 		[self addChild:feind];
-		EnemySphere *feind2 = [[EnemySphere alloc] initWithMgr:self.smgr level:2 position:ccp(-140,-110) velocity:ccp(-300,40)];
+		EnemySphere *feind2 = [EnemySphere enemyWithMgr:self.smgr level:2 position:ccp(-140,-110) velocity:ccp(-300,40)];
 		[self addChild:feind2];
-		EnemySphere *feind3 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(60,-80) velocity:ccp(400,-440)];
+		EnemySphere *feind3 = [EnemySphere enemyWithMgr:self.smgr level:1 position:ccp(60,-80) velocity:ccp(400,-440)];
 		[self addChild:feind3];
-		EnemySphere *feind4 = [[EnemySphere alloc] initWithMgr:self.smgr level:1 position:ccp(40,140) velocity:ccp(200,-100)];
+		EnemySphere *feind4 = [EnemySphere enemyWithMgr:self.smgr level:1 position:ccp(40,140) velocity:ccp(200,-100)];
 		[self addChild:feind4];
 		
 
@@ -115,7 +115,7 @@ id action;
 		} else {
 			if (sprite)
 			{	
-				[sprite.parent.parent removeChild:sprite.parent cleanup:YES];
+				[self removeChild:sprite.parent cleanup:YES];
 				[smgr scheduleToRemoveAndFreeShape:b];
 				b->data = nil;
 				[GameData sharedData].enemyCount -= 1;
@@ -155,10 +155,10 @@ id action;
 		
 		CGPoint newEnemyVelocity = ccpAdd(sprite.shape->body->v, sprite2.shape->body->v);
 		
-		[sprite.parent.parent removeChild:sprite.parent cleanup:YES];
+		[self removeChild:sprite.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:a];
 		a->data = nil;
-		[sprite2.parent.parent removeChild:sprite2.parent cleanup:YES];
+		[self removeChild:sprite2.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:b];
 		b->data = nil;
 		
@@ -181,14 +181,14 @@ id action;
 - (void) nextFrame:(ccTime)dt {
 	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
-		sphere = [[Sphere alloc] initWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
+		sphere = [Sphere sphereWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
 		[self addChild:sphere];
 		[GameData sharedData].isThereAHero = YES;
 	}
 	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
 		NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:0]];
-		EnemySphere *feind = [[EnemySphere alloc] initWithMgr:self.smgr level:[[enemyToBeSpawned objectAtIndex:0]intValue] position:[[enemyToBeSpawned objectAtIndex:1] CGPointValue] velocity:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
+		EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr level:[[enemyToBeSpawned objectAtIndex:0]intValue] position:[[enemyToBeSpawned objectAtIndex:1] CGPointValue] velocity:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
