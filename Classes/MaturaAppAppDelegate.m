@@ -1,6 +1,7 @@
 //
 //  MaturaAppAppDelegate.m
 //  MaturaApp
+//  © Zeno Koller 2010
 
 #import "MaturaAppAppDelegate.h"
 #import "cocos2d.h"

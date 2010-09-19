@@ -1,10 +1,11 @@
 //
 //  GameData.h
 //  MaturaApp
+//  © Zeno Koller 2010
 
 
 #import <Foundation/Foundation.h>
-
+#import "LevelParser.h"
 
 @interface GameData : NSObject {
 	CGPoint heroPrevPos;

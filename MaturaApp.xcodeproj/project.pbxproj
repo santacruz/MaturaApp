@@ -40,6 +40,7 @@
 		AA31346F1233E8850098711E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA31346B1233E8850098711E /* Icon.png */; };
 		AA75B608123CD40E00585F54 /* libChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA75B583123CD3C700585F54 /* libChipmunk.a */; };
 		AA75B609123CD40E00585F54 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA75B585123CD3C700585F54 /* libcocos2d.a */; };
+		AA76B8921246A7AA006ED952 /* LevelParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA76B8911246A7AA006ED952 /* LevelParser.m */; };
 		AA86FB2A123D5C16006A967A /* level1-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA86FB02123D5C16006A967A /* level1-hd.png */; };
 		AA86FB2B123D5C16006A967A /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = AA86FB03123D5C16006A967A /* level1.png */; };
 		AA86FB2C123D5C16006A967A /* level1c-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA86FB04123D5C16006A967A /* level1c-hd.png */; };
@@ -605,6 +606,8 @@
 		AA31346B1233E8850098711E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		AA31346C1233E8850098711E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA75B403123CD3AE00585F54 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "cocos2d-ios.xcodeproj"; sourceTree = COCOS2D_SOURCE; };
+		AA76B8901246A7AA006ED952 /* LevelParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelParser.h; sourceTree = "<group>"; };
+		AA76B8911246A7AA006ED952 /* LevelParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelParser.m; sourceTree = "<group>"; };
 		AA86FB02123D5C16006A967A /* level1-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level1-hd.png"; sourceTree = "<group>"; };
 		AA86FB03123D5C16006A967A /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = level1.png; sourceTree = "<group>"; };
 		AA86FB04123D5C16006A967A /* level1c-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level1c-hd.png"; sourceTree = "<group>"; };
@@ -684,6 +687,8 @@
 				AA31326F1233DEA10098711E /* GameScene.m */,
 				AA1BAD5E1236BC8A00F37390 /* GameData.h */,
 				AA1BAD5F1236BC8A00F37390 /* GameData.m */,
+				AA76B8901246A7AA006ED952 /* LevelParser.h */,
+				AA76B8911246A7AA006ED952 /* LevelParser.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1505,6 +1510,7 @@
 				AA3132521233DD760098711E /* EnemySphere.m in Sources */,
 				AA3132701233DEA10098711E /* GameScene.m in Sources */,
 				AA1BAD601236BC8A00F37390 /* GameData.m in Sources */,
+				AA76B8921246A7AA006ED952 /* LevelParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

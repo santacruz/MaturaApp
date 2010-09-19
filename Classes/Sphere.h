@@ -1,6 +1,7 @@
 //
 //  Sphere.h
 //  MaturaApp
+//  © Zeno Koller 2010
 
 #import "cocos2d.h"
 #import "SpaceManager.h"

@@ -1,6 +1,7 @@
 //
 //  MaturaAppAppDelegate.h
 //  MaturaApp
+//  © Zeno Koller 2010
 
 #import <UIKit/UIKit.h>
 #import "GameData.h"

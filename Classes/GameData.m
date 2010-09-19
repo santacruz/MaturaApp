@@ -1,6 +1,7 @@
 //
 //  GameData.m
 //  MaturaApp
+//  © Zeno Koller 2010
 
 
 #import "GameData.h"

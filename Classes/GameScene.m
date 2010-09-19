@@ -1,6 +1,7 @@
 //
 //  GameScene.m
 //  MaturaApp
+//  © Zeno Koller 2010
 
 
 #import "GameScene.h"

@@ -1,6 +1,7 @@
 //
 //  Sphere.m
 //  MaturaApp
+//  © Zeno Koller 2010
 
 #import "Sphere.h"
 

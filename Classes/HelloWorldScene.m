@@ -1,6 +1,7 @@
 //
 //  HelloWorldScene.m
 //  MaturaApp
+//  © Zeno Koller 2010
 
 #import "HelloWorldScene.h"
 #import "GameScene.h"
