@@ -5,13 +5,15 @@
 
 
 #import <Foundation/Foundation.h>
+#import "GameData.h"
 
-@protocol NSXMLParserDelegate;
-@interface LevelParser : NSObject <NSXMLParserDelegate> {
+
+@interface LevelParser : NSObject {
 
 }
 
-+(id)parseLevel;
-//Später
-//+(id)parseLevel:(int)level;
+
+
++(id)parseLevel:(int)level;
+-(id)initWithLevel:(int)level;
 @end

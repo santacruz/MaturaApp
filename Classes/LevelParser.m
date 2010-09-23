@@ -3,51 +3,49 @@
 //  MaturaApp
 //  © Zeno Koller 2010
 
-#import "LevelParser.h"
+//IMPORTANT NOTE
+//Die Positionen im XML File sind auf einem Koordinatensystem anzugeben, welches
+//den Ursprung im linken unteren Bildschirmrand besitzt und als Maximalwerte (240,480) besitzt.
 
+#import "LevelParser.h"
 
 @implementation LevelParser
 
-+(id)parseLevel {
-	return [[self alloc] init];
+
+
++(id)parseLevel:(int)level {
+	return [[self alloc] initWithLevel:level];
 }
 
--(void) init {
+-(id) initWithLevel:(int)level {
 	if ((self=[super init])) {
-		//Pfad für XML Datei bekommen
-		NSString *pfad = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"level1.xml"];
-		//Daten aus XML lesen
-		NSData *data = [[NSData alloc] initWithContentsOfFile:path]; 
-		//Parser initialisieren
-		NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-		//Parser-Delegate setzen
-		[parser setDelegate:self];
-		BOOL success = [parser parse];
-		if (!success) {
-			NSLog(@"Parser Error, bitte Leveldatei überprüfen");
+		NSString *pfad = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"level%i.plist",level]];
+		NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:pfad];
+		
+        int numberOfEnemies = [[plistDict objectForKey:@"numberOfEnemies"] intValue];
+		
+		for (int i=1; i<numberOfEnemies+1; i++) {
+			NSArray *currentEnemy = [plistDict objectForKey:[NSString stringWithFormat:@"enemy%i",i]];
+			//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
+			NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] init];
+			//ARRAY MIT DATEN FÜLLEN:GRÖSSE, POSITION, GESCHWINDIGKEIT
+			[enemyToBeSpawned addObject:[NSNumber numberWithInteger:[[currentEnemy objectAtIndex:0] intValue]]];
+			[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:ccp([[currentEnemy objectAtIndex:1] floatValue]-240.0f, [[currentEnemy objectAtIndex:2] floatValue]-160.0f)]];
+			[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:ccp([[currentEnemy objectAtIndex:3] floatValue], [[currentEnemy objectAtIndex:4] floatValue])]];
+			[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
+			[enemyToBeSpawned release];
+			[currentEnemy release];
 		}
-		[parser release];
-		return self;
 	}
+	return self;
 }
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qName
-	attributes:(NSDictionary *)attributeDict {
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qName {   
-}
 
 - (void) dealloc {
+
 	[super dealloc];
 }
 
 
 @end
+

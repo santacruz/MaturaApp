@@ -41,6 +41,7 @@
 		
 		[GameData sharedData].enemyCount += 1;
 	}
+	NSLog(@"Adding Enemy");
 	return self;
 }
 

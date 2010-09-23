@@ -39,13 +39,10 @@ id action;
 		self.isAccelerometerEnabled = YES;
 		
 		//LEVELDATEN INITIALISIEREN
-		[[GameData sharedData] initLevel];
+		[[GameData sharedData] initLevel:1];
 		
 		//TOUCHES BENÜTZEN (UNCOMMENT)
 		//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-		
-		//GAMELOGIK REGISTRIEREN
-		[self schedule:@selector(nextFrame:)];
 		
 		//SPACEMGR
 		smgr = [[SpaceManager alloc] init];
@@ -77,16 +74,22 @@ id action;
 		[self addChild:sphere];
 		
 		//FEINDE HINZUFÜGEN
-		EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr level:1 position:ccp(-35,-40) velocity:ccp(300,220)];
-		[self addChild:feind];
-		EnemySphere *feind2 = [EnemySphere enemyWithMgr:self.smgr level:2 position:ccp(-140,-110) velocity:ccp(-300,40)];
-		[self addChild:feind2];
-		EnemySphere *feind3 = [EnemySphere enemyWithMgr:self.smgr level:1 position:ccp(60,-80) velocity:ccp(400,-440)];
-		[self addChild:feind3];
-		EnemySphere *feind4 = [EnemySphere enemyWithMgr:self.smgr level:1 position:ccp(40,140) velocity:ccp(200,-100)];
-		[self addChild:feind4];
-		
+		for (int i=0; i<[[GameData sharedData].enemySpawnBuffer count]; i++) {
+			NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:i]];
+			if ([enemyToBeSpawned count] != 0) {
+				EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr level:[[enemyToBeSpawned objectAtIndex:0]intValue] position:[[enemyToBeSpawned objectAtIndex:1] CGPointValue] velocity:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
+				[self addChild:feind];
+			} else {
+				NSLog(@"enemyToBeSpawned has 0 Elements");
+			}
 
+			[enemyToBeSpawned release];
+		}
+		[[GameData sharedData].enemySpawnBuffer removeAllObjects];
+		
+		//GAMELOGIK REGISTRIEREN
+		[self schedule:@selector(nextFrame:)];
+		
 		//REGISTRIERE COLLISION HANDLER FÜR HELD
 		[smgr addCollisionCallbackBetweenType:kHeroCollisionType
 									otherType:kEnemyCollisionType
@@ -173,6 +176,7 @@ id action;
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyPosition]];
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyVelocity]];
 		[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
+		[enemyToBeSpawned release];
 	}
 	
 }

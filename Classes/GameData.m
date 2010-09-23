@@ -30,7 +30,7 @@ static GameData *sharedData = NULL;
 	
 }
 
--(void)initLevel
+-(void)initLevel:(int)level
 {
 	heroNewSize = 1;
 	isThereAHero = YES;
@@ -39,6 +39,8 @@ static GameData *sharedData = NULL;
 	[enemySpawnBuffer removeAllObjects];
 	[enemyArray removeAllObjects];
 	enemyCount = 0;
+	LevelParser *parser = [LevelParser parseLevel:level];
+	[parser release];
 }
 
 + (GameData *)sharedData
