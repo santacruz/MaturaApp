@@ -35,14 +35,15 @@ id action;
 		//BILDSCHIRMGRÖSSE
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
 		
-		//ACCELEROMETER BENÜTZEN
+		//ACCELEROMETER UND TOUCHES BENÜTZEN
 		self.isAccelerometerEnabled = YES;
+		self.isTouchEnabled = YES;
 		
+		/*
 		//LEVELDATEN INITIALISIEREN
 		[[GameData sharedData] initLevel:1];
+		*/
 		
-		//TOUCHES BENÜTZEN (UNCOMMENT)
-		//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 		
 		//SPACEMGR
 		smgr = [[SpaceManager alloc] init];
@@ -75,7 +76,7 @@ id action;
 		
 		//FEINDE HINZUFÜGEN
 		for (int i=0; i<[[GameData sharedData].enemySpawnBuffer count]; i++) {
-			NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:i]];
+			CCArray *enemyToBeSpawned = [[CCArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:i]];
 			if ([enemyToBeSpawned count] != 0) {
 				EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr level:[[enemyToBeSpawned objectAtIndex:0]intValue] position:[[enemyToBeSpawned objectAtIndex:1] CGPointValue] velocity:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 				[self addChild:feind];
@@ -170,7 +171,7 @@ id action;
 
 		
 		//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
-		NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] init];
+		CCArray *enemyToBeSpawned = [[CCArray alloc] init];
 		//ARRAY MIT DATEN FÜLLEN:GRÖSSE, POSITION, GESCHWINDIGKEIT
 		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newEnemySize]];
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyPosition]];
@@ -192,7 +193,7 @@ id action;
 	}
 	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
-		NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:0]];
+		CCArray *enemyToBeSpawned = [[CCArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:0]];
 		EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr level:[[enemyToBeSpawned objectAtIndex:0]intValue] position:[[enemyToBeSpawned objectAtIndex:1] CGPointValue] velocity:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
@@ -224,6 +225,29 @@ id action;
 	}
 	
 }
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+}
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UITouch *touch in touches) {
+        if (touch.tapCount >= 2) {
+			if ([GameData sharedData].isGamePaused) {
+				[[CCDirector sharedDirector] resume];
+			}	else {
+				[[CCDirector sharedDirector] pause];
+			}
+		}
+    }
+}
+
+- (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+}
+
+
 
 -(void) onEnter
 {

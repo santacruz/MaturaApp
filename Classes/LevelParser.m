@@ -27,15 +27,16 @@
 		for (int i=1; i<numberOfEnemies+1; i++) {
 			NSArray *currentEnemy = [plistDict objectForKey:[NSString stringWithFormat:@"enemy%i",i]];
 			//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
-			NSMutableArray *enemyToBeSpawned = [[NSMutableArray alloc] init];
+			CCArray *enemyToBeSpawned = [[CCArray alloc] initWithCapacity:4];
 			//ARRAY MIT DATEN FÜLLEN:GRÖSSE, POSITION, GESCHWINDIGKEIT
-			[enemyToBeSpawned addObject:[NSNumber numberWithInteger:[[currentEnemy objectAtIndex:0] intValue]]];
+			[enemyToBeSpawned addObject:[currentEnemy objectAtIndex:0]];
 			[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:ccp([[currentEnemy objectAtIndex:1] floatValue]-240.0f, [[currentEnemy objectAtIndex:2] floatValue]-160.0f)]];
 			[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:ccp([[currentEnemy objectAtIndex:3] floatValue], [[currentEnemy objectAtIndex:4] floatValue])]];
 			[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
 			[enemyToBeSpawned release];
-			[currentEnemy release];
 		}
+		
+		[plistDict release];
 	}
 	return self;
 }

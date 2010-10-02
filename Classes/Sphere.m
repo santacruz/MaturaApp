@@ -35,7 +35,7 @@
 		sprite.position = ccp(location.x,location.y);
 		sprite.shape->body->v = velocity;
 		[self addChild:sprite];
-		
+	
 		self.position = ccp(240,160);
 	}
 	return self;

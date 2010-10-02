@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameData.h"
-
+#import "cocos2d.h"
 
 @interface LevelParser : NSObject {
 
