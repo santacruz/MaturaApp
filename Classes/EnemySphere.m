@@ -32,7 +32,7 @@
 		//FÜGE SPRITE HINZU
 		cpShape *ball = [mgr addCircleAt:ccp(0,0) mass:size radius:radius];
 		ball->collision_type = kEnemyCollisionType;
-		sprite = [cpCCSprite spriteWithShape:ball file:[NSString stringWithFormat:@"level%i.png",size]];
+		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"level%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
 		sprite.shape->body->v = velocity;
 		[self addChild:sprite];
@@ -40,6 +40,7 @@
 		self.position = ccp(240,160);
 		
 		[GameData sharedData].enemyCount += 1;
+		[[GameData sharedData].enemyArray addObject:self];
 	}
 	NSLog(@"Adding Enemy");
 	return self;
@@ -47,6 +48,8 @@
 
 - (void) dealloc
 {
+	[[GameData sharedData].enemyArray removeObject:self];
+	[sprite release];
 	NSLog(@"Deallocating Enemy");
 	[super dealloc];
 }

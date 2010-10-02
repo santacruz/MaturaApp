@@ -190,7 +190,11 @@ id action;
 		sphere = [Sphere sphereWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
 		[self addChild:sphere];
 		[GameData sharedData].isThereAHero = YES;
+	} else {
+		//WENN HELD DA, ROTATION ÄNDERN
+		sphere.sprite.rotation = ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI;
 	}
+
 	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
 		CCArray *enemyToBeSpawned = [[CCArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:0]];
@@ -199,11 +203,14 @@ id action;
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
 	}
-		
+	
+	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN
 	if ([GameData sharedData].enemyCount == 0) {
 		[self endGame];
 	}
-
+	
+	//ARGUMENT DER FEINDE ÄNDERN UND FEINDE BESCHLEUNIGEN
+	
 }
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
@@ -239,6 +246,7 @@ id action;
 				[[CCDirector sharedDirector] resume];
 			}	else {
 				[[CCDirector sharedDirector] pause];
+				//HIER NEUE LAYER KREIEREN
 			}
 		}
     }
