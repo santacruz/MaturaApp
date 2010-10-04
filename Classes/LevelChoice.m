@@ -26,7 +26,7 @@
 		bg.position = ccp(160,240);
 		[self addChild:bg];
 		//TITLE
-		CCSprite *title = [CCSprite spriteWithFile:@"omnivore_title.png"];
+		CCSprite *title = [CCSprite spriteWithFile:@"level_title.png"];
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
@@ -44,7 +44,8 @@
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"backbutton.png"];
-		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSprite target:self selector:@selector(back:)];
+		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"backbutton-pressed.png"];
+		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSpritePressed target:self selector:@selector(back:)];
 		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
 		backMenu.position = ccp(160, 50);
 		[self addChild:backMenu];
@@ -71,7 +72,7 @@
 
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInL transitionWithDuration:0.3f scene:[HelloWorld scene]]];
+	 [CCTransitionSlideInL transitionWithDuration:0.4f scene:[HelloWorld scene]]];
 
 }
 

@@ -54,7 +54,7 @@
 
 -(void)start:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInR transitionWithDuration:0.3f scene:[LevelChoice scene]]];
+	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[LevelChoice scene]]];
 }
 -(void)scores:(CCMenuItem  *) menuItem {}
 -(void)settings:(CCMenuItem  *) menuItem {}
