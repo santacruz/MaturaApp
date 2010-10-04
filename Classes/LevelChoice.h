@@ -14,5 +14,6 @@
 +(id) scene;
 -(void)runGame1:(CCMenuItem  *) menuItem;
 -(void)runGame2:(CCMenuItem  *) menuItem;
+-(void)back:(CCMenuItem *) menuItem;
 
 @end

@@ -5,6 +5,7 @@
 
 #import "LevelChoice.h"
 #import "GameScene.h"
+#import "HelloWorldScene.h"
 
 @implementation LevelChoice
 
@@ -29,6 +30,7 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
+		//LEVEL MENU
 		CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"LEVEL 1" fntFile:@"bebas.fnt"];
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(runGame1:)];
 		
@@ -37,8 +39,15 @@
 		
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
 		[myMenu alignItemsVertically];
-		myMenu.position = ccp(160, 200);
+		myMenu.position = ccp(160, 220);
 		[self addChild:myMenu];
+		
+		//BACK MENU
+		CCSprite *backSprite = [CCSprite spriteWithFile:@"backbutton.png"];
+		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSprite target:self selector:@selector(back:)];
+		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
+		backMenu.position = ccp(160, 50);
+		[self addChild:backMenu];
 	}
 	return self;
 }
@@ -48,7 +57,7 @@
 	[[GameData sharedData] initLevel:1];
 	
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
+	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
 }
 
 -(void) runGame2:(CCMenuItem  *) menuItem  {
@@ -57,7 +66,13 @@
 	
 	
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
+	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
+}
+
+-(void)back:(CCMenuItem *)menuItem {
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionSlideInL transitionWithDuration:0.3f scene:[HelloWorld scene]]];
+
 }
 
 - (void) dealloc
