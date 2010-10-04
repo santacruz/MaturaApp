@@ -48,7 +48,6 @@
 
 - (void) dealloc
 {
-	[[GameData sharedData].enemyArray removeObject:self];
 	[sprite release];
 	NSLog(@"Deallocating Enemy");
 	[super dealloc];

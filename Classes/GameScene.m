@@ -120,6 +120,8 @@ id action;
 		} else {
 			if (sprite)
 			{	
+				//Sprite.parent vom enemyArray entfernen
+				[[GameData sharedData].enemyArray removeObject:sprite.parent];
 				[self removeChild:sprite.parent cleanup:YES];
 				[smgr scheduleToRemoveAndFreeShape:b];
 				b->data = nil;
@@ -160,9 +162,11 @@ id action;
 		
 		CGPoint newEnemyVelocity = ccpAdd(sprite.shape->body->v, sprite2.shape->body->v);
 		
+		[[GameData sharedData].enemyArray removeObject:sprite.parent];
 		[self removeChild:sprite.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:a];
 		a->data = nil;
+		[[GameData sharedData].enemyArray removeObject:sprite2.parent];
 		[self removeChild:sprite2.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:b];
 		b->data = nil;
@@ -185,6 +189,8 @@ id action;
 
 //GAME LOGIK
 - (void) nextFrame:(ccTime)dt {
+	//DEBUG
+	NSLog(@"enemyArray count:%i",[[GameData sharedData].enemyArray count]);
 	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
 		sphere = [Sphere sphereWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
@@ -266,10 +272,14 @@ id action;
 -(void)endGame
 {
 	NSLog(@"Ending Game");
+	//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
+	[[GameData sharedData].enemyArray removeAllObjects];
+	//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
 	[self unschedule:@selector(nextFrame:)];
 	[smgr removeCollisionCallbackBetweenType:kHeroCollisionType otherType:kEnemyCollisionType];
 	[smgr removeCollisionCallbackBetweenType:kEnemyCollisionType otherType:kEnemyCollisionType];
 	[smgr stop];
+	//ZURÜCK ZUM HAUPTMENU
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[HelloWorld scene]]];
 }
 
