@@ -7,12 +7,14 @@
 #import "cocos2d.h"
 #import "GameData.h"
 
-@interface HelloWorld : CCColorLayer
+@interface HelloWorld : CCLayer
 {
 }
 
 +(id) scene;
--(void)runGame1:(CCMenuItem  *) menuItem;
--(void)runGame2:(CCMenuItem  *) menuItem;
-
+-(void)start:(CCMenuItem  *) menuItem;
+-(void)scores:(CCMenuItem  *) menuItem;
+-(void)settings:(CCMenuItem  *) menuItem;
+-(void)about:(CCMenuItem  *) menuItem;
+-(void)help:(CCMenuItem  *) menuItem;
 @end

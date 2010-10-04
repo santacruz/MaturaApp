@@ -4,7 +4,7 @@
 //  © Zeno Koller 2010
 
 #import "HelloWorldScene.h"
-#import "GameScene.h"
+#import "LevelChoice.h"
 
 @implementation HelloWorld
 
@@ -19,39 +19,47 @@
 //INITIALISIERE INSTANZ
 -(id) init
 {
-	if( (self=[super initWithColor:ccc4(220,220,220,255)] )) {
+	if( (self=[super init] )) {
+		//BACKGROUND
+		CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
+		bg.position = ccp(160,240);
+		[self addChild:bg];
+		//TITLE
+		CCSprite *title = [CCSprite spriteWithFile:@"omnivore_title.png"];
+		title.position = ccp(160,420);
+		[self addChild:title];
 		
-		CCLabelTTF* label = [CCLabelTTF labelWithString:@"Level 1" fontName:@"Helvetica" fontSize:50];
-		label.color = ccc3(30,30,30);
-		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(runGame1:)];
+		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"START" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(start:)];
 		
-		CCLabelTTF* label2 = [CCLabelTTF labelWithString:@"Level 2" fontName:@"Helvetica" fontSize:50];
-		label2.color = ccc3(30,30,30);
-		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(runGame2:)];
+		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"SCORES" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(scores:)];
 		
-		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
+		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"SETTINGS" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(settings:)];
+		
+		CCLabelBMFont* label4 = [CCLabelBMFont labelWithString:@"ABOUT" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem4= [CCMenuItemLabel itemWithLabel:label4 target:self selector:@selector(about:)];
+		
+		CCLabelBMFont* label5 = [CCLabelBMFont labelWithString:@"HELP" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem5= [CCMenuItemLabel itemWithLabel:label5 target:self selector:@selector(help:)];
+		
+		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,menuItem3,menuItem4,menuItem5,nil];
 		[myMenu alignItemsVertically];
+		myMenu.position = ccp(160, 200);
 		[self addChild:myMenu];
 	}
 	return self;
 }
 
--(void) runGame1:(CCMenuItem  *) menuItem  {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:1];
-	
+-(void)start:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionRadialCW transitionWithDuration:0.5f scene:[GameScene scene]]];
+	 [CCTransitionFlipX transitionWithDuration:0.3f scene:[LevelChoice scene]]];
 }
-
--(void) runGame2:(CCMenuItem  *) menuItem  {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:2];
-
-	
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionRadialCW transitionWithDuration:0.5f scene:[GameScene scene]]];
-}
+-(void)scores:(CCMenuItem  *) menuItem {}
+-(void)settings:(CCMenuItem  *) menuItem {}
+-(void)about:(CCMenuItem  *) menuItem {}
+-(void)help:(CCMenuItem  *) menuItem {}
 
 - (void) dealloc
 {
