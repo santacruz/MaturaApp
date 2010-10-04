@@ -250,9 +250,10 @@ id action;
         if (touch.tapCount >= 2) {
 			if ([GameData sharedData].isGamePaused) {
 				[[CCDirector sharedDirector] resume];
+				[GameData sharedData].isGamePaused = NO;
 			}	else {
 				[[CCDirector sharedDirector] pause];
-				//HIER NEUE LAYER KREIEREN
+				[GameData sharedData].isGamePaused = YES;
 			}
 		}
     }

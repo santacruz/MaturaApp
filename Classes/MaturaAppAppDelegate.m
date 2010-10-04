@@ -59,6 +59,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] resume];
+	//Hier anstatt resume: pauselayer anzeigen (double tap to resume)
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
