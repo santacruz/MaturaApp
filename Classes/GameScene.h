@@ -10,14 +10,16 @@
 #import "EnemySphere.h"
 
 // HelloWorld Layer
-@interface GameScene : CCColorLayer
+@interface GameScene : CCLayer
 {
 	Sphere *sphere;
 	SpaceManager *smgr;
+	CCSprite *pausedScreen;
 }
 
 @property(nonatomic, assign)Sphere *sphere;
 @property(nonatomic, retain)SpaceManager *smgr;
+@property(nonatomic, retain)CCSprite *pausedScreen;
 
 +(id) scene;
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;

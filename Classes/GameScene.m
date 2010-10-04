@@ -17,7 +17,7 @@ id action;
 
 @implementation GameScene
 
-@synthesize sphere, smgr;
+@synthesize sphere, smgr, pausedScreen;
 
 +(id) scene
 {
@@ -30,7 +30,7 @@ id action;
 //INITIALISIERE INSTANZ
 -(id) init
 {
-	if( (self=[super initWithColor:ccc4(0,0,0,255)] )) {
+	if( (self=[super init] )) {
 		
 		//BILDSCHIRMGRÖSSE
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
@@ -44,6 +44,15 @@ id action;
 		[[GameData sharedData] initLevel:1];
 		*/
 		
+		//BACKGROUND
+		CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
+		bg.position = ccp(160,240);
+		[self addChild:bg z:-1];
+		//PAUSELAYER
+		pausedScreen = [CCSprite spriteWithFile:@"pausedScreen.png"];
+		pausedScreen.position = ccp(160,240);
+		pausedScreen.visible = NO;
+		[self addChild:pausedScreen z:2];
 		
 		//SPACEMGR
 		smgr = [[SpaceManager alloc] init];
@@ -249,11 +258,13 @@ id action;
     for (UITouch *touch in touches) {
         if (touch.tapCount >= 2) {
 			if ([GameData sharedData].isGamePaused) {
+				pausedScreen.visible = NO;
 				[[CCDirector sharedDirector] resume];
 				[GameData sharedData].isGamePaused = NO;
 			}	else {
 				[[CCDirector sharedDirector] pause];
 				[GameData sharedData].isGamePaused = YES;
+				pausedScreen.visible = YES;
 			}
 		}
     }
@@ -287,6 +298,7 @@ id action;
 - (void) dealloc
 {
 	NSLog(@"Deallocating GameLayer");
+	[pausedScreen release];
 	[smgr release];
 	[super dealloc];
 }
