@@ -49,7 +49,7 @@ id action;
 		bg.position = ccp(160,240);
 		[self addChild:bg z:-1];
 		//PAUSELAYER
-		pausedScreen = [CCSprite spriteWithFile:@"pausedScreen.png"];
+		pausedScreen = [[CCSprite alloc] initWithFile:@"pausedScreen.png"];
 		pausedScreen.position = ccp(160,240);
 		pausedScreen.visible = NO;
 		[self addChild:pausedScreen z:2];
@@ -198,8 +198,6 @@ id action;
 
 //GAME LOGIK
 - (void) nextFrame:(ccTime)dt {
-	//DEBUG
-	NSLog(@"enemyArray count:%i",[[GameData sharedData].enemyArray count]);
 	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
 		sphere = [Sphere sphereWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
@@ -207,7 +205,7 @@ id action;
 		[GameData sharedData].isThereAHero = YES;
 	} else {
 		//WENN HELD DA, ROTATION ÄNDERN
-		sphere.sprite.rotation = ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI;
+		sphere.sprite.rotation = 90+ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI;
 	}
 
 	//1 NEUER FEIND PRO SCHRITT
