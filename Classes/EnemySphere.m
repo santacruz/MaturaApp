@@ -35,6 +35,8 @@
 		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
 		sprite.shape->body->v = velocity;
+		//[self.sprite applyForce:velocity];
+		
 		[self addChild:sprite];
 		
 		self.position = ccp(240,160);

@@ -7,11 +7,13 @@
 #import "GameScene.h"
 #import "HelloWorldScene.h"
 #import "CCTouchDispatcher.h"
+#import "Countdown.h"
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2 
 #define kInitSize 12.5
 #define kFilterFactor 0.5f
+#define kImpulseMultiplier 5
 
 id action;
 
@@ -112,6 +114,8 @@ id action;
 									   target:self 
 									 selector:@selector(handleEnemyCollision:arbiter:space:)];
 		
+		//Countdown *countdown = [Countdown scene];
+		//[self addChild:countdown];
 	}
 	return self;
 }
@@ -197,7 +201,12 @@ id action;
 
 
 //GAME LOGIK
-- (void) nextFrame:(ccTime)dt {
+- (void) nextFrame:(ccTime)dt {	
+	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN
+	if ([GameData sharedData].enemyCount == 0) {
+		[self endGame];
+	}
+	
 	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
 		sphere = [Sphere sphereWithMgr:smgr level:[GameData sharedData].heroNewSize position:[GameData sharedData].heroPrevPos velocity:[GameData sharedData].heroPrevVelocity];
@@ -205,9 +214,9 @@ id action;
 		[GameData sharedData].isThereAHero = YES;
 	} else {
 		//WENN HELD DA, ROTATION ÄNDERN
-		sphere.sprite.rotation = 90+ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI;
+		sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
 	}
-
+	
 	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
 		CCArray *enemyToBeSpawned = [[CCArray alloc] initWithArray:[[GameData sharedData].enemySpawnBuffer objectAtIndex:0]];
@@ -217,13 +226,10 @@ id action;
 		[enemyToBeSpawned release];
 	}
 	
-	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN
-	if ([GameData sharedData].enemyCount == 0) {
-		[self endGame];
-	}
-	
 	//ARGUMENT DER FEINDE ÄNDERN UND FEINDE BESCHLEUNIGEN
-	
+	for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
+		enemy.sprite.rotation = -1*ccpToAngle(enemy.sprite.shape->body->v)*180/M_PI-90;
+	}
 }
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
@@ -241,7 +247,7 @@ id action;
 	CGPoint v = ccp( accelX, accelY);
 	
 	if ([GameData sharedData].isThereAHero) {
-		[sphere.sprite applyImpulse:ccpMult(v, 15)];
+		[sphere.sprite applyImpulse:ccpMult(v, kImpulseMultiplier)];
 	}
 	
 }
