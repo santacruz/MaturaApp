@@ -14,6 +14,7 @@
 	int heroNewSize;
 	BOOL isThereAHero;
 	BOOL isGamePaused;
+	BOOL isCountdownFinished;
 	CCArray *enemySpawnBuffer;
 	CCArray *enemyArray; 
 	int enemyCount;
@@ -21,7 +22,7 @@
 
 @property(readwrite,assign) CGPoint heroPrevPos, heroPrevVelocity;
 @property(readwrite,assign) int heroNewSize, enemyCount;
-@property(readwrite,assign) BOOL isThereAHero, isGamePaused;
+@property(readwrite,assign) BOOL isThereAHero, isGamePaused, isCountdownFinished;
 @property(nonatomic,retain) CCArray *enemySpawnBuffer, *enemyArray;
 
 +(GameData *) sharedData;

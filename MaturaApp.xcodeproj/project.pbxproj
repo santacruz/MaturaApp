@@ -61,7 +61,7 @@
 		AA8CC0B7125A7064008A851C /* pausedScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC0B5125A7064008A851C /* pausedScreen.png */; };
 		AA8CC267125BA301008A851C /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC1EB125BA301008A851C /* Enemy */; };
 		AA8CC268125BA301008A851C /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC229125BA301008A851C /* Hero */; };
-		AAC0EBCE125C9F5100BD9C3D /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0EBCD125C9F5100BD9C3D /* Countdown.m */; };
+		AAC0EC98125E18CC00BD9C3D /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0EC97125E18CC00BD9C3D /* Countdown.m */; };
 		AAE9B9F0124BE49A00E25769 /* level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE9B9EF124BE49A00E25769 /* level1.plist */; };
 		AAE9BAAB124CB41500E25769 /* level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE9BAAA124CB41500E25769 /* level2.plist */; };
 /* End PBXBuildFile section */
@@ -612,8 +612,8 @@
 		AA8CC0B5125A7064008A851C /* pausedScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pausedScreen.png; sourceTree = "<group>"; };
 		AA8CC1EB125BA301008A851C /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
 		AA8CC229125BA301008A851C /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Hero; sourceTree = "<group>"; };
-		AAC0EBCC125C9F5100BD9C3D /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
-		AAC0EBCD125C9F5100BD9C3D /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
+		AAC0EC96125E18CC00BD9C3D /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
+		AAC0EC97125E18CC00BD9C3D /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
 		AAE9B9EF124BE49A00E25769 /* level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = level1.plist; sourceTree = "<group>"; };
 		AAE9BAAA124CB41500E25769 /* level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = level2.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -879,8 +879,8 @@
 				AA8CBDEE125A05BB008A851C /* LevelChoice.m */,
 				AA31326E1233DEA10098711E /* GameScene.h */,
 				AA31326F1233DEA10098711E /* GameScene.m */,
-				AAC0EBCC125C9F5100BD9C3D /* Countdown.h */,
-				AAC0EBCD125C9F5100BD9C3D /* Countdown.m */,
+				AAC0EC96125E18CC00BD9C3D /* Countdown.h */,
+				AAC0EC97125E18CC00BD9C3D /* Countdown.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1510,7 +1510,7 @@
 				AA1BAD601236BC8A00F37390 /* GameData.m in Sources */,
 				AA76B8921246A7AA006ED952 /* LevelParser.m in Sources */,
 				AA8CBDEF125A05BB008A851C /* LevelChoice.m in Sources */,
-				AAC0EBCE125C9F5100BD9C3D /* Countdown.m in Sources */,
+				AAC0EC98125E18CC00BD9C3D /* Countdown.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

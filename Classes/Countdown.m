@@ -5,7 +5,7 @@
 
 
 #import "Countdown.h"
-
+#import "GameData.h"
 
 @implementation Countdown
 
@@ -23,9 +23,9 @@
 -(id) init
 {
 	if( (self=[super initWithColor:ccc4(0, 0, 0, 120)] )) {
-	
+		
 		count = 0;
-		countLabel = [CCLabelBMFont labelWithString:@"3" fntFile:@"bebas.fnt"];
+		countLabel = [[CCLabelBMFont alloc] initWithString:@"3" fntFile:@"bebas.fnt"];
 		countLabel.position = ccp(160,240);
 		[self addChild: countLabel];
 		[self schedule:@selector(countdown:) interval:1.0];
@@ -36,7 +36,7 @@
 
 - (void) countdown:(ccTime)dt {
 	count += 1;
-	while (count<4) {
+
 		switch (count) {
 			case 1:
 				[countLabel setString:@"2"];
@@ -50,17 +50,17 @@
 			default:
 				break;
 		}
+	
 	if (count == 4) {
+		
 		[self endCountdown];
-	}
-
 	}
 	
 }
 
 -(void) endCountdown {
 	[self unschedule:@selector(countdown:)];
-	[self.parent removeChild:self cleanup:YES];
+	[GameData sharedData].isCountdownFinished = YES;
 }
 
 - (void) dealloc

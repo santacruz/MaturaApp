@@ -8,6 +8,8 @@
 #import "SpaceManager.h"
 #import "GameData.h"
 #import "EnemySphere.h"
+#import "Countdown.h"
+
 
 // HelloWorld Layer
 @interface GameScene : CCLayer
@@ -15,11 +17,13 @@
 	Sphere *sphere;
 	SpaceManager *smgr;
 	CCSprite *pausedScreen;
+	Countdown *countdown;
 }
 
 @property(nonatomic, assign)Sphere *sphere;
 @property(nonatomic, retain)SpaceManager *smgr;
 @property(nonatomic, retain)CCSprite *pausedScreen;
+@property(nonatomic, assign)Countdown *countdown;
 
 +(id) scene;
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;

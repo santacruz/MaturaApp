@@ -7,7 +7,6 @@
 #import "GameScene.h"
 #import "HelloWorldScene.h"
 #import "CCTouchDispatcher.h"
-#import "Countdown.h"
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2 
@@ -19,7 +18,7 @@ id action;
 
 @implementation GameScene
 
-@synthesize sphere, smgr, pausedScreen;
+@synthesize sphere, smgr, pausedScreen, countdown;
 
 +(id) scene
 {
@@ -59,7 +58,6 @@ id action;
 		//SPACEMGR
 		smgr = [[SpaceManager alloc] init];
 		smgr.gravity=ccp(0,0);
-		[smgr start];	
 		
 		//WÄNDE
 		cpShape *bottomRect = [smgr addRectAt:cpv(-80,-160) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
@@ -114,9 +112,10 @@ id action;
 									   target:self 
 									 selector:@selector(handleEnemyCollision:arbiter:space:)];
 		
-		//Countdown *countdown = [Countdown scene];
-		//[self addChild:countdown];
-	}
+		//COUNTDOWN
+		countdown = [Countdown scene];
+		[self addChild:countdown];
+		}
 	return self;
 }
 
@@ -201,7 +200,13 @@ id action;
 
 
 //GAME LOGIK
-- (void) nextFrame:(ccTime)dt {	
+- (void) nextFrame:(ccTime)dt {
+	if ([GameData sharedData].isCountdownFinished) {
+		[self removeChild:countdown cleanup:YES];
+		[smgr start];
+		[GameData sharedData].isCountdownFinished = NO;
+	}
+	
 	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN
 	if ([GameData sharedData].enemyCount == 0) {
 		[self endGame];
