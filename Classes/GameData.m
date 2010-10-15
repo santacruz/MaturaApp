@@ -13,6 +13,8 @@ static GameData *sharedData = NULL;
 @implementation GameData
 
 @synthesize newHero, isThereAHero, currentLevel, isGamePaused, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, wasGameWon;
+/*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
+@synthesize accelCorrectionX, accelCorrectionY;
 
 - (id)init
 {
@@ -27,6 +29,9 @@ static GameData *sharedData = NULL;
 		enemyArray = [[CCArray alloc] init];
 		enemyCount = 0;
 		currentLevel = 0;
+		/*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
+		accelCorrectionX = 0;
+		accelCorrectionY = 0;
 	}
 	return self;
 	

@@ -278,8 +278,8 @@ id action;
 {	
 	static float prevX=0, prevY=0;
 		
-	float accelX = (float) acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;
-	float accelY = (float) acceleration.y * kFilterFactor + (1- kFilterFactor)*prevY;
+	float accelX = (float) (acceleration.x -[GameData sharedData].accelCorrectionX) * kFilterFactor + (1- kFilterFactor)*prevX;
+	float accelY = (float) (acceleration.y -[GameData sharedData].accelCorrectionY) * kFilterFactor + (1- kFilterFactor)*prevY;
 	//float accelZ = (float) acceleration.z; //* kFilterFactor + (1- kFilterFactor)*prevZ;
 	
 	prevX = accelX;

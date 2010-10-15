@@ -9,9 +9,15 @@
 
 @interface Settings : CCLayer
 {
+	float accelX;
+	float accelY;
 }
 
+@property(readwrite,assign) float accelX, accelY;
+
 +(id) scene;
+-(void)calibrate:(CCMenuItem *) menuItem;
+-(void)resetCalibration:(CCMenuItem *) menuItem;
 -(void)back:(CCMenuItem *) menuItem;
 
 @end
