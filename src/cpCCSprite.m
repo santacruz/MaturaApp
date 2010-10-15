@@ -18,6 +18,8 @@
 
 @implementation cpCCSprite
 
+@synthesize level, enemyKind;
+
 + (id) spriteWithShape:(cpShape*)shape file:(NSString*) filename
 {
 	return [[[self alloc] initWithShape:shape file:filename] autorelease];

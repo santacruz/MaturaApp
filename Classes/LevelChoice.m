@@ -1,5 +1,5 @@
 //
-//  HelloWorldScene.m
+//  LevelChoice.m
 //  MaturaApp
 //  © Zeno Koller 2010
 
@@ -22,11 +22,11 @@
 {
 	if( (self=[super init] )) {
 		//BACKGROUND
-		CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg];
 		//TITLE
-		CCSprite *title = [CCSprite spriteWithFile:@"level_title.png"];
+		CCSprite *title = [CCSprite spriteWithFile:@"Titles/level_title.png"];
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
@@ -43,8 +43,8 @@
 		[self addChild:myMenu];
 		
 		//BACK MENU
-		CCSprite *backSprite = [CCSprite spriteWithFile:@"backbutton.png"];
-		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"backbutton-pressed.png"];
+		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
+		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton-pressed.png"];
 		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSpritePressed target:self selector:@selector(back:)];
 		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
 		backMenu.position = ccp(160, 50);

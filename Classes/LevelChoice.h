@@ -1,5 +1,5 @@
 //
-//  HelloWorldScene.h
+//  LevelChoice.h
 //  MaturaApp
 //  © Zeno Koller 2010
 

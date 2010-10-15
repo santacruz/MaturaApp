@@ -28,5 +28,6 @@
 +(id) scene;
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
 - (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
+- (void) startGame;
 - (void) endGame;
 @end

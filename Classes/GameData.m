@@ -12,21 +12,21 @@ static GameData *sharedData = NULL;
 
 @implementation GameData
 
-@synthesize heroNewSize, isThereAHero, isGamePaused, isCountdownFinished, heroPrevPos, heroPrevVelocity, enemySpawnBuffer, enemyArray, enemyCount;
+@synthesize newHero, isThereAHero, currentLevel, isGamePaused, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, wasGameWon;
 
 - (id)init
 {
 	if ( self = [super init] )
 	{
-		heroNewSize = 1;
 		isThereAHero = YES;
 		isGamePaused = NO;
 		isCountdownFinished = NO;
-		heroPrevPos = ccp(0,0);
-		heroPrevVelocity = ccp(0,0);
+		wasGameWon = NO;
+		newHero = [[CCArray alloc] init];
 		enemySpawnBuffer = [[CCArray alloc] init];
 		enemyArray = [[CCArray alloc] init];
 		enemyCount = 0;
+		currentLevel = 0;
 	}
 	return self;
 	
@@ -34,12 +34,12 @@ static GameData *sharedData = NULL;
 
 -(void)initLevel:(int)level
 {
-	heroNewSize = 1;
+	currentLevel = level;
 	isThereAHero = YES;
 	isGamePaused = NO;
 	isCountdownFinished = NO;
-	heroPrevPos = ccp(0,0);
-	heroPrevVelocity = ccp(0,0);
+	wasGameWon = NO;
+	[newHero removeAllObjects];
 	[enemySpawnBuffer removeAllObjects];
 	[enemyArray removeAllObjects];
 	enemyCount = 0;

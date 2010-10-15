@@ -5,6 +5,10 @@
 
 #import "HelloWorldScene.h"
 #import "LevelChoice.h"
+#import "Scores.h"
+#import "Settings.h"
+#import "About.h"
+#import "Help.h"
 
 @implementation HelloWorld
 
@@ -21,11 +25,11 @@
 {
 	if( (self=[super init] )) {
 		//BACKGROUND
-		CCSprite *bg = [CCSprite spriteWithFile:@"bg.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg];
 		//TITLE
-		CCSprite *title = [CCSprite spriteWithFile:@"omnivore_title.png"];
+		CCSprite *title = [CCSprite spriteWithFile:@"Titles/omnivore_title.png"];
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
@@ -56,10 +60,22 @@
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[LevelChoice scene]]];
 }
--(void)scores:(CCMenuItem  *) menuItem {}
--(void)settings:(CCMenuItem  *) menuItem {}
--(void)about:(CCMenuItem  *) menuItem {}
--(void)help:(CCMenuItem  *) menuItem {}
+-(void)scores:(CCMenuItem  *) menuItem {
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[Scores scene]]];
+}
+-(void)settings:(CCMenuItem  *) menuItem {
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[Settings scene]]];
+}
+-(void)about:(CCMenuItem  *) menuItem {
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[About scene]]];
+}
+-(void)help:(CCMenuItem  *) menuItem {
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[Help scene]]];
+}
 
 - (void) dealloc
 {

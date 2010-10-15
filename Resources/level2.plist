@@ -1,4 +1,12 @@
 {
+  enemy1 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 40;
+		enemyPosY = 50;
+		enemyVX = 200;
+		enemyVY = -100;
+	};
 	enemy1 = (
 		1,
 		40,

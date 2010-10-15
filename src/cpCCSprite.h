@@ -21,6 +21,11 @@
 {
 	CPCCNODE_MEM_VARS;
 }
+/* **********************************************************************
+ SELBST HINZUGEFÜGT:*/
+@property (readwrite,assign) int level, enemyKind; 
+/**********************************************************************/
+
 
 /*! Use if you do not want the sprite to rotate with the shape */
 @property (readwrite,assign) BOOL ignoreRotation;

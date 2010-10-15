@@ -9,22 +9,22 @@
 #import "cocos2d.h"
 
 @interface GameData : NSObject {
-	CGPoint heroPrevPos;
-	CGPoint heroPrevVelocity;
-	int heroNewSize;
 	BOOL isThereAHero;
 	BOOL isGamePaused;
 	BOOL isCountdownFinished;
+	BOOL wasGameWon;
+	CCArray *newHero;
 	CCArray *enemySpawnBuffer;
 	CCArray *enemyArray; 
 	int enemyCount;
+	int currentLevel;
 }
 
-@property(readwrite,assign) CGPoint heroPrevPos, heroPrevVelocity;
-@property(readwrite,assign) int heroNewSize, enemyCount;
-@property(readwrite,assign) BOOL isThereAHero, isGamePaused, isCountdownFinished;
-@property(nonatomic,retain) CCArray *enemySpawnBuffer, *enemyArray;
+@property(readwrite,assign) int enemyCount, currentLevel;
+@property(readwrite,assign) BOOL isThereAHero, isGamePaused, isCountdownFinished, wasGameWon;
+@property(nonatomic,retain) CCArray *newHero, *enemySpawnBuffer, *enemyArray;
 
 +(GameData *) sharedData;
 -(void)initLevel:(int)level;
+
 @end

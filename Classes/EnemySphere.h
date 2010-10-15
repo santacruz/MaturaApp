@@ -10,13 +10,15 @@
 
 @interface EnemySphere : CCNode {
 	float radius;
-	int level;
+	//int level;
+	//int enemyKind;
 	cpCCSprite *sprite;
 }
 
 @property(nonatomic,retain)	cpCCSprite *sprite;
 @property(readwrite,assign) float radius;
-@property(readwrite,assign) int level;
-+(id) enemyWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
--(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
+//@property(readwrite,assign) int level;
+//@property(readwrite,assign) int enemyKind;
++(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
+-(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
 @end
