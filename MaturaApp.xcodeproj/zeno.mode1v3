@@ -336,7 +336,7 @@
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>AA717B101268EC0400B125E6</string>
+										<string>AA717B1E1269B02E00B125E6</string>
 										<key>history</key>
 										<array>
 											<string>AA717AF91268EB8B00B125E6</string>
@@ -348,7 +348,7 @@
 											<string>AA717AFF1268EB8B00B125E6</string>
 											<string>AA717B0D1268EC0400B125E6</string>
 											<string>AA717B0E1268EC0400B125E6</string>
-											<string>AA717B0F1268EC0400B125E6</string>
+											<string>AA717B101268EC0400B125E6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -360,14 +360,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1061, 557}}</string>
+								<string>{{0, 0}, {1061, 556}}</string>
 								<key>RubberWindowFrame</key>
 								<string>21 134 1251 643 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>557pt</string>
+							<string>556pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -380,14 +380,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 562}, {1061, 40}}</string>
+								<string>{{0, 561}, {1061, 41}}</string>
 								<key>RubberWindowFrame</key>
 								<string>21 134 1251 643 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>40pt</string>
+							<string>41pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -406,9 +406,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>AA717B021268EB8B00B125E6</string>
+				<string>AA717B1F1269B02E00B125E6</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>AA717B031268EB8B00B125E6</string>
+				<string>AA717B201269B02E00B125E6</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -546,10 +546,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>AA717B111268EC0400B125E6</string>
-		<string>AA717B121268EC0400B125E6</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>AA312FA81233D8960098711E</string>
 		<string>/Users/zeno/Dropbox/Matura/MaturaApp/MaturaApp.xcodeproj</string>
 	</array>
@@ -575,7 +571,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Settings.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -592,8 +588,6 @@
 							<string>91pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -633,7 +627,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>AA312FA81233D8960098711E</string>
-				<string>AA717AF41268EB6B00B125E6</string>
+				<string>AA717B211269B02E00B125E6</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

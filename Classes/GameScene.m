@@ -16,7 +16,7 @@
 #define kImpulseMultiplier 500
 #define kNormalEnemy 0
 
-id action;
+static float prevHeroRotation = 0;
 
 @implementation GameScene
 
@@ -237,7 +237,8 @@ id action;
 		[sphere.sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
 	} else {
 		//WENN HELD DA, ROTATION ÄNDERN
-		sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
+		sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.5+prevHeroRotation*0.5;
+		prevHeroRotation = sphere.sprite.rotation; 
 	}
 	
 	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN 
