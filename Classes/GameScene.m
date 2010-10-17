@@ -11,10 +11,12 @@
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2 
-#define kInitSize 12.5
+#define kInitSize 10
 #define kFilterFactor 0.5f
-#define kImpulseMultiplier 500
+#define kImpulseMultiplier 200
 #define kNormalEnemy 0
+#define kShrinkEnemy 1
+
 
 static float prevHeroRotation = 0;
 
@@ -67,7 +69,6 @@ static float prevHeroRotation = 0;
 		cpShape *bottomRect = [smgr addRectAt:cpv(-80,-160) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
 		cpCCSprite *sBottomSprite = [cpCCSprite spriteWithShape:bottomRect file:@"blank.png"];
 		sBottomSprite.position = ccp(0,0);
-		//bottomRect->e=2.0;
 		[self addChild:sBottomSprite];
 		cpShape *upperRect = [smgr addRectAt:cpv(-80,320) mass:STATIC_MASS width:screenSize.width height:1 rotation:0];
 		cpCCSprite *sUpperSprite = [cpCCSprite spriteWithShape:upperRect file:@"blank.png"];
@@ -84,7 +85,7 @@ static float prevHeroRotation = 0;
 		
 		
 		//HELD INITIALISIEREN
-		sphere = [Sphere sphereWithMgr:self.smgr level:1 position:ccp(-80,80) velocity:ccp(0,0)];
+		sphere = [Sphere sphereWithMgr:self.smgr level:[GameData sharedData].heroStartLevel position:ccp(-80,80) velocity:ccp(0,0)];
 		[self addChild:sphere];
 		
 		//FEINDE HINZUFÜGEN
@@ -139,6 +140,34 @@ static float prevHeroRotation = 0;
 			[GameData sharedData].wasGameWon = NO;
 			[self endGame];
 		} else {
+			if (sphere) {
+				int newSize;
+				switch (sprite.enemyKind) {
+					case kNormalEnemy:
+						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
+						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
+						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.shape->body->v]];
+						[GameData sharedData].isThereAHero = NO;
+						[self removeChild:sphere cleanup:YES];
+						[smgr scheduleToRemoveAndFreeShape:a];
+						a->data = nil;
+						break;
+					case kShrinkEnemy:
+						newSize = sphere.level-enemyMass;
+						if (sphere.level == sprite.level) {
+							newSize = 1;
+						}
+						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:newSize]];
+						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
+						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.shape->body->v]];
+						[GameData sharedData].isThereAHero = NO;
+						[self removeChild:sphere cleanup:YES];
+						[smgr scheduleToRemoveAndFreeShape:a];
+						break;
+					default:
+						break;
+				}
+			}
 			if (sprite)
 			{	
 				//Sprite.parent vom enemyArray entfernen
@@ -147,15 +176,6 @@ static float prevHeroRotation = 0;
 				[smgr scheduleToRemoveAndFreeShape:b];
 				b->data = nil;
 				[GameData sharedData].enemyCount -= 1;
-			}
-			if (sphere) {
-				[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
-				[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
-				[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.shape->body->v]];
-				[GameData sharedData].isThereAHero = NO;
-				[self removeChild:sphere cleanup:YES];
-				[smgr scheduleToRemoveAndFreeShape:a];
-				a->data = nil;
 			}
 		}
     }	
@@ -179,14 +199,23 @@ static float prevHeroRotation = 0;
 			newKind = sprite.enemyKind;
 			newEnemyPosition = sprite.position;
 			newEnemyVelocity = sprite.shape->body->v;
+			if (sprite2.enemyKind == kShrinkEnemy) {
+				newEnemySize = aSize-bSize;
+			}
 		} else if (bSize > aSize) {
 			newKind = sprite2.enemyKind;
 			newEnemyPosition = sprite2.position;
 			newEnemyVelocity = sprite2.shape->body->v;
+			if (sprite.enemyKind == kShrinkEnemy) {
+				newEnemySize = bSize-aSize;
+			}
 		} else {
 			newKind = sprite.enemyKind;
 			newEnemyPosition = ccpMidpoint(sprite.position, sprite2.position);
 			newEnemyVelocity = ccpAdd(sprite.shape->body->v, sprite2.shape->body->v);
+			if ((sprite.enemyKind == kShrinkEnemy) || (sprite2.enemyKind == kShrinkEnemy)) {
+				newEnemySize = aSize;
+			}
 		}
 				
 		[[GameData sharedData].enemyArray removeObject:sprite.parent];
@@ -292,11 +321,6 @@ static float prevHeroRotation = 0;
 	if ([GameData sharedData].isThereAHero) {
 		sphere.sprite.shape->body->v = ccpMult(v, kImpulseMultiplier);
 	}
-	/*
-	if ([GameData sharedData].isThereAHero) {
-		[sphere.sprite applyImpulse:ccpMult(v, kImpulseMultiplier)];
-	}
-	*/
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -12,7 +12,7 @@ static GameData *sharedData = NULL;
 
 @implementation GameData
 
-@synthesize newHero, isThereAHero, currentLevel, isGamePaused, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, wasGameWon;
+@synthesize newHero, isThereAHero, currentLevel, isGamePaused, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, wasGameWon, heroStartLevel;
 /*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
 @synthesize accelCorrectionX, accelCorrectionY;
 
@@ -20,6 +20,7 @@ static GameData *sharedData = NULL;
 {
 	if ( self = [super init] )
 	{
+		heroStartLevel = 1;
 		isThereAHero = YES;
 		isGamePaused = NO;
 		isCountdownFinished = NO;

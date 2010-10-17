@@ -5,6 +5,7 @@
 
 #import "HelloWorldScene.h"
 #import "LevelChoice.h"
+#import "GameScene.h"
 #import "Scores.h"
 #import "Settings.h"
 #import "About.h"
@@ -57,8 +58,10 @@
 }
 
 -(void)start:(CCMenuItem  *) menuItem {
+	[[GameData sharedData] initLevel:1];
+	
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[LevelChoice scene]]];
+	 [CCTransitionFade transitionWithDuration:0.4f scene:[GameScene scene]]];
 }
 -(void)scores:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:

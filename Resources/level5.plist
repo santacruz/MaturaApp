@@ -1,0 +1,203 @@
+{
+enemy1 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 1;
+enemyPosY = 345;
+enemyVX = 30;
+enemyVY = 49;
+};
+enemy2 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 148;
+enemyPosY = 0;
+enemyVX = 23;
+enemyVY = 4;
+};
+enemy3 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 148;
+enemyPosY = 290;
+enemyVX = 51;
+enemyVY = 26;
+};
+enemy4 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 40;
+enemyPosY = 25;
+enemyVX = 19;
+enemyVY = 9;
+};
+enemy5 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 45;
+enemyPosY = 146;
+enemyVX = 38;
+enemyVY = 41;
+};
+enemy6 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 113;
+enemyPosY = 230;
+enemyVX = 17;
+enemyVY = 11;
+};
+enemy7 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 63;
+enemyPosY = 395;
+enemyVX = 55;
+enemyVY = 42;
+};
+enemy8 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 220;
+enemyPosY = 115;
+enemyVX = 57;
+enemyVY = 58;
+};
+enemy9 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 161;
+enemyPosY = 468;
+enemyVX = 4;
+enemyVY = 21;
+};
+enemy10 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 186;
+enemyPosY = 414;
+enemyVX = 56;
+enemyVY = 63;
+};
+enemy11 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 9;
+enemyPosY = 87;
+enemyVX = 36;
+enemyVY = 57;
+};
+enemy12 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 72;
+enemyPosY = 96;
+enemyVX = 79;
+enemyVY = 63;
+};
+enemy13 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 39;
+enemyPosY = 330;
+enemyVX = 57;
+enemyVY = 60;
+};
+enemy14 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 34;
+enemyPosY = 217;
+enemyVX = 34;
+enemyVY = 17;
+};
+enemy15 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 47;
+enemyPosY = 410;
+enemyVX = 31;
+enemyVY = 4;
+};
+enemy16 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 253;
+enemyPosY = 278;
+enemyVX = 8;
+enemyVY = 79;
+};
+enemy17 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 305;
+enemyPosY = 146;
+enemyVX = 7;
+enemyVY = 28;
+};
+enemy18 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 319;
+enemyPosY = 113;
+enemyVX = 72;
+enemyVY = 60;
+};
+enemy19 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 274;
+enemyPosY = 99;
+enemyVX = 39;
+enemyVY = 23;
+};
+enemy20 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 246;
+enemyPosY = 330;
+enemyVX = 18;
+enemyVY = 0;
+};
+enemy21 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 272;
+enemyPosY = 395;
+enemyVX = 5;
+enemyVY = 10;
+};
+enemy22 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 77;
+enemyPosY = 466;
+enemyVX = 41;
+enemyVY = 26;
+};
+enemy23 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 26;
+enemyPosY = 58;
+enemyVX = 47;
+enemyVY = 49;
+};
+enemy24 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 103;
+enemyPosY = 459;
+enemyVX = 8;
+enemyVY = 36;
+};
+enemy25 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 85;
+enemyPosY = 31;
+enemyVX = 10;
+enemyVY = 51;
+};
+heroStartLevel = 1;numberOfEnemies = 25;
+}

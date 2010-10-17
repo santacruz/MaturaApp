@@ -1,27 +1,44 @@
 {
-	numberOfEnemies = 3;
 	enemy1 = {
 		enemyKind = 0;
 		enemyLevel = 1;
-		enemyPosX = 160;
-		enemyPosY = 300;
-		enemyVX = 0;
-		enemyVY = 60;
+		enemyPosX = 219;
+		enemyPosY = 19;
+		enemyVX = 53;
+		enemyVY = 33;
 	};
 	enemy2 = {
-		enemyKind = 0;
+		enemyKind = 1;
 		enemyLevel = 1;
-		enemyPosX = 80;
-		enemyPosY = 180;
-		enemyVX = -40;
-		enemyVY = -40;
+		enemyPosX = 99;
+		enemyPosY = 179;
+		enemyVX = 54;
+		enemyVY = 26;
 	};
 	enemy3 = {
 		enemyKind = 0;
 		enemyLevel = 1;
-		enemyPosX = 240;
-		enemyPosY = 180;
-		enemyVX = 40;
-		enemyVY = -40;
+		enemyPosX = 263;
+		enemyPosY = 323;
+		enemyVX = 26;
+		enemyVY = 43;
 	};
+	enemy4 = {
+		enemyKind = 1;
+		enemyLevel = 1;
+		enemyPosX = 132;
+		enemyPosY = 103;
+		enemyVX = 35;
+		enemyVY = 3;
+	};
+	enemy5 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 73;
+		enemyPosY = 101;
+		enemyVX = 75;
+		enemyVY = 74;
+	};
+	heroStartLevel = 1;
+	numberOfEnemies = 5;
 }

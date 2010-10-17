@@ -8,8 +8,9 @@
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2
-#define kInitSize 12.5
-#define	kNormalEnemy 1
+#define kInitSize 10
+#define	kNormalEnemy 0
+#define kShrinkEnemy 1
 
 @implementation EnemySphere
 @synthesize radius, sprite; //level, enemyKind;
@@ -28,17 +29,44 @@
 		
 		radius = sqrt(size*pow(kInitSize,2));
 		
-		//FÜGE SPRITE HINZU
 		cpShape *ball = [mgr addCircleAt:ccp(0,0) mass:size radius:radius];
 		ball->collision_type = kEnemyCollisionType;
-		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
-		sprite.position = ccp(location.x,location.y);
-		sprite.shape->body->v = velocity;
-		sprite.level = size;
-		sprite.enemyKind = kind;
+		
+		switch (kind) {
+			case kNormalEnemy:
+				
+				//FÜGE NORMALES SPRITE HINZU
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
+				sprite.position = ccp(location.x,location.y);
+				sprite.shape->body->v = velocity;
+				sprite.level = size;
+				sprite.enemyKind = kind;
+				[sprite setIgnoreRotation:YES];
+				break;
+				
+			case kShrinkEnemy:
+				//FÜGE BOUNCY SPRITE HINZU
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"EnemyShrink/enemyShrink%i.png",size]];
+				sprite.position = ccp(location.x,location.y);
+				sprite.shape->body->v = velocity;
+				sprite.level = size;
+				sprite.enemyKind = kind;
+				[sprite setIgnoreRotation:YES];
+				break;
+
+			default:
+				//FÜGE NORMALES SPRITE HINZU
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
+				sprite.position = ccp(location.x,location.y);
+				sprite.shape->body->v = velocity;
+				sprite.level = size;
+				sprite.enemyKind = kind;
+				[sprite setIgnoreRotation:YES];
+				break;
+		}
+
 		
 		[self addChild:sprite];
-		
 		self.position = ccp(240,160);
 		
 		[GameData sharedData].enemyCount += 1;

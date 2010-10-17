@@ -13,6 +13,7 @@
 
 
 +(id)scene;
+-(void)next:(CCMenuItem *) menuItem;
 -(void)retry:(CCMenuItem *) menuItem;
 -(void)menu:(CCMenuItem *) menuItem;
 

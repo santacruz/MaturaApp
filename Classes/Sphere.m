@@ -7,7 +7,7 @@
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2
-#define kInitSize 12.5
+#define kInitSize 10
 
 
 @implementation Sphere
@@ -32,10 +32,10 @@
 		//FÜGE SPRITE HINZU
 		cpShape *ball = [mgr addCircleAt:ccp(0,0) mass:gewicht radius:radius];
 		ball->collision_type = kHeroCollisionType;
-		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Hero/hero%i.png",size]];
+		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Hero/Hero%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
 		sprite.shape->body->v = velocity;
-		//[sprite setIgnoreRotation:YES];
+		[sprite setIgnoreRotation:YES];
 		[self addChild:sprite];
 	
 		self.position = ccp(240,160);

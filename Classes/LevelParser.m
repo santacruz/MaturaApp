@@ -23,6 +23,7 @@
 		NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:pfad];
 
         int numberOfEnemies = [[plistDict objectForKey:@"numberOfEnemies"] intValue];
+		[GameData sharedData].heroStartLevel = [[plistDict objectForKey:@"heroStartLevel"] intValue];
 		
 		for (int i=1; i<numberOfEnemies+1; i++) {
 			NSDictionary *currentEnemy = [plistDict objectForKey:[NSString stringWithFormat:@"enemy%i",i]];

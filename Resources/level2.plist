@@ -1,60 +1,83 @@
 {
-  enemy1 = {
-		enemyKind = 0;
-		enemyLevel = 1;
-		enemyPosX = 40;
-		enemyPosY = 50;
-		enemyVX = 200;
-		enemyVY = -100;
-	};
-	enemy1 = (
-		1,
-		40,
-		50,
-		200,
-		"-100",
-	);
-	enemy2 = (
-		1,
-		240,
-		160,
-		50,
-		300,
-	);
-	enemy3 = (
-		1,
-		100,
-		300,
-		200,
-		0,
-	);
-	enemy4 = (
-		1,
-		150,
-		450,
-		50,
-		"-200",
-	);
-	enemy5 = (
-		1,
-		300,
-		70,
-		"-40",
-		200,
-	);
-	enemy6 = (
-		1,
-		50,
-		450,
-		300,
-		"-20",
-	);
-	enemy7 = (
-		1,
-		300,
-		350,
-		"-100",
-		"-200",
-	);
-	numberOfEnemies = 7;
+enemy1 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 23;
+enemyPosY = 299;
+enemyVX = 68;
+enemyVY = 2;
+};
+enemy2 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 7;
+enemyPosY = 307;
+enemyVX = 28;
+enemyVY = 6;
+};
+enemy3 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 37;
+enemyPosY = 106;
+enemyVX = 28;
+enemyVY = 34;
+};
+enemy4 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 117;
+enemyPosY = 260;
+enemyVX = 76;
+enemyVY = 27;
+};
+enemy5 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 29;
+enemyPosY = 40;
+enemyVX = 21;
+enemyVY = 78;
+};
+enemy6 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 152;
+enemyPosY = 346;
+enemyVX = 73;
+enemyVY = 76;
+};
+enemy7 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 22;
+enemyPosY = 50;
+enemyVX = 14;
+enemyVY = 40;
+};
+enemy8 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 110;
+enemyPosY = 421;
+enemyVX = 3;
+enemyVY = 59;
+};
+enemy9 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 130;
+enemyPosY = 165;
+enemyVX = 73;
+enemyVY = 1;
+};
+enemy10 = {
+enemyKind = 0;
+enemyLevel = 1;
+enemyPosX = 38;
+enemyPosY = 320;
+enemyVX = 60;
+enemyVY = 11;
+};
+heroStartLevel = 1;numberOfEnemies = 10;
 }

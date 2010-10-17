@@ -30,17 +30,35 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
-		//LEVEL MENU
-		CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"LEVEL 1" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(runGame1:)];
+		//LEVEL MENU 1
+ 		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"1" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(runGame1:)];
 		
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"LEVEL 2" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"2" fntFile:@"bebas.fnt"];
 		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(runGame2:)];
 		
-		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
-		[myMenu alignItemsVertically];
-		myMenu.position = ccp(160, 220);
+		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"3" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(runGame3:)];
+		
+		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,menuItem3,nil];
+		[myMenu alignItemsHorizontallyWithPadding:50];
+		myMenu.position = ccp(160, 240);
 		[self addChild:myMenu];
+		
+		//LEVEL MENU 2
+ 		CCLabelBMFont* label4 = [CCLabelBMFont labelWithString:@"4" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem4= [CCMenuItemLabel itemWithLabel:label4 target:self selector:@selector(runGame4:)];
+		
+		CCLabelBMFont* label5 = [CCLabelBMFont labelWithString:@"5" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem5= [CCMenuItemLabel itemWithLabel:label5 target:self selector:@selector(runGame5:)];
+		
+		CCLabelBMFont* label6 = [CCLabelBMFont labelWithString:@"6" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem6= [CCMenuItemLabel itemWithLabel:label6 target:self selector:@selector(runGame6:)];
+		
+		CCMenu * myMenu2 = [CCMenu menuWithItems:menuItem4,menuItem5,menuItem6,nil];
+		[myMenu2 alignItemsHorizontallyWithPadding:50];
+		myMenu2.position = ccp(160, 180);
+		[self addChild:myMenu2];
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
@@ -70,11 +88,47 @@
 	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
 }
 
+
+-(void)runGame3:(CCMenuItem  *) menuItem {
+	//LEVELDATEN INITIALISIEREN
+	[[GameData sharedData] initLevel:3];
+	
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
+	
+}
+-(void)runGame4:(CCMenuItem  *) menuItem {
+	//LEVELDATEN INITIALISIEREN
+	[[GameData sharedData] initLevel:4];
+	
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
+	
+}
+-(void)runGame5:(CCMenuItem  *) menuItem {
+	//LEVELDATEN INITIALISIEREN
+	[[GameData sharedData] initLevel:5];
+	
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
+	
+}
+-(void)runGame6:(CCMenuItem  *) menuItem {
+	//LEVELDATEN INITIALISIEREN
+	[[GameData sharedData] initLevel:6];
+	
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
+	
+}
+
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionSlideInL transitionWithDuration:0.4f scene:[HelloWorld scene]]];
 
 }
+
+
 
 - (void) dealloc
 {

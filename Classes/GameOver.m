@@ -32,28 +32,59 @@
 			CCLabelBMFont* title = [CCLabelBMFont labelWithString:@"YOU WON!" fntFile:@"bebas.fnt"];
 			title.position = ccp(160,300);
 			[self addChild:title];
+			
+			//MENU
+			
+			CCLabelBMFont* label0 = [CCLabelBMFont labelWithString:@"NEXT" fntFile:@"bebas.fnt"];
+			CCMenuItemLabel *menuItem0= [CCMenuItemLabel itemWithLabel:label0 target:self selector:@selector(next:)];
+
+			
+			CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"RETRY" fntFile:@"bebas.fnt"];
+			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(retry:)];
+			
+			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"BACK TO MAIN MENU" fntFile:@"bebas.fnt"];
+			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
+			
+			CCMenu * myMenu = [CCMenu menuWithItems:menuItem0,menuItem1,menuItem2,nil];
+			[myMenu alignItemsVertically];
+			myMenu.position = ccp(160, 220);
+			[self addChild:myMenu];
+			
+			
 		} else {
 			CCLabelBMFont* title = [CCLabelBMFont labelWithString:@"YOU LOST!" fntFile:@"bebas.fnt"];
 			title.position = ccp(160,300);
 			[self addChild:title];
+			
+			//MENU
+			CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"RETRY" fntFile:@"bebas.fnt"];
+			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(retry:)];
+			
+			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"BACK TO MAIN MENU" fntFile:@"bebas.fnt"];
+			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
+			
+			CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
+			[myMenu alignItemsVertically];
+			myMenu.position = ccp(160, 220);
+			[self addChild:myMenu];
 		}
 
 		
-		//MENU
-		CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"RETRY" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(retry:)];
-		
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"BACK TO MAIN MENU" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
-		
-		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
-		[myMenu alignItemsVertically];
-		myMenu.position = ccp(160, 220);
-		[self addChild:myMenu];
+
 		
 	}
 	return self;
 }
+
+-(void)next:(CCMenuItem *) menuItem {
+	//LEVELDATEN INITIALISIEREN
+	[[GameData sharedData] initLevel:[GameData sharedData].currentLevel+1];
+	
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
+	
+}
+
 
 -(void)retry:(CCMenuItem *) menuItem {
 	//LEVELDATEN INITIALISIEREN
