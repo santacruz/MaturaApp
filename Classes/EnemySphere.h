@@ -13,12 +13,15 @@
 	//int level;
 	//int enemyKind;
 	cpCCSprite *sprite;
+	CGPoint moveVector;
 }
 
 @property(nonatomic,retain)	cpCCSprite *sprite;
 @property(readwrite,assign) float radius;
+@property(readwrite,assign) CGPoint moveVector;
 //@property(readwrite,assign) int level;
 //@property(readwrite,assign) int enemyKind;
 +(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
 -(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
+-(void) move:(ccTime)dt;
 @end

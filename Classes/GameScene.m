@@ -155,7 +155,8 @@ static float prevHeroRotation = 0;
 					case kShrinkEnemy:
 						newSize = sphere.level-enemyMass;
 						if (sphere.level == sprite.level) {
-							newSize = 1;
+							[GameData sharedData].wasGameWon = NO;
+							[self endGame];;
 						}
 						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:newSize]];
 						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
@@ -210,10 +211,10 @@ static float prevHeroRotation = 0;
 				newEnemySize = bSize-aSize;
 			}
 		} else {
-			newKind = sprite.enemyKind;
 			newEnemyPosition = ccpMidpoint(sprite.position, sprite2.position);
 			newEnemyVelocity = ccpAdd(sprite.shape->body->v, sprite2.shape->body->v);
 			if ((sprite.enemyKind == kShrinkEnemy) || (sprite2.enemyKind == kShrinkEnemy)) {
+				newKind = kShrinkEnemy;
 				newEnemySize = aSize;
 			}
 		}

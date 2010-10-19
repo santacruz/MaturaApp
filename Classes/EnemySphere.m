@@ -13,7 +13,10 @@
 #define kShrinkEnemy 1
 
 @implementation EnemySphere
-@synthesize radius, sprite; //level, enemyKind;
+
+static float prevDistance = 500;
+
+@synthesize radius, sprite, moveVector; //level, enemyKind;
 
 +(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
 {
@@ -46,7 +49,7 @@
 				
 			case kShrinkEnemy:
 				//FÜGE BOUNCY SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"EnemyShrink/enemyShrink%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Shrink/shrink%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.shape->body->v = velocity;
 				sprite.level = size;
@@ -56,7 +59,7 @@
 
 			default:
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.shape->body->v = velocity;
 				sprite.level = size;
@@ -69,11 +72,28 @@
 		[self addChild:sprite];
 		self.position = ccp(240,160);
 		
+		//MOVE LOGIK HINZUFÜGEN
+		[self schedule:@selector(move:) interval:0.5];
+		
 		[GameData sharedData].enemyCount += 1;
 		[[GameData sharedData].enemyArray addObject:self];
 	}
 	NSLog(@"Adding Enemy");
 	return self;
+}
+
+- (void)move:(ccTime)dt {
+	prevDistance = 500;
+	for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
+		if (enemy != self) {
+			if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
+				prevDistance = ccpDistance(enemy.sprite.position, self.sprite.position);
+				moveVector = ccpNormalize(ccpSub(enemy.sprite.position, self.sprite.position));
+			}
+		}
+	}
+	self.sprite.shape->body->v = ccpMult(moveVector, 10);
+	
 }
 
 - (void) dealloc

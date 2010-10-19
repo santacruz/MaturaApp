@@ -35,7 +35,6 @@
 		AA3132521233DD760098711E /* EnemySphere.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3132501233DD760098711E /* EnemySphere.m */; };
 		AA3132701233DEA10098711E /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31326F1233DEA10098711E /* GameScene.m */; };
 		AA31345C1233E8110098711E /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = AA3134511233E8110098711E /* blank.png */; };
-		AA31346D1233E8850098711E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AA3134691233E8850098711E /* Default.png */; };
 		AA31346E1233E8850098711E /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = AA31346A1233E8850098711E /* fps_images.png */; };
 		AA31346F1233E8850098711E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA31346B1233E8850098711E /* Icon.png */; };
 		AA7178A31262FF9F00B125E6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7178A21262FF9F00B125E6 /* Icon@2x.png */; };
@@ -45,23 +44,24 @@
 		AA717E091269FE6800B125E6 /* level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA717E051269FE6800B125E6 /* level3.plist */; };
 		AA717E0A1269FE6800B125E6 /* level4.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA717E061269FE6800B125E6 /* level4.plist */; };
 		AA717E0B1269FE6800B125E6 /* level5.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA717E071269FE6800B125E6 /* level5.plist */; };
-		AA717EA4126B54B800B125E6 /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA717EA2126B54B800B125E6 /* Enemy */; };
-		AA717EA5126B54B800B125E6 /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = AA717EA3126B54B800B125E6 /* Hero */; };
-		AA717F10126B579600B125E6 /* EnemyShrink in Resources */ = {isa = PBXBuildFile; fileRef = AA717EAA126B579600B125E6 /* EnemyShrink */; };
+		AA718030126DEBBA00B125E6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71802E126DEBBA00B125E6 /* Default.png */; };
+		AA718031126DEBBA00B125E6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71802F126DEBBA00B125E6 /* Default@2x.png */; };
+		AA718036126DEBD900B125E6 /* bebas-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AA718032126DEBD900B125E6 /* bebas-hd.fnt */; };
+		AA718037126DEBD900B125E6 /* bebas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA718033126DEBD900B125E6 /* bebas-hd.png */; };
+		AA718038126DEBD900B125E6 /* bebas.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AA718034126DEBD900B125E6 /* bebas.fnt */; };
+		AA718039126DEBD900B125E6 /* bebas.png in Resources */ = {isa = PBXBuildFile; fileRef = AA718035126DEBD900B125E6 /* bebas.png */; };
+		AA71803D126DEBFA00B125E6 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = AA71803A126DEBF900B125E6 /* BG */; };
+		AA71803E126DEBFA00B125E6 /* Buttons in Resources */ = {isa = PBXBuildFile; fileRef = AA71803B126DEBF900B125E6 /* Buttons */; };
+		AA71803F126DEBFA00B125E6 /* Titles in Resources */ = {isa = PBXBuildFile; fileRef = AA71803C126DEBFA00B125E6 /* Titles */; };
+		AA7180A8126DED1700B125E6 /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA718040126DED1600B125E6 /* Enemy */; };
+		AA7180A9126DED1700B125E6 /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = AA718041126DED1600B125E6 /* Hero */; };
+		AA7180AA126DED1700B125E6 /* Shrink in Resources */ = {isa = PBXBuildFile; fileRef = AA718042126DED1700B125E6 /* Shrink */; };
 		AA75B608123CD40E00585F54 /* libChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA75B583123CD3C700585F54 /* libChipmunk.a */; };
 		AA75B609123CD40E00585F54 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA75B585123CD3C700585F54 /* libcocos2d.a */; };
 		AA76B8921246A7AA006ED952 /* LevelParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA76B8911246A7AA006ED952 /* LevelParser.m */; };
-		AA8CBDE3125A0527008A851C /* bebas-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AA8CBDDF125A0527008A851C /* bebas-hd.fnt */; };
-		AA8CBDE4125A0527008A851C /* bebas-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CBDE0125A0527008A851C /* bebas-hd.png */; };
 		AA8CBDEF125A05BB008A851C /* LevelChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8CBDEE125A05BB008A851C /* LevelChoice.m */; };
-		AA8CBEAE125A13A4008A851C /* bebas.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AA8CBEAC125A13A4008A851C /* bebas.fnt */; };
-		AA8CBEAF125A13A4008A851C /* bebas.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CBEAD125A13A4008A851C /* bebas.png */; };
-		AA8CBEB6125A1511008A851C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CBEB5125A1511008A851C /* Default@2x.png */; };
 		AA8CC0B6125A7064008A851C /* pausedScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */; };
 		AA8CC0B7125A7064008A851C /* pausedScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC0B5125A7064008A851C /* pausedScreen.png */; };
-		AAA33C601262438F00234F5B /* BG in Resources */ = {isa = PBXBuildFile; fileRef = AAA33C461262438F00234F5B /* BG */; };
-		AAA33C611262438F00234F5B /* Buttons in Resources */ = {isa = PBXBuildFile; fileRef = AAA33C4A1262438F00234F5B /* Buttons */; };
-		AAA33C621262438F00234F5B /* Titles in Resources */ = {isa = PBXBuildFile; fileRef = AAA33C521262438F00234F5B /* Titles */; };
 		AAA33C691262456A00234F5B /* Scores.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C681262456A00234F5B /* Scores.m */; };
 		AAA33C6E126245EB00234F5B /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C6D126245EB00234F5B /* Settings.m */; };
 		AAA33C731262466F00234F5B /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C721262466F00234F5B /* About.m */; };
@@ -588,7 +588,6 @@
 		AA31326E1233DEA10098711E /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		AA31326F1233DEA10098711E /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		AA3134511233E8110098711E /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
-		AA3134691233E8850098711E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		AA31346A1233E8850098711E /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
 		AA31346B1233E8850098711E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		AA31346C1233E8850098711E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -600,24 +599,25 @@
 		AA717E051269FE6800B125E6 /* level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = level3.plist; sourceTree = "<group>"; };
 		AA717E061269FE6800B125E6 /* level4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = level4.plist; sourceTree = "<group>"; };
 		AA717E071269FE6800B125E6 /* level5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = level5.plist; sourceTree = "<group>"; };
-		AA717EA2126B54B800B125E6 /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
-		AA717EA3126B54B800B125E6 /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Hero; sourceTree = "<group>"; };
-		AA717EAA126B579600B125E6 /* EnemyShrink */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EnemyShrink; sourceTree = "<group>"; };
+		AA71802E126DEBBA00B125E6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		AA71802F126DEBBA00B125E6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		AA718032126DEBD900B125E6 /* bebas-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bebas-hd.fnt"; sourceTree = "<group>"; };
+		AA718033126DEBD900B125E6 /* bebas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bebas-hd.png"; sourceTree = "<group>"; };
+		AA718034126DEBD900B125E6 /* bebas.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bebas.fnt; sourceTree = "<group>"; };
+		AA718035126DEBD900B125E6 /* bebas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bebas.png; sourceTree = "<group>"; };
+		AA71803A126DEBF900B125E6 /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BG; sourceTree = "<group>"; };
+		AA71803B126DEBF900B125E6 /* Buttons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Buttons; sourceTree = "<group>"; };
+		AA71803C126DEBFA00B125E6 /* Titles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Titles; sourceTree = "<group>"; };
+		AA718040126DED1600B125E6 /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
+		AA718041126DED1600B125E6 /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Hero; sourceTree = "<group>"; };
+		AA718042126DED1700B125E6 /* Shrink */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shrink; sourceTree = "<group>"; };
 		AA75B403123CD3AE00585F54 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "cocos2d-ios.xcodeproj"; sourceTree = COCOS2D_SOURCE; };
 		AA76B8901246A7AA006ED952 /* LevelParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelParser.h; sourceTree = "<group>"; };
 		AA76B8911246A7AA006ED952 /* LevelParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelParser.m; sourceTree = "<group>"; };
-		AA8CBDDF125A0527008A851C /* bebas-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bebas-hd.fnt"; sourceTree = "<group>"; };
-		AA8CBDE0125A0527008A851C /* bebas-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bebas-hd.png"; sourceTree = "<group>"; };
 		AA8CBDED125A05BB008A851C /* LevelChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelChoice.h; sourceTree = "<group>"; };
 		AA8CBDEE125A05BB008A851C /* LevelChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelChoice.m; sourceTree = "<group>"; };
-		AA8CBEAC125A13A4008A851C /* bebas.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bebas.fnt; sourceTree = "<group>"; };
-		AA8CBEAD125A13A4008A851C /* bebas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bebas.png; sourceTree = "<group>"; };
-		AA8CBEB5125A1511008A851C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pausedScreen-hd.png"; sourceTree = "<group>"; };
 		AA8CC0B5125A7064008A851C /* pausedScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pausedScreen.png; sourceTree = "<group>"; };
-		AAA33C461262438F00234F5B /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BG; sourceTree = "<group>"; };
-		AAA33C4A1262438F00234F5B /* Buttons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Buttons; sourceTree = "<group>"; };
-		AAA33C521262438F00234F5B /* Titles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Titles; sourceTree = "<group>"; };
 		AAA33C671262456A00234F5B /* Scores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scores.h; sourceTree = "<group>"; };
 		AAA33C681262456A00234F5B /* Scores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scores.m; sourceTree = "<group>"; };
 		AAA33C6C126245EB00234F5B /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -849,9 +849,9 @@
 		AA8CBC8C1259F113008A851C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				AAA33C461262438F00234F5B /* BG */,
-				AAA33C4A1262438F00234F5B /* Buttons */,
-				AAA33C521262438F00234F5B /* Titles */,
+				AA71803A126DEBF900B125E6 /* BG */,
+				AA71803B126DEBF900B125E6 /* Buttons */,
+				AA71803C126DEBFA00B125E6 /* Titles */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -872,10 +872,10 @@
 		AA8CBD37125A002D008A851C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				AA8CBEAC125A13A4008A851C /* bebas.fnt */,
-				AA8CBEAD125A13A4008A851C /* bebas.png */,
-				AA8CBDDF125A0527008A851C /* bebas-hd.fnt */,
-				AA8CBDE0125A0527008A851C /* bebas-hd.png */,
+				AA718032126DEBD900B125E6 /* bebas-hd.fnt */,
+				AA718033126DEBD900B125E6 /* bebas-hd.png */,
+				AA718034126DEBD900B125E6 /* bebas.fnt */,
+				AA718035126DEBD900B125E6 /* bebas.png */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -908,9 +908,9 @@
 		AA8CC1B9125BA17B008A851C /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				AA717EAA126B579600B125E6 /* EnemyShrink */,
-				AA717EA2126B54B800B125E6 /* Enemy */,
-				AA717EA3126B54B800B125E6 /* Hero */,
+				AA718040126DED1600B125E6 /* Enemy */,
+				AA718041126DED1600B125E6 /* Hero */,
+				AA718042126DED1700B125E6 /* Shrink */,
 				AA3134511233E8110098711E /* blank.png */,
 				AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */,
 				AA8CC0B5125A7064008A851C /* pausedScreen.png */,
@@ -921,10 +921,10 @@
 		AA8CC302125BBE41008A851C /* Stuff */ = {
 			isa = PBXGroup;
 			children = (
-				AA3134691233E8850098711E /* Default.png */,
 				AA7178A21262FF9F00B125E6 /* Icon@2x.png */,
-				AA8CBEB5125A1511008A851C /* Default@2x.png */,
 				AA31346A1233E8850098711E /* fps_images.png */,
+				AA71802E126DEBBA00B125E6 /* Default.png */,
+				AA71802F126DEBBA00B125E6 /* Default@2x.png */,
 				AA31346B1233E8850098711E /* Icon.png */,
 				AA31346C1233E8850098711E /* Info.plist */,
 			);
@@ -1487,29 +1487,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA31345C1233E8110098711E /* blank.png in Resources */,
-				AA31346D1233E8850098711E /* Default.png in Resources */,
 				AA31346E1233E8850098711E /* fps_images.png in Resources */,
 				AA31346F1233E8850098711E /* Icon.png in Resources */,
 				AAE9BAAB124CB41500E25769 /* level6.plist in Resources */,
-				AA8CBDE3125A0527008A851C /* bebas-hd.fnt in Resources */,
-				AA8CBDE4125A0527008A851C /* bebas-hd.png in Resources */,
-				AA8CBEAE125A13A4008A851C /* bebas.fnt in Resources */,
-				AA8CBEAF125A13A4008A851C /* bebas.png in Resources */,
-				AA8CBEB6125A1511008A851C /* Default@2x.png in Resources */,
 				AA8CC0B6125A7064008A851C /* pausedScreen-hd.png in Resources */,
 				AA8CC0B7125A7064008A851C /* pausedScreen.png in Resources */,
-				AAA33C601262438F00234F5B /* BG in Resources */,
-				AAA33C611262438F00234F5B /* Buttons in Resources */,
-				AAA33C621262438F00234F5B /* Titles in Resources */,
 				AA7178A31262FF9F00B125E6 /* Icon@2x.png in Resources */,
 				AA717906126380D700B125E6 /* level1.plist in Resources */,
 				AA717E081269FE6800B125E6 /* level2.plist in Resources */,
 				AA717E091269FE6800B125E6 /* level3.plist in Resources */,
 				AA717E0A1269FE6800B125E6 /* level4.plist in Resources */,
 				AA717E0B1269FE6800B125E6 /* level5.plist in Resources */,
-				AA717EA4126B54B800B125E6 /* Enemy in Resources */,
-				AA717EA5126B54B800B125E6 /* Hero in Resources */,
-				AA717F10126B579600B125E6 /* EnemyShrink in Resources */,
+				AA718030126DEBBA00B125E6 /* Default.png in Resources */,
+				AA718031126DEBBA00B125E6 /* Default@2x.png in Resources */,
+				AA718036126DEBD900B125E6 /* bebas-hd.fnt in Resources */,
+				AA718037126DEBD900B125E6 /* bebas-hd.png in Resources */,
+				AA718038126DEBD900B125E6 /* bebas.fnt in Resources */,
+				AA718039126DEBD900B125E6 /* bebas.png in Resources */,
+				AA71803D126DEBFA00B125E6 /* BG in Resources */,
+				AA71803E126DEBFA00B125E6 /* Buttons in Resources */,
+				AA71803F126DEBFA00B125E6 /* Titles in Resources */,
+				AA7180A8126DED1700B125E6 /* Enemy in Resources */,
+				AA7180A9126DED1700B125E6 /* Hero in Resources */,
+				AA7180AA126DED1700B125E6 /* Shrink in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
