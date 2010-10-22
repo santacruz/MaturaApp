@@ -59,7 +59,7 @@ static float prevDistance = 500;
 
 			default:
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.shape->body->v = velocity;
 				sprite.level = size;
@@ -83,6 +83,7 @@ static float prevDistance = 500;
 }
 
 - (void)move:(ccTime)dt {
+	//UNSCHÖN, ÄNDERN!
 	prevDistance = 500;
 	for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
 		if (enemy != self) {

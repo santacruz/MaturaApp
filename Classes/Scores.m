@@ -42,7 +42,7 @@
 
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInL transitionWithDuration:0.4f scene:[HelloWorld scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[HelloWorld scene]]];
 	
 }
 

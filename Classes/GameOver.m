@@ -60,7 +60,7 @@
 			CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"RETRY" fntFile:@"bebas.fnt"];
 			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(retry:)];
 			
-			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"BACK TO MAIN MENU" fntFile:@"bebas.fnt"];
+			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"BACK TO MENU" fntFile:@"bebas.fnt"];
 			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
 			
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];

@@ -9,7 +9,10 @@
 
 @interface About : CCLayer
 {
+	UITextView *textView;
 }
+
+@property(nonatomic,retain) UITextView *textView;
 
 +(id) scene;
 -(void)back:(CCMenuItem *) menuItem;

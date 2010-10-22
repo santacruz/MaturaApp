@@ -56,7 +56,7 @@ static float prevHeroRotation = 0;
 		bg.position = ccp(160,240);
 		[self addChild:bg z:-1];
 		//PAUSELAYER
-		pausedScreen = [[CCSprite alloc] initWithFile:@"pausedScreen.png"];
+		pausedScreen = [CCSprite spriteWithFile:@"pausedScreen.png"];
 		pausedScreen.position = ccp(160,240);
 		pausedScreen.visible = NO;
 		[self addChild:pausedScreen z:2];
@@ -215,7 +215,7 @@ static float prevHeroRotation = 0;
 			newEnemyVelocity = ccpAdd(sprite.shape->body->v, sprite2.shape->body->v);
 			if ((sprite.enemyKind == kShrinkEnemy) || (sprite2.enemyKind == kShrinkEnemy)) {
 				newKind = kShrinkEnemy;
-				newEnemySize = aSize;
+				newEnemySize = 2*aSize;
 			}
 		}
 				
@@ -332,17 +332,18 @@ static float prevHeroRotation = 0;
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
-        if (touch.tapCount >= 2) {
-			if ([GameData sharedData].isGamePaused) {
-				pausedScreen.visible = NO;
-				[[CCDirector sharedDirector] resume];
-				[GameData sharedData].isGamePaused = NO;
-			}	else {
-				[[CCDirector sharedDirector] pause];
-				[GameData sharedData].isGamePaused = YES;
-				pausedScreen.visible = YES;
-			}
+
+		if (![GameData sharedData].isGamePaused) {
+			[[CCDirector sharedDirector] pause];
+			[GameData sharedData].isGamePaused = YES;
+			pausedScreen.visible = YES;
+		} else {
+			[[CCDirector sharedDirector] resume];
+			[GameData sharedData].isGamePaused = NO;
+			pausedScreen.visible = NO;
 		}
+
+		
     }
 }
 
@@ -391,7 +392,6 @@ static float prevHeroRotation = 0;
 - (void) dealloc
 {
 	NSLog(@"Deallocating GameLayer");
-	[pausedScreen release];
 	[smgr release];
 	[super dealloc];
 }

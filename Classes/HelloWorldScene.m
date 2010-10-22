@@ -65,19 +65,19 @@
 }
 -(void)scores:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[Scores scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[Scores scene]]];
 }
 -(void)settings:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[Settings scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[Settings scene]]];
 }
 -(void)about:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[About scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[About scene]]];
 }
 -(void)help:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionSlideInR transitionWithDuration:0.4f scene:[Help scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[Help scene]]];
 }
 
 - (void) dealloc

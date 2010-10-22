@@ -10,7 +10,6 @@
 #import "EnemySphere.h"
 #import "Countdown.h"
 
-
 // HelloWorld Layer
 @interface GameScene : CCLayer
 {
@@ -22,7 +21,7 @@
 
 @property(nonatomic, assign)Sphere *sphere;
 @property(nonatomic, retain)SpaceManager *smgr;
-@property(nonatomic, retain)CCSprite *pausedScreen;
+@property(nonatomic, assign)CCSprite *pausedScreen;
 @property(nonatomic, assign)Countdown *countdown;
 
 +(id) scene;
