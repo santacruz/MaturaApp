@@ -55,9 +55,18 @@ static float prevHeroRotation = 0;
 		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg z:-1];
+		
 		//PAUSELAYER
 		pausedScreen = [CCSprite spriteWithFile:@"pausedScreen.png"];
 		pausedScreen.position = ccp(160,240);
+		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"resume" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(resume:)];
+		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(backToMenu:)];
+		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
+		myMenu.position = ccp(160, 200);
+		[myMenu alignItemsVertically];
+		[pausedScreen addChild:myMenu];
 		pausedScreen.visible = NO;
 		[self addChild:pausedScreen z:2];
 				
@@ -305,6 +314,7 @@ static float prevHeroRotation = 0;
 	}
 }
 
+
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
 	static float prevX=0, prevY=0;
@@ -334,23 +344,42 @@ static float prevHeroRotation = 0;
     for (UITouch *touch in touches) {
 
 		if (![GameData sharedData].isGamePaused) {
-			[[CCDirector sharedDirector] pause];
+			[smgr stop];
 			[GameData sharedData].isGamePaused = YES;
 			pausedScreen.visible = YES;
-		} else {
-			[[CCDirector sharedDirector] resume];
-			[GameData sharedData].isGamePaused = NO;
-			pausedScreen.visible = NO;
-		}
-
-		
+		} 
     }
 }
 
 - (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
 }
 
+-(void)resume:(CCMenuItem *) menuItem {
+	if ([GameData sharedData].isGamePaused) {
+		pausedScreen.visible = NO;	
+		[smgr start];
+		[GameData sharedData].isGamePaused = NO;
+	}
+}
 
+-(void)backToMenu:(CCMenuItem *) menuItem {
+	if ([GameData sharedData].isGamePaused) {
+		NSLog(@"Ending Game");
+		if ([GameData sharedData].isThereAHero) {
+			sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
+		}
+		//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
+		[[GameData sharedData].enemyArray removeAllObjects];
+		//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
+		[self unschedule:@selector(nextFrame:)];
+		[smgr removeCollisionCallbackBetweenType:kHeroCollisionType otherType:kEnemyCollisionType];
+		[smgr removeCollisionCallbackBetweenType:kEnemyCollisionType otherType:kEnemyCollisionType];
+		[smgr stop];
+		//ZU HELLOWORLD LAYER
+		[[CCDirector sharedDirector] replaceScene:
+		 [CCTransitionFade transitionWithDuration:0.5f scene:[HelloWorld scene]]];
+	}
+}
 
 -(void) onEnter
 {
@@ -388,6 +417,7 @@ static float prevHeroRotation = 0;
 	//ZU GAMEOVER LAYER
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOver scene]]];
 }
+
 
 - (void) dealloc
 {
