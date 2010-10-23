@@ -30,7 +30,7 @@
 		
 		if ([GameData sharedData].wasGameWon) {
 			CCLabelBMFont* title = [CCLabelBMFont labelWithString:@"YOU WON!" fntFile:@"bebas.fnt"];
-			title.position = ccp(160,300);
+			title.position = ccp(160,320);
 			[self addChild:title];
 			
 			//MENU
@@ -42,7 +42,7 @@
 			CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"RETRY" fntFile:@"bebas.fnt"];
 			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(retry:)];
 			
-			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"BACK TO MAIN MENU" fntFile:@"bebas.fnt"];
+			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"BACK TO MENU" fntFile:@"bebas.fnt"];
 			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
 			
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItem0,menuItem1,menuItem2,nil];
@@ -53,7 +53,7 @@
 			
 		} else {
 			CCLabelBMFont* title = [CCLabelBMFont labelWithString:@"YOU LOST!" fntFile:@"bebas.fnt"];
-			title.position = ccp(160,300);
+			title.position = ccp(160,320);
 			[self addChild:title];
 			
 			//MENU

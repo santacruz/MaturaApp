@@ -12,7 +12,7 @@ static GameData *sharedData = NULL;
 
 @implementation GameData
 
-@synthesize newHero, isThereAHero, currentLevel, isGamePaused, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, wasGameWon, heroStartLevel;
+@synthesize newHero, isThereAHero, currentLevel, isGamePaused, isPlaying, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, wasGameWon, heroStartLevel;
 /*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
 @synthesize accelCorrectionX, accelCorrectionY;
 
@@ -24,6 +24,7 @@ static GameData *sharedData = NULL;
 		isThereAHero = YES;
 		isGamePaused = NO;
 		isCountdownFinished = NO;
+		isPlaying = NO;
 		wasGameWon = NO;
 		newHero = [[CCArray alloc] init];
 		enemySpawnBuffer = [[CCArray alloc] init];
@@ -44,6 +45,7 @@ static GameData *sharedData = NULL;
 	isThereAHero = YES;
 	isGamePaused = NO;
 	isCountdownFinished = NO;
+	isPlaying = NO;
 	wasGameWon = NO;
 	[newHero removeAllObjects];
 	[enemySpawnBuffer removeAllObjects];

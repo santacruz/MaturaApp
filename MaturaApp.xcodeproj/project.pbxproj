@@ -56,7 +56,6 @@
 		AA7181AF126E36C300B125E6 /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA7181AE126E36C200B125E6 /* Enemy */; };
 		AA718210126F84E100B125E6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71820E126F84E100B125E6 /* Default.png */; };
 		AA718211126F84E100B125E6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71820F126F84E100B125E6 /* Default@2x.png */; };
-		AA71828A12704A4500B125E6 /* PauseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA71828912704A4500B125E6 /* PauseLayer.m */; };
 		AA71828D12704BEB00B125E6 /* gamePaused-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71828B12704BEB00B125E6 /* gamePaused-hd.png */; };
 		AA71828E12704BEB00B125E6 /* gamePaused.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71828C12704BEB00B125E6 /* gamePaused.png */; };
 		AA75B608123CD40E00585F54 /* libChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA75B583123CD3C700585F54 /* libChipmunk.a */; };
@@ -614,8 +613,6 @@
 		AA7181AE126E36C200B125E6 /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
 		AA71820E126F84E100B125E6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		AA71820F126F84E100B125E6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		AA71828812704A4500B125E6 /* PauseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseLayer.h; sourceTree = "<group>"; };
-		AA71828912704A4500B125E6 /* PauseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseLayer.m; sourceTree = "<group>"; };
 		AA71828B12704BEB00B125E6 /* gamePaused-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamePaused-hd.png"; sourceTree = "<group>"; };
 		AA71828C12704BEB00B125E6 /* gamePaused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamePaused.png; sourceTree = "<group>"; };
 		AA75B403123CD3AE00585F54 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "cocos2d-ios.xcodeproj"; sourceTree = COCOS2D_SOURCE; };
@@ -897,8 +894,6 @@
 				AAC0EC97125E18CC00BD9C3D /* Countdown.m */,
 				AA7179521265D21000B125E6 /* GameOver.h */,
 				AA7179531265D21000B125E6 /* GameOver.m */,
-				AA71828812704A4500B125E6 /* PauseLayer.h */,
-				AA71828912704A4500B125E6 /* PauseLayer.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1575,7 +1570,6 @@
 				AAA33C731262466F00234F5B /* About.m in Sources */,
 				AAA33C78126246AD00234F5B /* Help.m in Sources */,
 				AA7179541265D21000B125E6 /* GameOver.m in Sources */,
-				AA71828A12704A4500B125E6 /* PauseLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

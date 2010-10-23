@@ -12,6 +12,7 @@
 	BOOL isThereAHero;
 	BOOL isGamePaused;
 	BOOL isCountdownFinished;
+	BOOL isPlaying;
 	BOOL wasGameWon;
 	CCArray *newHero;
 	CCArray *enemySpawnBuffer;
@@ -25,7 +26,7 @@
 }
 
 @property(readwrite,assign) int enemyCount, currentLevel, heroStartLevel;
-@property(readwrite,assign) BOOL isThereAHero, isGamePaused, isCountdownFinished, wasGameWon;
+@property(readwrite,assign) BOOL isThereAHero, isGamePaused, isCountdownFinished, isPlaying, wasGameWon;
 @property(nonatomic,retain) CCArray *newHero, *enemySpawnBuffer, *enemyArray;
 @property(readwrite,assign) float accelCorrectionX, accelCorrectionY;
 

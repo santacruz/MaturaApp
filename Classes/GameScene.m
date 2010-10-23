@@ -209,14 +209,18 @@ static float prevHeroRotation = 0;
 			newKind = sprite.enemyKind;
 			newEnemyPosition = sprite.position;
 			newEnemyVelocity = sprite.shape->body->v;
-			if (sprite2.enemyKind == kShrinkEnemy) {
+			if (sprite.enemyKind == kShrinkEnemy && sprite2.enemyKind == kShrinkEnemy) {
+				newEnemySize = aSize+bSize; 
+			} else if (sprite2.enemyKind == kShrinkEnemy) {
 				newEnemySize = aSize-bSize;
 			}
 		} else if (bSize > aSize) {
 			newKind = sprite2.enemyKind;
 			newEnemyPosition = sprite2.position;
 			newEnemyVelocity = sprite2.shape->body->v;
-			if (sprite.enemyKind == kShrinkEnemy) {
+			if (sprite.enemyKind == kShrinkEnemy && sprite2.enemyKind == kShrinkEnemy) {
+				newEnemySize = aSize+bSize; 
+			} else if (sprite.enemyKind == kShrinkEnemy) {
 				newEnemySize = bSize-aSize;
 			}
 		} else {
@@ -342,13 +346,13 @@ static float prevHeroRotation = 0;
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
-
-		if (![GameData sharedData].isGamePaused) {
+		if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
 			[smgr stop];
 			[GameData sharedData].isGamePaused = YES;
 			pausedScreen.visible = YES;
+			
 		} 
-    }
+	}
 }
 
 - (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -398,12 +402,14 @@ static float prevHeroRotation = 0;
 	[self removeChild:countdown cleanup:YES];
 	[smgr start];
 	[GameData sharedData].isCountdownFinished = NO;
+	[GameData sharedData].isPlaying = YES;
 }
 
 
 -(void)endGame
 {
 	NSLog(@"Ending Game");
+	[GameData sharedData].isPlaying = NO;
 	if ([GameData sharedData].isThereAHero) {
 		sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
 	}
