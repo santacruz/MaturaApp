@@ -11,6 +11,7 @@
 #define kInitSize 10
 #define	kNormalEnemy 0
 #define kShrinkEnemy 1
+#define kEnemySpeed 10
 
 @implementation EnemySphere
 
@@ -85,15 +86,22 @@ static float prevDistance = 500;
 - (void)move:(ccTime)dt {
 	//UNSCHÖN, ÄNDERN!
 	prevDistance = 500;
-	for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
-		if (enemy != self) {
-			if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
-				prevDistance = ccpDistance(enemy.sprite.position, self.sprite.position);
-				moveVector = ccpNormalize(ccpSub(enemy.sprite.position, self.sprite.position));
+	if ([[GameData sharedData].enemyArray count] > 1) {
+		for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
+			if (enemy != self) {
+				if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
+					prevDistance = ccpDistance(enemy.sprite.position, self.sprite.position);
+					moveVector = ccpNormalize(ccpSub(enemy.sprite.position, self.sprite.position));
+				}
 			}
 		}
+	} else {
+		if ([GameData sharedData].isThereAHero) {
+			moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
+		}
 	}
-	self.sprite.shape->body->v = ccpMult(moveVector, 10);
+
+	self.sprite.shape->body->v = ccpMult(moveVector, kEnemySpeed);
 	
 }
 

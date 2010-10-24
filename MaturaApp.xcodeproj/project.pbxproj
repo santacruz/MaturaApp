@@ -542,6 +542,13 @@
 			remoteGlobalIDString = 5018F24C0DFDEAC400C013A5;
 			remoteInfo = cocos2d;
 		};
+		AAE6D74D12731FBE00690D9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA75B403123CD3AE00585F54 /* cocos2d-ios.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 50CB2FC91004C8B100B7A750;
+			remoteInfo = CocosDenshion;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -993,6 +1000,7 @@
 			dependencies = (
 				AA75B601123CD3E900585F54 /* PBXTargetDependency */,
 				AA75B603123CD3E900585F54 /* PBXTargetDependency */,
+				AAE6D74E12731FBE00690D9C /* PBXTargetDependency */,
 			);
 			name = MaturaApp;
 			productName = MaturaApp;
@@ -1585,6 +1593,11 @@
 			isa = PBXTargetDependency;
 			name = cocos2d;
 			targetProxy = AA75B602123CD3E900585F54 /* PBXContainerItemProxy */;
+		};
+		AAE6D74E12731FBE00690D9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CocosDenshion;
+			targetProxy = AAE6D74D12731FBE00690D9C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
