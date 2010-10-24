@@ -37,7 +37,7 @@
 		sprite.shape->body->v = velocity;
 		[sprite setIgnoreRotation:YES];
 		[self addChild:sprite];
-	
+
 		self.position = ccp(240,160);
 	}
 	return self;

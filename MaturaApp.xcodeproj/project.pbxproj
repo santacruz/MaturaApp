@@ -69,6 +69,8 @@
 		AAA33C731262466F00234F5B /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C721262466F00234F5B /* About.m */; };
 		AAA33C78126246AD00234F5B /* Help.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C77126246AD00234F5B /* Help.m */; };
 		AAC0EC98125E18CC00BD9C3D /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0EC97125E18CC00BD9C3D /* Countdown.m */; };
+		AAE6D8B21274A35000690D9C /* scrollMask-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B01274A35000690D9C /* scrollMask-hd.png */; };
+		AAE6D8B31274A35000690D9C /* scrollMask.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B11274A35000690D9C /* scrollMask.png */; };
 		AAE9BAAB124CB41500E25769 /* level6.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE9BAAA124CB41500E25769 /* level6.plist */; };
 /* End PBXBuildFile section */
 
@@ -639,6 +641,8 @@
 		AAA33C77126246AD00234F5B /* Help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Help.m; sourceTree = "<group>"; };
 		AAC0EC96125E18CC00BD9C3D /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
 		AAC0EC97125E18CC00BD9C3D /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
+		AAE6D8B01274A35000690D9C /* scrollMask-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrollMask-hd.png"; sourceTree = "<group>"; };
+		AAE6D8B11274A35000690D9C /* scrollMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollMask.png; sourceTree = "<group>"; };
 		AAE9BAAA124CB41500E25769 /* level6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = level6.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -932,6 +936,8 @@
 		AA8CC302125BBE41008A851C /* Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				AAE6D8B01274A35000690D9C /* scrollMask-hd.png */,
+				AAE6D8B11274A35000690D9C /* scrollMask.png */,
 				AA71828B12704BEB00B125E6 /* gamePaused-hd.png */,
 				AA71828C12704BEB00B125E6 /* gamePaused.png */,
 				AA7178A21262FF9F00B125E6 /* Icon@2x.png */,
@@ -1526,6 +1532,8 @@
 				AA718211126F84E100B125E6 /* Default@2x.png in Resources */,
 				AA71828D12704BEB00B125E6 /* gamePaused-hd.png in Resources */,
 				AA71828E12704BEB00B125E6 /* gamePaused.png in Resources */,
+				AAE6D8B21274A35000690D9C /* scrollMask-hd.png in Resources */,
+				AAE6D8B31274A35000690D9C /* scrollMask.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
