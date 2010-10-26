@@ -21,7 +21,7 @@
 @property(readwrite,assign) CGPoint moveVector;
 //@property(readwrite,assign) int level;
 //@property(readwrite,assign) int enemyKind;
-+(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
--(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
++(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location;
+-(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location;
 -(void) move:(ccTime)dt; 
 @end

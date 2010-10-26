@@ -1,123 +1,125 @@
 {
-enemy1 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 210;
-enemyPosY = 313;
-enemyVX = 63;
-enemyVY = 56;
-};
-enemy2 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 190;
-enemyPosY = 281;
-enemyVX = 58;
-enemyVY = 78;
-};
-enemy3 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 29;
-enemyPosY = 52;
-enemyVX = 29;
-enemyVY = 7;
-};
-enemy4 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 59;
-enemyPosY = 129;
-enemyVX = 76;
-enemyVY = 3;
-};
-enemy5 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 86;
-enemyPosY = 123;
-enemyVX = 74;
-enemyVY = 39;
-};
-enemy6 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 292;
-enemyPosY = 404;
-enemyVX = 12;
-enemyVY = 36;
-};
-enemy7 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 55;
-enemyPosY = 190;
-enemyVX = 39;
-enemyVY = 21;
-};
-enemy8 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 221;
-enemyPosY = 377;
-enemyVX = 7;
-enemyVY = 57;
-};
-enemy9 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 82;
-enemyPosY = 379;
-enemyVX = 2;
-enemyVY = 73;
-};
-enemy10 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 19;
-enemyPosY = 325;
-enemyVX = 66;
-enemyVY = 69;
-};
-enemy11 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 221;
-enemyPosY = 57;
-enemyVX = 7;
-enemyVY = 71;
-};
-enemy12 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 37;
-enemyPosY = 433;
-enemyVX = 37;
-enemyVY = 38;
-};
-enemy13 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 111;
-enemyPosY = 323;
-enemyVX = 9;
-enemyVY = 42;
-};
-enemy14 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 14;
-enemyPosY = 230;
-enemyVX = 49;
-enemyVY = 14;
-};
-enemy15 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 96;
-enemyPosY = 415;
-enemyVX = 29;
-enemyVY = 28;
-};
-heroStartLevel = 1;numberOfEnemies = 15;
+	enemy1 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 210;
+		enemyPosY = 313;
+		enemyVX = 63;
+		enemyVY = 56;
+	};
+	enemy2 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 190;
+		enemyPosY = 281;
+		enemyVX = 58;
+		enemyVY = 78;
+	};
+	enemy3 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 29;
+		enemyPosY = 52;
+		enemyVX = 29;
+		enemyVY = 7;
+	};
+	enemy4 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 59;
+		enemyPosY = 129;
+		enemyVX = 76;
+		enemyVY = 3;
+	};
+	enemy5 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 86;
+		enemyPosY = 123;
+		enemyVX = 74;
+		enemyVY = 39;
+	};
+	enemy6 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 292;
+		enemyPosY = 404;
+		enemyVX = 12;
+		enemyVY = 36;
+	};
+	enemy7 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 55;
+		enemyPosY = 190;
+		enemyVX = 39;
+		enemyVY = 21;
+	};
+	enemy8 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 221;
+		enemyPosY = 377;
+		enemyVX = 7;
+		enemyVY = 57;
+	};
+	enemy9 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 82;
+		enemyPosY = 379;
+		enemyVX = 2;
+		enemyVY = 73;
+	};
+	enemy10 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 19;
+		enemyPosY = 325;
+		enemyVX = 66;
+		enemyVY = 69;
+	};
+	enemy11 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 221;
+		enemyPosY = 57;
+		enemyVX = 7;
+		enemyVY = 71;
+	};
+	enemy12 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 37;
+		enemyPosY = 433;
+		enemyVX = 37;
+		enemyVY = 38;
+	};
+	enemy13 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 111;
+		enemyPosY = 323;
+		enemyVX = 9;
+		enemyVY = 42;
+	};
+	enemy14 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 14;
+		enemyPosY = 230;
+		enemyVX = 49;
+		enemyVY = 14;
+	};
+	enemy15 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 96;
+		enemyPosY = 415;
+		enemyVX = 29;
+		enemyVY = 28;
+	};
+	heroStartLevel = 1;
+	numberOfEnemies = 15;
+	enemySpeedMultiplier = 10;
 }

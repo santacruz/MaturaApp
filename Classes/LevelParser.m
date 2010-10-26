@@ -24,16 +24,16 @@
 
         int numberOfEnemies = [[plistDict objectForKey:@"numberOfEnemies"] intValue];
 		[GameData sharedData].heroStartLevel = [[plistDict objectForKey:@"heroStartLevel"] intValue];
+		[GameData sharedData].enemySpeedMultiplier = [[plistDict objectForKey:@"enemySpeedMultiplier"] intValue];
 		
 		for (int i=1; i<numberOfEnemies+1; i++) {
 			NSDictionary *currentEnemy = [plistDict objectForKey:[NSString stringWithFormat:@"enemy%i",i]];
 			//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
-			CCArray *enemyToBeSpawned = [[CCArray alloc] initWithCapacity:5];
+			CCArray *enemyToBeSpawned = [[CCArray alloc] initWithCapacity:3];
 			//ARRAY MIT DATEN FÜLLEN:GRÖSSE, POSITION, GESCHWINDIGKEIT
 			[enemyToBeSpawned addObject:[currentEnemy objectForKey:@"enemyKind"]];
 			[enemyToBeSpawned addObject:[currentEnemy objectForKey:@"enemyLevel"]];
 			[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:ccp([[currentEnemy objectForKey:@"enemyPosX"] floatValue]-240.0f, [[currentEnemy objectForKey:@"enemyPosY"] floatValue]-160.0f)]];
-			[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:ccp([[currentEnemy objectForKey:@"enemyVX"] floatValue], [[currentEnemy objectForKey:@"enemyVY"] floatValue])]];
 			[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
 			[enemyToBeSpawned release];
 		}

@@ -1,83 +1,85 @@
 {
-enemy1 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 23;
-enemyPosY = 299;
-enemyVX = 68;
-enemyVY = 2;
-};
-enemy2 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 7;
-enemyPosY = 307;
-enemyVX = 28;
-enemyVY = 6;
-};
-enemy3 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 37;
-enemyPosY = 106;
-enemyVX = 28;
-enemyVY = 34;
-};
-enemy4 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 117;
-enemyPosY = 260;
-enemyVX = 76;
-enemyVY = 27;
-};
-enemy5 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 29;
-enemyPosY = 40;
-enemyVX = 21;
-enemyVY = 78;
-};
-enemy6 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 152;
-enemyPosY = 346;
-enemyVX = 73;
-enemyVY = 76;
-};
-enemy7 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 22;
-enemyPosY = 50;
-enemyVX = 14;
-enemyVY = 40;
-};
-enemy8 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 110;
-enemyPosY = 421;
-enemyVX = 3;
-enemyVY = 59;
-};
-enemy9 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 130;
-enemyPosY = 165;
-enemyVX = 73;
-enemyVY = 1;
-};
-enemy10 = {
-enemyKind = 0;
-enemyLevel = 1;
-enemyPosX = 38;
-enemyPosY = 320;
-enemyVX = 60;
-enemyVY = 11;
-};
-heroStartLevel = 1;numberOfEnemies = 10;
+	enemy1 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 23;
+		enemyPosY = 299;
+		enemyVX = 68;
+		enemyVY = 2;
+	};
+	enemy2 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 7;
+		enemyPosY = 307;
+		enemyVX = 28;
+		enemyVY = 6;
+	};
+	enemy3 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 37;
+		enemyPosY = 106;
+		enemyVX = 28;
+		enemyVY = 34;
+	};
+	enemy4 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 117;
+		enemyPosY = 260;
+		enemyVX = 76;
+		enemyVY = 27;
+	};
+	enemy5 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 29;
+		enemyPosY = 40;
+		enemyVX = 21;
+		enemyVY = 78;
+	};
+	enemy6 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 152;
+		enemyPosY = 346;
+		enemyVX = 73;
+		enemyVY = 76;
+	};
+	enemy7 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 22;
+		enemyPosY = 50;
+		enemyVX = 14;
+		enemyVY = 40;
+	};
+	enemy8 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 110;
+		enemyPosY = 421;
+		enemyVX = 3;
+		enemyVY = 59;
+	};
+	enemy9 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 130;
+		enemyPosY = 165;
+		enemyVX = 73;
+		enemyVY = 1;
+	};
+	enemy10 = {
+		enemyKind = 0;
+		enemyLevel = 1;
+		enemyPosX = 38;
+		enemyPosY = 320;
+		enemyVX = 60;
+		enemyVY = 11;
+	};
+	heroStartLevel = 1;
+	numberOfEnemies = 10;
+	enemySpeedMultiplier = 10;
 }

@@ -13,13 +13,13 @@
 @implementation Sphere
 @synthesize radius, sprite, level;
 
-+(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
++(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location
 {
-	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity] autorelease];
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location] autorelease];
 }
 
 
--(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity;
+-(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location;
 {
 	
 	if( (self=[super init])) {
@@ -34,7 +34,6 @@
 		ball->collision_type = kHeroCollisionType;
 		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Hero/hero%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
-		sprite.shape->body->v = velocity;
 		[sprite setIgnoreRotation:YES];
 		[self addChild:sprite];
 

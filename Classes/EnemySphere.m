@@ -11,7 +11,6 @@
 #define kInitSize 10
 #define	kNormalEnemy 0
 #define kShrinkEnemy 1
-#define kEnemySpeed 10
 
 @implementation EnemySphere
 
@@ -19,14 +18,14 @@ static float prevDistance = 500;
 
 @synthesize radius, sprite, moveVector; //level, enemyKind;
 
-+(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
++(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
 {
-	return [[[self alloc] initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity] autorelease];
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location] autorelease];
 }
 
 
 
--(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location velocity:(CGPoint)velocity
+-(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
 {
 
 	if( (self=[super init])) {
@@ -42,7 +41,6 @@ static float prevDistance = 500;
 				//FÜGE NORMALES SPRITE HINZU
 				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
-				sprite.shape->body->v = velocity;
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				[sprite setIgnoreRotation:YES];
@@ -52,7 +50,6 @@ static float prevDistance = 500;
 				//FÜGE BOUNCY SPRITE HINZU
 				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Shrink/shrink%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
-				sprite.shape->body->v = velocity;
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				[sprite setIgnoreRotation:YES];
@@ -62,7 +59,6 @@ static float prevDistance = 500;
 				//FÜGE NORMALES SPRITE HINZU
 				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
-				sprite.shape->body->v = velocity;
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				[sprite setIgnoreRotation:YES];
@@ -101,7 +97,7 @@ static float prevDistance = 500;
 		}
 	}
 
-	self.sprite.shape->body->v = ccpMult(moveVector, kEnemySpeed);
+	self.sprite.shape->body->v = ccpMult(moveVector, [GameData sharedData].enemySpeedMultiplier);
 	
 }
 

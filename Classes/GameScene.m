@@ -94,7 +94,7 @@ static float prevHeroRotation = 0;
 		
 		
 		//HELD INITIALISIEREN
-		sphere = [Sphere sphereWithMgr:self.smgr level:[GameData sharedData].heroStartLevel position:ccp(-80,80) velocity:ccp(0,0)];
+		sphere = [Sphere sphereWithMgr:self.smgr level:[GameData sharedData].heroStartLevel position:ccp(-80,80)];
 		[self addChild:sphere];
 		
 		//FEINDE HINZUFÜGEN
@@ -104,8 +104,7 @@ static float prevHeroRotation = 0;
 				EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr 
 														  kind:[[enemyToBeSpawned objectAtIndex:0]intValue] 
 														 level:[[enemyToBeSpawned objectAtIndex:1]intValue] 
-													  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue] 
-													  velocity:[[enemyToBeSpawned objectAtIndex:3] CGPointValue]];
+													  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 				[self addChild:feind];
 			} else {
 				NSLog(@"enemyToBeSpawned has 0 Elements");
@@ -155,7 +154,6 @@ static float prevHeroRotation = 0;
 					case kNormalEnemy:
 						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
 						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
-						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.shape->body->v]];
 						[GameData sharedData].isThereAHero = NO;
 						[self removeChild:sphere cleanup:YES];
 						[smgr scheduleToRemoveAndFreeShape:a];
@@ -169,7 +167,6 @@ static float prevHeroRotation = 0;
 						}
 						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:newSize]];
 						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
-						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.shape->body->v]];
 						[GameData sharedData].isThereAHero = NO;
 						[self removeChild:sphere cleanup:YES];
 						[smgr scheduleToRemoveAndFreeShape:a];
@@ -203,12 +200,10 @@ static float prevHeroRotation = 0;
 		int newEnemySize = aSize + bSize;
 		int newKind = kNormalEnemy;
 		CGPoint newEnemyPosition = ccp(0,0);
-		CGPoint newEnemyVelocity = ccp(0,0);
 		
 		if (aSize > bSize) {
 			newKind = sprite.enemyKind;
 			newEnemyPosition = sprite.position;
-			newEnemyVelocity = sprite.shape->body->v;
 			if (sprite.enemyKind == kShrinkEnemy && sprite2.enemyKind == kShrinkEnemy) {
 				newEnemySize = aSize+bSize; 
 			} else if (sprite2.enemyKind == kShrinkEnemy) {
@@ -217,7 +212,6 @@ static float prevHeroRotation = 0;
 		} else if (bSize > aSize) {
 			newKind = sprite2.enemyKind;
 			newEnemyPosition = sprite2.position;
-			newEnemyVelocity = sprite2.shape->body->v;
 			if (sprite.enemyKind == kShrinkEnemy && sprite2.enemyKind == kShrinkEnemy) {
 				newEnemySize = aSize+bSize; 
 			} else if (sprite.enemyKind == kShrinkEnemy) {
@@ -225,7 +219,6 @@ static float prevHeroRotation = 0;
 			}
 		} else {
 			newEnemyPosition = ccpMidpoint(sprite.position, sprite2.position);
-			newEnemyVelocity = ccpAdd(sprite.shape->body->v, sprite2.shape->body->v);
 			if ((sprite.enemyKind == kShrinkEnemy) || (sprite2.enemyKind == kShrinkEnemy)) {
 				newKind = kShrinkEnemy;
 				newEnemySize = 2*aSize;
@@ -250,7 +243,6 @@ static float prevHeroRotation = 0;
 		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newKind]];
 		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newEnemySize]];
 		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyPosition]];
-		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyVelocity]];
 		[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
 		[enemyToBeSpawned release];
 	}
@@ -268,8 +260,7 @@ static float prevHeroRotation = 0;
 	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
 		sphere = [Sphere sphereWithMgr:smgr level:[[[GameData sharedData].newHero objectAtIndex:0] intValue] 
-							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue] 
-							  velocity:[[[GameData sharedData].newHero objectAtIndex:2] CGPointValue]];
+							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue]];
 		[self addChild:sphere];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
@@ -296,8 +287,7 @@ static float prevHeroRotation = 0;
 		EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr 
 												  kind:[[enemyToBeSpawned objectAtIndex:0]intValue] 
 												 level:[[enemyToBeSpawned objectAtIndex:1]intValue] 
-											  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue] 
-											  velocity:[[enemyToBeSpawned objectAtIndex:3] CGPointValue]];
+											  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
