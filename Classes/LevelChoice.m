@@ -4,8 +4,6 @@
 //  © Zeno Koller 2010
 
 #import "LevelChoice.h"
-#import "GameScene.h"
-#import "HelloWorldScene.h"
 
 @implementation LevelChoice
 

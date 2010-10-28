@@ -5,7 +5,9 @@
 
 
 #import "cocos2d.h"
-
+#import "GameData.h"
+#import "HelloWorldScene.h"
+#import "GameScene.h"
 
 @interface GameOver : CCLayer {
 

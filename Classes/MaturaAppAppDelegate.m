@@ -6,6 +6,7 @@
 #import "MaturaAppAppDelegate.h"
 #import "cocos2d.h"
 #import "HelloWorldScene.h"
+#import "GameScene.h"
 
 @implementation MaturaAppAppDelegate
 @synthesize window;
@@ -52,14 +53,16 @@
 	[[CCDirector sharedDirector] runWithScene: [HelloWorld scene]];
 }
 
-
 - (void)applicationWillResignActive:(UIApplication *)application {
+	NSLog(@"Application resigned Active");
+	if ([GameData sharedData].isPlaying && [GameData sharedData].gameScene != NULL) {
+		[[GameData sharedData].gameScene pause];
+	}
 	[[CCDirector sharedDirector] pause];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] resume];
-	//Hier anstatt resume: pauselayer anzeigen (double tap to resume)
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
@@ -67,7 +70,10 @@
 }
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
-	[[CCDirector sharedDirector] stopAnimation];
+	NSLog(@"Application did enter Background");
+	if ([GameData sharedData].isPlaying && [GameData sharedData].gameScene != NULL) {
+		[[GameData sharedData].gameScene pause];
+	}	[[CCDirector sharedDirector] stopAnimation];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {

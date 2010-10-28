@@ -6,6 +6,12 @@
 
 #import "cocos2d.h"
 #import "GameData.h"
+#import "LevelChoice.h"
+#import "GameScene.h"
+#import "Scores.h"
+#import "Settings.h"
+#import "About.h"
+#import "Help.h"
 
 @interface HelloWorld : CCLayer
 {

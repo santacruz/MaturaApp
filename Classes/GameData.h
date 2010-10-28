@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "LevelParser.h"
 #import "cocos2d.h"
+@class GameScene;
 
 @interface GameData : NSObject {
 	BOOL isThereAHero;
@@ -24,12 +25,14 @@
 	/*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
 	float accelCorrectionX;
 	float accelCorrectionY;
+	GameScene *gameScene;
 }
 
 @property(readwrite,assign) int enemyCount, currentLevel, heroStartLevel, enemySpeedMultiplier;
 @property(readwrite,assign) BOOL isThereAHero, isGamePaused, isCountdownFinished, isPlaying, wasGameWon;
 @property(nonatomic,retain) CCArray *newHero, *enemySpawnBuffer, *enemyArray;
 @property(readwrite,assign) float accelCorrectionX, accelCorrectionY;
+@property(nonatomic,retain) GameScene *gameScene;
 
 +(GameData *) sharedData;
 -(void)initLevel:(int)level;

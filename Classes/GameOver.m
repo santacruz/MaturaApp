@@ -5,9 +5,6 @@
 
 
 #import "GameOver.h"
-#import "GameData.h"
-#import "HelloWorldScene.h"
-#import "GameScene.h"
 
 @implementation GameOver
 

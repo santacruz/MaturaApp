@@ -5,9 +5,6 @@
 
 
 #import "GameScene.h"
-#import "CCTouchDispatcher.h"
-#import "GameOver.h"
-#import "HelloWorldScene.h"
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2 
@@ -39,6 +36,9 @@ static float prevHeroRotation = 0;
 		
 		//BILDSCHIRMGRÖSSE
 		CGSize screenSize = [CCDirector sharedDirector].winSize;
+		
+		//GAMESCENE POINTER
+		[GameData sharedData].gameScene = self;
 		
 		//ACCELEROMETER UND TOUCHES BENÜTZEN
 		/*PASSIERT, WENN DER COUNTDOWN FERTIG IST
@@ -337,15 +337,19 @@ static float prevHeroRotation = 0;
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UITouch *touch in touches) {
 		if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
-			[smgr stop];
-			[GameData sharedData].isGamePaused = YES;
-			pausedScreen.visible = YES;
-			
+			[self pause];
 		} 
 	}
 }
 
 - (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+}
+
+-(void) pause {
+	NSLog(@"App pauses");
+	[smgr stop];
+	[GameData sharedData].isGamePaused = YES;
+	pausedScreen.visible = YES;
 }
 
 -(void)resume:(CCMenuItem *) menuItem {

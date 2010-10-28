@@ -4,7 +4,6 @@
 //  © Zeno Koller 2010
 
 #import "Help.h"
-#import "HelloWorldScene.h"
 
 @implementation Help
 

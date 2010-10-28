@@ -6,6 +6,7 @@
 
 #import "cocos2d.h"
 #import "GameData.h"
+#import "HelloWorldScene.h"
 
 @interface Help : CCLayer
 {

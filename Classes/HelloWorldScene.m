@@ -4,12 +4,6 @@
 //  © Zeno Koller 2010
 
 #import "HelloWorldScene.h"
-#import "LevelChoice.h"
-#import "GameScene.h"
-#import "Scores.h"
-#import "Settings.h"
-#import "About.h"
-#import "Help.h"
 
 @implementation HelloWorld
 

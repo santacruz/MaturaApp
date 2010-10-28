@@ -15,11 +15,13 @@ static GameData *sharedData = NULL;
 @synthesize newHero, isThereAHero, currentLevel, isGamePaused, isPlaying, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, enemySpeedMultiplier, wasGameWon, heroStartLevel;
 /*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
 @synthesize accelCorrectionX, accelCorrectionY;
+@synthesize gameScene;
 
 - (id)init
 {
 	if ( self = [super init] )
-	{
+	{	
+		gameScene == NULL;
 		heroStartLevel = 1;
 		enemySpeedMultiplier;
 		isThereAHero = YES;

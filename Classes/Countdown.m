@@ -5,7 +5,6 @@
 
 
 #import "Countdown.h"
-#import "GameData.h"
 
 @implementation Countdown
 

@@ -4,7 +4,6 @@
 //  © Zeno Koller 2010
 
 #import "Scores.h"
-#import "HelloWorldScene.h"
 
 @implementation Scores
 

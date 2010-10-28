@@ -9,6 +9,10 @@
 #import "GameData.h"
 #import "EnemySphere.h"
 #import "Countdown.h"
+#import "CCTouchDispatcher.h"
+#import "GameOver.h"
+#import "HelloWorldScene.h"
+
 
 // HelloWorld Layer
 @interface GameScene : CCLayer
@@ -29,6 +33,7 @@
 - (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
 - (void) startGame;
 - (void) endGame;
+- (void) pause;
 - (void) resume:(CCMenuItem *) menuItem;
 - (void) backToMenu:(CCMenuItem *) menuItem;
 @end
