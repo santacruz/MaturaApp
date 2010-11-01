@@ -13,19 +13,18 @@
 @interface LevelChoice : CCLayer
 {
 	ScrollView *scrollView;
-	CCMenu *menu;
+	CCNode *menu;
 	CGPoint originalOffset;
 	CGPoint originalMenuPosition;
 }
 
 @property(nonatomic,retain) ScrollView *scrollView;
-@property(nonatomic,assign) CCMenu *menu;
+@property(nonatomic,assign) CCNode *menu;
 @property(readwrite,assign) CGPoint originalOffset;
 @property(readwrite,assign) CGPoint originalMenuPosition;
 
 
 +(id) scene;
 -(void)back:(CCMenuItem *)menuItem;
-- (void) worldPicked:(CCMenuItem *)menuItem;
 
 @end

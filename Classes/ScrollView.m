@@ -5,7 +5,7 @@
 
 
 #import "ScrollView.h"
-
+#define kRadius 60
 
 @implementation ScrollView
 
@@ -24,7 +24,10 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	if (!self.dragging) {
 		NSLog(@"touched");
-		//ÜBERPRÜFEN, OB TOUCH IM RADIUS VOM SPRITE IST. WENN JA, [CCDIRECTOR REPLACESCENE:LEVEL_SUBCHOICE]
+		//ÜBERPRÜFEN, OB TOUCH IM RADIUS VOM SPRITE IST. WENN JA, 
+		//GLOW (GLOWSPRITE Z:-2 IN LEVELCHOICE VISIBILITY = YES) LEVELCHOICE ->SCROLLVIEW MIT POINTER INITIALISIEREN!!
+		//SOUND
+		//[CCDIRECTOR REPLACESCENE:LEVEL_SUBCHOICE]
 	}
 }
 

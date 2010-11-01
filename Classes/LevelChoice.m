@@ -32,7 +32,7 @@
 		[self addChild:title];
 		
 		//SCROLLVIEW
-		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",nil];
+		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",@"hero",nil];
 		int panelCount = worlds.count;
 		
 		scrollView = [[ScrollView alloc] initWithFrame:CGRectMake(0, 112, 320, 260)];
@@ -42,18 +42,18 @@
 		originalOffset = scrollView.contentOffset;
 		
 		[[[CCDirector sharedDirector]openGLView]addSubview:scrollView];
-
-		menu = [CCMenu menuWithItems:nil];
+		
+		//Zu diesem Node fügen wir Bilder hinzu
+		menu = [CCNode node];
+		menu.position = ccp(0,0);
 		
 		//WELT AUSWAHL MENU
 		for (int i=0; i<panelCount; i++) {
 			CCSprite *worldImg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LargeSprites/%@.png",[worlds objectAtIndex:i]]];
-			CCMenuItemSprite *worldItem = [CCMenuItemSprite itemFromNormalSprite:worldImg selectedSprite:worldImg target:self selector:@selector(worldPicked:)];
-			[menu addChild:worldItem];
+			worldImg.position = ccpMult(ccp(177.5,0),i);
+			[menu addChild:worldImg];
 		}
-		
-		[menu alignItemsHorizontallyWithPadding:50];
-		menu.position = ccp(320,220); // <-- !!!
+		menu.position = ccp(160,230);
 		originalMenuPosition = menu.position;
 		[self addChild:menu];
 		
@@ -71,13 +71,8 @@
 	return self;
 }
 
-- (void) worldPicked:(CCMenuItem *)menuItem{
-	NSLog(@"world Picked");
-	//TODO: METHODE ENTFERNEN
-}
-
 - (void) nextFrame:(ccTime)dt {
-	menu.position = ccpAdd(originalMenuPosition, ccp((originalOffset.x-scrollView.contentOffset.x),0));
+	menu.position = ccpAdd(originalMenuPosition, ccpMult(ccp((originalOffset.x-scrollView.contentOffset.x),0),0.554f));
 }
 
 -(void)back:(CCMenuItem *)menuItem {
