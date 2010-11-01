@@ -42,6 +42,14 @@
 	return self;
 }
 
+-(void)onEnter{
+	float originalScale = self.scale;
+	id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f*originalScale];
+	id zoomOut = [CCScaleTo actionWithDuration:0.1f scale:originalScale];
+	[self.sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
+	[super onEnter];
+}
+
 - (void) dealloc
 {
 	NSLog(@"Deallocating Hero");

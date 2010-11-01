@@ -8,7 +8,7 @@
 		enemyVY = 2;
 	};
 	enemy2 = {
-		enemyKind = 0;
+		enemyKind = 1;
 		enemyLevel = 1;
 		enemyPosX = 7;
 		enemyPosY = 307;
@@ -24,8 +24,8 @@
 		enemyVY = 34;
 	};
 	enemy4 = {
-		enemyKind = 0;
-		enemyLevel = 1;
+		enemyKind = 1;
+		enemyLevel = 2;
 		enemyPosX = 117;
 		enemyPosY = 260;
 		enemyVX = 76;
@@ -81,5 +81,5 @@
 	};
 	heroStartLevel = 1;
 	numberOfEnemies = 10;
-	enemySpeedMultiplier = 10;
+	enemySpeedMultiplier = 15;
 }

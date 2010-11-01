@@ -160,11 +160,11 @@ static float prevHeroRotation = 0;
 						a->data = nil;
 						break;
 					case kShrinkEnemy:
-						newSize = sphere.level-enemyMass;
 						if (sphere.level == sprite.level) {
 							[GameData sharedData].wasGameWon = NO;
-							[self endGame];;
+							[self endGame];
 						}
+						newSize = sphere.level-enemyMass;
 						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:newSize]];
 						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
 						[GameData sharedData].isThereAHero = NO;
@@ -264,16 +264,11 @@ static float prevHeroRotation = 0;
 		[self addChild:sphere];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
-		//ANIMATION
-		float originalScale = sphere.scale;
-		id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f*originalScale];
-		id zoomOut = [CCScaleTo actionWithDuration:0.1f scale:originalScale];
-		[sphere.sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
-	} else {
+	} //else {
 		//WENN HELD DA, ROTATION ÄNDERN
-		sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.5+prevHeroRotation*0.5;
-		prevHeroRotation = sphere.sprite.rotation; 
-	}
+		//sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.5+prevHeroRotation*0.5;
+		//prevHeroRotation = sphere.sprite.rotation; 
+	//}
 	
 	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN 
 	if ([GameData sharedData].enemyCount == 0) {
@@ -291,21 +286,15 @@ static float prevHeroRotation = 0;
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
-		
-		//ANIMATION
-		float originalScale = feind.scale;
-		id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f*originalScale];
-		id zoomOut = [CCScaleTo actionWithDuration:0.1f scale:originalScale];
-		[feind.sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
-		
+				
 		//ENEMYCOUNT VON DER VORHERIGEN KOLLISION ERST HIER REDUZIEREN
 		[GameData sharedData].enemyCount -= 2;
 	}
 	
 	//ARGUMENT DER FEINDE ÄNDERN UND FEINDE BESCHLEUNIGEN
-	for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
-		enemy.sprite.rotation = -1*ccpToAngle(enemy.sprite.shape->body->v)*180/M_PI-90;
-	}
+	//for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
+	//	enemy.sprite.rotation = -1*ccpToAngle(enemy.sprite.shape->body->v)*180/M_PI-90;
+	//}
 }
 
 
@@ -363,9 +352,9 @@ static float prevHeroRotation = 0;
 -(void)backToMenu:(CCMenuItem *) menuItem {
 	if ([GameData sharedData].isGamePaused) {
 		NSLog(@"Ending Game");
-		if ([GameData sharedData].isThereAHero) {
-			sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
-		}
+		//if ([GameData sharedData].isThereAHero) {
+		//	sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
+		//}
 		//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
 		[[GameData sharedData].enemyArray removeAllObjects];
 		//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
@@ -404,9 +393,9 @@ static float prevHeroRotation = 0;
 {
 	NSLog(@"Ending Game");
 	[GameData sharedData].isPlaying = NO;
-	if ([GameData sharedData].isThereAHero) {
-		sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
-	}
+	//if ([GameData sharedData].isThereAHero) {
+	//	sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
+	//}
 	//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
 	[[GameData sharedData].enemyArray removeAllObjects];
 	//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
