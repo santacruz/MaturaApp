@@ -4,8 +4,11 @@
 //  © Zeno Koller 2010
 
 #import "LevelChoice.h"
+#define kSpriteRadius 120
 
 @implementation LevelChoice
+
+@synthesize scrollView, menu, originalOffset, originalMenuPosition;
 
 +(id) scene
 {
@@ -28,35 +31,34 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
-		//LEVEL MENU 1
- 		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"1" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(runGame1:)];
+		//SCROLLVIEW
+		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",nil];
+		int panelCount = worlds.count;
 		
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"2" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(runGame2:)];
+		scrollView = [[ScrollView alloc] initWithFrame:CGRectMake(0, 112, 320, 260)];
 		
-		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"3" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(runGame3:)];
+		[scrollView setContentSize:CGSizeMake(320*panelCount, 260)];
+	
+		originalOffset = scrollView.contentOffset;
 		
-		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,menuItem3,nil];
-		[myMenu alignItemsHorizontallyWithPadding:50];
-		myMenu.position = ccp(160, 240);
-		[self addChild:myMenu];
+		[[[CCDirector sharedDirector]openGLView]addSubview:scrollView];
+
+		menu = [CCMenu menuWithItems:nil];
 		
-		//LEVEL MENU 2
- 		CCLabelBMFont* label4 = [CCLabelBMFont labelWithString:@"4" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem4= [CCMenuItemLabel itemWithLabel:label4 target:self selector:@selector(runGame4:)];
+		//WELT AUSWAHL MENU
+		for (int i=0; i<panelCount; i++) {
+			CCSprite *worldImg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LargeSprites/%@.png",[worlds objectAtIndex:i]]];
+			CCMenuItemSprite *worldItem = [CCMenuItemSprite itemFromNormalSprite:worldImg selectedSprite:worldImg target:self selector:@selector(worldPicked:)];
+			[menu addChild:worldItem];
+		}
 		
-		CCLabelBMFont* label5 = [CCLabelBMFont labelWithString:@"5" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem5= [CCMenuItemLabel itemWithLabel:label5 target:self selector:@selector(runGame5:)];
+		[menu alignItemsHorizontallyWithPadding:50];
+		menu.position = ccp(320,220); // <-- !!!
+		originalMenuPosition = menu.position;
+		[self addChild:menu];
 		
-		CCLabelBMFont* label6 = [CCLabelBMFont labelWithString:@"6" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem6= [CCMenuItemLabel itemWithLabel:label6 target:self selector:@selector(runGame6:)];
-		
-		CCMenu * myMenu2 = [CCMenu menuWithItems:menuItem4,menuItem5,menuItem6,nil];
-		[myMenu2 alignItemsHorizontallyWithPadding:50];
-		myMenu2.position = ccp(160, 180);
-		[self addChild:myMenu2];
+		//LOGIK HINZUFÜGEN
+		[self schedule:@selector(nextFrame:)];
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
@@ -69,55 +71,13 @@
 	return self;
 }
 
--(void) runGame1:(CCMenuItem  *) menuItem  {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:1];
-	
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
+- (void) worldPicked:(CCMenuItem *)menuItem{
+	NSLog(@"world Picked");
+	//TODO: METHODE ENTFERNEN
 }
 
--(void) runGame2:(CCMenuItem  *) menuItem  {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:2];
-	
-	
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
-}
-
-
--(void)runGame3:(CCMenuItem  *) menuItem {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:3];
-	
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
-	
-}
--(void)runGame4:(CCMenuItem  *) menuItem {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:4];
-	
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
-	
-}
--(void)runGame5:(CCMenuItem  *) menuItem {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:5];
-	
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
-	
-}
--(void)runGame6:(CCMenuItem  *) menuItem {
-	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:6];
-	
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
-	
+- (void) nextFrame:(ccTime)dt {
+	menu.position = ccpAdd(originalMenuPosition, ccp((originalOffset.x-scrollView.contentOffset.x),0));
 }
 
 -(void)back:(CCMenuItem *)menuItem {
@@ -126,7 +86,13 @@
 
 }
 
-
+- (void) onExit 
+{
+	[self unschedule:@selector(nextFrame:)];
+    [scrollView removeFromSuperview];
+	[scrollView release];
+    [super onExit];
+}
 
 - (void) dealloc
 {

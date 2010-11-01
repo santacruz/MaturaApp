@@ -28,11 +28,11 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
-		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"START" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"PLAY" fntFile:@"bebas.fnt"];
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(start:)];
 		
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"SCORES" fntFile:@"bebas.fnt"];
-		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(scores:)];
+		/*CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"SCORES" fntFile:@"bebas.fnt"];
+		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(scores:)];*/
 		
 		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"SETTINGS" fntFile:@"bebas.fnt"];
 		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(settings:)];
@@ -43,7 +43,7 @@
 		CCLabelBMFont* label5 = [CCLabelBMFont labelWithString:@"HELP" fntFile:@"bebas.fnt"];
 		CCMenuItemLabel *menuItem5= [CCMenuItemLabel itemWithLabel:label5 target:self selector:@selector(help:)];
 		
-		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,menuItem3,menuItem4,menuItem5,nil];
+		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem3,menuItem4,menuItem5,nil];
 		[myMenu alignItemsVertically];
 		myMenu.position = ccp(160, 200);
 		[self addChild:myMenu];
@@ -55,7 +55,7 @@
 	[[GameData sharedData] initLevel:1];
 	
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.4f scene:[GameScene scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[LevelChoice scene]]];
 }
 -(void)scores:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:

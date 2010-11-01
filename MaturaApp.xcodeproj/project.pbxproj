@@ -72,6 +72,8 @@
 		AAE6D8B21274A35000690D9C /* scrollMask-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B01274A35000690D9C /* scrollMask-hd.png */; };
 		AAE6D8B31274A35000690D9C /* scrollMask.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B11274A35000690D9C /* scrollMask.png */; };
 		AAE9BAAB124CB41500E25769 /* level6.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE9BAAA124CB41500E25769 /* level6.plist */; };
+		AAF4EB71127EB0D6001F5522 /* LargeSprites in Resources */ = {isa = PBXBuildFile; fileRef = AAF4EB69127EB0D6001F5522 /* LargeSprites */; };
+		AAF4ECA0127F4394001F5522 /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF4EC9F127F4394001F5522 /* ScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -644,6 +646,9 @@
 		AAE6D8B01274A35000690D9C /* scrollMask-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrollMask-hd.png"; sourceTree = "<group>"; };
 		AAE6D8B11274A35000690D9C /* scrollMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollMask.png; sourceTree = "<group>"; };
 		AAE9BAAA124CB41500E25769 /* level6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = level6.plist; sourceTree = "<group>"; };
+		AAF4EB69127EB0D6001F5522 /* LargeSprites */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LargeSprites; path = ../Artwork/Bubble/Menu/LargeSprites; sourceTree = SOURCE_ROOT; };
+		AAF4EC9E127F4394001F5522 /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollView.h; sourceTree = "<group>"; };
+		AAF4EC9F127F4394001F5522 /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -864,6 +869,7 @@
 		AA8CBC8C1259F113008A851C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				AAF4EB69127EB0D6001F5522 /* LargeSprites */,
 				AA71803A126DEBF900B125E6 /* BG */,
 				AA71803B126DEBF900B125E6 /* Buttons */,
 				AA71803C126DEBFA00B125E6 /* Titles */,
@@ -953,6 +959,8 @@
 		AAA33C791262472400234F5B /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				AAF4EC9E127F4394001F5522 /* ScrollView.h */,
+				AAF4EC9F127F4394001F5522 /* ScrollView.m */,
 				AAA33C76126246AD00234F5B /* Help.h */,
 				AAA33C77126246AD00234F5B /* Help.m */,
 				AAA33C711262466F00234F5B /* About.h */,
@@ -1534,6 +1542,7 @@
 				AA71828E12704BEB00B125E6 /* gamePaused.png in Resources */,
 				AAE6D8B21274A35000690D9C /* scrollMask-hd.png in Resources */,
 				AAE6D8B31274A35000690D9C /* scrollMask.png in Resources */,
+				AAF4EB71127EB0D6001F5522 /* LargeSprites in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1586,6 +1595,7 @@
 				AAA33C731262466F00234F5B /* About.m in Sources */,
 				AAA33C78126246AD00234F5B /* Help.m in Sources */,
 				AA7179541265D21000B125E6 /* GameOver.m in Sources */,
+				AAF4ECA0127F4394001F5522 /* ScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

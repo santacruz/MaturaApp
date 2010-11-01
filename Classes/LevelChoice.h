@@ -8,18 +8,24 @@
 #import "GameData.h"
 #import "GameScene.h"
 #import "HelloWorldScene.h"
+#import "ScrollView.h"
 
 @interface LevelChoice : CCLayer
 {
+	ScrollView *scrollView;
+	CCMenu *menu;
+	CGPoint originalOffset;
+	CGPoint originalMenuPosition;
 }
 
+@property(nonatomic,retain) ScrollView *scrollView;
+@property(nonatomic,assign) CCMenu *menu;
+@property(readwrite,assign) CGPoint originalOffset;
+@property(readwrite,assign) CGPoint originalMenuPosition;
+
+
 +(id) scene;
--(void)runGame1:(CCMenuItem  *) menuItem;
--(void)runGame2:(CCMenuItem  *) menuItem;
--(void)runGame3:(CCMenuItem  *) menuItem;
--(void)runGame4:(CCMenuItem  *) menuItem;
--(void)runGame5:(CCMenuItem  *) menuItem;
--(void)runGame6:(CCMenuItem  *) menuItem;
--(void)back:(CCMenuItem *) menuItem;
+-(void)back:(CCMenuItem *)menuItem;
+- (void) worldPicked:(CCMenuItem *)menuItem;
 
 @end

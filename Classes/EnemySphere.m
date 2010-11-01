@@ -83,7 +83,7 @@ static float prevDistance = 500;
 	float originalScale = self.scale;
 	id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f*originalScale];
 	id zoomOut = [CCScaleTo actionWithDuration:0.1f scale:originalScale];
-	[self.sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
+	[sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
 	[super onEnter];
 }
 
@@ -105,7 +105,7 @@ static float prevDistance = 500;
 		}
 	}
 
-	self.sprite.shape->body->v = ccpMult(moveVector, [GameData sharedData].enemySpeedMultiplier);
+	sprite.shape->body->v = ccpMult(moveVector, [GameData sharedData].enemySpeedMultiplier);
 	
 }
 
