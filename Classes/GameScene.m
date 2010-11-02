@@ -15,7 +15,7 @@
 #define kShrinkEnemy 1
 
 
-static float prevHeroRotation = 0;
+//static float prevHeroRotation = 0;
 
 @implementation GameScene
 

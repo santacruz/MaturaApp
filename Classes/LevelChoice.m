@@ -38,7 +38,8 @@
 		scrollView = [[ScrollView alloc] initWithFrame:CGRectMake(0, 112, 320, 260)];
 		
 		[scrollView setContentSize:CGSizeMake(320*panelCount, 260)];
-	
+		scrollView.panelCount = panelCount;
+		
 		originalOffset = scrollView.contentOffset;
 		
 		[[[CCDirector sharedDirector]openGLView]addSubview:scrollView];

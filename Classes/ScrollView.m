@@ -5,9 +5,11 @@
 
 
 #import "ScrollView.h"
-#define kRadius 60
+#define kRadius 70
 
 @implementation ScrollView
+
+@synthesize panelCount;
 
 -(id)initWithFrame:(CGRect)frame{
 	if ((self=[super initWithFrame:frame])) {
@@ -17,18 +19,28 @@
 		[self setUserInteractionEnabled:TRUE];
 		self.backgroundColor = [UIColor clearColor];
 		[self setContentOffset:ccp(0,0)];
+		
 	}
 	return self;
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	if (!self.dragging) {
-		NSLog(@"touched");
-		//ÜBERPRÜFEN, OB TOUCH IM RADIUS VOM SPRITE IST. WENN JA, 
-		//GLOW (GLOWSPRITE Z:-2 IN LEVELCHOICE VISIBILITY = YES) LEVELCHOICE ->SCROLLVIEW MIT POINTER INITIALISIEREN!!
-		//SOUND
-		//[CCDIRECTOR REPLACESCENE:LEVEL_SUBCHOICE]
+	UITouch *myTouch = [touches anyObject];
+	CGPoint convert = [[CCDirector sharedDirector] convertToGL:[myTouch locationInView:[myTouch view]]];
+	//NSLog(@"Touched at X: %f Y: %f", convert.x,convert.y);
+	if (!self.dragging && [self tappedSprite:convert]) {
+		NSLog(@"tapped");
 	}
 }
+
+
+-(BOOL) tappedSprite:(CGPoint)touch {
+	for (int i=0; i<panelCount; i++) {
+		float distance = ccpDistance(ccp(160+320*i,340),touch);
+		if (distance <= kRadius) return YES;
+	}
+	return NO;
+}
+
 
 @end
