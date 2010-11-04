@@ -52,10 +52,8 @@
 }
 
 -(void)start:(CCMenuItem  *) menuItem {
-	[[GameData sharedData] initLevel:1];
-	
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[LevelChoice scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice scene]]];
 }
 -(void)scores:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:

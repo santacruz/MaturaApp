@@ -6,7 +6,7 @@
 
 #import "cocos2d.h"
 #import "GameData.h"
-#import "LevelChoice.h"
+#import "WorldChoice.h"
 #import "GameScene.h"
 #import "Scores.h"
 #import "Settings.h"

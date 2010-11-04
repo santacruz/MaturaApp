@@ -10,21 +10,23 @@
 #import "HelloWorldScene.h"
 #import "ScrollView.h"
 
-@interface LevelChoice : CCLayer
+@interface WorldChoice : CCLayer
 {
 	ScrollView *scrollView;
 	CCNode *menu;
 	CGPoint originalOffset;
 	CGPoint originalMenuPosition;
+	CCSprite *glow;
 }
 
 @property(nonatomic,retain) ScrollView *scrollView;
 @property(nonatomic,assign) CCNode *menu;
 @property(readwrite,assign) CGPoint originalOffset;
 @property(readwrite,assign) CGPoint originalMenuPosition;
-
+@property(nonatomic,assign) CCSprite *glow;
 
 +(id) scene;
 -(void)back:(CCMenuItem *)menuItem;
+-(void)changeSceneTo:(int)world;
 
 @end

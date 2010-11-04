@@ -3,17 +3,17 @@
 //  MaturaApp
 //  © Zeno Koller 2010
 
-#import "LevelChoice.h"
+#import "WorldChoice.h"
 #define kSpriteRadius 120
 
-@implementation LevelChoice
+@implementation WorldChoice
 
-@synthesize scrollView, menu, originalOffset, originalMenuPosition;
+@synthesize scrollView, menu, glow, originalOffset, originalMenuPosition;
 
 +(id) scene
 {
 	CCScene *scene = [CCScene node];
-	LevelChoice *layer = [LevelChoice node];
+	WorldChoice *layer = [WorldChoice node];
 	[scene addChild: layer];
 	return scene;
 }
@@ -31,6 +31,12 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
+		//GLOW SPRITE
+		glow = [CCSprite spriteWithFile:@"LargeSprites/glow.png"];
+		glow.position = ccp(160,240);
+		glow.visible = NO;
+		[self addChild:glow];
+		
 		//SCROLLVIEW
 		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",@"hero",nil];
 		int panelCount = worlds.count;
@@ -39,6 +45,7 @@
 		
 		[scrollView setContentSize:CGSizeMake(320*panelCount, 260)];
 		scrollView.panelCount = panelCount;
+		scrollView.levelChoice = self;
 		
 		originalOffset = scrollView.contentOffset;
 		
@@ -74,6 +81,16 @@
 
 - (void) nextFrame:(ccTime)dt {
 	menu.position = ccpAdd(originalMenuPosition, ccpMult(ccp((originalOffset.x-scrollView.contentOffset.x),0),0.554f));
+}
+
+-(void)changeSceneTo:(int)world {
+	//COOLER EFFEKT
+	glow.visible = YES;
+	
+	//LEVELDATEN INITIALISIEREN
+	[[GameData sharedData] initLevel:1];
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[GameScene scene]]];
 }
 
 -(void)back:(CCMenuItem *)menuItem {
