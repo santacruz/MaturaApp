@@ -9,7 +9,7 @@
 
 @implementation ScrollView
 
-@synthesize panelCount, chosenPanel, levelChoice;
+@synthesize panelCount, chosenPanel, worldChoice;
 
 -(id)initWithFrame:(CGRect)frame{
 	if ((self=[super initWithFrame:frame])) {
@@ -25,12 +25,36 @@
 	return self;
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *myTouch = [touches anyObject];
+	CGPoint convert = [[CCDirector sharedDirector] convertToGL:[myTouch locationInView:[myTouch view]]];
+	if (!self.dragging && [self tappedSprite:convert]) {
+		[worldChoice activate:chosenPanel];
+	}
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	UITouch *myTouch = [touches anyObject];
+	CGPoint convert = [[CCDirector sharedDirector] convertToGL:[myTouch locationInView:[myTouch view]]];
+	if (!self.dragging && ![self tappedSprite:convert]) {
+		[worldChoice deactivate:chosenPanel];
+	} else if (self.dragging) {
+		[worldChoice deactivate:chosenPanel];
+	}
+	
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+	[worldChoice deactivate:chosenPanel];
+}
+
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *myTouch = [touches anyObject];
 	CGPoint convert = [[CCDirector sharedDirector] convertToGL:[myTouch locationInView:[myTouch view]]];
 	//NSLog(@"Touched at X: %f Y: %f", convert.x,convert.y);
 	if (!self.dragging && [self tappedSprite:convert]) {
-		[levelChoice changeSceneTo:chosenPanel];
+		[worldChoice deactivate:chosenPanel];
+		[worldChoice changeSceneTo:chosenPanel];
 	}
 }
 

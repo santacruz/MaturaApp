@@ -16,17 +16,19 @@
 	CCNode *menu;
 	CGPoint originalOffset;
 	CGPoint originalMenuPosition;
-	CCSprite *glow;
+	CCArray *panels;
 }
 
 @property(nonatomic,retain) ScrollView *scrollView;
 @property(nonatomic,assign) CCNode *menu;
 @property(readwrite,assign) CGPoint originalOffset;
 @property(readwrite,assign) CGPoint originalMenuPosition;
-@property(nonatomic,assign) CCSprite *glow;
+@property(nonatomic,retain) CCArray *panels;
 
 +(id) scene;
 -(void)back:(CCMenuItem *)menuItem;
 -(void)changeSceneTo:(int)world;
+-(void)activate:(int)panel;
+-(void)deactivate:(int)panel;
 
 @end

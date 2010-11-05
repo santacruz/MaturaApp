@@ -8,7 +8,7 @@
 
 @implementation WorldChoice
 
-@synthesize scrollView, menu, glow, originalOffset, originalMenuPosition;
+@synthesize scrollView, menu, originalOffset, originalMenuPosition, panels;
 
 +(id) scene
 {
@@ -31,21 +31,18 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
-		//GLOW SPRITE
-		glow = [CCSprite spriteWithFile:@"LargeSprites/glow.png"];
-		glow.position = ccp(160,240);
-		glow.visible = NO;
-		[self addChild:glow];
-		
 		//SCROLLVIEW
 		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",@"hero",nil];
 		int panelCount = worlds.count;
+		
+		//zu diesem Array werden die einzelnen Bilder hinzugefügt
+		panels = [[CCArray alloc] init];
 		
 		scrollView = [[ScrollView alloc] initWithFrame:CGRectMake(0, 112, 320, 260)];
 		
 		[scrollView setContentSize:CGSizeMake(320*panelCount, 260)];
 		scrollView.panelCount = panelCount;
-		scrollView.levelChoice = self;
+		scrollView.worldChoice = self;
 		
 		originalOffset = scrollView.contentOffset;
 		
@@ -60,6 +57,8 @@
 			CCSprite *worldImg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LargeSprites/%@.png",[worlds objectAtIndex:i]]];
 			worldImg.position = ccpMult(ccp(177.5,0),i);
 			[menu addChild:worldImg];
+			//auch zu Array
+			[panels addObject:worldImg];
 		}
 		menu.position = ccp(160,230);
 		originalMenuPosition = menu.position;
@@ -84,13 +83,22 @@
 }
 
 -(void)changeSceneTo:(int)world {
-	//COOLER EFFEKT
-	glow.visible = YES;
-	
 	//LEVELDATEN INITIALISIEREN
 	[[GameData sharedData] initLevel:1];
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[GameScene scene]]];
+}
+
+-(void)activate:(int)panel {
+	CCSprite *sprite = (CCSprite *)[panels objectAtIndex:panel];
+	id zoomIn = [CCScaleTo actionWithDuration:0.05f scale:1.2f];
+	[sprite runAction:zoomIn];
+}
+
+-(void)deactivate:(int)panel {
+	CCSprite *sprite = (CCSprite *)[panels objectAtIndex:panel];
+	id zoomOut = [CCScaleTo actionWithDuration:0.05f scale:1.0f];
+	[sprite runAction:zoomOut];
 }
 
 -(void)back:(CCMenuItem *)menuItem {
@@ -110,6 +118,7 @@
 - (void) dealloc
 {
 	NSLog(@"LevelChoice dealloc");
+	[panels release];
 	[super dealloc];
 }
 @end

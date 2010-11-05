@@ -10,12 +10,12 @@
 @interface ScrollView : UIScrollView {
 	int panelCount;
 	int chosenPanel;
-	WorldChoice *levelChoice;
+	WorldChoice *worldChoice;
 }
 
 @property(readwrite,assign)int panelCount;
 @property(readwrite,assign)int chosenPanel;
-@property(nonatomic,assign)WorldChoice *levelChoice;
+@property(nonatomic,assign)WorldChoice *worldChoice;
 
 -(BOOL) tappedSprite:(CGPoint)touch; 
 
