@@ -4,22 +4,23 @@
 //  © Zeno Koller 2010
 
 #import "WorldChoice.h"
+#import "LevelChoice.h"
 #define kSpriteRadius 120
 
 @implementation WorldChoice
 
 @synthesize scrollView, menu, originalOffset, originalMenuPosition, panels;
 
-+(id) scene
++(id) sceneWithWorld:(int)world
 {
 	CCScene *scene = [CCScene node];
-	WorldChoice *layer = [WorldChoice node];
+	WorldChoice *layer = [[[WorldChoice alloc] initWithWorld:world] autorelease];
 	[scene addChild: layer];
 	return scene;
 }
 
 //INITIALISIERE INSTANZ
--(id) init
+-(id) initWithWorld:(int)world
 {
 	if( (self=[super init] )) {
 		//BACKGROUND
@@ -85,26 +86,26 @@
 -(void)changeSceneTo:(int)world {
 	//LEVELDATEN INITIALISIEREN
 	[[GameData sharedData] initLevel:1];
+	//Hier World Auswahl starten mit aktueller Welt aus UserData
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[GameScene scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelChoice sceneWithWorld:world]]];
 }
 
 -(void)activate:(int)panel {
 	CCSprite *sprite = (CCSprite *)[panels objectAtIndex:panel];
-	id zoomIn = [CCScaleTo actionWithDuration:0.05f scale:1.2f];
+	id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f];
 	[sprite runAction:zoomIn];
 }
 
 -(void)deactivate:(int)panel {
 	CCSprite *sprite = (CCSprite *)[panels objectAtIndex:panel];
-	id zoomOut = [CCScaleTo actionWithDuration:0.05f scale:1.0f];
+	id zoomOut = [CCScaleTo actionWithDuration:0.1f scale:1.0f];
 	[sprite runAction:zoomOut];
 }
 
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[HelloWorld scene]]];
-
 }
 
 - (void) onExit 

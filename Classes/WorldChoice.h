@@ -25,7 +25,8 @@
 @property(readwrite,assign) CGPoint originalMenuPosition;
 @property(nonatomic,retain) CCArray *panels;
 
-+(id) scene;
++(id) sceneWithWorld:(int)world;
+-(void)initWithWorld:(int)world;
 -(void)back:(CCMenuItem *)menuItem;
 -(void)changeSceneTo:(int)world;
 -(void)activate:(int)panel;

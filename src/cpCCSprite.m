@@ -24,21 +24,21 @@
 {
 	return [[[self alloc] initWithShape:shape file:filename] autorelease];
 }
-
+/*
 + (id) spriteWithShape:(cpShape*)shape spriteSheet:(CCSpriteSheet*)spriteSheet rect:(CGRect)rect
 {
 	return [[[self alloc] initWithShape:shape spriteSheet:spriteSheet rect:rect] autorelease];
-}
+}*/
 
 + (id) spriteWithShape:(cpShape *)shape texture:(CCTexture2D*)texture
 {
 	return [[[self alloc] initWithShape:shape texture:texture] autorelease];
 }
-
+/*
 + (id) spriteWithShape:(cpShape *)shape texture:(CCTexture2D*)texture rect:(CGRect)rect
 {
 	return [[[self alloc] initWithShape:shape texture:texture rect:rect] autorelease];
-}
+}*/
 
 - (id) initWithShape:(cpShape*)shape file:(NSString*) filename
 {
@@ -48,7 +48,7 @@
 	
 	return self;
 }
-
+/*
 -(id) initWithShape:(cpShape*)shape spriteSheet:(CCSpriteSheet*)spriteSheet rect:(CGRect)rect
 {
 	[super initWithSpriteSheet:spriteSheet rect:rect];
@@ -56,7 +56,7 @@
 	CPCCNODE_MEM_VARS_INIT(shape)
 
 	return self;
-}
+}*/
 
 - (id) initWithShape:(cpShape *)shape texture:(CCTexture2D*)texture
 {
