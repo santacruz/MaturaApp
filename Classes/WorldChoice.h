@@ -26,7 +26,7 @@
 @property(nonatomic,retain) CCArray *panels;
 
 +(id) sceneWithWorld:(int)world;
--(void)initWithWorld:(int)world;
+-(id)initWithWorld:(int)world;
 -(void)back:(CCMenuItem *)menuItem;
 -(void)changeSceneTo:(int)world;
 -(void)activate:(int)panel;

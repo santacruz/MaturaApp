@@ -59,9 +59,9 @@
 		//PAUSELAYER
 		pausedScreen = [CCSprite spriteWithFile:@"pausedScreen.png"];
 		pausedScreen.position = ccp(160,240);
-		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"resume" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"resume" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(resume:)];
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(backToMenu:)];
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
 		myMenu.position = ccp(160, 200);

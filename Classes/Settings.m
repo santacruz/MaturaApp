@@ -31,10 +31,10 @@
 		[self addChild:title];
 		
 		//SETTINGS MENU
-		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"Calibrate" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"Calibrate" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(calibrate:)];
 		
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"Reset Calibration" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"Reset Calibration" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(resetCalibration:)];
 		
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];

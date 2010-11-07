@@ -28,23 +28,23 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
-		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"PLAY" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"play" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(start:)];
 		
-		/*CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"SCORES" fntFile:@"bebas.fnt"];
+		/*CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"SCORES" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(scores:)];*/
 		
-		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"SETTINGS" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"settings" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(settings:)];
 		
-		CCLabelBMFont* label4 = [CCLabelBMFont labelWithString:@"ABOUT" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label4 = [CCLabelBMFont labelWithString:@"about" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem4= [CCMenuItemLabel itemWithLabel:label4 target:self selector:@selector(about:)];
 		
-		CCLabelBMFont* label5 = [CCLabelBMFont labelWithString:@"HELP" fntFile:@"bebas.fnt"];
+		CCLabelBMFont* label5 = [CCLabelBMFont labelWithString:@"help" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem5= [CCMenuItemLabel itemWithLabel:label5 target:self selector:@selector(help:)];
 		
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem3,menuItem4,menuItem5,nil];
-		[myMenu alignItemsVertically];
+		[myMenu alignItemsVerticallyWithPadding:20];
 		myMenu.position = ccp(160, 200);
 		[self addChild:myMenu];
 	}
