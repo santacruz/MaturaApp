@@ -10,6 +10,8 @@
 
 @implementation LevelChoice
 
+@synthesize menu, count;
+
 +(id) sceneWithWorld:(int)world
 {
 	CCScene *scene = [CCScene node];
@@ -32,6 +34,36 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
+		menu = [CCMenu menuWithItems:nil];
+		count = 0;
+		
+		//3x3 MENU ZEICHNEN
+		for (int i=0;i<3;i++) {
+			for (int k=0;k<3;k++) {
+				count += 1;
+				CCSprite *levelButton = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LevelButtons/level0%i.png", count]];
+				switch (world) {
+					case 0:
+						[levelButton setColor:ccc3(239, 233, 223)];
+						//if level= noch nicht gemacht->opacity=50%ss
+						break;
+					case 1:
+						[levelButton setColor:ccc3(255, 0, 0)];
+						break;
+					default:
+						[levelButton setColor:ccc3(239, 233, 223)];
+						break;
+				}
+				CCMenuItemSprite *menuItemLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButton selectedSprite:levelButton target:self selector:@selector(selectedLevel:)]; 
+				menuItemLevelButton.position = ccp(k*80,0-i*80);
+				menuItemLevelButton.tag = count;
+				[menu addChild:menuItemLevelButton];
+			}
+		}
+		
+		menu.position = ccp(80,300);
+		[self addChild:menu];
+		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton-pressed.png"];
@@ -43,9 +75,19 @@
 	return self;
 }
 
+-(void)selectedLevel:(id)sender {
+	CCMenuItem *item = (CCMenuItem *)sender;
+	int level = item.tag;
+	//[GameData sharedData] initLevel:level world:world]; //!!!!!!!!!!
+	[[GameData sharedData] initLevel:1];
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
+
+}
+
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice scene]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:0]]];
 }
 
 @end

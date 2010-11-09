@@ -33,7 +33,7 @@
 		[self addChild:title];
 		
 		//SCROLLVIEW
-		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",@"hero",nil];
+		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",@"follow",@"fastfollow",@"evil",nil];
 		int panelCount = worlds.count;
 		
 		//zu diesem Array werden die einzelnen Bilder hinzugefügt
