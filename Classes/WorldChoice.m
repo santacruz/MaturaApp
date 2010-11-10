@@ -57,9 +57,9 @@
 		for (int i=0; i<panelCount; i++) {
 			CCSprite *worldImg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LargeSprites/%@.png",[worlds objectAtIndex:i]]];
 			worldImg.position = ccpMult(ccp(177.5,0),i);
-			/***************************************************
-			HIER OPACITY SETZEN, FALLS i>highestWorld
-			***************************************************/
+			if (i>[UserData sharedData].highestWorld) {
+				worldImg.opacity = 100;
+			}
 			[menu addChild:worldImg];
 			//auch zu Array
 			[panels addObject:worldImg];
@@ -92,14 +92,13 @@
 }
 
 -(void)changeSceneTo:(int)world {
-	/***************************************************
-	 FALLS WORLD≤HIGHESTWORLD
-	 ***************************************************/
-	[UserData sharedData].currentWorld = world;
-	[[UserData sharedData] saveAllDataToUserDefaults];
-	//Hier World Auswahl starten mit aktueller Welt aus UserData
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelChoice sceneWithWorld:world]]];
+	if (!world>[UserData sharedData].highestWorld) {
+		[UserData sharedData].currentWorld = world;
+		[[UserData sharedData] saveAllDataToUserDefaults];
+		//Hier World Auswahl starten mit aktueller Welt aus UserData
+		[[CCDirector sharedDirector] replaceScene:
+		 [CCTransitionCrossFade transitionWithDuration:0.5f scene:[LevelChoice sceneWithWorld:world]]];
+	}
 }
 
 -(void)activate:(int)panel {

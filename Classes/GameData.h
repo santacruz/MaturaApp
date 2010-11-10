@@ -31,6 +31,6 @@
 @property(nonatomic,retain) GameScene *gameScene;
 
 +(GameData *) sharedData;
--(void)initLevel:(int)level;
+-(void)initLevel:(int)level withWorld:(int)world;
 
 @end

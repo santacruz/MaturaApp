@@ -37,7 +37,7 @@ static GameData *sharedData = NULL;
 	
 }
 
--(void)initLevel:(int)level
+-(void)initLevel:(int)level withWorld:(int)world
 {
 	enemySpeedMultiplier = 10;
 	currentLevel = level;
@@ -50,7 +50,7 @@ static GameData *sharedData = NULL;
 	[enemySpawnBuffer removeAllObjects];
 	[enemyArray removeAllObjects];
 	enemyCount = 0;
-	LevelParser *parser = [LevelParser parseLevel:level];
+	LevelParser *parser = [LevelParser parseLevel:level withWorld:world];
 	[parser release];
 }
 

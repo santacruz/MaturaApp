@@ -14,6 +14,6 @@
 
 
 
-+(id)parseLevel:(int)level;
--(id)initWithLevel:(int)level;
++(id)parseLevel:(int)level withWorld:(int)world;
+-(id)initWithLevel:(int)level withWorld:(int)world;
 @end

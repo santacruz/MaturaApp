@@ -84,7 +84,7 @@
 	/***************************************************
 	FALLS TAG≤HIGHESTLEVEL
 	***************************************************/
-	[[GameData sharedData] initLevel:1];
+	[[GameData sharedData] initLevel:level withWorld:[UserData sharedData].currentWorld];
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
 

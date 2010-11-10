@@ -13,16 +13,19 @@
 
 
 
-+(id)parseLevel:(int)level {
-	return [[self alloc] initWithLevel:level];
++(id)parseLevel:(int)level withWorld:(int)world{
+	return [[self alloc] initWithLevel:level withWorld:world];
 }
 
--(id) initWithLevel:(int)level {
+-(id) initWithLevel:(int)level withWorld:(int)world{
 	if ((self=[super init])) {
-		NSString *pfad = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"level%i.plist",level]];
+		/***************************************
+		HIER PASSIERT EIN FEHLER!!!!!!
+		***************************************/
+		NSString *pfad = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"world%ilevel%i.plist",world,level]];
 		NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:pfad];
-
         int numberOfEnemies = [[plistDict objectForKey:@"numberOfEnemies"] intValue];
+		NSLog(@"NumberOfEnemies:%i",numberOfEnemies);
 		[GameData sharedData].heroStartLevel = [[plistDict objectForKey:@"heroStartLevel"] intValue];
 		[GameData sharedData].enemySpeedMultiplier = [[plistDict objectForKey:@"enemySpeedMultiplier"] intValue];
 		
