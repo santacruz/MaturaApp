@@ -5,7 +5,7 @@
 
 
 #import "cocos2d.h"
-#import "GameData.h"
+#import "UserData.h"
 #import "HelloWorldScene.h"
 
 @interface Settings : CCLayer

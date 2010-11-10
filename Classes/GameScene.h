@@ -7,6 +7,7 @@
 #import "Sphere.h"
 #import "SpaceManager.h"
 #import "GameData.h"
+#import "UserData.h"
 #import "EnemySphere.h"
 #import "Countdown.h"
 #import "CCTouchDispatcher.h"

@@ -5,6 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GameData.h"
+#import "UserData.h"
 
 @interface MaturaAppAppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow *window;

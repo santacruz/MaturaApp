@@ -54,6 +54,9 @@
 						[levelButton setColor:ccc3(239, 233, 223)];
 						break;
 				}
+				/***************************************************
+				 HIER OPACITY SETZEN, FALLS count>highestLevel
+				 ***************************************************/
 				CCMenuItemSprite *menuItemLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButton selectedSprite:levelButton target:self selector:@selector(selectedLevel:)]; 
 				menuItemLevelButton.position = ccp(k*80,0-i*80);
 				menuItemLevelButton.tag = count;
@@ -78,7 +81,9 @@
 -(void)selectedLevel:(id)sender {
 	CCMenuItem *item = (CCMenuItem *)sender;
 	int level = item.tag;
-	//[GameData sharedData] initLevel:level world:world]; //!!!!!!!!!!
+	/***************************************************
+	FALLS TAG≤HIGHESTLEVEL
+	***************************************************/
 	[[GameData sharedData] initLevel:1];
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
@@ -87,7 +92,7 @@
 
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:0]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:[UserData sharedData].currentWorld]]];
 }
 
 @end

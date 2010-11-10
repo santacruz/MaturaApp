@@ -54,7 +54,7 @@
 -(void)start:(CCMenuItem  *) menuItem {
 	//Hier World Auswahl starten mit aktueller Welt aus UserData
 	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:0]]];
+	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:[UserData sharedData].currentWorld]]];
 }
 -(void)scores:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:

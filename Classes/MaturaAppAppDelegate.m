@@ -33,6 +33,8 @@
 		
 	//GameData initialisieren
 	GameData *levelData = [GameData sharedData];
+	//UserData initialisieren
+	UserData *userData = [UserData sharedData];
 	
 	//Temporärer Resolution-Fix 
 	if( [[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {

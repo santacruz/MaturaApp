@@ -75,6 +75,7 @@
 		AAA49AB61286B335001DC13F /* diavlo.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA49AB21286B335001DC13F /* diavlo.png */; };
 		AAB4B6741289641200471976 /* LargeSprites in Resources */ = {isa = PBXBuildFile; fileRef = AAB4B6731289641200471976 /* LargeSprites */; };
 		AAB4B6761289641B00471976 /* LevelButtons in Resources */ = {isa = PBXBuildFile; fileRef = AAB4B6751289641B00471976 /* LevelButtons */; };
+		AAB4B746128A812D00471976 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB4B745128A812D00471976 /* UserData.m */; };
 		AAC0EC98125E18CC00BD9C3D /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0EC97125E18CC00BD9C3D /* Countdown.m */; };
 		AAE6D8B21274A35000690D9C /* scrollMask-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B01274A35000690D9C /* scrollMask-hd.png */; };
 		AAE6D8B31274A35000690D9C /* scrollMask.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B11274A35000690D9C /* scrollMask.png */; };
@@ -655,6 +656,8 @@
 		AAA49AB21286B335001DC13F /* diavlo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diavlo.png; sourceTree = "<group>"; };
 		AAB4B6731289641200471976 /* LargeSprites */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LargeSprites; sourceTree = "<group>"; };
 		AAB4B6751289641B00471976 /* LevelButtons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LevelButtons; sourceTree = "<group>"; };
+		AAB4B744128A812D00471976 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
+		AAB4B745128A812D00471976 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		AAC0EC96125E18CC00BD9C3D /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
 		AAC0EC97125E18CC00BD9C3D /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
 		AAE6D8B01274A35000690D9C /* scrollMask-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrollMask-hd.png"; sourceTree = "<group>"; };
@@ -940,6 +943,8 @@
 				AA1BAD5F1236BC8A00F37390 /* GameData.m */,
 				AA76B8901246A7AA006ED952 /* LevelParser.h */,
 				AA76B8911246A7AA006ED952 /* LevelParser.m */,
+				AAB4B744128A812D00471976 /* UserData.h */,
+				AAB4B745128A812D00471976 /* UserData.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1622,6 +1627,7 @@
 				AA7179541265D21000B125E6 /* GameOver.m in Sources */,
 				AAF4ECA0127F4394001F5522 /* ScrollView.m in Sources */,
 				AAA49991128582DA001DC13F /* LevelChoice.m in Sources */,
+				AAB4B746128A812D00471976 /* UserData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

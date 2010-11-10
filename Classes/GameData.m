@@ -13,8 +13,6 @@ static GameData *sharedData = NULL;
 @implementation GameData
 
 @synthesize newHero, isThereAHero, currentLevel, isGamePaused, isPlaying, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, enemySpeedMultiplier, wasGameWon, heroStartLevel;
-/*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
-@synthesize accelCorrectionX, accelCorrectionY;
 @synthesize gameScene;
 
 - (id)init
@@ -34,9 +32,6 @@ static GameData *sharedData = NULL;
 		enemyArray = [[CCArray alloc] init];
 		enemyCount = 0;
 		currentLevel = 0;
-		/*Zum Abspeichern von Kalibrationsdaten, später in Klasse UserData auslagern*/
-		accelCorrectionX = 0;
-		accelCorrectionY = 0;
 	}
 	return self;
 	
@@ -74,7 +69,7 @@ static GameData *sharedData = NULL;
 
 - (void)dealloc
 {
-	NSLog(@"Deallocating singleton...");
+	NSLog(@"Deallocating GameData singleton...");
 	[enemySpawnBuffer release];
 	[enemyArray release];
 	[super dealloc];

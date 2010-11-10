@@ -6,6 +6,7 @@
 
 #import "cocos2d.h"
 #import "GameData.h"
+#import "UserData.h"
 #import "GameScene.h"
 #import "HelloWorldScene.h"
 #import "ScrollView.h"

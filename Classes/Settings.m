@@ -67,15 +67,15 @@
 
 -(void)calibrate:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE SETZEN
-	[GameData sharedData].accelCorrectionX = accelX;
-	[GameData sharedData].accelCorrectionY = accelY;
+	[UserData sharedData].accelCorrectionX = accelX;
+	[UserData sharedData].accelCorrectionY = accelY;
 	
 }
 
 -(void)resetCalibration:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE RESETTEN
-	[GameData sharedData].accelCorrectionX = 0;
-	[GameData sharedData].accelCorrectionY = 0;
+	[UserData sharedData].accelCorrectionX = 0;
+	[UserData sharedData].accelCorrectionY = 0;
 }
 
 -(void)back:(CCMenuItem *)menuItem {
