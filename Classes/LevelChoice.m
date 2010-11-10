@@ -45,7 +45,6 @@
 				switch (world) {
 					case 0:
 						[levelButton setColor:ccc3(239, 233, 223)];
-						//if level= noch nicht gemacht->opacity=50%ss
 						break;
 					case 1:
 						[levelButton setColor:ccc3(255, 0, 0)];
@@ -54,9 +53,10 @@
 						[levelButton setColor:ccc3(239, 233, 223)];
 						break;
 				}
-				/***************************************************
-				 HIER OPACITY SETZEN, FALLS count>highestLevel
-				 ***************************************************/
+				//SETZE TRANSPARENZ, FALLS LEVEL NOCH NICHT ERREICHT
+				if (count>[UserData sharedData].highestLevel && world==[UserData sharedData].highestWorld) {
+					levelButton.opacity = 100;
+				}
 				CCMenuItemSprite *menuItemLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButton selectedSprite:levelButton target:self selector:@selector(selectedLevel:)]; 
 				menuItemLevelButton.position = ccp(k*80,0-i*80);
 				menuItemLevelButton.tag = count;
@@ -81,13 +81,16 @@
 -(void)selectedLevel:(id)sender {
 	CCMenuItem *item = (CCMenuItem *)sender;
 	int level = item.tag;
-	/***************************************************
-	FALLS TAG≤HIGHESTLEVEL
-	***************************************************/
-	[[GameData sharedData] initLevel:level withWorld:[UserData sharedData].currentWorld];
-	[[CCDirector sharedDirector] replaceScene:
-	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
-
+	//LADE LEVEL NUR, WENN ES SCHON ERREICHT WURDE
+	if (!(level>[UserData sharedData].highestLevel) && ([UserData sharedData].currentWorld==[UserData sharedData].highestWorld)) {
+		[[GameData sharedData] initLevel:level withWorld:[UserData sharedData].currentWorld];
+		[[CCDirector sharedDirector] replaceScene:
+		 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
+	} else if ([UserData sharedData].currentWorld==[UserData sharedData].highestWorld) {
+		[[GameData sharedData] initLevel:level withWorld:[UserData sharedData].currentWorld];
+		[[CCDirector sharedDirector] replaceScene:
+		 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
+	}
 }
 
 -(void)back:(CCMenuItem *)menuItem {

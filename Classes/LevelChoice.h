@@ -8,6 +8,7 @@
 
 #import "cocos2d.h"
 #import "WorldChoice.h"
+#import "UserData.h"
 
 @interface LevelChoice : CCLayer {
 	CCMenu *menu;

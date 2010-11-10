@@ -69,6 +69,8 @@
 	//KORREKTIONSWERTE SETZEN
 	[UserData sharedData].accelCorrectionX = accelX;
 	[UserData sharedData].accelCorrectionY = accelY;
+	//******************
+	//HIER NOCH SYNCHRONISIEREN!!!!!
 	
 }
 
@@ -76,6 +78,8 @@
 	//KORREKTIONSWERTE RESETTEN
 	[UserData sharedData].accelCorrectionX = 0;
 	[UserData sharedData].accelCorrectionY = 0;
+	//******************
+	//HIER NOCH SYNCHRONISIEREN!!!!!
 }
 
 -(void)back:(CCMenuItem *)menuItem {
