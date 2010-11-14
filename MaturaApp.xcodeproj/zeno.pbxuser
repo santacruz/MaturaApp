@@ -197,6 +197,7 @@
 			AA4DE2F0128F41020043BE36 /* PlistBookmark */ = AA4DE2F0128F41020043BE36 /* PlistBookmark */;
 			AA4DE34A128FDDCC0043BE36 /* XCBuildMessageTextBookmark */ = AA4DE34A128FDDCC0043BE36 /* XCBuildMessageTextBookmark */;
 			AA4DE34B128FDDCC0043BE36 /* PBXTextBookmark */ = AA4DE34B128FDDCC0043BE36 /* PBXTextBookmark */;
+			AA4DE367128FE6A00043BE36 /* PBXTextBookmark */ = AA4DE367128FE6A00043BE36 /* PBXTextBookmark */;
 			AA9DDDB3128F40E1009C891C = AA9DDDB3128F40E1009C891C /* PBXTextBookmark */;
 			AA9DDDB4128F40E1009C891C = AA9DDDB4128F40E1009C891C /* PlistBookmark */;
 			AA9DDDB5128F40E1009C891C = AA9DDDB5128F40E1009C891C /* PlistBookmark */;
@@ -506,9 +507,9 @@
 	};
 	AA3132501233DD760098711E /* EnemySphere.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {962, 1586}}";
+			sepNavIntBoundsRect = "{{0, 0}, {962, 1560}}";
 			sepNavSelRange = "{3124, 0}";
-			sepNavVisRange = "{568, 1334}";
+			sepNavVisRange = "{2399, 798}";
 			sepNavWindowFrame = "{{15, 88}, {1027, 690}}";
 		};
 	};
@@ -522,9 +523,9 @@
 	};
 	AA31326F1233DEA10098711E /* GameScene.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {962, 5382}}";
-			sepNavSelRange = "{3111, 0}";
-			sepNavVisRange = "{817, 1168}";
+			sepNavIntBoundsRect = "{{0, 0}, {962, 5798}}";
+			sepNavSelRange = "{186, 0}";
+			sepNavVisRange = "{0, 549}";
 			sepNavWindowFrame = "{{15, 95}, {1027, 683}}";
 		};
 	};
@@ -557,6 +558,16 @@
 		rType = 0;
 		vrLen = 350;
 		vrLoc = 364;
+	};
+	AA4DE367128FE6A00043BE36 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AAC0EC97125E18CC00BD9C3D /* Countdown.m */;
+		name = "Countdown.m: 27";
+		rLen = 0;
+		rLoc = 380;
+		rType = 0;
+		vrLen = 154;
+		vrLoc = 582;
 	};
 	AA7179521265D21000B125E6 /* GameOver.h */ = {
 		uiCtxt = {
@@ -763,10 +774,9 @@
 	};
 	AAC0EC97125E18CC00BD9C3D /* Countdown.m */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            l = \"(NSString *)fntFile\";\n            r = \"{649, 23}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 1507}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1483, 845}}";
-			sepNavSelRange = "{380, 85}";
-			sepNavVisRange = "{364, 328}";
+			sepNavIntBoundsRect = "{{0, 0}, {1461, 741}}";
+			sepNavSelRange = "{380, 0}";
+			sepNavVisRange = "{582, 154}";
 		};
 	};
 	AAF4EC9E127F4394001F5522 /* ScrollView.h */ = {

@@ -72,7 +72,8 @@ static float prevDistance = 500;
 		//MOVE LOGIK HINZUFÜGEN
 		[self schedule:@selector(move:) interval:0.5];
 		
-		[GameData sharedData].enemyCount += 1;
+		//****************************
+		//[GameData sharedData].enemyCount += 1;
 		[[GameData sharedData].enemyArray addObject:self];
 	}
 	NSLog(@"Adding Enemy");

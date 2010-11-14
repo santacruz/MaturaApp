@@ -184,7 +184,8 @@
 				[self removeChild:sprite.parent cleanup:YES];
 				[smgr scheduleToRemoveAndFreeShape:b];
 				b->data = nil;
-				[GameData sharedData].enemyCount -= 1;
+				//*****************
+				//[GameData sharedData].enemyCount -= 1;
 			}
 		}
     }	
@@ -236,8 +237,8 @@
 		[smgr scheduleToRemoveAndFreeShape:b];
 		b->data = nil;
 		
-		//[GameData sharedData].enemyCount -= 2;
-		
+		//****************************
+		[GameData sharedData].enemyCount -= 1;
 		
 		//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
 		CCArray *enemyToBeSpawned = [[CCArray alloc] init];
@@ -266,6 +267,8 @@
 		[self addChild:sphere];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
+		//WENN EIN NEUER HELD GEMACHT WIRD, WURDE VORHER EINER ENTFERNT
+		[GameData sharedData].enemyCount -= 1;
 	} //else {
 		//WENN HELD DA, ROTATION ÄNDERN
 		//sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.5+prevHeroRotation*0.5;
@@ -290,7 +293,8 @@
 		[enemyToBeSpawned release];
 				
 		//ENEMYCOUNT VON DER VORHERIGEN KOLLISION ERST HIER REDUZIEREN
-		[GameData sharedData].enemyCount -= 2;
+		//****************************
+		//[GameData sharedData].enemyCount -= 2;
 	}
 	
 	//ARGUMENT DER FEINDE ÄNDERN UND FEINDE BESCHLEUNIGEN

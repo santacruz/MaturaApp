@@ -48,7 +48,6 @@ static GameData *sharedData = NULL;
 	[newHero removeAllObjects];
 	[enemySpawnBuffer removeAllObjects];
 	[enemyArray removeAllObjects];
-	enemyCount = 0;
 	LevelParser *parser = [LevelParser parseLevel:level withWorld:world];
 	[parser release];
 }

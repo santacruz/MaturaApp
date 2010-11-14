@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>enemySpeedMultiplier</key>
-	<string>10</string>
+	<string>20</string>
 	<key>numberOfEnemies</key>
 	<string>1</string>
 	<key>heroStartLevel</key>

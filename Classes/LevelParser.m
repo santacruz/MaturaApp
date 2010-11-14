@@ -24,6 +24,7 @@
         int numberOfEnemies = [[plistDict objectForKey:@"numberOfEnemies"] intValue];
 		[GameData sharedData].heroStartLevel = [[plistDict objectForKey:@"heroStartLevel"] intValue];
 		[GameData sharedData].enemySpeedMultiplier = [[plistDict objectForKey:@"enemySpeedMultiplier"] intValue];
+		[GameData sharedData].enemyCount = numberOfEnemies;
 		for (int i=1; i<numberOfEnemies+1; i++) {
 			NSDictionary *currentEnemy = [plistDict objectForKey:[NSString stringWithFormat:@"enemy%i",i]];
 			//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
