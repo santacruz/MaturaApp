@@ -11,6 +11,7 @@
 
 @interface UserData : NSObject {
 	int highestLevel;
+	int currentLevel;
 	int highestWorld;
 	int currentWorld;
 	float accelCorrectionX;
@@ -18,7 +19,7 @@
 }
 
 @property(readwrite,assign) float accelCorrectionX, accelCorrectionY;
-@property(readwrite,assign) int highestLevel, highestWorld, currentWorld;
+@property(readwrite,assign) int highestLevel, currentLevel, highestWorld, currentWorld;
 
 +(UserData *) sharedData;
 -(void)saveAllDataToUserDefaults;

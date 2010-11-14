@@ -59,6 +59,8 @@
 		AA8CBDEF125A05BB008A851C /* WorldChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8CBDEE125A05BB008A851C /* WorldChoice.m */; };
 		AA8CC0B6125A7064008A851C /* pausedScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */; };
 		AA8CC0B7125A7064008A851C /* pausedScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC0B5125A7064008A851C /* pausedScreen.png */; };
+		AA9DDDA4128F1A02009C891C /* world0level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA9DDDA2128F1A02009C891C /* world0level2.plist */; };
+		AA9DDDA5128F1A02009C891C /* world0level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA9DDDA3128F1A02009C891C /* world0level3.plist */; };
 		AAA33C691262456A00234F5B /* Scores.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C681262456A00234F5B /* Scores.m */; };
 		AAA33C6E126245EB00234F5B /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C6D126245EB00234F5B /* Settings.m */; };
 		AAA33C731262466F00234F5B /* About.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA33C721262466F00234F5B /* About.m */; };
@@ -73,6 +75,13 @@
 		AAB4B746128A812D00471976 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB4B745128A812D00471976 /* UserData.m */; };
 		AAC0EC98125E18CC00BD9C3D /* Countdown.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0EC97125E18CC00BD9C3D /* Countdown.m */; };
 		AAD5885E128B440F00607376 /* world0level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD5885D128B440F00607376 /* world0level1.plist */; };
+		AAD589CD128BFFE500607376 /* world0level4.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C5128BFFE500607376 /* world0level4.plist */; };
+		AAD589CE128BFFE500607376 /* world0level5.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C6128BFFE500607376 /* world0level5.plist */; };
+		AAD589CF128BFFE500607376 /* world0level6.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C7128BFFE500607376 /* world0level6.plist */; };
+		AAD589D0128BFFE500607376 /* world0level7.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C8128BFFE500607376 /* world0level7.plist */; };
+		AAD589D1128BFFE500607376 /* world0level8.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C9128BFFE500607376 /* world0level8.plist */; };
+		AAD589D2128BFFE500607376 /* world0level9.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589CA128BFFE500607376 /* world0level9.plist */; };
+		AAD589D4128BFFED00607376 /* world1level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589D3128BFFED00607376 /* world1level1.plist */; };
 		AAE6D8B21274A35000690D9C /* scrollMask-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B01274A35000690D9C /* scrollMask-hd.png */; };
 		AAE6D8B31274A35000690D9C /* scrollMask.png in Resources */ = {isa = PBXBuildFile; fileRef = AAE6D8B11274A35000690D9C /* scrollMask.png */; };
 		AAF4ECA0127F4394001F5522 /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF4EC9F127F4394001F5522 /* ScrollView.m */; };
@@ -630,6 +639,8 @@
 		AA8CBDEE125A05BB008A851C /* WorldChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldChoice.m; sourceTree = "<group>"; };
 		AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pausedScreen-hd.png"; sourceTree = "<group>"; };
 		AA8CC0B5125A7064008A851C /* pausedScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pausedScreen.png; sourceTree = "<group>"; };
+		AA9DDDA2128F1A02009C891C /* world0level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level2.plist; sourceTree = "<group>"; };
+		AA9DDDA3128F1A02009C891C /* world0level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level3.plist; sourceTree = "<group>"; };
 		AAA33C671262456A00234F5B /* Scores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scores.h; sourceTree = "<group>"; };
 		AAA33C681262456A00234F5B /* Scores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scores.m; sourceTree = "<group>"; };
 		AAA33C6C126245EB00234F5B /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
@@ -651,6 +662,13 @@
 		AAC0EC96125E18CC00BD9C3D /* Countdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countdown.h; sourceTree = "<group>"; };
 		AAC0EC97125E18CC00BD9C3D /* Countdown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countdown.m; sourceTree = "<group>"; };
 		AAD5885D128B440F00607376 /* world0level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level1.plist; sourceTree = "<group>"; };
+		AAD589C5128BFFE500607376 /* world0level4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level4.plist; sourceTree = "<group>"; };
+		AAD589C6128BFFE500607376 /* world0level5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level5.plist; sourceTree = "<group>"; };
+		AAD589C7128BFFE500607376 /* world0level6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level6.plist; sourceTree = "<group>"; };
+		AAD589C8128BFFE500607376 /* world0level7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level7.plist; sourceTree = "<group>"; };
+		AAD589C9128BFFE500607376 /* world0level8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level8.plist; sourceTree = "<group>"; };
+		AAD589CA128BFFE500607376 /* world0level9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level9.plist; sourceTree = "<group>"; };
+		AAD589D3128BFFED00607376 /* world1level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level1.plist; sourceTree = "<group>"; };
 		AAE6D8B01274A35000690D9C /* scrollMask-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scrollMask-hd.png"; sourceTree = "<group>"; };
 		AAE6D8B11274A35000690D9C /* scrollMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrollMask.png; sourceTree = "<group>"; };
 		AAF4EC9E127F4394001F5522 /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollView.h; sourceTree = "<group>"; };
@@ -1011,6 +1029,15 @@
 			isa = PBXGroup;
 			children = (
 				AAD5885D128B440F00607376 /* world0level1.plist */,
+				AA9DDDA2128F1A02009C891C /* world0level2.plist */,
+				AA9DDDA3128F1A02009C891C /* world0level3.plist */,
+				AAD589C5128BFFE500607376 /* world0level4.plist */,
+				AAD589C6128BFFE500607376 /* world0level5.plist */,
+				AAD589C7128BFFE500607376 /* world0level6.plist */,
+				AAD589C8128BFFE500607376 /* world0level7.plist */,
+				AAD589C9128BFFE500607376 /* world0level8.plist */,
+				AAD589CA128BFFE500607376 /* world0level9.plist */,
+				AAD589D3128BFFED00607376 /* world1level1.plist */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -1561,6 +1588,15 @@
 				AAB4B6741289641200471976 /* LargeSprites in Resources */,
 				AAB4B6761289641B00471976 /* LevelButtons in Resources */,
 				AAD5885E128B440F00607376 /* world0level1.plist in Resources */,
+				AAD589CD128BFFE500607376 /* world0level4.plist in Resources */,
+				AAD589CE128BFFE500607376 /* world0level5.plist in Resources */,
+				AAD589CF128BFFE500607376 /* world0level6.plist in Resources */,
+				AAD589D0128BFFE500607376 /* world0level7.plist in Resources */,
+				AAD589D1128BFFE500607376 /* world0level8.plist in Resources */,
+				AAD589D2128BFFE500607376 /* world0level9.plist in Resources */,
+				AAD589D4128BFFED00607376 /* world1level1.plist in Resources */,
+				AA9DDDA4128F1A02009C891C /* world0level2.plist in Resources */,
+				AA9DDDA5128F1A02009C891C /* world0level3.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

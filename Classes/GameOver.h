@@ -8,6 +8,7 @@
 #import "GameData.h"
 #import "HelloWorldScene.h"
 #import "GameScene.h"
+#import "UserData.h"
 
 @interface GameOver : CCLayer {
 

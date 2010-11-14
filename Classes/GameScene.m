@@ -8,11 +8,13 @@
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2 
-#define kInitSize 10
-#define kFilterFactor 0.5f
-#define kImpulseMultiplier 200
 #define kNormalEnemy 0
 #define kShrinkEnemy 1
+#define kInitSize 10
+#define kFilterFactor 0.5f
+#define kImpulseMultiplier 100
+#define kAccSteilheit 20
+#define kAccInflektion 0.2
 
 
 //static float prevHeroRotation = 0;
@@ -309,9 +311,19 @@
 	prevX = accelX;
 	prevY = accelY;
 	//prevZ = accelZ;
+	if (accelX > 0) {
+		accelX = 1/(1+exp(-kAccSteilheit*(accelX-kAccInflektion)));
+	} else {
+		accelX = -1/(1+exp(-kAccSteilheit*(-1*accelX-kAccInflektion)));
+	}
 	
-	CGPoint v = ccp( accelX, accelY);
-	
+	if (accelY > 0) {
+		accelY = 1/(1+exp(-kAccSteilheit*(accelY-kAccInflektion)));
+	} else {
+		accelY = -1/(1+exp(-kAccSteilheit*(-1*accelY-kAccInflektion)));
+	}
+
+	CGPoint v = ccp(accelX, accelY);
 	if ([GameData sharedData].isThereAHero) {
 		sphere.sprite.shape->body->v = ccpMult(v, kImpulseMultiplier);
 	}

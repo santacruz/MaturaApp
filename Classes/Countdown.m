@@ -24,6 +24,9 @@
 	if( (self=[super initWithColor:ccc4(0, 0, 0, 120)] )) {
 		
 		count = 0;
+		CCLabelBMFont *levelDisplay = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"Level %i-%i",[UserData sharedData].currentWorld+1,[UserData sharedData].currentLevel] fntFile:@"diavlo.fnt"];
+		levelDisplay.position = ccp(160, 320);
+		[self addChild:levelDisplay];
 		countLabel = [[CCLabelBMFont alloc] initWithString:@"3" fntFile:@"bebas.fnt"];
 		countLabel.position = ccp(160,240);
 		[self addChild: countLabel];

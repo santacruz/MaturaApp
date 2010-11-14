@@ -24,14 +24,43 @@
 		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg];
-		
+				
 		if ([GameData sharedData].wasGameWon) {
+			//UPDATE USERDATA
+			//IST GESPIELTES LEVEL HÖCHSTES LEVEL?
+			if ([UserData sharedData].highestLevel == [UserData sharedData].currentLevel) {
+				//IST GESPIELTE WELT HÖCHSTE WELT?
+				if ([UserData sharedData].highestWorld == [UserData sharedData].currentWorld) {
+					//WIRD LETZTES LEVEL GESPIELT?
+					if ([UserData sharedData].highestLevel == 9) {
+						[UserData sharedData].highestWorld += 1;
+						[UserData sharedData].currentWorld += 1;
+						[UserData sharedData].highestLevel = 1;
+						[UserData sharedData].currentLevel = 1;
+					} else {
+						[UserData sharedData].highestLevel += 1;
+						[UserData sharedData].currentLevel += 1;
+					}
+				} else { //WENN NICHT IN DER HÖCHSTEN WELT, NUR CURRENTLEVEL ERHÖHEN
+					//WIRD LETZTES LEVEL GESPIELT?
+					if ([UserData sharedData].highestLevel == 9) {
+						[UserData sharedData].currentWorld += 1;
+						[UserData sharedData].currentLevel = 1;
+					} else {
+						[UserData sharedData].currentLevel += 1;
+					}
+				}
+			} else { //WENN GESPIELTES LEVEL NICHT HÖCHSTES LEVEL
+				[UserData sharedData].currentLevel += 1;
+			}
+
+			[[UserData sharedData] saveAllDataToUserDefaults];
+			
 			CCLabelBMFont* title = [CCLabelBMFont labelWithString:@"you won!" fntFile:@"diavlo.fnt"];
 			title.position = ccp(160,320);
 			[self addChild:title];
 			
 			//MENU
-			
 			CCLabelBMFont* label0 = [CCLabelBMFont labelWithString:@"next" fntFile:@"diavlo.fnt"];
 			CCMenuItemLabel *menuItem0= [CCMenuItemLabel itemWithLabel:label0 target:self selector:@selector(next:)];
 
@@ -75,7 +104,7 @@
 
 -(void)next:(CCMenuItem *) menuItem {
 	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:[GameData sharedData].currentLevel+1];
+	[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];
 	
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];
@@ -85,7 +114,15 @@
 
 -(void)retry:(CCMenuItem *) menuItem {
 	//LEVELDATEN INITIALISIEREN
-	[[GameData sharedData] initLevel:[GameData sharedData].currentLevel];
+	//********************************
+	//FAIL: WAS IST, WENN VORHER LEVEL 9 GESPIELT WURDE?
+	//********************************
+	if ([GameData sharedData].wasGameWon) {
+		[[GameData sharedData] initLevel:[UserData sharedData].currentLevel-1 withWorld:[UserData sharedData].currentWorld];
+	} else {
+		[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];
+	}
+
 	
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionFade transitionWithDuration:0.3f scene:[GameScene scene]]];

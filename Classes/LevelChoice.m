@@ -47,19 +47,20 @@
 						[levelButton setColor:ccc3(239, 233, 223)];
 						break;
 					case 1:
-						[levelButton setColor:ccc3(255, 0, 0)];
+						[levelButton setColor:ccc3(184, 28, 24)];
 						break;
 					default:
 						[levelButton setColor:ccc3(239, 233, 223)];
 						break;
 				}
-				//SETZE TRANSPARENZ, FALLS LEVEL NOCH NICHT ERREICHT
-				if (count>[UserData sharedData].highestLevel && world==[UserData sharedData].highestWorld) {
-					levelButton.opacity = 100;
-				}
 				CCMenuItemSprite *menuItemLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButton selectedSprite:levelButton target:self selector:@selector(selectedLevel:)]; 
 				menuItemLevelButton.position = ccp(k*80,0-i*80);
 				menuItemLevelButton.tag = count;
+				//SETZE TRANSPARENZ UND BEDIENBARKEIT, FALLS LEVEL NOCH NICHT ERREICHT
+				if (count>[UserData sharedData].highestLevel && world==[UserData sharedData].highestWorld) {
+					levelButton.opacity = 100;
+					menuItemLevelButton.isEnabled = NO;
+				}
 				[menu addChild:menuItemLevelButton];
 			}
 		}
@@ -81,16 +82,10 @@
 -(void)selectedLevel:(id)sender {
 	CCMenuItem *item = (CCMenuItem *)sender;
 	int level = item.tag;
-	//LADE LEVEL NUR, WENN ES SCHON ERREICHT WURDE
-	if (!(level>[UserData sharedData].highestLevel) && ([UserData sharedData].currentWorld==[UserData sharedData].highestWorld)) {
-		[[GameData sharedData] initLevel:level withWorld:[UserData sharedData].currentWorld];
-		[[CCDirector sharedDirector] replaceScene:
-		 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
-	} else if ([UserData sharedData].currentWorld==[UserData sharedData].highestWorld) {
-		[[GameData sharedData] initLevel:level withWorld:[UserData sharedData].currentWorld];
-		[[CCDirector sharedDirector] replaceScene:
-		 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
-	}
+	[[GameData sharedData] initLevel:level withWorld:[UserData sharedData].currentWorld];
+	[[CCDirector sharedDirector] replaceScene:
+	 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
+	
 }
 
 -(void)back:(CCMenuItem *)menuItem {

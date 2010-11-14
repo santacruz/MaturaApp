@@ -92,7 +92,7 @@
 }
 
 -(void)changeSceneTo:(int)world {
-	if (!world>[UserData sharedData].highestWorld) {
+	if (!(world>[UserData sharedData].highestWorld)) {
 		[UserData sharedData].currentWorld = world;
 		[[UserData sharedData] saveAllDataToUserDefaults];
 		//Hier World Auswahl starten mit aktueller Welt aus UserData

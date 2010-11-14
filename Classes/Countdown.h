@@ -6,7 +6,7 @@
 
 #import "cocos2d.h"
 #import "GameData.h"
-
+#import "UserData.h"
 
 @interface Countdown : CCColorLayer {
 	int count;

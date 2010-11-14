@@ -12,7 +12,7 @@ static GameData *sharedData = NULL;
 
 @implementation GameData
 
-@synthesize newHero, isThereAHero, currentLevel, isGamePaused, isPlaying, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, enemySpeedMultiplier, wasGameWon, heroStartLevel;
+@synthesize newHero, isThereAHero, isGamePaused, isPlaying, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, enemySpeedMultiplier, wasGameWon, heroStartLevel;
 @synthesize gameScene;
 
 - (id)init
@@ -31,7 +31,6 @@ static GameData *sharedData = NULL;
 		enemySpawnBuffer = [[CCArray alloc] init];
 		enemyArray = [[CCArray alloc] init];
 		enemyCount = 0;
-		currentLevel = 0;
 	}
 	return self;
 	
@@ -40,7 +39,7 @@ static GameData *sharedData = NULL;
 -(void)initLevel:(int)level withWorld:(int)world
 {
 	enemySpeedMultiplier = 10;
-	currentLevel = level;
+	[UserData sharedData].currentLevel = level;
 	isThereAHero = YES;
 	isGamePaused = NO;
 	isCountdownFinished = NO;

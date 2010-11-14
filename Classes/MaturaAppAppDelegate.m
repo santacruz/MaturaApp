@@ -92,6 +92,7 @@
 
 - (void)dealloc {
 	[[GameData sharedData] release];
+	[[UserData sharedData] release];
 	[[CCDirector sharedDirector] release];
 	[window release];
 	[super dealloc];

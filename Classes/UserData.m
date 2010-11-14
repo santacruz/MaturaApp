@@ -13,12 +13,13 @@ static UserData *sharedData = NULL;
 
 @implementation UserData
 
-@synthesize highestLevel, highestWorld, currentWorld, accelCorrectionX, accelCorrectionY;
+@synthesize highestLevel, currentLevel, highestWorld, currentWorld, accelCorrectionX, accelCorrectionY;
 
 -(id)init {
 	if (self = [super init]) {
 		//PROPERTIES INITIALISIEREN
 		highestLevel = 1;
+		currentLevel = 1;
 		highestWorld = 0;
 		currentWorld = 0;
 		accelCorrectionX = 0;
@@ -27,6 +28,9 @@ static UserData *sharedData = NULL;
 		NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
 		if([defaults objectForKey:@"highestLevel"] == nil) {
 			[defaults setValue:[NSNumber numberWithInt:highestLevel] forKey:@"highestLevel"];
+		}
+		if([defaults objectForKey:@"currentLevel"] == nil) {
+			[defaults setValue:[NSNumber numberWithInt:currentLevel] forKey:@"currentLevel"];
 		}
 		if ([defaults objectForKey:@"highestWorld"] == nil) {
 			[defaults setValue:[NSNumber numberWithInt:highestWorld] forKey:@"highestWorld"];
@@ -43,6 +47,7 @@ static UserData *sharedData = NULL;
 		//FÜR JEDEN WEITEREN APPSTART: PROPERTIES AUS NSUSERDEFAULTS LESEN
 		if (defaults) {
 			highestLevel = [[defaults objectForKey:@"highestLevel"] intValue];
+			currentLevel = [[defaults objectForKey:@"currentLevel"] intValue];
 			highestWorld = [[defaults objectForKey:@"highestWorld"] intValue];
 			currentWorld = [[defaults objectForKey:@"currentWorld"] intValue];
 			accelCorrectionX = [[defaults objectForKey:@"accelCorrectionX"] intValue];
@@ -68,6 +73,7 @@ static UserData *sharedData = NULL;
 	NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
 	if (defaults) {
 		[defaults setValue:[NSNumber numberWithInt:highestLevel] forKey:@"highestLevel"];
+		[defaults setValue:[NSNumber numberWithInt:currentLevel] forKey:@"currentLevel"];
 		[defaults setValue:[NSNumber numberWithInt:highestWorld] forKey:@"highestWorld"];
 		[defaults setValue:[NSNumber numberWithInt:currentWorld] forKey:@"currentWorld"];
 		[defaults setValue:[NSNumber numberWithFloat:accelCorrectionX] forKey:@"accelCorrectionX"];
