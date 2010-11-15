@@ -39,7 +39,7 @@ static float prevDistance = 500;
 			case kNormalEnemy:
 				
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"enemy/Enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
@@ -57,7 +57,7 @@ static float prevDistance = 500;
 
 			default:
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/Enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"enemy/Enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
@@ -70,7 +70,7 @@ static float prevDistance = 500;
 		self.position = ccp(240,160);
 		
 		//MOVE LOGIK HINZUFÜGEN
-		[self schedule:@selector(move:) interval:0.5];
+		[self schedule:@selector(move:) interval:0.2];
 		
 		//****************************
 		//[GameData sharedData].enemyCount += 1;
@@ -90,24 +90,27 @@ static float prevDistance = 500;
 
 - (void)move:(ccTime)dt {
 	//UNSCHÖN, ÄNDERN!
-	prevDistance = 500;
-	if ([[GameData sharedData].enemyArray count] > 1) {
-		for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
-			if (enemy != self) {
-				if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
-					prevDistance = ccpDistance(enemy.sprite.position, self.sprite.position);
-					moveVector = ccpNormalize(ccpSub(enemy.sprite.position, self.sprite.position));
+	//**********************
+	if ([GameData sharedData].isPlaying) {
+		prevDistance = 500;
+		if ([[GameData sharedData].enemyArray count] > 1) {
+			for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
+				if (enemy != self) {
+					if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
+						prevDistance = ccpDistance(enemy.sprite.position, self.sprite.position);
+						moveVector = ccpNormalize(ccpSub(enemy.sprite.position, self.sprite.position));
+					}
 				}
 			}
+		} else {
+			if ([GameData sharedData].isThereAHero) {
+				moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
+			}
 		}
-	} else {
-		if ([GameData sharedData].isThereAHero) {
-			moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
-		}
+		
+		sprite.shape->body->v = ccpMult(moveVector, [GameData sharedData].enemySpeedMultiplier);
 	}
 
-	sprite.shape->body->v = ccpMult(moveVector, [GameData sharedData].enemySpeedMultiplier);
-	
 }
 
 - (void) dealloc

@@ -13,6 +13,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		AA0ECD831291A07000616FAA /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA0ECD811291A07000616FAA /* Enemy */; };
+		AA0ECD841291A07000616FAA /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = AA0ECD821291A07000616FAA /* Hero */; };
 		AA1BAD601236BC8A00F37390 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1BAD5F1236BC8A00F37390 /* GameData.m */; };
 		AA31319E1233DABE0098711E /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31319D1233DABE0098711E /* HelloWorldScene.m */; };
 		AA3131A01233DB440098711E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA31319F1233DB440098711E /* AudioToolbox.framework */; };
@@ -46,9 +48,7 @@
 		AA71803D126DEBFA00B125E6 /* BG in Resources */ = {isa = PBXBuildFile; fileRef = AA71803A126DEBF900B125E6 /* BG */; };
 		AA71803E126DEBFA00B125E6 /* Buttons in Resources */ = {isa = PBXBuildFile; fileRef = AA71803B126DEBF900B125E6 /* Buttons */; };
 		AA71803F126DEBFA00B125E6 /* Titles in Resources */ = {isa = PBXBuildFile; fileRef = AA71803C126DEBFA00B125E6 /* Titles */; };
-		AA7180A9126DED1700B125E6 /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = AA718041126DED1600B125E6 /* Hero */; };
 		AA7180AA126DED1700B125E6 /* Shrink in Resources */ = {isa = PBXBuildFile; fileRef = AA718042126DED1700B125E6 /* Shrink */; };
-		AA7181AF126E36C300B125E6 /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA7181AE126E36C200B125E6 /* Enemy */; };
 		AA718210126F84E100B125E6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71820E126F84E100B125E6 /* Default.png */; };
 		AA718211126F84E100B125E6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71820F126F84E100B125E6 /* Default@2x.png */; };
 		AA71828D12704BEB00B125E6 /* gamePaused-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA71828B12704BEB00B125E6 /* gamePaused-hd.png */; };
@@ -576,6 +576,8 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MaturaApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaturaApp_Prefix.pch; sourceTree = "<group>"; };
+		AA0ECD811291A07000616FAA /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
+		AA0ECD821291A07000616FAA /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Hero; sourceTree = "<group>"; };
 		AA1BAD5E1236BC8A00F37390 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		AA1BAD5F1236BC8A00F37390 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		AA31319C1233DABE0098711E /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
@@ -625,9 +627,7 @@
 		AA71803A126DEBF900B125E6 /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BG; sourceTree = "<group>"; };
 		AA71803B126DEBF900B125E6 /* Buttons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Buttons; sourceTree = "<group>"; };
 		AA71803C126DEBFA00B125E6 /* Titles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Titles; sourceTree = "<group>"; };
-		AA718041126DED1600B125E6 /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Hero; sourceTree = "<group>"; };
 		AA718042126DED1700B125E6 /* Shrink */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shrink; sourceTree = "<group>"; };
-		AA7181AE126E36C200B125E6 /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
 		AA71820E126F84E100B125E6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		AA71820F126F84E100B125E6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		AA71828B12704BEB00B125E6 /* gamePaused-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamePaused-hd.png"; sourceTree = "<group>"; };
@@ -942,8 +942,8 @@
 		AA8CC1B9125BA17B008A851C /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				AA7181AE126E36C200B125E6 /* Enemy */,
-				AA718041126DED1600B125E6 /* Hero */,
+				AA0ECD811291A07000616FAA /* Enemy */,
+				AA0ECD821291A07000616FAA /* Hero */,
 				AA718042126DED1700B125E6 /* Shrink */,
 				AA3134511233E8110098711E /* blank.png */,
 				AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */,
@@ -1572,9 +1572,7 @@
 				AA71803D126DEBFA00B125E6 /* BG in Resources */,
 				AA71803E126DEBFA00B125E6 /* Buttons in Resources */,
 				AA71803F126DEBFA00B125E6 /* Titles in Resources */,
-				AA7180A9126DED1700B125E6 /* Hero in Resources */,
 				AA7180AA126DED1700B125E6 /* Shrink in Resources */,
-				AA7181AF126E36C300B125E6 /* Enemy in Resources */,
 				AA718210126F84E100B125E6 /* Default.png in Resources */,
 				AA718211126F84E100B125E6 /* Default@2x.png in Resources */,
 				AA71828D12704BEB00B125E6 /* gamePaused-hd.png in Resources */,
@@ -1597,6 +1595,8 @@
 				AAD589D4128BFFED00607376 /* world1level1.plist in Resources */,
 				AA9DDDA4128F1A02009C891C /* world0level2.plist in Resources */,
 				AA9DDDA5128F1A02009C891C /* world0level3.plist in Resources */,
+				AA0ECD831291A07000616FAA /* Enemy in Resources */,
+				AA0ECD841291A07000616FAA /* Hero in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -149,6 +149,8 @@
 		if (enemyMass > sphere.level) {
 			[GameData sharedData].wasGameWon = NO;
 			[self endGame];
+			//*****************
+			return;
 		} else {
 			if (sphere) {
 				int newSize;
@@ -165,6 +167,8 @@
 						if (sphere.level == sprite.level) {
 							[GameData sharedData].wasGameWon = NO;
 							[self endGame];
+							//*****************
+							return;
 						}
 						newSize = sphere.level-enemyMass;
 						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:newSize]];
@@ -412,13 +416,14 @@
 	//if ([GameData sharedData].isThereAHero) {
 	//	sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
 	//}
-	//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
-	[[GameData sharedData].enemyArray removeAllObjects];
 	//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
 	[self unschedule:@selector(nextFrame:)];
 	[smgr removeCollisionCallbackBetweenType:kHeroCollisionType otherType:kEnemyCollisionType];
 	[smgr removeCollisionCallbackBetweenType:kEnemyCollisionType otherType:kEnemyCollisionType];
 	[smgr stop];
+	//***************
+	//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
+	[[GameData sharedData].enemyArray removeAllObjects];
 	//ZU GAMEOVER LAYER
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOver scene]]];
 }
