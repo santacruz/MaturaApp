@@ -231,8 +231,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -314,6 +312,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -331,7 +331,7 @@
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>AAD948681291D74200977894</string>
+										<string>AAD948C31291D80900977894</string>
 										<key>history</key>
 										<array>
 											<string>AAFAC4C51291CFF400E7388E</string>
@@ -343,7 +343,7 @@
 											<string>AAD948551291D4CB00977894</string>
 											<string>AAD948561291D4CB00977894</string>
 											<string>AAD948571291D4CB00977894</string>
-											<string>AAD9485A1291D73300977894</string>
+											<string>AAD948AC1291D7B000977894</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -355,14 +355,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1023, 408}}</string>
+								<string>{{0, 0}, {1023, 401}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 141 1280 637 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>408pt</string>
+							<string>401pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -375,14 +375,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 413}, {1023, 183}}</string>
+								<string>{{0, 406}, {1023, 190}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 141 1280 637 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>183pt</string>
+							<string>190pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -401,9 +401,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>AAD948691291D74200977894</string>
+				<string>AAD948C41291D80900977894</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>AAD9486A1291D74200977894</string>
+				<string>AAD948C51291D80900977894</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -541,6 +541,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>AAD948CE1291D80900977894</string>
+		<string>AAD948CF1291D80900977894</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>AA312FA81233D8960098711E</string>
 		<string>/Users/zeno/Dropbox/Matura/MaturaApp/MaturaApp.xcodeproj</string>
 	</array>
@@ -622,7 +626,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>AA312FA81233D8960098711E</string>
-				<string>AAD9486B1291D74200977894</string>
+				<string>AAD948C61291D80900977894</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -744,13 +748,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>AAD947FC1291D36100977894</string>
+				<string>AAD948C71291D80900977894</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>AAD947FD1291D36100977894</string>
-				<string>AAD947FE1291D36100977894</string>
-				<string>AAD947FF1291D36100977894</string>
-				<string>AAD948001291D36100977894</string>
-				<string>AAD948011291D36100977894</string>
+				<string>AAD948C81291D80900977894</string>
+				<string>AAD948C91291D80900977894</string>
+				<string>AAD948CA1291D80900977894</string>
+				<string>AAD948CB1291D80900977894</string>
+				<string>AAD948CC1291D80900977894</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -877,8 +881,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -914,7 +916,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>AAD948591291D4CB00977894</string>
+				<string>AAD948CD1291D80900977894</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -924,7 +926,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
