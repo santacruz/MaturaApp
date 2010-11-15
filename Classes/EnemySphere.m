@@ -39,7 +39,7 @@ static float prevDistance = 500;
 			case kNormalEnemy:
 				
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"enemy/Enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
@@ -57,7 +57,7 @@ static float prevDistance = 500;
 
 			default:
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"enemy/Enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
@@ -93,7 +93,7 @@ static float prevDistance = 500;
 	//**********************
 	if ([GameData sharedData].isPlaying) {
 		prevDistance = 500;
-		if ([[GameData sharedData].enemyArray count] > 1) {
+		if ([GameData sharedData].enemyCount > 1) {
 			for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
 				if (enemy != self) {
 					if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {

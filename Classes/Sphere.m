@@ -32,7 +32,7 @@
 		//FÜGE SPRITE HINZU
 		cpShape *ball = [mgr addCircleAt:ccp(0,0) mass:gewicht radius:radius];
 		ball->collision_type = kHeroCollisionType;
-		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"hero/hero%i.png",size]];
+		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Hero/hero%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
 		[sprite setIgnoreRotation:YES];
 		[self addChild:sprite];

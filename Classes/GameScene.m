@@ -143,53 +143,44 @@
 {
 	CP_ARBITER_GET_SHAPES(arb,a,b);
 	if (moment == COLLISION_BEGIN) {
-		NSLog(@"Collision detected!");
 		cpCCSprite *sprite = (cpCCSprite*)b->data;
 		int enemyMass = sprite.level;		
 		if (enemyMass > sphere.level) {
-			[GameData sharedData].wasGameWon = NO;
-			[self endGame];
-			//*****************
+			//[GameData sharedData].wasGameWon = NO;
+			//[self endGame];
+			//return;
+			[GameData sharedData].enemyCount = 0;
 			return;
 		} else {
-			if (sphere) {
-				int newSize;
-				switch (sprite.enemyKind) {
-					case kNormalEnemy:
-						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
-						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
-						[GameData sharedData].isThereAHero = NO;
-						[self removeChild:sphere cleanup:YES];
-						[smgr scheduleToRemoveAndFreeShape:a];
-						a->data = nil;
-						break;
-					case kShrinkEnemy:
-						if (sphere.level == sprite.level) {
-							[GameData sharedData].wasGameWon = NO;
-							[self endGame];
-							//*****************
-							return;
-						}
-						newSize = sphere.level-enemyMass;
-						[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:newSize]];
-						[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
-						[GameData sharedData].isThereAHero = NO;
-						[self removeChild:sphere cleanup:YES];
-						[smgr scheduleToRemoveAndFreeShape:a];
-						break;
-					default:
-						break;
-				}
+			switch (sprite.enemyKind) {
+				case kShrinkEnemy:
+					if (sphere.level == sprite.level) {
+						//[GameData sharedData].wasGameWon = NO;
+						//[self endGame];
+						//return;
+						[GameData sharedData].enemyCount = 0;
+						return;
+					}
+					[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level-enemyMass]];
+					[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
+					break;
+				default:
+					[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
+					[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
+					break;
 			}
-			if (sprite)
-			{	
-				//Sprite.parent vom enemyArray entfernen
+			if (sphere) {
+				[GameData sharedData].isThereAHero = NO;
+				[self removeChild:sphere cleanup:YES];
+				[smgr scheduleToRemoveAndFreeShape:a];
+				a->data = nil;
+			}
+		
+			if (sprite) {	
 				[[GameData sharedData].enemyArray removeObject:sprite.parent];
 				[self removeChild:sprite.parent cleanup:YES];
 				[smgr scheduleToRemoveAndFreeShape:b];
 				b->data = nil;
-				//*****************
-				//[GameData sharedData].enemyCount -= 1;
 			}
 		}
     }	
@@ -198,58 +189,43 @@
 {
 	CP_ARBITER_GET_SHAPES(arb,a,b);
 	if (moment == COLLISION_BEGIN) {
+		cpCCSprite *spriteA = (cpCCSprite*)a->data;
+		cpCCSprite *spriteB = (cpCCSprite*)b->data;
+		int aSize = spriteA.level;
+		int bSize = spriteB.level;
+		int newKind = spriteA.enemyKind;
+		CGPoint newPos = spriteA.position;
+		int newSize = aSize	+ bSize;
+		if (aSize < bSize) {
+			newKind = spriteB.enemyKind;
+			newPos = spriteB.position;
+		}
 		
-		NSLog(@"Collision detected!");
-		cpCCSprite *sprite = (cpCCSprite*)a->data;
-		cpCCSprite *sprite2 = (cpCCSprite*)b->data;
-		int aSize = sprite.level;
-		int bSize = sprite2.level;
-		int newEnemySize = aSize + bSize;
-		int newKind = kNormalEnemy;
-		CGPoint newEnemyPosition = ccp(0,0);
-		
-		if (aSize > bSize) {
-			newKind = sprite.enemyKind;
-			newEnemyPosition = sprite.position;
-			if (sprite.enemyKind == kShrinkEnemy && sprite2.enemyKind == kShrinkEnemy) {
-				newEnemySize = aSize+bSize; 
-			} else if (sprite2.enemyKind == kShrinkEnemy) {
-				newEnemySize = aSize-bSize;
+		if (spriteA.enemyKind == kShrinkEnemy && spriteB.enemyKind != kShrinkEnemy) {
+			if (aSize < bSize) {
+				newSize = bSize - aSize;
 			}
-		} else if (bSize > aSize) {
-			newKind = sprite2.enemyKind;
-			newEnemyPosition = sprite2.position;
-			if (sprite.enemyKind == kShrinkEnemy && sprite2.enemyKind == kShrinkEnemy) {
-				newEnemySize = aSize+bSize; 
-			} else if (sprite.enemyKind == kShrinkEnemy) {
-				newEnemySize = bSize-aSize;
-			}
-		} else {
-			newEnemyPosition = ccpMidpoint(sprite.position, sprite2.position);
-			if ((sprite.enemyKind == kShrinkEnemy) || (sprite2.enemyKind == kShrinkEnemy)) {
-				newKind = kShrinkEnemy;
-				newEnemySize = 2*aSize;
+		} else if (spriteA.enemyKind != kShrinkEnemy && spriteB.enemyKind == kShrinkEnemy) {
+			if (aSize > bSize) {
+				newSize = aSize - bSize;
 			}
 		}
-				
-		[[GameData sharedData].enemyArray removeObject:sprite.parent];
-		[self removeChild:sprite.parent cleanup:YES];
+		
+		//FEINDE ENTFERNEN
+		[[GameData sharedData].enemyArray removeObject:spriteA.parent];
+		[self removeChild:spriteA.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:a];
 		a->data = nil;
-		[[GameData sharedData].enemyArray removeObject:sprite2.parent];
-		[self removeChild:sprite2.parent cleanup:YES];
+		[[GameData sharedData].enemyArray removeObject:spriteB.parent];
+		[self removeChild:spriteB.parent cleanup:YES];
 		[smgr scheduleToRemoveAndFreeShape:b];
 		b->data = nil;
 		
-		//****************************
-		[GameData sharedData].enemyCount -= 1;
-		
-		//LADE DATEN FÜR FEIND, DER KREIERT WERDEN SOLL, IN ARRAY
+		//DATEN FÜR NEUEN FEIND IN ARRAY
 		CCArray *enemyToBeSpawned = [[CCArray alloc] init];
-		//ARRAY MIT DATEN FÜLLEN:GRÖSSE, POSITION, GESCHWINDIGKEIT
 		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newKind]];
-		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newEnemySize]];
-		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newEnemyPosition]];
+		[enemyToBeSpawned addObject:[NSNumber numberWithInteger:newSize]];
+		[enemyToBeSpawned addObject:[NSValue valueWithCGPoint:newPos]];
 		[[GameData sharedData].enemySpawnBuffer addObject:enemyToBeSpawned];
 		[enemyToBeSpawned release];
 	}
@@ -271,19 +247,9 @@
 		[self addChild:sphere];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
-		//WENN EIN NEUER HELD GEMACHT WIRD, WURDE VORHER EINER ENTFERNT
+		//REDUZIERE ENEMYCOUNT		
 		[GameData sharedData].enemyCount -= 1;
-	} //else {
-		//WENN HELD DA, ROTATION ÄNDERN
-		//sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.5+prevHeroRotation*0.5;
-		//prevHeroRotation = sphere.sprite.rotation; 
-	//}
-	
-	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN 
-	if ([GameData sharedData].enemyCount == 0) {
-		[GameData sharedData].wasGameWon = YES;
-		[self endGame];
-	}
+	} 
 	
 	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
@@ -295,16 +261,15 @@
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
-				
-		//ENEMYCOUNT VON DER VORHERIGEN KOLLISION ERST HIER REDUZIEREN
-		//****************************
-		//[GameData sharedData].enemyCount -= 2;
+		//REDUZIERE ENEMYCOUNT		
+		[GameData sharedData].enemyCount -= 1;
 	}
 	
-	//ARGUMENT DER FEINDE ÄNDERN UND FEINDE BESCHLEUNIGEN
-	//for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
-	//	enemy.sprite.rotation = -1*ccpToAngle(enemy.sprite.shape->body->v)*180/M_PI-90;
-	//}
+	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN 
+	if ([GameData sharedData].enemyCount == 0) {
+		[GameData sharedData].wasGameWon = YES;
+		[self endGame];
+	}
 }
 
 
@@ -314,11 +279,10 @@
 		
 	float accelX = (float) (acceleration.x -[UserData sharedData].accelCorrectionX) * kFilterFactor + (1- kFilterFactor)*prevX;
 	float accelY = (float) (acceleration.y -[UserData sharedData].accelCorrectionY) * kFilterFactor + (1- kFilterFactor)*prevY;
-	//float accelZ = (float) acceleration.z; //* kFilterFactor + (1- kFilterFactor)*prevZ;
 	
 	prevX = accelX;
 	prevY = accelY;
-	//prevZ = accelZ;
+
 	if (accelX > 0) {
 		accelX = 1/(1+exp(-kAccSteilheit*(accelX-kAccInflektion)));
 	} else {
@@ -372,30 +336,18 @@
 -(void)backToMenu:(CCMenuItem *) menuItem {
 	if ([GameData sharedData].isGamePaused) {
 		NSLog(@"Ending Game");
-		//if ([GameData sharedData].isThereAHero) {
-		//	sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
-		//}
+		[GameData sharedData].isPlaying = NO;
 		//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
 		[[GameData sharedData].enemyArray removeAllObjects];
 		//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
 		[self unschedule:@selector(nextFrame:)];
+		[smgr stop];
 		[smgr removeCollisionCallbackBetweenType:kHeroCollisionType otherType:kEnemyCollisionType];
 		[smgr removeCollisionCallbackBetweenType:kEnemyCollisionType otherType:kEnemyCollisionType];
-		[smgr stop];
 		//ZU HELLOWORLD LAYER
 		[[CCDirector sharedDirector] replaceScene:
 		 [CCTransitionFade transitionWithDuration:0.5f scene:[HelloWorld scene]]];
 	}
-}
-
--(void) onEnter
-{
-	[super onEnter];
-	/*PASSIERT, WENN DER COUNTDOWN FERTIG IST
-	 !!!
-	 FALLS ES SO BLEIBT, METHODE onEnter ENTFERNEN
-	 !!!
-	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];*/
 }
 
 -(void) startGame {
@@ -413,19 +365,18 @@
 {
 	NSLog(@"Ending Game");
 	[GameData sharedData].isPlaying = NO;
-	//if ([GameData sharedData].isThereAHero) {
-	//	sphere.sprite.rotation = -1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90;
-	//}
 	//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
 	[self unschedule:@selector(nextFrame:)];
+	[smgr stop];
 	[smgr removeCollisionCallbackBetweenType:kHeroCollisionType otherType:kEnemyCollisionType];
 	[smgr removeCollisionCallbackBetweenType:kEnemyCollisionType otherType:kEnemyCollisionType];
-	[smgr stop];
 	//***************
 	//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
 	[[GameData sharedData].enemyArray removeAllObjects];
 	//ZU GAMEOVER LAYER
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOver scene]]];
+	//***************
+	[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
 }
 
 

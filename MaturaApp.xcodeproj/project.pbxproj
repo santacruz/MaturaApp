@@ -13,8 +13,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
-		AA0ECD831291A07000616FAA /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA0ECD811291A07000616FAA /* Enemy */; };
-		AA0ECD841291A07000616FAA /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = AA0ECD821291A07000616FAA /* Hero */; };
+		AA0ECD901291C30200616FAA /* Hero in Resources */ = {isa = PBXBuildFile; fileRef = AA0ECD8E1291C30200616FAA /* Hero */; };
+		AA0ECDFA1291C3E900616FAA /* Enemy in Resources */ = {isa = PBXBuildFile; fileRef = AA0ECD951291C3E900616FAA /* Enemy */; };
 		AA1BAD601236BC8A00F37390 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1BAD5F1236BC8A00F37390 /* GameData.m */; };
 		AA31319E1233DABE0098711E /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31319D1233DABE0098711E /* HelloWorldScene.m */; };
 		AA3131A01233DB440098711E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA31319F1233DB440098711E /* AudioToolbox.framework */; };
@@ -576,8 +576,8 @@
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MaturaApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaturaApp_Prefix.pch; sourceTree = "<group>"; };
-		AA0ECD811291A07000616FAA /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
-		AA0ECD821291A07000616FAA /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Hero; sourceTree = "<group>"; };
+		AA0ECD8E1291C30200616FAA /* Hero */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Hero; sourceTree = "<group>"; };
+		AA0ECD951291C3E900616FAA /* Enemy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Enemy; sourceTree = "<group>"; };
 		AA1BAD5E1236BC8A00F37390 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		AA1BAD5F1236BC8A00F37390 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		AA31319C1233DABE0098711E /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldScene.h; sourceTree = "<group>"; };
@@ -942,8 +942,8 @@
 		AA8CC1B9125BA17B008A851C /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				AA0ECD811291A07000616FAA /* Enemy */,
-				AA0ECD821291A07000616FAA /* Hero */,
+				AA0ECD951291C3E900616FAA /* Enemy */,
+				AA0ECD8E1291C30200616FAA /* Hero */,
 				AA718042126DED1700B125E6 /* Shrink */,
 				AA3134511233E8110098711E /* blank.png */,
 				AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */,
@@ -1595,8 +1595,8 @@
 				AAD589D4128BFFED00607376 /* world1level1.plist in Resources */,
 				AA9DDDA4128F1A02009C891C /* world0level2.plist in Resources */,
 				AA9DDDA5128F1A02009C891C /* world0level3.plist in Resources */,
-				AA0ECD831291A07000616FAA /* Enemy in Resources */,
-				AA0ECD841291A07000616FAA /* Hero in Resources */,
+				AA0ECD901291C30200616FAA /* Hero in Resources */,
+				AA0ECDFA1291C3E900616FAA /* Enemy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
