@@ -44,7 +44,7 @@ static GameData *sharedData = NULL;
 	isGamePaused = NO;
 	isCountdownFinished = NO;
 	isPlaying = NO;
-	wasGameWon = NO;
+	wasGameWon = YES;
 	[newHero removeAllObjects];
 	[enemySpawnBuffer removeAllObjects];
 	[enemyArray removeAllObjects];

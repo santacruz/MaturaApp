@@ -146,18 +146,14 @@
 		cpCCSprite *sprite = (cpCCSprite*)b->data;
 		int enemyMass = sprite.level;		
 		if (enemyMass > sphere.level) {
-			//[GameData sharedData].wasGameWon = NO;
-			//[self endGame];
-			//return;
+			[GameData sharedData].wasGameWon = NO;
 			[GameData sharedData].enemyCount = 0;
 			return;
 		} else {
 			switch (sprite.enemyKind) {
 				case kShrinkEnemy:
 					if (sphere.level == sprite.level) {
-						//[GameData sharedData].wasGameWon = NO;
-						//[self endGame];
-						//return;
+						[GameData sharedData].wasGameWon = NO;
 						[GameData sharedData].enemyCount = 0;
 						return;
 					}
@@ -267,7 +263,6 @@
 	
 	//WENN KEINE FEINDE MEHR, SPIEL BEENDEN 
 	if ([GameData sharedData].enemyCount == 0) {
-		[GameData sharedData].wasGameWon = YES;
 		[self endGame];
 	}
 }
