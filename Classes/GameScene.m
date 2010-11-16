@@ -5,6 +5,7 @@
 
 
 #import "GameScene.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2 
@@ -146,6 +147,7 @@
 		cpCCSprite *sprite = (cpCCSprite*)b->data;
 		int enemyMass = sprite.level;		
 		if (enemyMass > sphere.level) {
+			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 			[GameData sharedData].wasGameWon = NO;
 			[GameData sharedData].enemyCount = 0;
 			return;
@@ -153,6 +155,7 @@
 			switch (sprite.enemyKind) {
 				case kShrinkEnemy:
 					if (sphere.level == sprite.level) {
+						AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 						[GameData sharedData].wasGameWon = NO;
 						[GameData sharedData].enemyCount = 0;
 						return;
