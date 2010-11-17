@@ -43,6 +43,7 @@ static float prevDistance = 500;
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
+				sprite.isShrinkKind = NO;
 				[sprite setIgnoreRotation:YES];
 				break;
 				
@@ -52,6 +53,7 @@ static float prevDistance = 500;
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
+				sprite.isShrinkKind = YES;
 				[sprite setIgnoreRotation:YES];
 				break;
 
@@ -61,6 +63,7 @@ static float prevDistance = 500;
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
+				sprite.isShrinkKind = NO;
 				[sprite setIgnoreRotation:YES];
 				break;
 		}

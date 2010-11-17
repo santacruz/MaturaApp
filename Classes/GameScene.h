@@ -36,5 +36,6 @@
 - (void) endGame;
 - (void) pause;
 - (void) resume:(CCMenuItem *) menuItem;
+- (void) restart:(CCMenuItem *) menuItem;
 - (void) backToMenu:(CCMenuItem *) menuItem;
 @end

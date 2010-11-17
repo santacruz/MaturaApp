@@ -24,6 +24,7 @@
 /* **********************************************************************
  SELBST HINZUGEFÜGT:*/
 @property (readwrite,assign) int level, enemyKind; 
+@property (readwrite,assign) BOOL isShrinkKind;
 /**********************************************************************/
 
 

@@ -55,9 +55,9 @@
 	<key>enemy5</key>
 	<dict>
 		<key>kind</key>
-		<string>0</string>
+		<string>1</string>
 		<key>level</key>
-		<string>4</string>
+		<string>1</string>
 		<key>x</key>
 		<string>290</string>
 		<key>y</key>

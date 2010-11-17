@@ -64,9 +64,11 @@
 		pausedScreen.position = ccp(160,240);
 		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"resume" fntFile:@"diavlo.fnt"];
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(resume:)];
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"diavlo.fnt"];
-		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(backToMenu:)];
-		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
+		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"restart" fntFile:@"diavlo.fnt"];
+		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(restart:)];
+		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"diavlo.fnt"];
+		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(backToMenu:)];
+		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,menuItem3,nil];
 		myMenu.position = ccp(160, 200);
 		[myMenu alignItemsVertically];
 		[pausedScreen addChild:myMenu];
@@ -152,8 +154,7 @@
 			[GameData sharedData].enemyCount = 0;
 			return;
 		} else {
-			switch (sprite.enemyKind) {
-				case kShrinkEnemy:
+			if (sprite.isShrinkKind) {
 					if (sphere.level == sprite.level) {
 						AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 						[GameData sharedData].wasGameWon = NO;
@@ -162,11 +163,9 @@
 					}
 					[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level-enemyMass]];
 					[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
-					break;
-				default:
+			} else {
 					[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
 					[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
-					break;
 			}
 			if (sphere) {
 				[GameData sharedData].isThereAHero = NO;
@@ -200,11 +199,11 @@
 			newPos = spriteB.position;
 		}
 		
-		if (spriteA.enemyKind == kShrinkEnemy && spriteB.enemyKind != kShrinkEnemy) {
+		if (spriteA.isShrinkKind && spriteB.isShrinkKind) {
 			if (aSize < bSize) {
 				newSize = bSize - aSize;
 			}
-		} else if (spriteA.enemyKind != kShrinkEnemy && spriteB.enemyKind == kShrinkEnemy) {
+		} else if (!spriteA.isShrinkKind && spriteB.isShrinkKind) {
 			if (aSize > bSize) {
 				newSize = aSize - bSize;
 			}
@@ -328,6 +327,24 @@
 		pausedScreen.visible = NO;	
 		[smgr start];
 		[GameData sharedData].isGamePaused = NO;
+	}
+}
+
+-(void)restart:(CCMenuItem *)menuItem {
+	if ([GameData sharedData].isGamePaused) {
+		NSLog(@"Ending Game");
+		[GameData sharedData].isPlaying = NO;
+		//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
+		[[GameData sharedData].enemyArray removeAllObjects];
+		//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
+		[self unschedule:@selector(nextFrame:)];
+		[smgr stop];
+		[smgr removeCollisionCallbackBetweenType:kHeroCollisionType otherType:kEnemyCollisionType];
+		[smgr removeCollisionCallbackBetweenType:kEnemyCollisionType otherType:kEnemyCollisionType];
+		//INITIALISIERE GLEICHES LEVEL
+		[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];
+		[[CCDirector sharedDirector] replaceScene:
+		 [CCTransitionFade transitionWithDuration:0.5f scene:[GameScene scene]]];
 	}
 }
 

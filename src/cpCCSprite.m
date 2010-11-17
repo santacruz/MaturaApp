@@ -18,7 +18,7 @@
 
 @implementation cpCCSprite
 
-@synthesize level, enemyKind;
+@synthesize level, enemyKind, isShrinkKind;
 
 + (id) spriteWithShape:(cpShape*)shape file:(NSString*) filename
 {
