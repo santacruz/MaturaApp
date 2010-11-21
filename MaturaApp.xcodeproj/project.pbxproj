@@ -57,8 +57,8 @@
 		AA372316129897D300E1A4FA /* pause_title.png in Resources */ = {isa = PBXBuildFile; fileRef = AA372314129897D300E1A4FA /* pause_title.png */; };
 		AA372319129898BA00E1A4FA /* halfBlack-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA372317129898BA00E1A4FA /* halfBlack-hd.png */; };
 		AA37231A129898BA00E1A4FA /* halfBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = AA372318129898BA00E1A4FA /* halfBlack.png */; };
-		AA37231F1298A07D00E1A4FA /* Buttons in Resources */ = {isa = PBXBuildFile; fileRef = AA37231D1298A07D00E1A4FA /* Buttons */; };
-		AA3723201298A07D00E1A4FA /* LevelButtons in Resources */ = {isa = PBXBuildFile; fileRef = AA37231E1298A07D00E1A4FA /* LevelButtons */; };
+		AA37239F1299606000E1A4FA /* LevelButtons in Resources */ = {isa = PBXBuildFile; fileRef = AA37239E1299606000E1A4FA /* LevelButtons */; };
+		AA3723A11299606600E1A4FA /* Buttons in Resources */ = {isa = PBXBuildFile; fileRef = AA3723A01299606600E1A4FA /* Buttons */; };
 		AA7178A31262FF9F00B125E6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7178A21262FF9F00B125E6 /* Icon@2x.png */; };
 		AA7179541265D21000B125E6 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7179531265D21000B125E6 /* GameOver.m */; };
 		AA7180AA126DED1700B125E6 /* Shrink in Resources */ = {isa = PBXBuildFile; fileRef = AA718042126DED1700B125E6 /* Shrink */; };
@@ -636,8 +636,8 @@
 		AA372314129897D300E1A4FA /* pause_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause_title.png; sourceTree = "<group>"; };
 		AA372317129898BA00E1A4FA /* halfBlack-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "halfBlack-hd.png"; sourceTree = "<group>"; };
 		AA372318129898BA00E1A4FA /* halfBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halfBlack.png; sourceTree = "<group>"; };
-		AA37231D1298A07D00E1A4FA /* Buttons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Buttons; sourceTree = "<group>"; };
-		AA37231E1298A07D00E1A4FA /* LevelButtons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LevelButtons; sourceTree = "<group>"; };
+		AA37239E1299606000E1A4FA /* LevelButtons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LevelButtons; sourceTree = "<group>"; };
+		AA3723A01299606600E1A4FA /* Buttons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Buttons; sourceTree = "<group>"; };
 		AA7178A21262FF9F00B125E6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		AA7179521265D21000B125E6 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
 		AA7179531265D21000B125E6 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
@@ -894,8 +894,8 @@
 		AA8CBC8C1259F113008A851C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				AA37231D1298A07D00E1A4FA /* Buttons */,
-				AA37231E1298A07D00E1A4FA /* LevelButtons */,
+				AA3723A01299606600E1A4FA /* Buttons */,
+				AA37239E1299606000E1A4FA /* LevelButtons */,
 				AA3722FE1298929A00E1A4FA /* LargeSprites */,
 				AA37225012987C0500E1A4FA /* Titles */,
 				AACC053512982ED40042CF6B /* BG */,
@@ -1598,8 +1598,8 @@
 				AA372316129897D300E1A4FA /* pause_title.png in Resources */,
 				AA372319129898BA00E1A4FA /* halfBlack-hd.png in Resources */,
 				AA37231A129898BA00E1A4FA /* halfBlack.png in Resources */,
-				AA37231F1298A07D00E1A4FA /* Buttons in Resources */,
-				AA3723201298A07D00E1A4FA /* LevelButtons in Resources */,
+				AA37239F1299606000E1A4FA /* LevelButtons in Resources */,
+				AA3723A11299606600E1A4FA /* Buttons in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

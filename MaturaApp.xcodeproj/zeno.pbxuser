@@ -186,21 +186,21 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 311988856;
-			PBXWorkspaceStateSaveDate = 311988856;
+			PBXPerProjectTemplateStateSaveDate = 312041487;
+			PBXWorkspaceStateSaveDate = 312041487;
 		};
 		perUserProjectItems = {
 			AA3723251298A37900E1A4FA /* PBXTextBookmark */ = AA3723251298A37900E1A4FA /* PBXTextBookmark */;
-			AA3723261298A37900E1A4FA /* PBXBookmark */ = AA3723261298A37900E1A4FA /* PBXBookmark */;
-			AA3723281298A37900E1A4FA /* PBXBookmark */ = AA3723281298A37900E1A4FA /* PBXBookmark */;
 			AA37232A1298A37900E1A4FA /* PBXTextBookmark */ = AA37232A1298A37900E1A4FA /* PBXTextBookmark */;
 			AA37232B1298A37900E1A4FA /* PBXTextBookmark */ = AA37232B1298A37900E1A4FA /* PBXTextBookmark */;
 			AA37232C1298A37900E1A4FA /* PBXTextBookmark */ = AA37232C1298A37900E1A4FA /* PBXTextBookmark */;
 			AA37232D1298A37900E1A4FA /* PBXTextBookmark */ = AA37232D1298A37900E1A4FA /* PBXTextBookmark */;
 			AA37232E1298A37900E1A4FA /* PBXTextBookmark */ = AA37232E1298A37900E1A4FA /* PBXTextBookmark */;
-			AA37232F1298A37900E1A4FA /* PBXTextBookmark */ = AA37232F1298A37900E1A4FA /* PBXTextBookmark */;
-			AA3723301298A37900E1A4FA /* PBXTextBookmark */ = AA3723301298A37900E1A4FA /* PBXTextBookmark */;
-			AA3723311298A37900E1A4FA /* PBXTextBookmark */ = AA3723311298A37900E1A4FA /* PBXTextBookmark */;
+			AA3723A41299610A00E1A4FA /* PBXTextBookmark */ = AA3723A41299610A00E1A4FA /* PBXTextBookmark */;
+			AA3723A51299610A00E1A4FA /* PBXTextBookmark */ = AA3723A51299610A00E1A4FA /* PBXTextBookmark */;
+			AA3723A61299610A00E1A4FA /* PBXBookmark */ = AA3723A61299610A00E1A4FA /* PBXBookmark */;
+			AA3723A71299610A00E1A4FA /* PBXBookmark */ = AA3723A71299610A00E1A4FA /* PBXBookmark */;
+			AA3723A81299610A00E1A4FA /* PBXBookmark */ = AA3723A81299610A00E1A4FA /* PBXBookmark */;
 		};
 		sourceControlManager = AA312FAA1233D8960098711E /* Source Control */;
 		userBuildSettings = {
@@ -500,22 +500,16 @@
 		vrLen = 795;
 		vrLoc = 0;
 	};
-	AA3723261298A37900E1A4FA /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = AA3723271298A37900E1A4FA /* backbutton-hd.png */;
-	};
 	AA3723271298A37900E1A4FA /* backbutton-hd.png */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = image.png;
 		name = "backbutton-hd.png";
 		path = "/Users/zeno/Dropbox/Matura/MaturaApp/Resources/Buttons/backbutton-hd.png";
 		sourceTree = "<absolute>";
 	};
-	AA3723281298A37900E1A4FA /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = AA3723291298A37900E1A4FA /* backbutton.png */;
-	};
 	AA3723291298A37900E1A4FA /* backbutton.png */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = image.png;
 		name = backbutton.png;
 		path = /Users/zeno/Dropbox/Matura/MaturaApp/Resources/Buttons/backbutton.png;
 		sourceTree = "<absolute>";
@@ -570,7 +564,7 @@
 		vrLen = 898;
 		vrLoc = 0;
 	};
-	AA37232F1298A37900E1A4FA /* PBXTextBookmark */ = {
+	AA3723A41299610A00E1A4FA /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = AAA4998F128582DA001DC13F /* LevelChoice.h */;
 		name = "LevelChoice.h: 5";
@@ -580,25 +574,33 @@
 		vrLen = 411;
 		vrLoc = 0;
 	};
-	AA3723301298A37900E1A4FA /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AAA49990128582DA001DC13F /* LevelChoice.m */;
-		name = "LevelChoice.m: 4";
-		rLen = 0;
-		rLoc = 58;
-		rType = 0;
-		vrLen = 717;
-		vrLoc = 0;
-	};
-	AA3723311298A37900E1A4FA /* PBXTextBookmark */ = {
+	AA3723A51299610A00E1A4FA /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = AAA49990128582DA001DC13F /* LevelChoice.m */;
 		name = "LevelChoice.m: 5";
 		rLen = 0;
 		rLoc = 58;
 		rType = 0;
-		vrLen = 762;
-		vrLoc = 0;
+		vrLen = 1522;
+		vrLoc = 387;
+	};
+	AA3723A61299610A00E1A4FA /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = AA3723291298A37900E1A4FA /* backbutton.png */;
+	};
+	AA3723A71299610A00E1A4FA /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = AA3723271298A37900E1A4FA /* backbutton-hd.png */;
+	};
+	AA3723A81299610A00E1A4FA /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = AA3723A91299610A00E1A4FA /* backbutton-hd.png */;
+	};
+	AA3723A91299610A00E1A4FA /* backbutton-hd.png */ = {
+		isa = PBXFileReference;
+		name = "backbutton-hd.png";
+		path = "/Users/zeno/Dropbox/Matura/MaturaApp/Resources/Buttons/backbutton-hd.png";
+		sourceTree = "<absolute>";
 	};
 	AA7179521265D21000B125E6 /* GameOver.h */ = {
 		uiCtxt = {
@@ -701,16 +703,16 @@
 	};
 	AAA4998F128582DA001DC13F /* LevelChoice.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {855, 459}}";
+			sepNavIntBoundsRect = "{{0, 0}, {855, 482}}";
 			sepNavSelRange = "{58, 0}";
 			sepNavVisRange = "{0, 411}";
 		};
 	};
 	AAA49990128582DA001DC13F /* LevelChoice.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {922, 1248}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1293, 1079}}";
 			sepNavSelRange = "{58, 0}";
-			sepNavVisRange = "{0, 762}";
+			sepNavVisRange = "{387, 1522}";
 		};
 	};
 	AAB4B744128A812D00471976 /* UserData.h */ = {
