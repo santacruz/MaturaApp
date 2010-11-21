@@ -1,10 +1,8 @@
 //
 //  LevelChoice.h
 //  MaturaApp
-//
-//  Created by Zeno Koller on 06.11.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  © Zeno Koller 2010
+
 
 #import "cocos2d.h"
 #import "WorldChoice.h"

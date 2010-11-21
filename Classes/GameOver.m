@@ -56,19 +56,20 @@
 
 			[[UserData sharedData] saveAllDataToUserDefaults];
 			
-			CCLabelBMFont* title = [CCLabelBMFont labelWithString:@"you won!" fntFile:@"diavlo.fnt"];
-			title.position = ccp(160,320);
-			[self addChild:title];
+			//TITLE
+			CCSprite *title = [CCSprite spriteWithFile:@"Titles/youwon_title.png"];
+			title.position = ccp(160,420);
+			[self addChild:title z:200];
 			
 			//MENU
-			CCLabelBMFont* label0 = [CCLabelBMFont labelWithString:@"next" fntFile:@"diavlo.fnt"];
+			CCLabelBMFont* label0 = [CCLabelBMFont labelWithString:@"next" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem0= [CCMenuItemLabel itemWithLabel:label0 target:self selector:@selector(next:)];
 
 			
-			CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"retry" fntFile:@"diavlo.fnt"];
+			CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"retry" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(retry:)];
 			
-			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"diavlo.fnt"];
+			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
 			
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItem0,menuItem1,menuItem2,nil];
@@ -78,15 +79,16 @@
 			
 			
 		} else {
-			CCLabelBMFont* title = [CCLabelBMFont labelWithString:@"you lost!" fntFile:@"diavlo.fnt"];
-			title.position = ccp(160,320);
-			[self addChild:title];
+			//TITLE
+			CCSprite *title = [CCSprite spriteWithFile:@"Titles/lost_title.png"];
+			title.position = ccp(160,420);
+			[self addChild:title z:200];
 			
 			//MENU
-			CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"retry" fntFile:@"diavlo.fnt"];
+			CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"retry" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(retry:)];
 			
-			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"diavlo.fnt"];
+			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
 			
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];

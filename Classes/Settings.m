@@ -31,20 +31,33 @@
 		[self addChild:title];
 		
 		//SETTINGS MENU
-		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"Calibrate" fntFile:@"diavlo.fnt"];
-		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(calibrate:)];
+		CCLabelBMFont* labelCalibrate = [CCLabelBMFont labelWithString:@"Calibrate" fntFile:@"volter_small.fnt"];
+		CCMenuItemLabel *menuItemCalibrate= [CCMenuItemLabel itemWithLabel:labelCalibrate target:self selector:@selector(calibrate:)];
 		
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"Reset Calibration" fntFile:@"diavlo.fnt"];
-		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(resetCalibration:)];
+		CCLabelBMFont* labelResetCalibration = [CCLabelBMFont labelWithString:@"Reset Calibration" fntFile:@"volter_small.fnt"];
+		CCMenuItemLabel *menuItemResetCalibration = [CCMenuItemLabel itemWithLabel:labelResetCalibration target:self selector:@selector(resetCalibration:)];
 		
-		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
-		myMenu.position = ccp(160, 220);
-		[myMenu alignItemsVertically];
-		[self addChild:myMenu];
-		
+		if ([UserData sharedData].isVibrationDevice) {
+			CCLabelBMFont *labelToggle1 = [CCLabelBMFont labelWithString:@"Disable Vibration" fntFile:@"volter_small.fnt"];
+			CCMenuItemLabel *menuItemToggle1 = [CCMenuItemLabel itemWithLabel:labelToggle1 target:nil selector:nil];
+			CCLabelBMFont *labelToggle2 = [CCLabelBMFont labelWithString:@"Enable Vibration" fntFile:@"volter_small.fnt"];
+			CCMenuItemLabel *menuItemToggle2 = [CCMenuItemLabel itemWithLabel:labelToggle2 target:nil selector:nil];
+			CCMenuItemToggle *menuItemToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(toggleVibration:) items:menuItemToggle1,menuItemToggle2,nil];
+						
+			CCMenu * myMenu = [CCMenu menuWithItems:menuItemCalibrate,menuItemResetCalibration,menuItemToggle,nil];
+			myMenu.position = ccp(160, 220);
+			[myMenu alignItemsVertically];
+			[self addChild:myMenu];
+		} else {
+			CCMenu * myMenu = [CCMenu menuWithItems:menuItemCalibrate,menuItemResetCalibration,nil];
+			myMenu.position = ccp(160, 220);
+			[myMenu alignItemsVertically];
+			[self addChild:myMenu];
+		}
+
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
-		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton-pressed.png"];
+		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSpritePressed target:self selector:@selector(back:)];
 		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
 		backMenu.position = ccp(160, 50);
@@ -80,6 +93,15 @@
 	[UserData sharedData].accelCorrectionY = 0;
 	//******************
 	//HIER NOCH SYNCHRONISIEREN!!!!!
+}
+
+-(void)toggleVibration:(CCMenuItem *)menuItem {
+	if ([UserData sharedData].isVibrationEnabled) {
+		[UserData sharedData].isVibrationEnabled = NO;
+	} else {
+		[UserData sharedData].isVibrationEnabled = YES;
+	}
+	[[UserData sharedData] saveAllDataToUserDefaults];
 }
 
 -(void)back:(CCMenuItem *)menuItem {

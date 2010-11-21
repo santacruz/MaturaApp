@@ -28,12 +28,12 @@
 		bg.position = ccp(160,240);
 		[self addChild:bg];
 		//TITLE
-		CCSprite *title = [CCSprite spriteWithFile:@"Titles/level_title.png"];
+		CCSprite *title = [CCSprite spriteWithFile:@"Titles/worlds_title.png"];
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
 		//SCROLLVIEW
-		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",@"follow",@"fastfollow",@"evil",nil];
+		NSArray *worlds = [NSArray arrayWithObjects:@"enemy",@"shrink",@"follow",@"fast",@"evil",nil];
 		int panelCount = worlds.count;
 		
 		//zu diesem Array werden die einzelnen Bilder hinzugefügt
@@ -78,7 +78,7 @@
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
-		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton-pressed.png"];
+		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSpritePressed target:self selector:@selector(back:)];
 		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
 		backMenu.position = ccp(160, 50);

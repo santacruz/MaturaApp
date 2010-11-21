@@ -13,7 +13,7 @@ static UserData *sharedData = NULL;
 
 @implementation UserData
 
-@synthesize highestLevel, currentLevel, highestWorld, currentWorld, accelCorrectionX, accelCorrectionY;
+@synthesize highestLevel, currentLevel, highestWorld, currentWorld, accelCorrectionX, accelCorrectionY, isVibrationDevice, isVibrationEnabled;
 
 -(id)init {
 	if (self = [super init]) {
@@ -24,6 +24,12 @@ static UserData *sharedData = NULL;
 		currentWorld = 0;
 		accelCorrectionX = 0;
 		accelCorrectionY = 0;
+		if ([[UIDevice currentDevice].model isEqualToString:@"iPhone"]) {
+			isVibrationDevice = YES;
+		} else {
+			isVibrationDevice = NO;
+		}
+		isVibrationEnabled = YES;
 		//ERSTER APPSTART: USERDEFAULTS MIT PROPERTIES FÜLLEN
 		NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
 		if([defaults objectForKey:@"highestLevel"] == nil) {
@@ -44,6 +50,12 @@ static UserData *sharedData = NULL;
 		if ([defaults objectForKey:@"accelCorrectionY"] == nil) {
 			[defaults setValue:[NSNumber numberWithFloat:accelCorrectionY] forKey:@"accelCorrectionY"];
 		}
+		if ([defaults objectForKey:@"isVibrationDevice"] == nil) {
+			[defaults setValue:[NSNumber numberWithBool:isVibrationDevice] forKey:@"isVibrationDevice"];
+		}		
+		if ([defaults objectForKey:@"isVibrationEnabled"] == nil) {
+			[defaults setValue:[NSNumber numberWithFloat:isVibrationEnabled] forKey:@"isVibrationEnabled"];
+		}
 		//FÜR JEDEN WEITEREN APPSTART: PROPERTIES AUS NSUSERDEFAULTS LESEN
 		if (defaults) {
 			highestLevel = [[defaults objectForKey:@"highestLevel"] intValue];
@@ -52,6 +64,8 @@ static UserData *sharedData = NULL;
 			currentWorld = [[defaults objectForKey:@"currentWorld"] intValue];
 			accelCorrectionX = [[defaults objectForKey:@"accelCorrectionX"] intValue];
 			accelCorrectionY = [[defaults objectForKey:@"accelCorrectionY"] intValue];
+			isVibrationDevice = [[defaults objectForKey:@"isVibrationDevice"] boolValue];
+			isVibrationEnabled = [[defaults objectForKey:@"isVibrationEnabled"] boolValue];
 		}
 		
 	}
@@ -78,6 +92,8 @@ static UserData *sharedData = NULL;
 		[defaults setValue:[NSNumber numberWithInt:currentWorld] forKey:@"currentWorld"];
 		[defaults setValue:[NSNumber numberWithFloat:accelCorrectionX] forKey:@"accelCorrectionX"];
 		[defaults setValue:[NSNumber numberWithFloat:accelCorrectionY] forKey:@"accelCorrectionY"];
+		[defaults setValue:[NSNumber numberWithBool:isVibrationDevice] forKey:@"isVibrationDevice"];
+		[defaults setValue:[NSNumber numberWithBool:isVibrationEnabled] forKey:@"isVibrationEnabled"];
 		[defaults synchronize];
 	}
 	

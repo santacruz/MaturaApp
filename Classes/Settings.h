@@ -20,5 +20,6 @@
 -(void)calibrate:(CCMenuItem *) menuItem;
 -(void)resetCalibration:(CCMenuItem *) menuItem;
 -(void)back:(CCMenuItem *) menuItem;
+-(void)toggleVibration:(CCMenuItem *)menuItem;
 
 @end

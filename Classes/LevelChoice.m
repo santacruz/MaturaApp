@@ -1,10 +1,8 @@
 //
 //  LevelChoice.m
 //  MaturaApp
-//
-//  Created by Zeno Koller on 06.11.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//  © Zeno Koller 2010
+
 
 #import "LevelChoice.h"
 
@@ -30,7 +28,7 @@
 		bg.position = ccp(160,240);
 		[self addChild:bg];
 		//TITLE
-		CCSprite *title = [CCSprite spriteWithFile:@"Titles/level_title.png"];
+		CCSprite *title = [CCSprite spriteWithFile:@"Titles/levels_title.png"];
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
@@ -42,17 +40,6 @@
 			for (int k=0;k<3;k++) {
 				count += 1;
 				CCSprite *levelButton = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LevelButtons/level0%i.png", count]];
-				switch (world) {
-					case 0:
-						[levelButton setColor:ccc3(239, 233, 223)];
-						break;
-					case 1:
-						[levelButton setColor:ccc3(184, 28, 24)];
-						break;
-					default:
-						[levelButton setColor:ccc3(239, 233, 223)];
-						break;
-				}
 				CCMenuItemSprite *menuItemLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButton selectedSprite:levelButton target:self selector:@selector(selectedLevel:)]; 
 				menuItemLevelButton.position = ccp(k*80,0-i*80);
 				menuItemLevelButton.tag = count;
@@ -70,7 +57,7 @@
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
-		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton-pressed.png"];
+		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSpritePressed target:self selector:@selector(back:)];
 		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
 		backMenu.position = ccp(160, 50);

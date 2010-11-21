@@ -8,7 +8,6 @@
 #import "GameData.h"
 #import "WorldChoice.h"
 #import "GameScene.h"
-#import "Scores.h"
 #import "Settings.h"
 #import "About.h"
 #import "Help.h"
@@ -19,7 +18,6 @@
 
 +(id) scene;
 -(void)start:(CCMenuItem  *) menuItem;
--(void)scores:(CCMenuItem  *) menuItem;
 -(void)settings:(CCMenuItem  *) menuItem;
 -(void)about:(CCMenuItem  *) menuItem;
 -(void)help:(CCMenuItem  *) menuItem;

@@ -60,13 +60,17 @@
 		[self addChild:bg z:-1];
 		
 		//PAUSELAYER
-		pausedScreen = [CCSprite spriteWithFile:@"pausedScreen.png"];
+		pausedScreen = [CCSprite spriteWithFile:@"halfBlack.png"];
 		pausedScreen.position = ccp(160,240);
-		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"resume" fntFile:@"diavlo.fnt"];
+		//TITLE
+		CCSprite *title = [CCSprite spriteWithFile:@"pause_title.png"];
+		title.position = ccp(160,420);
+		[pausedScreen addChild:title];
+		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"resume" fntFile:@"volter.fnt"];
 		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(resume:)];
-		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"restart" fntFile:@"diavlo.fnt"];
+		CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"restart" fntFile:@"volter.fnt"];
 		CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(restart:)];
-		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"diavlo.fnt"];
+		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"volter.fnt"];
 		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(backToMenu:)];
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,menuItem3,nil];
 		myMenu.position = ccp(160, 200);
@@ -149,14 +153,18 @@
 		cpCCSprite *sprite = (cpCCSprite*)b->data;
 		int enemyMass = sprite.level;		
 		if (enemyMass > sphere.level) {
-			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+			if ([UserData sharedData].isVibrationEnabled) {
+				AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+			}
 			[GameData sharedData].wasGameWon = NO;
 			[GameData sharedData].enemyCount = 0;
 			return;
 		} else {
 			if (sprite.isShrinkKind) {
 					if (sphere.level == sprite.level) {
-						AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+						if ([UserData sharedData].isVibrationEnabled) {
+							AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+						}
 						[GameData sharedData].wasGameWon = NO;
 						[GameData sharedData].enemyCount = 0;
 						return;
