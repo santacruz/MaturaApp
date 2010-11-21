@@ -11,14 +11,14 @@
 #define kEnemyCollisionType	2 
 #define kNormalEnemy 0
 #define kShrinkEnemy 1
-#define kInitSize 10
+#define kInitSize 16
 #define kFilterFactor 0.5f
 #define kImpulseMultiplier 100
 #define kAccSteilheit 20
 #define kAccInflektion 0.2
 
 
-//static float prevHeroRotation = 0;
+static float prevHeroRotation = 0;
 
 @implementation GameScene
 
@@ -255,7 +255,12 @@
 		[GameData sharedData].isThereAHero = YES;
 		//REDUZIERE ENEMYCOUNT		
 		[GameData sharedData].enemyCount -= 1;
-	} 
+	} else {
+		//ARGUMENT ÄNDERN
+		sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.5+prevHeroRotation*0.5;
+		prevHeroRotation = sphere.sprite.rotation; 
+	}
+
 	
 	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
@@ -360,6 +365,9 @@
 	if ([GameData sharedData].isGamePaused) {
 		NSLog(@"Ending Game");
 		[GameData sharedData].isPlaying = NO;
+		if ([GameData sharedData].isThereAHero) {
+			sphere.sprite.rotation = prevHeroRotation;
+		}		
 		//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
 		[[GameData sharedData].enemyArray removeAllObjects];
 		//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
@@ -388,6 +396,9 @@
 {
 	NSLog(@"Ending Game");
 	[GameData sharedData].isPlaying = NO;
+	if ([GameData sharedData].isThereAHero) {
+		sphere.sprite.rotation = prevHeroRotation;
+	}
 	//SCHEDULERS ENTFERNEN, DASS GAMELAYER NICHT RETAINED WIRD
 	[self unschedule:@selector(nextFrame:)];
 	[smgr stop];

@@ -8,7 +8,7 @@
 
 #define kHeroCollisionType	1
 #define kEnemyCollisionType	2
-#define kInitSize 10
+#define kInitSize 16
 #define	kNormalEnemy 0
 #define kShrinkEnemy 1
 
@@ -39,32 +39,29 @@ static float prevDistance = 500;
 			case kNormalEnemy:
 				
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"enemy/Enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				sprite.isShrinkKind = NO;
-				[sprite setIgnoreRotation:YES];
 				break;
 				
 			case kShrinkEnemy:
 				//FÜGE BOUNCY SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Shrink/shrink%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"shrink/Shrink%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				sprite.isShrinkKind = YES;
-				[sprite setIgnoreRotation:YES];
 				break;
 
 			default:
 				//FÜGE NORMALES SPRITE HINZU
-				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"Enemy/enemy%i.png",size]];
+				sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"enemy/Enemy%i.png",size]];
 				sprite.position = ccp(location.x,location.y);
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				sprite.isShrinkKind = NO;
-				[sprite setIgnoreRotation:YES];
 				break;
 		}
 
@@ -73,7 +70,7 @@ static float prevDistance = 500;
 		self.position = ccp(240,160);
 		
 		//MOVE LOGIK HINZUFÜGEN
-		[self schedule:@selector(move:) interval:0.2];
+		[self schedule:@selector(move:) interval:1/30];
 		
 		//****************************
 		//[GameData sharedData].enemyCount += 1;
@@ -112,6 +109,8 @@ static float prevDistance = 500;
 		}
 		
 		sprite.shape->body->v = ccpMult(moveVector, [GameData sharedData].enemySpeedMultiplier);
+		//ARGUMENT DES FEINDES ÄNDERN
+		sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
 	}
 
 }
