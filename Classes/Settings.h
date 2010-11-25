@@ -12,9 +12,12 @@
 {
 	float accelX;
 	float accelY;
+	float accelZ;
+	CCLabelBMFont *accLabel;
 }
 
-@property(readwrite,assign) float accelX, accelY;
+@property(readwrite,assign) float accelX, accelY, accelZ;
+@property(nonatomic,assign) CCLabelBMFont *accLabel;
 
 +(id) scene;
 -(void)calibrate:(CCMenuItem *) menuItem;

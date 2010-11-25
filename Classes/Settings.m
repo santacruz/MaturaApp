@@ -7,7 +7,8 @@
 
 @implementation Settings
 
-@synthesize accelX, accelY;
+@synthesize accelX, accelY, accelZ;
+@synthesize accLabel;
 
 +(id) scene
 {
@@ -22,7 +23,7 @@
 {
 	if( (self=[super init] )) {
 		//BACKGROUND
-		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"BG/BG.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg];
 		//TITLE
@@ -46,15 +47,22 @@
 						
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItemCalibrate,menuItemResetCalibration,menuItemToggle,nil];
 			myMenu.position = ccp(160, 220);
-			[myMenu alignItemsVertically];
+			[myMenu alignItemsVerticallyWithPadding:20];
 			[self addChild:myMenu];
 		} else {
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItemCalibrate,menuItemResetCalibration,nil];
 			myMenu.position = ccp(160, 220);
-			[myMenu alignItemsVertically];
+			[myMenu alignItemsVerticallyWithPadding:20];
 			[self addChild:myMenu];
 		}
-
+		
+		//ACC TEST
+		accLabel = [CCLabelBMFont labelWithString:@"X:0 Y:0 Z:0" fntFile:@"volter_small.fnt"];
+		accLabel.position = ccp(160, 100);
+		[self addChild:accLabel];
+		[self schedule:@selector(nextFrame:) interval:0.3];
+		
+		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
@@ -66,7 +74,7 @@
 		//ACCELEROMETER FÜR KALIBRATION
 		self.isAccelerometerEnabled = YES;
 		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
-
+		
 	}
 	return self;
 }
@@ -75,7 +83,13 @@
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {		
 	accelX = (float) acceleration.x;
-	accelY = (float) acceleration.y;	
+	accelY = (float) acceleration.y;
+	accelZ = (float) acceleration.z;	
+}
+
+-(void)nextFrame:(ccTime)dt {
+	[accLabel setString:[NSString stringWithFormat:@"X:%f Y:%f Z:%f", accelX, accelY, accelZ]];
+
 }
 
 -(void)calibrate:(CCMenuItem *) menuItem {

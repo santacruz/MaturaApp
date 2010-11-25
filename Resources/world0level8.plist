@@ -13,7 +13,7 @@
 		<key>kind</key>
 		<string>0</string>
 		<key>level</key>
-		<string>10</string>
+		<string>9</string>
 		<key>x</key>
 		<string>160</string>
 		<key>y</key>
@@ -72,18 +72,18 @@
 		<key>x</key>
 		<string>130</string>
 		<key>y</key>
-		<string>400</string>
+		<string>380</string>
 	</dict>
 	<key>enemy7</key>
 	<dict>
 		<key>kind</key>
 		<string>0</string>
 		<key>level</key>
-		<string>2</string>
+		<string>1</string>
 		<key>x</key>
 		<string>220</string>
 		<key>y</key>
-		<string>400</string>
+		<string>380</string>
 	</dict>
 </dict>
 </plist>

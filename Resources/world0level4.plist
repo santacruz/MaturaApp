@@ -5,10 +5,21 @@
 	<key>enemySpeedMultiplier</key>
 	<string>20</string>
 	<key>numberOfEnemies</key>
-	<string>3</string>
+	<string>4</string>
 	<key>heroStartLevel</key>
 	<string>1</string>
 	<key>enemy1</key>
+	<dict>
+		<key>kind</key>
+		<string>0</string>
+		<key>level</key>
+		<string>1</string>
+		<key>x</key>
+		<string>70</string>
+		<key>y</key>
+		<string>380</string>
+	</dict>
+	<key>enemy2</key>
 	<dict>
 		<key>kind</key>
 		<string>0</string>
@@ -17,29 +28,29 @@
 		<key>x</key>
 		<string>160</string>
 		<key>y</key>
-		<string>270</string>
-	</dict>
-	<key>enemy2</key>
-	<dict>
-		<key>kind</key>
-		<string>0</string>
-		<key>level</key>
-		<string>1</string>
-		<key>x</key>
-		<string>160</string>
-		<key>y</key>
-		<string>340</string>
+		<string>320</string>
 	</dict>
 	<key>enemy3</key>
 	<dict>
 		<key>kind</key>
 		<string>0</string>
 		<key>level</key>
-		<string>3</string>
+		<string>4</string>
 		<key>x</key>
-		<string>160</string>
+		<string>240</string>
 		<key>y</key>
-		<string>420</string>
+		<string>230</string>
+	</dict>
+	<key>enemy4</key>
+	<dict>
+		<key>kind</key>
+		<string>0</string>
+		<key>level</key>
+		<string>8</string>
+		<key>x</key>
+		<string>260</string>
+		<key>y</key>
+		<string>100</string>
 	</dict>
 </dict>
 </plist>

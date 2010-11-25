@@ -55,7 +55,7 @@ static float prevHeroRotation = 0;
 		*/
 		
 		//BACKGROUND
-		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"BG/BG.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg z:-1];
 		
@@ -255,9 +255,9 @@ static float prevHeroRotation = 0;
 		[GameData sharedData].isThereAHero = YES;
 		//REDUZIERE ENEMYCOUNT		
 		[GameData sharedData].enemyCount -= 1;
-	} else {
+	} else if (![GameData sharedData].isGamePaused) {
 		//ARGUMENT ÄNDERN
-		sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.5+prevHeroRotation*0.5;
+		sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.2+prevHeroRotation*0.8;
 		prevHeroRotation = sphere.sprite.rotation; 
 	}
 
