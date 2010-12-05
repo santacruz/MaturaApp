@@ -17,18 +17,18 @@
 		<key>x</key>
 		<string>160</string>
 		<key>y</key>
-		<string>300</string>
+		<string>450</string>
 	</dict>
 	<key>enemy2</key>
 	<dict>
 		<key>kind</key>
-		<string>1</string>
+		<string>4</string>
 		<key>level</key>
 		<string>1</string>
 		<key>x</key>
 		<string>160</string>
 		<key>y</key>
-		<string>180</string>
+		<string>30</string>
 	</dict>
 </dict>
 </plist>

@@ -20,7 +20,7 @@ static UserData *sharedData = NULL;
 		//PROPERTIES INITIALISIEREN
 		highestLevel = 1;
 		currentLevel = 1;
-		highestWorld = 0;
+		highestWorld = 2;
 		currentWorld = 0;
 		accelCorrectionX = 0;
 		accelCorrectionY = 0;

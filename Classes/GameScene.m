@@ -11,6 +11,9 @@
 #define kEnemyCollisionType	2 
 #define kNormalEnemy 0
 #define kShrinkEnemy 1
+#define	kFollowEnemy 2
+#define kFastEnemy 3
+#define kUltraEnemy 4
 #define kInitSize 16
 #define kFilterFactor 0.5f
 #define kImpulseMultiplier 100
