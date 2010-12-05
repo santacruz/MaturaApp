@@ -25,7 +25,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Release;
 		activeExecutable = AA312F991233D88A0098711E /* MaturaApp */;
-		activeSDKPreference = iphonesimulator4.1;
+		activeSDKPreference = iphoneos4.1;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* MaturaApp */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* MaturaApp */,
@@ -186,15 +186,15 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 313227142;
-			PBXWorkspaceStateSaveDate = 313227142;
+			PBXPerProjectTemplateStateSaveDate = 313254765;
+			PBXWorkspaceStateSaveDate = 313254765;
 		};
 		perUserProjectItems = {
 			AA6E090C12AB79E90074EA59 /* PlistBookmark */ = AA6E090C12AB79E90074EA59 /* PlistBookmark */;
 			AA6E090D12AB79E90074EA59 /* PBXTextBookmark */ = AA6E090D12AB79E90074EA59 /* PBXTextBookmark */;
 			AA6E091212AB7AA30074EA59 /* PBXTextBookmark */ = AA6E091212AB7AA30074EA59 /* PBXTextBookmark */;
-			AA6E091312AB7AA30074EA59 /* PBXTextBookmark */ = AA6E091312AB7AA30074EA59 /* PBXTextBookmark */;
-			AA6E091512AB7ABB0074EA59 /* PBXTextBookmark */ = AA6E091512AB7ABB0074EA59 /* PBXTextBookmark */;
+			AA6E096B12ABE7EE0074EA59 /* PBXTextBookmark */ = AA6E096B12ABE7EE0074EA59 /* PBXTextBookmark */;
+			AA6E097712ABE85C0074EA59 /* PBXTextBookmark */ = AA6E097712ABE85C0074EA59 /* PBXTextBookmark */;
 			AAD9093A129ED50700EFB1AF /* PlistBookmark */ = AAD9093A129ED50700EFB1AF /* PlistBookmark */;
 			AAD9098A12A51CF000EFB1AF /* PBXTextBookmark */ = AAD9098A12A51CF000EFB1AF /* PBXTextBookmark */;
 			AAD9098B12A51CF000EFB1AF /* PBXTextBookmark */ = AAD9098B12A51CF000EFB1AF /* PBXTextBookmark */;
@@ -454,9 +454,9 @@
 	};
 	AA3132501233DD760098711E /* EnemySphere.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1036, 2353}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1036, 2262}}";
 			sepNavSelRange = "{847, 0}";
-			sepNavVisRange = "{617, 1273}";
+			sepNavVisRange = "{3752, 1500}";
 			sepNavWindowFrame = "{{15, 92}, {1027, 686}}";
 		};
 	};
@@ -485,7 +485,7 @@
 		);
 		name = /Users/zeno/Dropbox/Matura/MaturaApp/Resources/world1level1.plist;
 		rLen = 0;
-		rLoc = 9223372036854775807;
+		rLoc = 9223372036854775808;
 	};
 	AA6E090D12AB79E90074EA59 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -507,25 +507,25 @@
 		vrLen = 653;
 		vrLoc = 0;
 	};
-	AA6E091312AB7AA30074EA59 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA3132501233DD760098711E /* EnemySphere.m */;
-		name = "EnemySphere.m: 139";
-		rLen = 0;
-		rLoc = 4438;
-		rType = 0;
-		vrLen = 1551;
-		vrLoc = 3655;
-	};
-	AA6E091512AB7ABB0074EA59 /* PBXTextBookmark */ = {
+	AA6E096B12ABE7EE0074EA59 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = AA3132501233DD760098711E /* EnemySphere.m */;
 		name = "EnemySphere.m: 39";
 		rLen = 0;
 		rLoc = 847;
 		rType = 0;
-		vrLen = 1273;
-		vrLoc = 617;
+		vrLen = 1500;
+		vrLoc = 3752;
+	};
+	AA6E097712ABE85C0074EA59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = AAA33C6D126245EB00234F5B /* Settings.m */;
+		name = "Settings.m: 52";
+		rLen = 0;
+		rLoc = 1722;
+		rType = 0;
+		vrLen = 2085;
+		vrLoc = 628;
 	};
 	AA7179521265D21000B125E6 /* GameOver.h */ = {
 		uiCtxt = {
@@ -593,9 +593,9 @@
 	};
 	AAA33C6D126245EB00234F5B /* Settings.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1167, 1638}}";
-			sepNavSelRange = "{2485, 0}";
-			sepNavVisRange = "{2362, 1317}";
+			sepNavIntBoundsRect = "{{0, 0}, {1167, 1755}}";
+			sepNavSelRange = "{1722, 0}";
+			sepNavVisRange = "{628, 2085}";
 		};
 	};
 	AAA33C711262466F00234F5B /* About.h */ = {
@@ -692,7 +692,7 @@
 		fRef = AAA33C6D126245EB00234F5B /* Settings.m */;
 		name = "Settings.m: 65";
 		rLen = 0;
-		rLoc = 2485;
+		rLoc = 2838;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 2362;

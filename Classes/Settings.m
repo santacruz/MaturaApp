@@ -39,12 +39,23 @@
 		CCMenuItemLabel *menuItemResetCalibration = [CCMenuItemLabel itemWithLabel:labelResetCalibration target:self selector:@selector(resetCalibration:)];
 		
 		if ([UserData sharedData].isVibrationDevice) {
-			CCLabelBMFont *labelToggle1 = [CCLabelBMFont labelWithString:@"Disable Vibration" fntFile:@"volter_small.fnt"];
-			CCMenuItemLabel *menuItemToggle1 = [CCMenuItemLabel itemWithLabel:labelToggle1 target:nil selector:nil];
-			CCLabelBMFont *labelToggle2 = [CCLabelBMFont labelWithString:@"Enable Vibration" fntFile:@"volter_small.fnt"];
-			CCMenuItemLabel *menuItemToggle2 = [CCMenuItemLabel itemWithLabel:labelToggle2 target:nil selector:nil];
+			CCLabelBMFont *labelToggle1;
+			CCMenuItemLabel *menuItemToggle1;
+			CCLabelBMFont *labelToggle2;
+			CCMenuItemLabel *menuItemToggle2;
+			
+			if ([UserData sharedData].isVibrationEnabled) {
+				labelToggle1 = [CCLabelBMFont labelWithString:@"Disable Vibration" fntFile:@"volter_small.fnt"];
+				labelToggle2 = [CCLabelBMFont labelWithString:@"Enable Vibration" fntFile:@"volter_small.fnt"];
+			} else {
+				labelToggle1 = [CCLabelBMFont labelWithString:@"Enable Vibration" fntFile:@"volter_small.fnt"];
+				labelToggle2 = [CCLabelBMFont labelWithString:@"Disable Vibration" fntFile:@"volter_small.fnt"];
+			}
+			menuItemToggle1 = [CCMenuItemLabel itemWithLabel:labelToggle1 target:nil selector:nil];
+			menuItemToggle2 = [CCMenuItemLabel itemWithLabel:labelToggle2 target:nil selector:nil];
+			
 			CCMenuItemToggle *menuItemToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(toggleVibration:) items:menuItemToggle1,menuItemToggle2,nil];
-						
+			
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItemCalibrate,menuItemResetCalibration,menuItemToggle,nil];
 			myMenu.position = ccp(160, 220);
 			[myMenu alignItemsVerticallyWithPadding:20];
@@ -55,13 +66,14 @@
 			[myMenu alignItemsVerticallyWithPadding:20];
 			[self addChild:myMenu];
 		}
+
 		
-		//ACC TEST
+		/*ACC TEST
 		accLabel = [CCLabelBMFont labelWithString:@"X:0 Y:0 Z:0" fntFile:@"volter_small.fnt"];
 		accLabel.position = ccp(160, 100);
 		[self addChild:accLabel];
 		[self schedule:@selector(nextFrame:) interval:0.3];
-		
+		*/
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
