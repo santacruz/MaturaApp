@@ -13,13 +13,13 @@
 @implementation Sphere
 @synthesize radius, sprite, level;
 
-+(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location
++(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation
 {
-	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location] autorelease];
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation] autorelease];
 }
 
 
--(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location;
+-(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation;
 {
 	
 	if( (self=[super init])) {
@@ -35,6 +35,13 @@
 		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"hero/Hero%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
 		[self addChild:sprite];
+		
+		if (!firstCreation) { //WENN DER FEIND NICHT BEIM LEVELAUFSTELLEN HINZUGEFÜGT WURDE, EINEN EMITTER HINZUFÜGEN
+			CCParticleSystemQuad *emitter = [CCParticleSystemQuad particleWithFile:@"emitter.plist"];
+			emitter.position = ccp(location.x, location.y);
+			emitter.autoRemoveOnFinish = YES;
+			[self addChild:emitter z:-10];
+		}
 
 		self.position = ccp(240,160);
 	}

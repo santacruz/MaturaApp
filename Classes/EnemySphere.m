@@ -21,14 +21,14 @@ static float prevDistance = 1000;
 
 @synthesize radius, sprite, moveVector, speed;
 
-+(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
++(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation
 {
-	return [[[self alloc] initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location] autorelease];
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation] autorelease];
 }
 
 
 
--(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
+-(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation
 {
 
 	if( (self=[super init])) {
@@ -98,7 +98,14 @@ static float prevDistance = 1000;
 				[self schedule:@selector(move1:) interval:1/30];
 				break;
 		}
-
+		
+		if (!firstCreation) { //WENN DER FEIND NICHT BEIM LEVELAUFSTELLEN HINZUGEFÜGT WURDE, EINEN EMITTER HINZUFÜGEN
+			CCParticleSystemQuad *emitter = [CCParticleSystemQuad particleWithFile:@"emitter.plist"];
+			emitter.position = ccp(location.x, location.y);
+			emitter.autoRemoveOnFinish = YES;
+			[self addChild:emitter z:-10];
+		}
+		
 		
 		[self addChild:sprite];
 		self.position = ccp(240,160);

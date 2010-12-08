@@ -106,7 +106,7 @@ static float prevHeroRotation = 0;
 		
 		
 		//HELD INITIALISIEREN
-		sphere = [Sphere sphereWithMgr:self.smgr level:[GameData sharedData].heroStartLevel position:ccp(-80,80)];
+		sphere = [Sphere sphereWithMgr:self.smgr level:[GameData sharedData].heroStartLevel position:ccp(-80,80) isInitial:YES];
 		[self addChild:sphere];
 		
 		//FEINDE HINZUFÜGEN
@@ -116,7 +116,8 @@ static float prevHeroRotation = 0;
 				EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr 
 														  kind:[[enemyToBeSpawned objectAtIndex:0]intValue] 
 														 level:[[enemyToBeSpawned objectAtIndex:1]intValue] 
-													  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
+													  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]
+													 isInitial:YES]; //BEIM AUFSTELLEN DES LEVELS WERDEN DIE FEINDE ZUM ERSTEN MAL AUFGESTELLT->KEIN EMITTER
 				[self addChild:feind];
 			} else {
 				NSLog(@"enemyToBeSpawned has 0 Elements");
@@ -252,7 +253,7 @@ static float prevHeroRotation = 0;
 	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
 		sphere = [Sphere sphereWithMgr:smgr level:[[[GameData sharedData].newHero objectAtIndex:0] intValue] 
-							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue]];
+							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue] isInitial:NO];
 		[self addChild:sphere];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
@@ -271,7 +272,8 @@ static float prevHeroRotation = 0;
 		EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr 
 												  kind:[[enemyToBeSpawned objectAtIndex:0]intValue] 
 												 level:[[enemyToBeSpawned objectAtIndex:1]intValue] 
-											  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
+											  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]
+											 isInitial:NO];
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];

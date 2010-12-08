@@ -18,8 +18,8 @@
 @property(nonatomic,retain)	cpCCSprite *sprite;
 @property(readwrite,assign) float radius, speed;
 @property(readwrite,assign) CGPoint moveVector;
-+(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location;
--(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location;
++(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation;
+-(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation;
 -(void) move1:(ccTime)dt;
 -(void) move2:(ccTime)dt;
 @end

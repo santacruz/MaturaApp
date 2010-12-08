@@ -79,6 +79,7 @@
 		AAD589D0128BFFE500607376 /* world0level7.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C8128BFFE500607376 /* world0level7.plist */; };
 		AAD589D1128BFFE500607376 /* world0level8.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C9128BFFE500607376 /* world0level8.plist */; };
 		AAD589D4128BFFED00607376 /* world1level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589D3128BFFED00607376 /* world1level1.plist */; };
+		AAD7C68D12B02292009437AE /* emitter.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD7C68C12B02292009437AE /* emitter.plist */; };
 		AAD90879129E7C3D00EFB1AF /* volter_small-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AAD90871129E7C3D00EFB1AF /* volter_small-hd.fnt */; };
 		AAD9087A129E7C3D00EFB1AF /* volter_small-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD90872129E7C3D00EFB1AF /* volter_small-hd.png */; };
 		AAD9087B129E7C3D00EFB1AF /* volter_small.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AAD90873129E7C3D00EFB1AF /* volter_small.fnt */; };
@@ -669,6 +670,7 @@
 		AAD589C8128BFFE500607376 /* world0level7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level7.plist; sourceTree = "<group>"; };
 		AAD589C9128BFFE500607376 /* world0level8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level8.plist; sourceTree = "<group>"; };
 		AAD589D3128BFFED00607376 /* world1level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level1.plist; sourceTree = "<group>"; };
+		AAD7C68C12B02292009437AE /* emitter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emitter.plist; sourceTree = "<group>"; };
 		AAD90871129E7C3D00EFB1AF /* volter_small-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "volter_small-hd.fnt"; sourceTree = "<group>"; };
 		AAD90872129E7C3D00EFB1AF /* volter_small-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volter_small-hd.png"; sourceTree = "<group>"; };
 		AAD90873129E7C3D00EFB1AF /* volter_small.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = volter_small.fnt; sourceTree = "<group>"; };
@@ -965,6 +967,7 @@
 		AA8CC302125BBE41008A851C /* Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				AAD7C68C12B02292009437AE /* emitter.plist */,
 				AA372317129898BA00E1A4FA /* halfBlack-hd.png */,
 				AA372318129898BA00E1A4FA /* halfBlack.png */,
 				AA3722A41298823500E1A4FA /* scrollMask-hd.png */,
@@ -1612,6 +1615,7 @@
 				AAD9087F129E7C3D00EFB1AF /* volter.fnt in Resources */,
 				AAD90880129E7C3D00EFB1AF /* volter.png in Resources */,
 				AAD9088A129E804A00EFB1AF /* BG in Resources */,
+				AAD7C68D12B02292009437AE /* emitter.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
