@@ -1,5 +1,5 @@
 //
-//  Scores.h
+//  Settings.h
 //  MaturaApp
 //  © Zeno Koller 2010
 

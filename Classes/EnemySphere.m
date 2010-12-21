@@ -19,16 +19,16 @@
 
 static float prevDistance = 1000;
 
-@synthesize radius, sprite, moveVector, speed;
+@synthesize radius, sprite, moveVector, speed, emitter;
 
-+(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation
++(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
 {
-	return [[[self alloc] initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation] autorelease];
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location] autorelease];
 }
 
 
 
--(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation
+-(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
 {
 
 	if( (self=[super init])) {
@@ -99,13 +99,11 @@ static float prevDistance = 1000;
 				break;
 		}
 		
-		if (!firstCreation) { //WENN DER FEIND NICHT BEIM LEVELAUFSTELLEN HINZUGEFÜGT WURDE, EINEN EMITTER HINZUFÜGEN
-			CCParticleSystemQuad *emitter = [CCParticleSystemQuad particleWithFile:@"emitter.plist"];
-			emitter.position = ccp(location.x, location.y);
-			emitter.autoRemoveOnFinish = YES;
-			[self addChild:emitter z:-10];
-		}
-		
+		emitter = [CCParticleSystemQuad particleWithFile:@"emitterNormal.plist"];
+		emitter.position = ccp(location.x, location.y);
+		emitter.scale = sqrt(size);
+		emitter.autoRemoveOnFinish = YES;
+		[self addChild:emitter z:-10];
 		
 		[self addChild:sprite];
 		self.position = ccp(240,160);
@@ -145,6 +143,7 @@ static float prevDistance = 1000;
 		sprite.shape->body->v = ccpMult(moveVector, speed);
 		//ARGUMENT DES FEINDES ÄNDERN
 		sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
+		emitter.position = sprite.position;
 	}
 
 }
@@ -171,6 +170,7 @@ static float prevDistance = 1000;
 	sprite.shape->body->v = ccpMult(moveVector, speed);
 	//ARGUMENT DES FEINDES ÄNDERN
 	sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
+	emitter.position = sprite.position;
 }
 
 - (void) dealloc

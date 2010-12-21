@@ -11,15 +11,15 @@
 
 
 @implementation Sphere
-@synthesize radius, sprite, level;
+@synthesize radius, sprite, level, emitter;
 
-+(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation
++(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location
 {
-	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation] autorelease];
+	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location] autorelease];
 }
 
 
--(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location isInitial:(BOOL)firstCreation;
+-(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location;
 {
 	
 	if( (self=[super init])) {
@@ -35,13 +35,11 @@
 		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"hero/Hero%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
 		[self addChild:sprite];
-		
-		if (!firstCreation) { //WENN DER FEIND NICHT BEIM LEVELAUFSTELLEN HINZUGEFÜGT WURDE, EINEN EMITTER HINZUFÜGEN
-			CCParticleSystemQuad *emitter = [CCParticleSystemQuad particleWithFile:@"emitter.plist"];
-			emitter.position = ccp(location.x, location.y);
-			emitter.autoRemoveOnFinish = YES;
-			[self addChild:emitter z:-10];
-		}
+		//WENN DER FEIND NICHT BEIM LEVELAUFSTELLEN HINZUGEFÜGT WURDE, EINEN EMITTER HINZUFÜGEN
+		emitter = [CCParticleSystemQuad particleWithFile:@"emitterHero.plist"];
+		emitter.position = ccp(location.x, location.y);
+		emitter.autoRemoveOnFinish = YES;
+		[self addChild:emitter z:-10];
 
 		self.position = ccp(240,160);
 	}

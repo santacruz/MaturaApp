@@ -48,14 +48,14 @@ static float prevHeroRotation = 0;
 		
 		//ACCELEROMETER UND TOUCHES BENÜTZEN
 		/*PASSIERT, WENN DER COUNTDOWN FERTIG IST
-		self.isAccelerometerEnabled = YES;*/
+		 self.isAccelerometerEnabled = YES;*/
 		self.isTouchEnabled = YES;
-	
+		
 		/*
-		//LEVELDATEN INITIALISIEREN
-		passiert in [LevelChoice runGameX]
-		[[GameData sharedData] initLevel:1];
-		*/
+		 //LEVELDATEN INITIALISIEREN
+		 passiert in [LevelChoice runGameX]
+		 [[GameData sharedData] initLevel:1];
+		 */
 		
 		//BACKGROUND
 		CCSprite *bg = [CCSprite spriteWithFile:@"BG/BG.png"];
@@ -81,7 +81,7 @@ static float prevHeroRotation = 0;
 		[pausedScreen addChild:myMenu];
 		pausedScreen.visible = NO;
 		[self addChild:pausedScreen z:2];
-				
+		
 		//SPACEMGR
 		smgr = [[SpaceManager alloc] init];
 		smgr.gravity=ccp(0,0);
@@ -106,7 +106,7 @@ static float prevHeroRotation = 0;
 		
 		
 		//HELD INITIALISIEREN
-		sphere = [Sphere sphereWithMgr:self.smgr level:[GameData sharedData].heroStartLevel position:ccp(-80,80) isInitial:YES];
+		sphere = [Sphere sphereWithMgr:self.smgr level:[GameData sharedData].heroStartLevel position:ccp(-80,80)];
 		[self addChild:sphere];
 		
 		//FEINDE HINZUFÜGEN
@@ -116,13 +116,12 @@ static float prevHeroRotation = 0;
 				EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr 
 														  kind:[[enemyToBeSpawned objectAtIndex:0]intValue] 
 														 level:[[enemyToBeSpawned objectAtIndex:1]intValue] 
-													  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]
-													 isInitial:YES]; //BEIM AUFSTELLEN DES LEVELS WERDEN DIE FEINDE ZUM ERSTEN MAL AUFGESTELLT->KEIN EMITTER
-				[self addChild:feind];
+													  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]]; 
+			[self addChild:feind];
 			} else {
 				NSLog(@"enemyToBeSpawned has 0 Elements");
 			}
-
+			
 			[enemyToBeSpawned release];
 		}
 		[[GameData sharedData].enemySpawnBuffer removeAllObjects];
@@ -145,7 +144,7 @@ static float prevHeroRotation = 0;
 		//COUNTDOWN
 		countdown = [Countdown scene];
 		[self addChild:countdown];
-		}
+	}
 	return self;
 }
 
@@ -165,19 +164,19 @@ static float prevHeroRotation = 0;
 			return;
 		} else {
 			if (sprite.isShrinkKind) {
-					if (sphere.level == sprite.level) {
-						if ([UserData sharedData].isVibrationEnabled) {
-							AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-						}
-						[GameData sharedData].wasGameWon = NO;
-						[GameData sharedData].enemyCount = 0;
-						return;
+				if (sphere.level == sprite.level) {
+					if ([UserData sharedData].isVibrationEnabled) {
+						AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 					}
-					[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level-enemyMass]];
-					[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
+					[GameData sharedData].wasGameWon = NO;
+					[GameData sharedData].enemyCount = 0;
+					return;
+				}
+				[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level-enemyMass]];
+				[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
 			} else {
-					[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
-					[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
+				[[GameData sharedData].newHero addObject:[NSNumber numberWithInt:sphere.level+enemyMass]];
+				[[GameData sharedData].newHero addObject:[NSValue valueWithCGPoint:sphere.sprite.position]];
 			}
 			if (sphere) {
 				[GameData sharedData].isThereAHero = NO;
@@ -185,7 +184,7 @@ static float prevHeroRotation = 0;
 				[smgr scheduleToRemoveAndFreeShape:a];
 				a->data = nil;
 			}
-		
+			
 			if (sprite) {	
 				[[GameData sharedData].enemyArray removeObject:sprite.parent];
 				[self removeChild:sprite.parent cleanup:YES];
@@ -249,11 +248,11 @@ static float prevHeroRotation = 0;
 	if ([GameData sharedData].isCountdownFinished) {
 		[self startGame];
 	}
-		
+	
 	//NEUER HERO
 	if (![GameData sharedData].isThereAHero) {
 		sphere = [Sphere sphereWithMgr:smgr level:[[[GameData sharedData].newHero objectAtIndex:0] intValue] 
-							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue] isInitial:NO];
+							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue]];
 		[self addChild:sphere];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
@@ -262,9 +261,10 @@ static float prevHeroRotation = 0;
 	} else if (![GameData sharedData].isGamePaused) {
 		//ARGUMENT ÄNDERN
 		sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.2+prevHeroRotation*0.8;
+		sphere.emitter.position = sphere.sprite.position;
 		prevHeroRotation = sphere.sprite.rotation; 
 	}
-
+	
 	
 	//1 NEUER FEIND PRO SCHRITT
 	if ([[GameData sharedData].enemySpawnBuffer count] != 0) {
@@ -272,8 +272,7 @@ static float prevHeroRotation = 0;
 		EnemySphere *feind = [EnemySphere enemyWithMgr:self.smgr 
 												  kind:[[enemyToBeSpawned objectAtIndex:0]intValue] 
 												 level:[[enemyToBeSpawned objectAtIndex:1]intValue] 
-											  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]
-											 isInitial:NO];
+											  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 		[self addChild:feind];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
@@ -291,13 +290,13 @@ static float prevHeroRotation = 0;
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
 	static float prevX=0, prevY=0;
-		
+	
 	float accelX = (float) (acceleration.x -[UserData sharedData].accelCorrectionX) * kFilterFactor + (1- kFilterFactor)*prevX;
 	float accelY = (float) (acceleration.y -[UserData sharedData].accelCorrectionY) * kFilterFactor + (1- kFilterFactor)*prevY;
 	
 	prevX = accelX;
 	prevY = accelY;
-
+	
 	if (accelX > 0) {
 		accelX = 1/(1+exp(-kAccSteilheit*(accelX-kAccInflektion)));
 	} else {
@@ -309,7 +308,7 @@ static float prevHeroRotation = 0;
 	} else {
 		accelY = -1/(1+exp(-kAccSteilheit*(-1*accelY-kAccInflektion)));
 	}
-
+	
 	CGPoint v = ccp(accelX, accelY);
 	if ([GameData sharedData].isThereAHero) {
 		sphere.sprite.shape->body->v = ccpMult(v, kImpulseMultiplier);
@@ -413,7 +412,7 @@ static float prevHeroRotation = 0;
 	//ALLE OBJEKTE IN ENEMYARRAY WERDEN ENTFERNT, UM RETAINCOUNTS ZU VERRINGERN->KEINE MEMORY LEAKS
 	[[GameData sharedData].enemyArray removeAllObjects];
 	//ZU GAMEOVER LAYER
-
+	
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOver scene]]];
 }
 

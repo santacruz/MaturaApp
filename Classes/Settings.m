@@ -31,49 +31,68 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
-		//SETTINGS MENU
-		CCLabelBMFont* labelCalibrate = [CCLabelBMFont labelWithString:@"Calibrate" fntFile:@"volter_small.fnt"];
-		CCMenuItemLabel *menuItemCalibrate= [CCMenuItemLabel itemWithLabel:labelCalibrate target:self selector:@selector(calibrate:)];
-		
-		CCLabelBMFont* labelResetCalibration = [CCLabelBMFont labelWithString:@"Reset Calibration" fntFile:@"volter_small.fnt"];
-		CCMenuItemLabel *menuItemResetCalibration = [CCMenuItemLabel itemWithLabel:labelResetCalibration target:self selector:@selector(resetCalibration:)];
-		
+		//CALIBRATION TITLE
+		CCLabelBMFont *labelCalibrate = [CCLabelBMFont labelWithString:@"calibration" fntFile:@"volter_small.fnt"];
+		labelCalibrate.position = ccp(95,332);
+		[self addChild:labelCalibrate];
+		//BOX&CROSS
+		CCSprite *box = [CCSprite spriteWithFile:@"Buttons/box.png"];
+		CCSprite *cross = [CCSprite spriteWithFile:@"Buttons/cross.png"];
+		box.position = ccp(78,278);
+		cross.position = ccp(78,278);
+		[self addChild:box];
+		[self addChild:cross];
+		//SET BUTTON
+		CCSprite *setSprite = [CCSprite spriteWithFile:@"Buttons/set.png"];
+		CCMenuItemSprite *setSpriteItem = [CCMenuItemSprite itemFromNormalSprite:setSprite selectedSprite:setSprite target:self selector:@selector(calibrate:)];
+		CCMenu *setMenu = [CCMenu menuWithItems:setSpriteItem,nil];
+		setMenu.position = ccp(164, 278);
+		[self addChild:setMenu];
+		//RESET BUTTON
+		CCSprite *resetSprite = [CCSprite spriteWithFile:@"Buttons/reset.png"];
+		CCMenuItemSprite *resetSpriteItem = [CCMenuItemSprite itemFromNormalSprite:resetSprite selectedSprite:resetSprite target:self selector:@selector(resetCalibration:)];
+		CCMenu *resetMenu = [CCMenu menuWithItems:resetSpriteItem,nil];
+		resetMenu.position = ccp(240, 278);
+		[self addChild:resetMenu];
+		//OPTIONAL: VIBRATION
 		if ([UserData sharedData].isVibrationDevice) {
-			CCLabelBMFont *labelToggle1;
-			CCMenuItemLabel *menuItemToggle1;
-			CCLabelBMFont *labelToggle2;
-			CCMenuItemLabel *menuItemToggle2;
+			//VIBRATION TITLE
+			CCLabelBMFont *labelVibration = [CCLabelBMFont labelWithString:@"vibration" fntFile:@"volter_small.fnt"];
+			labelVibration.position = ccp(87,191);
+			[self addChild:labelVibration];
+			//SECOND LINE
+			CCSprite *line = [CCSprite spriteWithFile:@"Buttons/smallline.png"];
+			line.position = ccp(160,222);
+			[self addChild:line];
+			
+			CCSprite *state1Sprite;
+			CCMenuItemSprite *state1SpriteItem;
+			CCSprite *state2Sprite;
+			CCMenuItemSprite *state2SpriteItem;
 			
 			if ([UserData sharedData].isVibrationEnabled) {
-				labelToggle1 = [CCLabelBMFont labelWithString:@"Disable Vibration" fntFile:@"volter_small.fnt"];
-				labelToggle2 = [CCLabelBMFont labelWithString:@"Enable Vibration" fntFile:@"volter_small.fnt"];
+				state1Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
+				state2Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
 			} else {
-				labelToggle1 = [CCLabelBMFont labelWithString:@"Enable Vibration" fntFile:@"volter_small.fnt"];
-				labelToggle2 = [CCLabelBMFont labelWithString:@"Disable Vibration" fntFile:@"volter_small.fnt"];
+				state1Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
+				state2Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
 			}
-			menuItemToggle1 = [CCMenuItemLabel itemWithLabel:labelToggle1 target:nil selector:nil];
-			menuItemToggle2 = [CCMenuItemLabel itemWithLabel:labelToggle2 target:nil selector:nil];
+			state1SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state1Sprite selectedSprite:state1Sprite target:self selector:nil];
+			state2SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state2Sprite selectedSprite:state2Sprite target:self selector:nil];
 			
-			CCMenuItemToggle *menuItemToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(toggleVibration:) items:menuItemToggle1,menuItemToggle2,nil];
-			
-			CCMenu * myMenu = [CCMenu menuWithItems:menuItemCalibrate,menuItemResetCalibration,menuItemToggle,nil];
-			myMenu.position = ccp(160, 220);
-			[myMenu alignItemsVerticallyWithPadding:20];
-			[self addChild:myMenu];
-		} else {
-			CCMenu * myMenu = [CCMenu menuWithItems:menuItemCalibrate,menuItemResetCalibration,nil];
-			myMenu.position = ccp(160, 220);
-			[myMenu alignItemsVerticallyWithPadding:20];
-			[self addChild:myMenu];
+			CCMenuItemToggle *menuItemToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(toggleVibration:) items:state1SpriteItem,state2SpriteItem,nil];
+			CCMenu * vibrateMenu = [CCMenu menuWithItems:menuItemToggle,nil];
+			vibrateMenu.position = ccp(250,175);
+			[self addChild:vibrateMenu];
 		}
-
+		
 		
 		/*ACC TEST
-		accLabel = [CCLabelBMFont labelWithString:@"X:0 Y:0 Z:0" fntFile:@"volter_small.fnt"];
-		accLabel.position = ccp(160, 100);
-		[self addChild:accLabel];
-		[self schedule:@selector(nextFrame:) interval:0.3];
-		*/
+		 accLabel = [CCLabelBMFont labelWithString:@"X:0 Y:0 Z:0" fntFile:@"volter_small.fnt"];
+		 accLabel.position = ccp(160, 100);
+		 [self addChild:accLabel];
+		 [self schedule:@selector(nextFrame:) interval:0.3];
+		 */
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
@@ -101,7 +120,7 @@
 
 -(void)nextFrame:(ccTime)dt {
 	[accLabel setString:[NSString stringWithFormat:@"X:%f Y:%f Z:%f", accelX, accelY, accelZ]];
-
+	
 }
 
 -(void)calibrate:(CCMenuItem *) menuItem {
