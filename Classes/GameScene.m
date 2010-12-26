@@ -209,14 +209,14 @@ static float prevHeroRotation = 0;
 			newKind = spriteB.enemyKind;
 			newPos = spriteB.position;
 		}
-		
-		if (spriteA.isShrinkKind && spriteB.isShrinkKind) {
-			if (aSize < bSize) {
-				newSize = bSize - aSize;
-			}
-		} else if (!spriteA.isShrinkKind && spriteB.isShrinkKind) {
+
+		if (!spriteA.isShrinkKind && spriteB.isShrinkKind) {
 			if (aSize > bSize) {
 				newSize = aSize - bSize;
+			}
+		} else  if (spriteA.isShrinkKind && !spriteB.isShrinkKind) {
+			if (bSize > aSize) {
+				newSize = bSize - aSize;
 			}
 		}
 		

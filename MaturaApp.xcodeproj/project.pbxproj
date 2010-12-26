@@ -59,6 +59,14 @@
 		AA7179541265D21000B125E6 /* GameOver.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7179531265D21000B125E6 /* GameOver.m */; };
 		AA75B608123CD40E00585F54 /* libChipmunk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA75B583123CD3C700585F54 /* libChipmunk.a */; };
 		AA75B609123CD40E00585F54 /* libcocos2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA75B585123CD3C700585F54 /* libcocos2d.a */; };
+		AA762C9E12C27DCA00323175 /* world1level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9612C27DCA00323175 /* world1level2.plist */; };
+		AA762C9F12C27DCA00323175 /* world1level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9712C27DCA00323175 /* world1level3.plist */; };
+		AA762CA012C27DCA00323175 /* world1level4.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9812C27DCA00323175 /* world1level4.plist */; };
+		AA762CA112C27DCA00323175 /* world1level5.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9912C27DCA00323175 /* world1level5.plist */; };
+		AA762CA212C27DCA00323175 /* world1level6.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9A12C27DCA00323175 /* world1level6.plist */; };
+		AA762CA312C27DCA00323175 /* world1level7.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9B12C27DCA00323175 /* world1level7.plist */; };
+		AA762CA412C27DCA00323175 /* world1level8.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9C12C27DCA00323175 /* world1level8.plist */; };
+		AA762CA512C27DCA00323175 /* world1level9.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9D12C27DCA00323175 /* world1level9.plist */; };
 		AA76B8921246A7AA006ED952 /* LevelParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA76B8911246A7AA006ED952 /* LevelParser.m */; };
 		AA8CBDEF125A05BB008A851C /* WorldChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8CBDEE125A05BB008A851C /* WorldChoice.m */; };
 		AA8CC0B6125A7064008A851C /* pausedScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */; };
@@ -78,8 +86,6 @@
 		AAD589D0128BFFE500607376 /* world0level7.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C8128BFFE500607376 /* world0level7.plist */; };
 		AAD589D1128BFFE500607376 /* world0level8.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589C9128BFFE500607376 /* world0level8.plist */; };
 		AAD589D4128BFFED00607376 /* world1level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD589D3128BFFED00607376 /* world1level1.plist */; };
-		AAD7C79712B185F5009437AE /* emitterHero.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD7C79512B185F5009437AE /* emitterHero.plist */; };
-		AAD7C79812B185F5009437AE /* emitterNormal.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAD7C79612B185F5009437AE /* emitterNormal.plist */; };
 		AAD7C93412C10704009437AE /* Buttons in Resources */ = {isa = PBXBuildFile; fileRef = AAD7C93312C10704009437AE /* Buttons */; };
 		AAD90879129E7C3D00EFB1AF /* volter_small-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AAD90871129E7C3D00EFB1AF /* volter_small-hd.fnt */; };
 		AAD9087A129E7C3D00EFB1AF /* volter_small-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD90872129E7C3D00EFB1AF /* volter_small-hd.png */; };
@@ -643,6 +649,14 @@
 		AA7179521265D21000B125E6 /* GameOver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOver.h; sourceTree = "<group>"; };
 		AA7179531265D21000B125E6 /* GameOver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOver.m; sourceTree = "<group>"; };
 		AA75B403123CD3AE00585F54 /* cocos2d-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "cocos2d-ios.xcodeproj"; sourceTree = COCOS2D_SOURCE; };
+		AA762C9612C27DCA00323175 /* world1level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level2.plist; sourceTree = "<group>"; };
+		AA762C9712C27DCA00323175 /* world1level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level3.plist; sourceTree = "<group>"; };
+		AA762C9812C27DCA00323175 /* world1level4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level4.plist; sourceTree = "<group>"; };
+		AA762C9912C27DCA00323175 /* world1level5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level5.plist; sourceTree = "<group>"; };
+		AA762C9A12C27DCA00323175 /* world1level6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level6.plist; sourceTree = "<group>"; };
+		AA762C9B12C27DCA00323175 /* world1level7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level7.plist; sourceTree = "<group>"; };
+		AA762C9C12C27DCA00323175 /* world1level8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level8.plist; sourceTree = "<group>"; };
+		AA762C9D12C27DCA00323175 /* world1level9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level9.plist; sourceTree = "<group>"; };
 		AA76B8901246A7AA006ED952 /* LevelParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelParser.h; sourceTree = "<group>"; };
 		AA76B8911246A7AA006ED952 /* LevelParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelParser.m; sourceTree = "<group>"; };
 		AA8CBDED125A05BB008A851C /* WorldChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldChoice.h; sourceTree = "<group>"; };
@@ -670,8 +684,6 @@
 		AAD589C8128BFFE500607376 /* world0level7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level7.plist; sourceTree = "<group>"; };
 		AAD589C9128BFFE500607376 /* world0level8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level8.plist; sourceTree = "<group>"; };
 		AAD589D3128BFFED00607376 /* world1level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level1.plist; sourceTree = "<group>"; };
-		AAD7C79512B185F5009437AE /* emitterHero.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emitterHero.plist; sourceTree = "<group>"; };
-		AAD7C79612B185F5009437AE /* emitterNormal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emitterNormal.plist; sourceTree = "<group>"; };
 		AAD7C93312C10704009437AE /* Buttons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Buttons; sourceTree = "<group>"; };
 		AAD90871129E7C3D00EFB1AF /* volter_small-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "volter_small-hd.fnt"; sourceTree = "<group>"; };
 		AAD90872129E7C3D00EFB1AF /* volter_small-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "volter_small-hd.png"; sourceTree = "<group>"; };
@@ -978,8 +990,6 @@
 				AA37227F1298800500E1A4FA /* Default.png */,
 				AA3722801298800500E1A4FA /* Default@2x.png */,
 				AA7178A21262FF9F00B125E6 /* Icon@2x.png */,
-				AAD7C79512B185F5009437AE /* emitterHero.plist */,
-				AAD7C79612B185F5009437AE /* emitterNormal.plist */,
 				AA31346A1233E8850098711E /* fps_images.png */,
 				AA31346B1233E8850098711E /* Icon.png */,
 				AA31346C1233E8850098711E /* Info.plist */,
@@ -1054,6 +1064,14 @@
 				AAD589C9128BFFE500607376 /* world0level8.plist */,
 				AAD589C5128BFFE500607376 /* world0level9.plist */,
 				AAD589D3128BFFED00607376 /* world1level1.plist */,
+				AA762C9612C27DCA00323175 /* world1level2.plist */,
+				AA762C9712C27DCA00323175 /* world1level3.plist */,
+				AA762C9812C27DCA00323175 /* world1level4.plist */,
+				AA762C9912C27DCA00323175 /* world1level5.plist */,
+				AA762C9A12C27DCA00323175 /* world1level6.plist */,
+				AA762C9B12C27DCA00323175 /* world1level7.plist */,
+				AA762C9C12C27DCA00323175 /* world1level8.plist */,
+				AA762C9D12C27DCA00323175 /* world1level9.plist */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -1617,9 +1635,15 @@
 				AAD9087F129E7C3D00EFB1AF /* volter.fnt in Resources */,
 				AAD90880129E7C3D00EFB1AF /* volter.png in Resources */,
 				AAD9088A129E804A00EFB1AF /* BG in Resources */,
-				AAD7C79712B185F5009437AE /* emitterHero.plist in Resources */,
-				AAD7C79812B185F5009437AE /* emitterNormal.plist in Resources */,
 				AAD7C93412C10704009437AE /* Buttons in Resources */,
+				AA762C9E12C27DCA00323175 /* world1level2.plist in Resources */,
+				AA762C9F12C27DCA00323175 /* world1level3.plist in Resources */,
+				AA762CA012C27DCA00323175 /* world1level4.plist in Resources */,
+				AA762CA112C27DCA00323175 /* world1level5.plist in Resources */,
+				AA762CA212C27DCA00323175 /* world1level6.plist in Resources */,
+				AA762CA312C27DCA00323175 /* world1level7.plist in Resources */,
+				AA762CA412C27DCA00323175 /* world1level8.plist in Resources */,
+				AA762CA512C27DCA00323175 /* world1level9.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

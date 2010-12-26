@@ -35,12 +35,6 @@
 		sprite = [[cpCCSprite alloc] initWithShape:ball file:[NSString stringWithFormat:@"hero/Hero%i.png",size]];
 		sprite.position = ccp(location.x,location.y);
 		[self addChild:sprite];
-		//WENN DER FEIND NICHT BEIM LEVELAUFSTELLEN HINZUGEFÜGT WURDE, EINEN EMITTER HINZUFÜGEN
-		emitter = [CCParticleSystemQuad particleWithFile:@"emitterHero.plist"];
-		emitter.position = ccp(location.x, location.y);
-		emitter.autoRemoveOnFinish = YES;
-		[self addChild:emitter z:-10];
-
 		self.position = ccp(240,160);
 	}
 	return self;

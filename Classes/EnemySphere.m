@@ -98,13 +98,7 @@ static float prevDistance = 1000;
 				[self schedule:@selector(move1:) interval:1/30];
 				break;
 		}
-		
-		emitter = [CCParticleSystemQuad particleWithFile:@"emitterNormal.plist"];
-		emitter.position = ccp(location.x, location.y);
-		emitter.scale = sqrt(size);
-		emitter.autoRemoveOnFinish = YES;
-		[self addChild:emitter z:-10];
-		
+				
 		[self addChild:sprite];
 		self.position = ccp(240,160);
 

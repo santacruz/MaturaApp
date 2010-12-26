@@ -11,35 +11,35 @@
 	<key>enemy1</key>
 	<dict>
 		<key>kind</key>
-		<string>0</string>
+		<string>1</string>
 		<key>level</key>
 		<string>1</string>
 		<key>x</key>
-		<string>120</string>
+		<string>60</string>
 		<key>y</key>
-		<string>80</string>
+		<string>50</string>
 	</dict>
 	<key>enemy2</key>
 	<dict>
 		<key>kind</key>
-		<string>0</string>
+		<string>1</string>
 		<key>level</key>
 		<string>1</string>
 		<key>x</key>
-		<string>200</string>
+		<string>260</string>
 		<key>y</key>
-		<string>80</string>
+		<string>50</string>
 	</dict>
 	<key>enemy3</key>
 	<dict>
 		<key>kind</key>
-		<string>1</string>
+		<string>0</string>
 		<key>level</key>
-		<string>2</string>
+		<string>3</string>
 		<key>x</key>
-		<string>160</string>
+		<string>260</string>
 		<key>y</key>
-		<string>300</string>
+		<string>350</string>
 	</dict>
 </dict>
 </plist>
