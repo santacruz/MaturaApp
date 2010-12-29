@@ -25,7 +25,7 @@ static float prevHeroRotation = 0;
 
 @implementation GameScene
 
-@synthesize sphere, smgr, pausedScreen, countdown;
+@synthesize sphere, smgr, pausedScreen, pauseButton, countdown;
 
 +(id) scene
 {
@@ -45,23 +45,19 @@ static float prevHeroRotation = 0;
 		
 		//GAMESCENE POINTER
 		[GameData sharedData].gameScene = self;
-		
-		//ACCELEROMETER UND TOUCHES BENÜTZEN
-		/*PASSIERT, WENN DER COUNTDOWN FERTIG IST
-		 self.isAccelerometerEnabled = YES;*/
-		self.isTouchEnabled = YES;
-		
-		/*
-		 //LEVELDATEN INITIALISIEREN
-		 passiert in [LevelChoice runGameX]
-		 [[GameData sharedData] initLevel:1];
-		 */
-		
+						
 		//BACKGROUND
 		CCSprite *bg = [CCSprite spriteWithFile:@"BG/BG.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg z:-1];
 		
+		//PAUSEBUTTON
+		CCSprite *paused = [CCSprite spriteWithFile:@"pause.png"];
+		paused.opacity = 50;
+		CCMenuItemSprite *pauseItem = [CCMenuItemSprite itemFromNormalSprite:paused selectedSprite:paused target:self selector:@selector(pause:)];
+		pauseButton = [CCMenu menuWithItems:pauseItem, nil];
+		pauseButton.position = ccp(35,445);
+		[self addChild:pauseButton];
 		//PAUSELAYER
 		pausedScreen = [CCSprite spriteWithFile:@"halfBlack.png"];
 		pausedScreen.position = ccp(160,240);
@@ -321,33 +317,19 @@ static float prevHeroRotation = 0;
 	}
 }
 
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-}
-
-- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-}
-
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    for (UITouch *touch in touches) {
-		if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
-			[self pause];
-		} 
-	}
-}
-
-- (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-}
-
--(void) pause {
-	NSLog(@"App pauses");
-	[smgr stop];
-	[GameData sharedData].isGamePaused = YES;
-	pausedScreen.visible = YES;
+-(void)pause:(CCMenuItem *) menuItem{
+	if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
+		[smgr stop];
+		[GameData sharedData].isGamePaused = YES;
+		pauseButton.visible = NO;
+		pausedScreen.visible = YES;
+	} 
 }
 
 -(void)resume:(CCMenuItem *) menuItem {
 	if ([GameData sharedData].isGamePaused) {
-		pausedScreen.visible = NO;	
+		pausedScreen.visible = NO;
+		pauseButton.visible = YES;
 		[smgr start];
 		[GameData sharedData].isGamePaused = NO;
 	}

@@ -21,20 +21,22 @@
 	Sphere *sphere;
 	SpaceManager *smgr;
 	CCSprite *pausedScreen;
+	CCMenu *pauseButton;
 	Countdown *countdown;
 }
 
 @property(nonatomic, assign)Sphere *sphere;
 @property(nonatomic, retain)SpaceManager *smgr;
 @property(nonatomic, assign)CCSprite *pausedScreen;
+@property(nonatomic, assign)CCMenu *pauseButton;
 @property(nonatomic, assign)Countdown *countdown;
 
-+(id) scene;
++ (id) scene;
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
 - (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
 - (void) startGame;
 - (void) endGame;
-- (void) pause;
+- (void) pause:(CCMenuItem *) menuItem;
 - (void) resume:(CCMenuItem *) menuItem;
 - (void) restart:(CCMenuItem *) menuItem;
 - (void) backToMenu:(CCMenuItem *) menuItem;

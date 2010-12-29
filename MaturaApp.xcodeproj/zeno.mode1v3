@@ -231,8 +231,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -270,10 +268,8 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>AA31344E1233E7E30098711E</string>
 								<string>AAD58861128B442A00607376</string>
-								<string>AA8CBC8C1259F113008A851C</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>AA8CBDF0125A05D7008A851C</string>
-								<string>AAA33C791262472400234F5B</string>
 								<string>AAB4B8E2128ADA3700471976</string>
 								<string>AAC0EBC8125C9F1A00BD9C3D</string>
 								<string>AAC0EBC9125C9F2300BD9C3D</string>
@@ -283,14 +279,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
-									<integer>3</integer>
-									<integer>2</integer>
+									<integer>18</integer>
+									<integer>16</integer>
+									<integer>14</integer>
+									<integer>12</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {161, 585}}</string>
+							<string>{{0, 31}, {161, 585}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -320,12 +317,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>world2level1.plist</string>
+								<string>GameScene.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -333,23 +332,23 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>world2level1.plist</string>
+										<string>GameScene.m</string>
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>AAF1DB2E12CB3A5200488EF8</string>
+										<string>AAF1DBC812CBC46E00488EF8</string>
 										<key>history</key>
 										<array>
-											<string>AAF1DB0D12CB380C00488EF8</string>
-											<string>AAF1DB0E12CB380C00488EF8</string>
-											<string>AAF1DB1712CB384700488EF8</string>
-											<string>AAF1DB1812CB384700488EF8</string>
-											<string>AAF1DB2812CB3A5200488EF8</string>
-											<string>AAF1DB2912CB3A5200488EF8</string>
-											<string>AAF1DB2A12CB3A5200488EF8</string>
-											<string>AAF1DB2B12CB3A5200488EF8</string>
-											<string>AAF1DB2C12CB3A5200488EF8</string>
-											<string>AAF1DB2D12CB3A5200488EF8</string>
+											<string>AAF1DB4512CB437100488EF8</string>
+											<string>AAF1DB4612CB437100488EF8</string>
+											<string>AAF1DB9F12CBC1EE00488EF8</string>
+											<string>AAF1DBA012CBC1EE00488EF8</string>
+											<string>AAF1DBA112CBC1EE00488EF8</string>
+											<string>AAF1DBA212CBC1EE00488EF8</string>
+											<string>AAF1DBA312CBC1EE00488EF8</string>
+											<string>AAF1DBB112CBC2D200488EF8</string>
+											<string>AAF1DBBC12CBC33600488EF8</string>
+											<string>AAF1DBBD12CBC33600488EF8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -407,9 +406,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>AAF1DA9812CB2E0E00488EF8</string>
+				<string>AAF1DB5612CB437800488EF8</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>AAF1DA9912CB2E0E00488EF8</string>
+				<string>AAF1DB5712CB437800488EF8</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -547,9 +546,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>AAF1DB2F12CB3A5200488EF8</string>
-		<string>AAF1DAFB12CB34BD00488EF8</string>
-		<string>AAF1DAFD12CB34BD00488EF8</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>AA312FA81233D8960098711E</string>
@@ -633,7 +629,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>AA312FA81233D8960098711E</string>
-				<string>AAF1DA9A12CB2E0E00488EF8</string>
+				<string>AAF1DB5812CB437800488EF8</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -755,13 +751,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>AAF1DAF412CB34BD00488EF8</string>
+				<string>AAF1DBA812CBC24A00488EF8</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>AAF1DAF512CB34BD00488EF8</string>
-				<string>AAF1DAF612CB34BD00488EF8</string>
-				<string>AAF1DAF712CB34BD00488EF8</string>
-				<string>AAF1DAF812CB34BD00488EF8</string>
-				<string>AAF1DAF912CB34BD00488EF8</string>
+				<string>AAF1DBA912CBC24A00488EF8</string>
+				<string>AAF1DBAA12CBC24A00488EF8</string>
+				<string>AAF1DBAB12CBC24A00488EF8</string>
+				<string>AAF1DBAC12CBC24A00488EF8</string>
+				<string>AAF1DBAD12CBC24A00488EF8</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -888,6 +884,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -923,7 +921,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>AAF1DAFA12CB34BD00488EF8</string>
+				<string>AAF1DBAE12CBC24A00488EF8</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
