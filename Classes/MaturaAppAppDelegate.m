@@ -41,7 +41,7 @@
 		[[CCDirector sharedDirector] setContentScaleFactor: [[UIScreen mainScreen] scale] ];
 	}
 	// Turn on display FPS
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
 	
 	// Turn on multiple touches
 	EAGLView *view = [director openGLView];

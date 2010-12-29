@@ -12,12 +12,13 @@
 {
 		UITextView *textView;
 		CCSprite *sprite;
+		CGPoint spriteOriginalPosition;	
 		CGPoint originalOffset;
 }
 
 @property(nonatomic,retain) UITextView *textView;
 @property(nonatomic,assign) CCSprite *sprite;
-@property(readwrite,assign) CGPoint originalOffset;
+@property(readwrite,assign) CGPoint originalOffset, spriteOriginalPosition;
 
 +(id) scene;
 -(void)back:(CCMenuItem *) menuItem;

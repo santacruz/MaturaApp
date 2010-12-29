@@ -151,7 +151,7 @@
 	// WAS IST, WENN VORHER LEVEL 9 GESPIELT WURDE?
 	if ([UserData sharedData].currentLevel == 1) {
 		if ([GameData sharedData].wasGameWon) {
-			[UserData sharedData].currentWorld] -= 1;
+			[UserData sharedData].currentWorld -= 1;
 			[[GameData sharedData] initLevel:9 withWorld:[UserData sharedData].currentWorld-1];
 		} else {
 			[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];

@@ -47,6 +47,9 @@
 				if (count>[UserData sharedData].highestLevel && world==[UserData sharedData].highestWorld) {
 					levelButton.opacity = 100;
 					menuItemLevelButton.isEnabled = NO;
+				} else if (count==[UserData sharedData].highestLevel && world==[UserData sharedData].highestWorld) {//FALLS "ON THE EDGE"
+					//FÄRBE LEVEL GELB
+					[levelButton setColor:ccc3(251, 227, 69)];
 				}
 				[menu addChild:menuItemLevelButton];
 			}
@@ -78,6 +81,13 @@
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:[UserData sharedData].currentWorld]]];
+}
+
+- (void) dealloc
+{
+	NSLog(@"LevelChoice dealloc");
+	[[CCDirector sharedDirector] purgeCachedData];
+	[super dealloc];
 }
 
 @end

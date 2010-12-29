@@ -2,33 +2,5 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>enemySpeedMultiplier</key>
-	<string>10</string>
-	<key>numberOfEnemies</key>
-	<string>2</string>
-	<key>heroStartLevel</key>
-	<string>1</string>
-	<key>enemy1</key>
-	<dict>
-		<key>kind</key>
-		<string>0</string>
-		<key>level</key>
-		<string>1</string>
-		<key>x</key>
-		<string>160</string>
-		<key>y</key>
-		<string>450</string>
-	</dict>
-	<key>enemy2</key>
-	<dict>
-		<key>kind</key>
-		<string>4</string>
-		<key>level</key>
-		<string>1</string>
-		<key>x</key>
-		<string>160</string>
-		<key>y</key>
-		<string>30</string>
-	</dict>
-</dict>
+<key>enemySpeedMultiplier</key><string>10</string><key>numberOfEnemies</key><string>6</string><key>heroStartLevel</key><string>1</string><key>enemy1</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>191</string><key>y</key><string>136</string></dict><key>enemy2</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>134</string><key>y</key><string>188</string></dict><key>enemy3</key><dict><key>kind</key><string>0</string><key>level</key><string>1</string><key>x</key><string>124</string><key>y</key><string>134</string></dict><key>enemy4</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>113</string><key>y</key><string>70</string></dict><key>enemy5</key><dict><key>kind</key><string>0</string><key>level</key><string>1</string><key>x</key><string>209</string><key>y</key><string>76</string></dict><key>enemy6</key><dict><key>kind</key><string>0</string><key>level</key><string>1</string><key>x</key><string>180</string><key>y</key><string>189</string></dict></dict>
 </plist>

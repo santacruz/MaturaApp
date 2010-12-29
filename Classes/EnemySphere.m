@@ -86,7 +86,7 @@ static float prevDistance = 1000;
 				sprite.enemyKind = kind;
 				sprite.isShrinkKind = YES;
 				speed = [GameData sharedData].enemySpeedMultiplier*3;
-				[self schedule:@selector(move2:) interval:1/30];
+				[self schedule:@selector(move3:) interval:1/30];
 				break;
 			default:
 				//FÜGE NORMALES SPRITE HINZU
@@ -108,12 +108,11 @@ static float prevDistance = 1000;
 	return self;
 }
 
--(void)onEnter{
+-(void)zoom {
 	float originalScale = self.scale;
 	id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f*originalScale];
 	id zoomOut = [CCScaleTo actionWithDuration:0.1f scale:originalScale];
 	[sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
-	[super onEnter];
 }
 
 - (void)move1:(ccTime)dt {
@@ -158,6 +157,31 @@ static float prevDistance = 1000;
 			}
 		} else {
 				moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
+		}
+	}
+	
+	sprite.shape->body->v = ccpMult(moveVector, speed);
+	//ARGUMENT DES FEINDES ÄNDERN
+	sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
+	emitter.position = sprite.position;
+}
+
+-(void) move3:(ccTime)dt {
+	if ([GameData sharedData].isPlaying && [GameData sharedData].isThereAHero) {
+		prevDistance = 1000;
+		if (sprite.level >= [[self.parent sphere] level]) {
+			moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
+		} else if ([GameData sharedData].enemyCount > 1) {
+			for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
+				if (enemy != self) {
+					if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
+						prevDistance = ccpDistance(enemy.sprite.position, self.sprite.position);
+						moveVector = ccpNormalize(ccpSub(enemy.sprite.position, self.sprite.position));
+					}
+				}
+			}
+		} else {
+			moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
 		}
 	}
 	

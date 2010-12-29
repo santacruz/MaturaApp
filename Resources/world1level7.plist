@@ -2,33 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>enemySpeedMultiplier</key>
-	<string>10</string>
-	<key>numberOfEnemies</key>
-	<string>2</string>
-	<key>heroStartLevel</key>
-	<string>1</string>
-	<key>enemy1</key>
-	<dict>
-		<key>kind</key>
-		<string>0</string>
-		<key>level</key>
-		<string>1</string>
-		<key>x</key>
-		<string>160</string>
-		<key>y</key>
-		<string>450</string>
-	</dict>
-	<key>enemy2</key>
-	<dict>
-		<key>kind</key>
-		<string>4</string>
-		<key>level</key>
-		<string>1</string>
-		<key>x</key>
-		<string>160</string>
-		<key>y</key>
-		<string>30</string>
-	</dict>
+<key>enemySpeedMultiplier</key><string>10</string><key>numberOfEnemies</key><string>9</string><key>heroStartLevel</key><string>1</string><key>enemy1</key><dict><key>kind</key><string>0</string><key>level</key><string>1</string><key>x</key><string>157</string><key>y</key><string>463</string></dict><key>enemy2</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>205</string><key>y</key><string>209</string></dict><key>enemy3</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>207</string><key>y</key><string>264</string></dict><key>enemy4</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>203</string><key>y</key><string>310</string></dict><key>enemy5</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>157</string><key>y</key><string>293</string></dict><key>enemy6</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>104</string><key>y</key><string>309</string></dict><key>enemy7</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>105</string><key>y</key><string>260</string></dict><key>enemy8</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>104</string><key>y</key><string>210</string></dict><key>enemy9</key><dict><key>kind</key><string>0</string><key>level</key><string>9</string><key>x</key><string>158</string><key>y</key><string>122</string></dict>
 </dict>
 </plist>

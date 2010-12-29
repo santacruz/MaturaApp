@@ -24,4 +24,6 @@
 -(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location;
 -(void) move1:(ccTime)dt;
 -(void) move2:(ccTime)dt;
+-(void) move3:(ccTime)dt;
+-(void)zoom;
 @end

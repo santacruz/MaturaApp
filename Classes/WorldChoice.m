@@ -58,7 +58,7 @@
 			CCSprite *worldImg = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LargeSprites/%@.png",[worlds objectAtIndex:i]]];
 			worldImg.position = ccpMult(ccp(177.5,0),i);
 			if (i>[UserData sharedData].highestWorld) {
-				worldImg.opacity = 100;
+				worldImg.opacity = 50;
 			}
 			[menu addChild:worldImg];
 			//auch zu Array
@@ -128,7 +128,8 @@
 
 - (void) dealloc
 {
-	NSLog(@"LevelChoice dealloc");
+	NSLog(@"WorldChoice dealloc");
+	[[CCDirector sharedDirector] purgeCachedData];
 	[panels release];
 	[super dealloc];
 }

@@ -208,7 +208,11 @@ static float prevHeroRotation = 0;
 		if (aSize < bSize) {
 			newKind = spriteB.enemyKind;
 			newPos = spriteB.position;
-		}
+		} else if (aSize == bSize && spriteA.isShrinkKind) {
+			newKind = spriteA.enemyKind;
+		} else if (aSize == bSize && spriteB.isShrinkKind) {
+			newKind = spriteB.enemyKind;
+		} 
 
 		if (!spriteA.isShrinkKind && spriteB.isShrinkKind) {
 			if (aSize > bSize) {
@@ -254,6 +258,7 @@ static float prevHeroRotation = 0;
 		sphere = [Sphere sphereWithMgr:smgr level:[[[GameData sharedData].newHero objectAtIndex:0] intValue] 
 							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue]];
 		[self addChild:sphere];
+		[sphere zoom];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
 		//REDUZIERE ENEMYCOUNT		
@@ -274,6 +279,7 @@ static float prevHeroRotation = 0;
 												 level:[[enemyToBeSpawned objectAtIndex:1]intValue] 
 											  position:[[enemyToBeSpawned objectAtIndex:2] CGPointValue]];
 		[self addChild:feind];
+		[feind zoom];
 		[[GameData sharedData].enemySpawnBuffer removeObjectAtIndex:0];
 		[enemyToBeSpawned release];
 		//REDUZIERE ENEMYCOUNT		
@@ -420,6 +426,7 @@ static float prevHeroRotation = 0;
 - (void) dealloc
 {
 	NSLog(@"Deallocating GameLayer");
+	[[CCDirector sharedDirector] purgeCachedData];
 	[smgr release];
 	[super dealloc];
 }

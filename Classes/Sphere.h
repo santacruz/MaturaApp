@@ -20,4 +20,5 @@
 @property(readwrite,assign) int level;
 +(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location;
 -(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location;
+-(void)zoom;
 @end

@@ -7,7 +7,7 @@
 
 @implementation Help
 
-@synthesize textView, sprite, originalOffset;
+@synthesize textView, sprite, originalOffset, spriteOriginalPosition;
 
 +(id) scene
 {
@@ -40,7 +40,7 @@
 		textView = [[UITextView alloc] initWithFrame:CGRectMake(38,122,235,260)];
 		textView.backgroundColor = [UIColor clearColor];
 		textView.textColor = [UIColor colorWithRed:239 green:233 blue:223 alpha:255];
-		textView.text = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis porta porttitor. Vestibulum vitae nunc non enim tempus fringilla eget sed libero. Vestibulum hendrerit nisl eget leo tempus sed commodo felis varius.\n\n\n\n Donec dui arcu, pellentesque ut tempor sed, aliquam at dui. Curabitur commodo urna ac dolor eleifend in fringilla tellus pretium. Ut massa arcu, volutpat a volutpat tincidunt, aliquet nec felis. Donec id nunc justo, quis blandit erat. Suspendisse cursus massa non ligula varius adipiscing pretium justo mattis. Curabitur mollis erat metus, sed egestas odio. Aliquam justo dolor, dignissim dignissim mollis sed, molestie sit amet mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut tempor nisl eget lectus tincidunt fringilla adipiscing nisi consequat. Morbi porta semper vestibulum. Nam non dolor eget massa pharetra pretium eu id magna.Duis sollicitudin rhoncus felis, nec varius velit pulvinar vitae. Sed eleifend diam et nisi imperdiet ultricies. Proin tempus tortor eget dolor facilisis feugiat. Aliquam at imperdiet felis. Aenean egestas tellus pharetra tortor luctus aliquet. Maecenas nunc diam, viverra nec bibendum vel, scelerisque dapibus tellus. Curabitur eu nunc ante, ut facilisis nunc. Maecenas ut est eu enim placerat mollis et ac nunc. Praesent rhoncus elit in nunc faucibus scelerisque. Duis ullamcorper elementum nisl vel accumsan. Vestibulum lobortis imperdiet arcu suscipit dignissim.";
+		textView.text = @"This is you, the little blue ball: \n\n\n\nYour goal is to eat all the other balls on the screen. You move about by tilting the device and you grow whenever you touch an enemy like this one: \n\n\n\nBut stay alert! If you touch an enemy which is bigger than you, you'll lose the game.\nMoreover, not all of the enemies behave the same. ";
 		[textView setEditable:NO];
 		
 		[[[CCDirector sharedDirector]openGLView]addSubview:textView];
@@ -48,8 +48,9 @@
 		originalOffset = textView.contentOffset;
 		
 		//SPRITE
+		spriteOriginalPosition = ccp(160,310);
 		sprite = [CCSprite spriteWithFile:@"hero/Hero1.png"];
-		sprite.position = ccp(160,237);
+		sprite.position = spriteOriginalPosition;
 		[self addChild:sprite];
 		
 		//BACK MENU
@@ -67,7 +68,7 @@
 }
 
 -(void)nextFrame:(ccTime)dt {
-	sprite.position = ccpAdd(ccp(160,237), ccpSub(textView.contentOffset, originalOffset));
+	sprite.position = ccpAdd(spriteOriginalPosition, ccpSub(textView.contentOffset, originalOffset));
 }
 
 -(void)back:(CCMenuItem *)menuItem {

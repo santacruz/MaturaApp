@@ -65,8 +65,6 @@
 		AA762CA112C27DCA00323175 /* world1level5.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9912C27DCA00323175 /* world1level5.plist */; };
 		AA762CA212C27DCA00323175 /* world1level6.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9A12C27DCA00323175 /* world1level6.plist */; };
 		AA762CA312C27DCA00323175 /* world1level7.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9B12C27DCA00323175 /* world1level7.plist */; };
-		AA762CA412C27DCA00323175 /* world1level8.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9C12C27DCA00323175 /* world1level8.plist */; };
-		AA762CA512C27DCA00323175 /* world1level9.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA762C9D12C27DCA00323175 /* world1level9.plist */; };
 		AA76B8921246A7AA006ED952 /* LevelParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA76B8911246A7AA006ED952 /* LevelParser.m */; };
 		AA8CBDEF125A05BB008A851C /* WorldChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8CBDEE125A05BB008A851C /* WorldChoice.m */; };
 		AA8CC0B6125A7064008A851C /* pausedScreen-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8CC0B4125A7064008A851C /* pausedScreen-hd.png */; };
@@ -96,6 +94,17 @@
 		AAD9087F129E7C3D00EFB1AF /* volter.fnt in Resources */ = {isa = PBXBuildFile; fileRef = AAD90877129E7C3D00EFB1AF /* volter.fnt */; };
 		AAD90880129E7C3D00EFB1AF /* volter.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD90878129E7C3D00EFB1AF /* volter.png */; };
 		AAD9088A129E804A00EFB1AF /* BG in Resources */ = {isa = PBXBuildFile; fileRef = AAD90887129E804A00EFB1AF /* BG */; };
+		AAF1DA0012C9266300488EF8 /* world1level8.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1D9FF12C9266300488EF8 /* world1level8.plist */; };
+		AAF1DA0912C927C500488EF8 /* world1level9.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DA0812C927C500488EF8 /* world1level9.plist */; };
+		AAF1DADD12CB2E2500488EF8 /* world2level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DAD912CB2E2500488EF8 /* world2level1.plist */; };
+		AAF1DADE12CB2E2500488EF8 /* world2level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DADA12CB2E2500488EF8 /* world2level2.plist */; };
+		AAF1DADF12CB2E2500488EF8 /* world2level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DADB12CB2E2500488EF8 /* world2level3.plist */; };
+		AAF1DAE012CB2E2500488EF8 /* world2level4.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DADC12CB2E2500488EF8 /* world2level4.plist */; };
+		AAF1DAE612CB34A700488EF8 /* world2level5.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DAE512CB34A700488EF8 /* world2level5.plist */; };
+		AAF1DB0312CB35AA00488EF8 /* world2level6.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DB0212CB35AA00488EF8 /* world2level6.plist */; };
+		AAF1DB1C12CB38BA00488EF8 /* world2level7.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DB1B12CB38BA00488EF8 /* world2level7.plist */; };
+		AAF1DB2012CB396000488EF8 /* world2level8.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DB1F12CB396000488EF8 /* world2level8.plist */; };
+		AAF1DB2412CB3A4400488EF8 /* world2level9.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF1DB2312CB3A4400488EF8 /* world2level9.plist */; };
 		AAF4ECA0127F4394001F5522 /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF4EC9F127F4394001F5522 /* ScrollView.m */; };
 /* End PBXBuildFile section */
 
@@ -655,8 +664,6 @@
 		AA762C9912C27DCA00323175 /* world1level5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level5.plist; sourceTree = "<group>"; };
 		AA762C9A12C27DCA00323175 /* world1level6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level6.plist; sourceTree = "<group>"; };
 		AA762C9B12C27DCA00323175 /* world1level7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level7.plist; sourceTree = "<group>"; };
-		AA762C9C12C27DCA00323175 /* world1level8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level8.plist; sourceTree = "<group>"; };
-		AA762C9D12C27DCA00323175 /* world1level9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level9.plist; sourceTree = "<group>"; };
 		AA76B8901246A7AA006ED952 /* LevelParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelParser.h; sourceTree = "<group>"; };
 		AA76B8911246A7AA006ED952 /* LevelParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelParser.m; sourceTree = "<group>"; };
 		AA8CBDED125A05BB008A851C /* WorldChoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldChoice.h; sourceTree = "<group>"; };
@@ -694,6 +701,17 @@
 		AAD90877129E7C3D00EFB1AF /* volter.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = volter.fnt; sourceTree = "<group>"; };
 		AAD90878129E7C3D00EFB1AF /* volter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volter.png; sourceTree = "<group>"; };
 		AAD90887129E804A00EFB1AF /* BG */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BG; sourceTree = "<group>"; };
+		AAF1D9FF12C9266300488EF8 /* world1level8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level8.plist; sourceTree = "<group>"; };
+		AAF1DA0812C927C500488EF8 /* world1level9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world1level9.plist; sourceTree = "<group>"; };
+		AAF1DAD912CB2E2500488EF8 /* world2level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level1.plist; sourceTree = "<group>"; };
+		AAF1DADA12CB2E2500488EF8 /* world2level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level2.plist; sourceTree = "<group>"; };
+		AAF1DADB12CB2E2500488EF8 /* world2level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level3.plist; sourceTree = "<group>"; };
+		AAF1DADC12CB2E2500488EF8 /* world2level4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level4.plist; sourceTree = "<group>"; };
+		AAF1DAE512CB34A700488EF8 /* world2level5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level5.plist; sourceTree = "<group>"; };
+		AAF1DB0212CB35AA00488EF8 /* world2level6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level6.plist; sourceTree = "<group>"; };
+		AAF1DB1B12CB38BA00488EF8 /* world2level7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level7.plist; sourceTree = "<group>"; };
+		AAF1DB1F12CB396000488EF8 /* world2level8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level8.plist; sourceTree = "<group>"; };
+		AAF1DB2312CB3A4400488EF8 /* world2level9.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world2level9.plist; sourceTree = "<group>"; };
 		AAF4EC9E127F4394001F5522 /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollView.h; sourceTree = "<group>"; };
 		AAF4EC9F127F4394001F5522 /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1054,6 +1072,32 @@
 		AAD58861128B442A00607376 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				AAF1DB2512CB3A4800488EF8 /* World2 */,
+				AAF1DAE812CB34B700488EF8 /* World0 */,
+				AAF1DAE712CB34AE00488EF8 /* World1 */,
+			);
+			name = Levels;
+			sourceTree = "<group>";
+		};
+		AAF1DAE712CB34AE00488EF8 /* World1 */ = {
+			isa = PBXGroup;
+			children = (
+				AAD589D3128BFFED00607376 /* world1level1.plist */,
+				AA762C9612C27DCA00323175 /* world1level2.plist */,
+				AA762C9712C27DCA00323175 /* world1level3.plist */,
+				AA762C9812C27DCA00323175 /* world1level4.plist */,
+				AA762C9912C27DCA00323175 /* world1level5.plist */,
+				AA762C9A12C27DCA00323175 /* world1level6.plist */,
+				AA762C9B12C27DCA00323175 /* world1level7.plist */,
+				AAF1D9FF12C9266300488EF8 /* world1level8.plist */,
+				AAF1DA0812C927C500488EF8 /* world1level9.plist */,
+			);
+			name = World1;
+			sourceTree = "<group>";
+		};
+		AAF1DAE812CB34B700488EF8 /* World0 */ = {
+			isa = PBXGroup;
+			children = (
 				AAD5885D128B440F00607376 /* world0level1.plist */,
 				AA9DDDA2128F1A02009C891C /* world0level2.plist */,
 				AA9DDDA3128F1A02009C891C /* world0level3.plist */,
@@ -1063,17 +1107,24 @@
 				AAD589C8128BFFE500607376 /* world0level7.plist */,
 				AAD589C9128BFFE500607376 /* world0level8.plist */,
 				AAD589C5128BFFE500607376 /* world0level9.plist */,
-				AAD589D3128BFFED00607376 /* world1level1.plist */,
-				AA762C9612C27DCA00323175 /* world1level2.plist */,
-				AA762C9712C27DCA00323175 /* world1level3.plist */,
-				AA762C9812C27DCA00323175 /* world1level4.plist */,
-				AA762C9912C27DCA00323175 /* world1level5.plist */,
-				AA762C9A12C27DCA00323175 /* world1level6.plist */,
-				AA762C9B12C27DCA00323175 /* world1level7.plist */,
-				AA762C9C12C27DCA00323175 /* world1level8.plist */,
-				AA762C9D12C27DCA00323175 /* world1level9.plist */,
 			);
-			name = Levels;
+			name = World0;
+			sourceTree = "<group>";
+		};
+		AAF1DB2512CB3A4800488EF8 /* World2 */ = {
+			isa = PBXGroup;
+			children = (
+				AAF1DAD912CB2E2500488EF8 /* world2level1.plist */,
+				AAF1DADA12CB2E2500488EF8 /* world2level2.plist */,
+				AAF1DADB12CB2E2500488EF8 /* world2level3.plist */,
+				AAF1DADC12CB2E2500488EF8 /* world2level4.plist */,
+				AAF1DAE512CB34A700488EF8 /* world2level5.plist */,
+				AAF1DB0212CB35AA00488EF8 /* world2level6.plist */,
+				AAF1DB1B12CB38BA00488EF8 /* world2level7.plist */,
+				AAF1DB1F12CB396000488EF8 /* world2level8.plist */,
+				AAF1DB2312CB3A4400488EF8 /* world2level9.plist */,
+			);
+			name = World2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1642,8 +1693,17 @@
 				AA762CA112C27DCA00323175 /* world1level5.plist in Resources */,
 				AA762CA212C27DCA00323175 /* world1level6.plist in Resources */,
 				AA762CA312C27DCA00323175 /* world1level7.plist in Resources */,
-				AA762CA412C27DCA00323175 /* world1level8.plist in Resources */,
-				AA762CA512C27DCA00323175 /* world1level9.plist in Resources */,
+				AAF1DA0012C9266300488EF8 /* world1level8.plist in Resources */,
+				AAF1DA0912C927C500488EF8 /* world1level9.plist in Resources */,
+				AAF1DADD12CB2E2500488EF8 /* world2level1.plist in Resources */,
+				AAF1DADE12CB2E2500488EF8 /* world2level2.plist in Resources */,
+				AAF1DADF12CB2E2500488EF8 /* world2level3.plist in Resources */,
+				AAF1DAE012CB2E2500488EF8 /* world2level4.plist in Resources */,
+				AAF1DAE612CB34A700488EF8 /* world2level5.plist in Resources */,
+				AAF1DB0312CB35AA00488EF8 /* world2level6.plist in Resources */,
+				AAF1DB1C12CB38BA00488EF8 /* world2level7.plist in Resources */,
+				AAF1DB2012CB396000488EF8 /* world2level8.plist in Resources */,
+				AAF1DB2412CB3A4400488EF8 /* world2level9.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

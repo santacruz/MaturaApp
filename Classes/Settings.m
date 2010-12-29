@@ -8,7 +8,7 @@
 @implementation Settings
 
 @synthesize accelX, accelY, accelZ;
-@synthesize accLabel;
+@synthesize cross;
 
 +(id) scene
 {
@@ -37,7 +37,7 @@
 		[self addChild:labelCalibrate];
 		//BOX&CROSS
 		CCSprite *box = [CCSprite spriteWithFile:@"Buttons/box.png"];
-		CCSprite *cross = [CCSprite spriteWithFile:@"Buttons/cross.png"];
+		cross = [CCSprite spriteWithFile:@"Buttons/cross.png"];
 		box.position = ccp(78,278);
 		cross.position = ccp(78,278);
 		[self addChild:box];
@@ -85,15 +85,7 @@
 			vibrateMenu.position = ccp(250,175);
 			[self addChild:vibrateMenu];
 		}
-		
-		
-		/*ACC TEST
-		 accLabel = [CCLabelBMFont labelWithString:@"X:0 Y:0 Z:0" fntFile:@"volter_small.fnt"];
-		 accLabel.position = ccp(160, 100);
-		 [self addChild:accLabel];
-		 [self schedule:@selector(nextFrame:) interval:0.3];
-		 */
-		
+			
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
@@ -106,6 +98,9 @@
 		self.isAccelerometerEnabled = YES;
 		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
 		
+		//SCHEDULER FÜR BOX
+		[self schedule:@selector(nextFrame:) interval:(1.0 / 60)];
+		
 	}
 	return self;
 }
@@ -113,22 +108,35 @@
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {		
+
 	accelX = (float) acceleration.x;
 	accelY = (float) acceleration.y;
-	accelZ = (float) acceleration.z;	
+	accelZ = (float) acceleration.z;
+	
 }
 
 -(void)nextFrame:(ccTime)dt {
-	[accLabel setString:[NSString stringWithFormat:@"X:%f Y:%f Z:%f", accelX, accelY, accelZ]];
 	
+	float crossAccelX = (float) accelX - [UserData sharedData].accelCorrectionX;
+	float crossAccelY = (float) accelY - [UserData sharedData].accelCorrectionY;
+	
+	CGPoint v = ccpMult(ccp(crossAccelX,crossAccelY),150);
+	
+	if (!self.isCrossOutOfBoundsOfBox) {
+		cross.position = ccpAdd(cross.position, ccpMult(v, dt));
+	} else {
+		cross.position = ccpAdd(cross.position, ccpMult(ccpSub(cross.position, ccp(78,278)),-0.02));
+	}
+
 }
 
 -(void)calibrate:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE SETZEN
 	[UserData sharedData].accelCorrectionX = accelX;
 	[UserData sharedData].accelCorrectionY = accelY;
-	//******************
-	//HIER NOCH SYNCHRONISIEREN!!!!!
+	cross.position = ccp(78,278);
+	//SYNCHRONISIEREN
+	[[UserData sharedData] saveAllDataToUserDefaults];
 	
 }
 
@@ -136,8 +144,9 @@
 	//KORREKTIONSWERTE RESETTEN
 	[UserData sharedData].accelCorrectionX = 0;
 	[UserData sharedData].accelCorrectionY = 0;
-	//******************
-	//HIER NOCH SYNCHRONISIEREN!!!!!
+	cross.position = ccp(78,278);
+	//SYNCHRONISIEREN
+	[[UserData sharedData] saveAllDataToUserDefaults];
 }
 
 -(void)toggleVibration:(CCMenuItem *)menuItem {
@@ -153,6 +162,12 @@
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[HelloWorld scene]]];
 	
+}
+
+-(BOOL)isCrossOutOfBoundsOfBox {
+	CGRect box = CGRectMake(46 ,246 , 65, 65); 
+	if (CGRectContainsPoint(box, cross.position)) return NO;
+	return YES;
 }
 
 - (void) dealloc

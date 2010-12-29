@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<key>enemySpeedMultiplier</key><string>10</string><key>numberOfEnemies</key><string>5</string><key>heroStartLevel</key><string>1</string><key>enemy1</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>281</string><key>y</key><string>114</string></dict><key>enemy2</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>57</string><key>y</key><string>120</string></dict><key>enemy3</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>266</string><key>y</key><string>425</string></dict><key>enemy4</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>59</string><key>y</key><string>418</string></dict><key>enemy5</key><dict><key>kind</key><string>2</string><key>level</key><string>5</string><key>x</key><string>162</string><key>y</key><string>329</string></dict>
+</dict>
+</plist>
