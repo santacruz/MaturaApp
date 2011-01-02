@@ -75,7 +75,7 @@ static float prevDistance = 1000;
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				sprite.isShrinkKind = NO;
-				speed = [GameData sharedData].enemySpeedMultiplier*3;
+				speed = [GameData sharedData].enemySpeedMultiplier*5;
 				[self schedule:@selector(move1:) interval:1/30];
 				break;
 			case kUltraEnemy:
@@ -85,7 +85,7 @@ static float prevDistance = 1000;
 				sprite.level = size;
 				sprite.enemyKind = kind;
 				sprite.isShrinkKind = YES;
-				speed = [GameData sharedData].enemySpeedMultiplier*3;
+				speed = [GameData sharedData].enemySpeedMultiplier*5;
 				[self schedule:@selector(move3:) interval:1/30];
 				break;
 			default:

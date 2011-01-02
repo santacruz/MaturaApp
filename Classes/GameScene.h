@@ -40,4 +40,5 @@
 - (void) resume:(CCMenuItem *) menuItem;
 - (void) restart:(CCMenuItem *) menuItem;
 - (void) backToMenu:(CCMenuItem *) menuItem;
+- (void) enterBackground;
 @end

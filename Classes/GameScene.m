@@ -57,7 +57,7 @@ static float prevHeroRotation = 0;
 		CCMenuItemSprite *pauseItem = [CCMenuItemSprite itemFromNormalSprite:paused selectedSprite:paused target:self selector:@selector(pause:)];
 		pauseButton = [CCMenu menuWithItems:pauseItem, nil];
 		pauseButton.position = ccp(35,445);
-		[self addChild:pauseButton];
+		[self addChild:pauseButton z:50];
 		//PAUSELAYER
 		pausedScreen = [CCSprite spriteWithFile:@"halfBlack.png"];
 		pausedScreen.position = ccp(160,240);
@@ -218,6 +218,13 @@ static float prevHeroRotation = 0;
 			if (bSize > aSize) {
 				newSize = bSize - aSize;
 			}
+		} else if (spriteA.isShrinkKind && spriteB.isShrinkKind) {
+			if (spriteA.enemyKind != spriteB.enemyKind) {
+				newSize = aSize-bSize;
+				if (bSize > aSize) {
+					newSize = bSize - aSize;
+				}
+			}
 		}
 		
 		//FEINDE ENTFERNEN
@@ -318,6 +325,15 @@ static float prevHeroRotation = 0;
 }
 
 -(void)pause:(CCMenuItem *) menuItem{
+	if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
+		[smgr stop];
+		[GameData sharedData].isGamePaused = YES;
+		pauseButton.visible = NO;
+		pausedScreen.visible = YES;
+	} 
+}
+
+-(void)enterBackground {
 	if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
 		[smgr stop];
 		[GameData sharedData].isGamePaused = YES;

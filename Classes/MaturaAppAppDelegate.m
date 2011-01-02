@@ -58,7 +58,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
 	NSLog(@"Application resigned Active");
 	if ([GameData sharedData].isPlaying && [GameData sharedData].gameScene != NULL) {
-		[[GameData sharedData].gameScene pause];
+		[[GameData sharedData].gameScene enterBackground];
 	}
 	[[CCDirector sharedDirector] pause];
 }
@@ -74,7 +74,7 @@
 -(void) applicationDidEnterBackground:(UIApplication*)application {
 	NSLog(@"Application did enter Background");
 	if ([GameData sharedData].isPlaying && [GameData sharedData].gameScene != NULL) {
-		[[GameData sharedData].gameScene pause];
+		[[GameData sharedData].gameScene enterBackground];
 	}	[[CCDirector sharedDirector] stopAnimation];
 }
 
