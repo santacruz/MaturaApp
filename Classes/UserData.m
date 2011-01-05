@@ -54,7 +54,7 @@ static UserData *sharedData = NULL;
 			[defaults setValue:[NSNumber numberWithBool:isVibrationDevice] forKey:@"isVibrationDevice"];
 		}		
 		if ([defaults objectForKey:@"isVibrationEnabled"] == nil) {
-			[defaults setValue:[NSNumber numberWithFloat:isVibrationEnabled] forKey:@"isVibrationEnabled"];
+			[defaults setValue:[NSNumber numberWithBool:isVibrationEnabled] forKey:@"isVibrationEnabled"];
 		}
 		//FÜR JEDEN WEITEREN APPSTART: PROPERTIES AUS NSUSERDEFAULTS LESEN
 		if (defaults) {

@@ -11,9 +11,9 @@
 #import "UserData.h"
 
 @interface GameOver : CCLayer {
-
+	BOOL hasFinishedGame;
 }
-
+@property(readwrite, assign)BOOL hasFinishedGame;
 
 +(id)scene;
 -(void)next:(CCMenuItem *) menuItem;

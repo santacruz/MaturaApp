@@ -7,6 +7,7 @@
 #import "GameOver.h"
 
 @implementation GameOver
+@synthesize hasFinishedGame;
 
 +(id)scene {
 	CCScene *scene = [CCScene node];
@@ -24,36 +25,11 @@
 		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg];
-				
-		if ([GameData sharedData].wasGameWon) {
-			//UPDATE USERDATA
-			/*//IST GESPIELTES LEVEL HÖCHSTES LEVEL?
-			if ([UserData sharedData].highestLevel == [UserData sharedData].currentLevel) {
-				//IST GESPIELTE WELT HÖCHSTE WELT?
-				if ([UserData sharedData].highestWorld == [UserData sharedData].currentWorld) {
-					//WIRD LETZTES LEVEL GESPIELT?
-					if ([UserData sharedData].currentLevel == 9) {
-						[UserData sharedData].highestWorld += 1;
-						[UserData sharedData].currentWorld += 1;
-						[UserData sharedData].highestLevel = 1;
-						[UserData sharedData].currentLevel = 1;
-					} else {
-						[UserData sharedData].highestLevel += 1;
-						[UserData sharedData].currentLevel += 1;
-					}
-				} else { //WENN NICHT IN DER HÖCHSTEN WELT, NUR CURRENTLEVEL ERHÖHEN
-					//WIRD LETZTES LEVEL GESPIELT?
-					if ([UserData sharedData].currentLevel == 9) {
-						[UserData sharedData].currentWorld += 1;
-						[UserData sharedData].currentLevel = 1;
-					} else {
-						[UserData sharedData].currentLevel += 1;
-					}
-				}
-			} else { //WENN GESPIELTES LEVEL NICHT HÖCHSTES LEVEL
-				[UserData sharedData].currentLevel += 1;
-			}*/
-			
+		
+		//HAS FINISHED GAME?
+		hasFinishedGame = NO;
+		
+		if ([GameData sharedData].wasGameWon) {			
 			//HÖCHSTES LEVEL?
 			if ([UserData sharedData].highestLevel == [UserData sharedData].currentLevel) {
 				//HÖCHSTE WELT?
@@ -83,10 +59,17 @@
 					[UserData sharedData].currentLevel += 1;
 				}
 			}
-	
+			//FALLS LETZTES LEVEL FERTIG GEHABT:
+			if ([UserData sharedData].highestWorld == 5) {
+				[UserData sharedData].currentWorld = 4;
+				[UserData sharedData].highestWorld = 4;
+				[UserData sharedData].highestLevel = 9;
+				[UserData sharedData].currentLevel = 9;
+				hasFinishedGame = YES;
+			}
 
 			[[UserData sharedData] saveAllDataToUserDefaults];
-			
+		
 			//TITLE
 			CCSprite *title = [CCSprite spriteWithFile:@"Titles/youwon_title.png"];
 			title.position = ccp(160,420);
@@ -95,19 +78,32 @@
 			//MENU
 			CCLabelBMFont* label0 = [CCLabelBMFont labelWithString:@"next" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem0= [CCMenuItemLabel itemWithLabel:label0 target:self selector:@selector(next:)];
-
-			
+				
 			CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"retry" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(retry:)];
-			
+				
 			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"volter.fnt"];
 			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
 			
-			CCMenu * myMenu = [CCMenu menuWithItems:menuItem0,menuItem1,menuItem2,nil];
-			[myMenu alignItemsVertically];
-			myMenu.position = ccp(160, 220);
-			[self addChild:myMenu];
-			
+			if (hasFinishedGame == YES) {
+				//kein next zeigen, da Spiel fertig ist
+				//und dem User gratulieren:
+				CCLabelBMFont* congrats = [CCLabelBMFont labelWithString:@"Congratulations!" fntFile:@"volter_small.fnt"];
+				congrats.position = ccp(160, 280);
+				[self addChild:congrats];
+				CCLabelBMFont* beat = [CCLabelBMFont labelWithString:@"You beat the game!" fntFile:@"volter_small.fnt"];
+				beat.position = ccp(160, 265);
+				[self addChild:beat];
+				CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
+				[myMenu alignItemsVertically];
+				myMenu.position = ccp(160, 180);
+				[self addChild:myMenu];
+			} else {
+				CCMenu * myMenu = [CCMenu menuWithItems:menuItem0,menuItem1,menuItem2,nil];
+				[myMenu alignItemsVertically];
+				myMenu.position = ccp(160, 220);
+				[self addChild:myMenu];
+			}			
 			
 		} else { //GAME WAS NOT WON
 			//TITLE
@@ -156,6 +152,8 @@
 		} else {
 			[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];
 		}
+	} else if (hasFinishedGame == YES) { //HAT SPIEL BEENDET
+		[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];
 	} else { //SONST
 		if ([GameData sharedData].wasGameWon) {
 			[[GameData sharedData] initLevel:[UserData sharedData].currentLevel-1 withWorld:[UserData sharedData].currentWorld];

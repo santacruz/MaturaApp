@@ -119,6 +119,7 @@ static float prevDistance = 1000;
 	if ([GameData sharedData].isPlaying) {
 		prevDistance = 1000;
 		if ([GameData sharedData].enemyCount > 1) {
+			//ÜBERPRÜFE ALLE FEINDE AUF DISTANZ UND SPEICHERE DIESE, FALLS ES DIE KÜRZESTE DISTANZ IST
 			for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
 				if (enemy != self) {
 					if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
@@ -128,13 +129,14 @@ static float prevDistance = 1000;
 				}
 			}
 		} else {
+			//FALLS ICH DER LETZTE FEIND BIN, VERFOLGE ICH DEN HELDEN
 			if ([GameData sharedData].isThereAHero) {
 				moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
 			}
 		}
-		
+		//RICHTUNG ÄNDERN
 		sprite.shape->body->v = ccpMult(moveVector, speed);
-		//ARGUMENT DES FEINDES ÄNDERN
+		//AUSRICHTUNG DES BILDES ÄNDERN
 		sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
 		emitter.position = sprite.position;
 	}
@@ -145,8 +147,10 @@ static float prevDistance = 1000;
 	if ([GameData sharedData].isPlaying && [GameData sharedData].isThereAHero) {
 		prevDistance = 1000;
 		if (sprite.level > [[self.parent sphere] level]) {
+			//VERFOLGE DEN HELDEN, WENN ICH GRÖSSER BIN
 			moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
 		} else if ([GameData sharedData].enemyCount > 1) {
+			//ÜBERPRÜFE ALLE FEINDE AUF DISTANZ UND SPEICHERE DIESE, FALLS ES DIE KÜRZESTE DISTANZ IST
 			for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
 				if (enemy != self) {
 					if (ccpDistance(enemy.sprite.position, self.sprite.position) < prevDistance) {
@@ -156,12 +160,13 @@ static float prevDistance = 1000;
 				}
 			}
 		} else {
+				//FALLS ICH DER LETZTE FEIND BIN, VERFOLGE ICH DEN HELDEN, AUCH WENN ICH KLEINER ALS ER BIN
 				moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
 		}
 	}
-	
+	//RICHTUNG ÄNDERN
 	sprite.shape->body->v = ccpMult(moveVector, speed);
-	//ARGUMENT DES FEINDES ÄNDERN
+	//AUSRICHTUNG DES FEINDES ÄNDERN
 	sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
 	emitter.position = sprite.position;
 }
@@ -170,6 +175,7 @@ static float prevDistance = 1000;
 	if ([GameData sharedData].isPlaying && [GameData sharedData].isThereAHero) {
 		prevDistance = 1000;
 		if (sprite.level >= [[self.parent sphere] level]) {
+			//FALLS ICH DEN HELDEN FRESSEN KANN, VERFOLGE ICH IHN
 			moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
 		} else if ([GameData sharedData].enemyCount > 1) {
 			for(EnemySphere *enemy in [GameData sharedData].enemyArray) {
@@ -181,12 +187,13 @@ static float prevDistance = 1000;
 				}
 			}
 		} else {
+			//FALLS ICH DER LETZTE FEIND BIN, VERFOLGE ICH DEN HELDEN, AUCH WENN ICH KLEINER ALS ER BIN
 			moveVector = ccpNormalize(ccpSub([[self.parent sphere] sprite].position, self.sprite.position));
 		}
 	}
-	
+	//RICHTUNG ÄNDERN
 	sprite.shape->body->v = ccpMult(moveVector, speed);
-	//ARGUMENT DES FEINDES ÄNDERN
+	//AUSRICHTUNG DES FEINDES ÄNDERN
 	sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
 	emitter.position = sprite.position;
 }

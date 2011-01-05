@@ -249,7 +249,7 @@ static float prevHeroRotation = 0;
 }
 
 
-//GAME LOGIK
+//GAME LOOP
 - (void) nextFrame:(ccTime)dt {
 	//COUNTDOWN BEENDEN UND SPIEL STARTEN
 	if ([GameData sharedData].isCountdownFinished) {
