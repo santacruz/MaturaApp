@@ -14,15 +14,15 @@
 	int currentLevel;
 	int highestWorld;
 	int currentWorld;
-	float accelCorrectionX;
-	float accelCorrectionY;
 	BOOL isVibrationDevice;
 	BOOL isVibrationEnabled;
+	NSArray * xNorm;
+	NSArray * yNorm;
 }
 
-@property(readwrite,assign) float accelCorrectionX, accelCorrectionY;
 @property(readwrite,assign) int highestLevel, currentLevel, highestWorld, currentWorld;
 @property(readwrite,assign) BOOL isVibrationDevice, isVibrationEnabled;
+@property(nonatomic,retain) NSArray *xNorm, *yNorm;
 
 +(UserData *) sharedData;
 -(void)saveAllDataToUserDefaults;

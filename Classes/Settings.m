@@ -9,6 +9,7 @@
 
 @synthesize accelX, accelY, accelZ;
 @synthesize cross;
+@synthesize accHelper;
 
 +(id) scene
 {
@@ -101,6 +102,8 @@
 		//SCHEDULER FÜR BOX
 		[self schedule:@selector(nextFrame:) interval:(1.0 / 60)];
 		
+		//ACCHELPER
+		accHelper = [[AccHelper alloc] init];
 	}
 	return self;
 }
@@ -116,9 +119,9 @@
 }
 
 -(void)nextFrame:(ccTime)dt {
-	
-	float crossAccelX = (float) accelX - [UserData sharedData].accelCorrectionX;
-	float crossAccelY = (float) accelY - [UserData sharedData].accelCorrectionY;
+	NSArray *accelData = [NSArray arrayWithObjects:[NSNumber numberWithFloat:accelX],[NSNumber numberWithFloat:accelY],[NSNumber numberWithFloat:accelZ],nil];
+	float crossAccelX = -1*[accHelper dotVec1:[UserData sharedData].xNorm Vec2:accelData];
+	float crossAccelY = [accHelper dotVec1:[UserData sharedData].yNorm Vec2:accelData];
 	
 	CGPoint v = ccpMult(ccp(crossAccelX,crossAccelY),150);
 	
@@ -127,13 +130,19 @@
 	} else {
 		cross.position = ccpAdd(cross.position, ccpMult(ccpSub(cross.position, ccp(78,278)),-0.02));
 	}
-
 }
 
 -(void)calibrate:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE SETZEN
-	[UserData sharedData].accelCorrectionX = accelX;
-	[UserData sharedData].accelCorrectionY = accelY;
+	if (accelZ > 0) { //GERÄT STEHT KOPF
+		[UserData sharedData].xNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1],[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+	} else { //GERÄT IST NORMAL ORIENTIERT
+		[UserData sharedData].xNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:1],[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+	}
+	NSArray *zNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:accelX],[NSNumber numberWithFloat:accelY], [NSNumber numberWithFloat:accelZ], nil];
+	[UserData sharedData].yNorm = [accHelper crossVec1:[UserData sharedData].xNorm Vec2:zNorm];
+	[UserData sharedData].xNorm = [accHelper crossVec1:[UserData sharedData].yNorm Vec2:zNorm];
+	
 	cross.position = ccp(78,278);
 	//SYNCHRONISIEREN
 	[[UserData sharedData] saveAllDataToUserDefaults];
@@ -142,8 +151,8 @@
 
 -(void)resetCalibration:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE RESETTEN
-	[UserData sharedData].accelCorrectionX = 0;
-	[UserData sharedData].accelCorrectionY = 0;
+	[UserData sharedData].xNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+	[UserData sharedData].yNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:1], [NSNumber numberWithFloat:0], nil];
 	cross.position = ccp(78,278);
 	//SYNCHRONISIEREN
 	[[UserData sharedData] saveAllDataToUserDefaults];
@@ -173,6 +182,7 @@
 - (void) dealloc
 {
 	NSLog(@"Settings dealloc");
+	[accHelper release];
 	[super dealloc];
 }
 @end

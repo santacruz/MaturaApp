@@ -7,6 +7,7 @@
 #import "cocos2d.h"
 #import "UserData.h"
 #import "HelloWorldScene.h"
+#import "AccHelper.h"
 
 @interface Settings : CCLayer
 {
@@ -14,10 +15,12 @@
 	float accelY;
 	float accelZ;
 	CCSprite *cross;
+	AccHelper *accHelper;
 }
 
 @property(readwrite,assign) float accelX, accelY, accelZ;
 @property(nonatomic,assign) CCSprite *cross;
+@property(nonatomic,retain) AccHelper *accHelper;
 
 +(id) scene;
 -(void)calibrate:(CCMenuItem *) menuItem;

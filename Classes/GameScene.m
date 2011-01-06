@@ -25,7 +25,7 @@ static float prevHeroRotation = 0;
 
 @implementation GameScene
 
-@synthesize sphere, smgr, pausedScreen, pauseButton, countdown;
+@synthesize sphere, smgr, pausedScreen, pauseButton, countdown, accHelper;
 
 +(id) scene
 {
@@ -121,6 +121,9 @@ static float prevHeroRotation = 0;
 			[enemyToBeSpawned release];
 		}
 		[[GameData sharedData].enemySpawnBuffer removeAllObjects];
+		
+		//TOOL FÜR DIE BERECHNUNG VON VON SKALARPRODUKTEN
+		accHelper = [[AccHelper alloc] init];
 		
 		//GAMELOGIK REGISTRIEREN
 		[self schedule:@selector(nextFrame:)];
@@ -298,25 +301,21 @@ static float prevHeroRotation = 0;
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
+	
 	static float prevX=0, prevY=0;
+
+	//BERECHNE BESCHLEUNIGUNG IN ALLEN MÖGLICHEN SYSTEMEN
+	NSArray *accelData = [NSArray arrayWithObjects:[NSNumber numberWithFloat:acceleration.x],[NSNumber numberWithFloat:acceleration.y],[NSNumber numberWithFloat:acceleration.z],nil];
+	float accelX = (float) -1*[accHelper dotVec1:[UserData sharedData].xNorm Vec2:accelData]*kFilterFactor + (1 - kFilterFactor)*prevX;
+	float accelY = (float) [accHelper dotVec1:[UserData sharedData].yNorm Vec2:accelData]*kFilterFactor + (1 - kFilterFactor)*prevY;
 	
-	float accelX = (float) (acceleration.x -[UserData sharedData].accelCorrectionX) * kFilterFactor + (1- kFilterFactor)*prevX;
-	float accelY = (float) (acceleration.y -[UserData sharedData].accelCorrectionY) * kFilterFactor + (1- kFilterFactor)*prevY;
-	
+	//VERHINDERT RAUSCHEN
 	prevX = accelX;
 	prevY = accelY;
 	
-	if (accelX > 0) {
-		accelX = 1/(1+exp(-kAccSteilheit*(accelX-kAccInflektion)));
-	} else {
-		accelX = -1/(1+exp(-kAccSteilheit*(-1*accelX-kAccInflektion)));
-	}
-	
-	if (accelY > 0) {
-		accelY = 1/(1+exp(-kAccSteilheit*(accelY-kAccInflektion)));
-	} else {
-		accelY = -1/(1+exp(-kAccSteilheit*(-1*accelY-kAccInflektion)));
-	}
+	//ANGENEHMERE BEDIENUNG
+	accelX = [accHelper sign:accelX]*1/(1+exp(-kAccSteilheit*([accHelper sign:accelX]*accelX-kAccInflektion)));
+	accelY = [accHelper sign:accelY]*1/(1+exp(-kAccSteilheit*([accHelper sign:accelY]*accelY-kAccInflektion)));
 	
 	CGPoint v = ccp(accelX, accelY);
 	if ([GameData sharedData].isThereAHero) {
@@ -425,6 +424,7 @@ static float prevHeroRotation = 0;
 {
 	NSLog(@"Deallocating GameLayer");
 	[[CCDirector sharedDirector] purgeCachedData];
+	[accHelper release];
 	[smgr release];
 	[super dealloc];
 }

@@ -55,6 +55,7 @@
 		AA37266B1299915000E1A4FA /* shrink in Resources */ = {isa = PBXBuildFile; fileRef = AA37259B1299915000E1A4FA /* shrink */; };
 		AA37266C1299915000E1A4FA /* ultra in Resources */ = {isa = PBXBuildFile; fileRef = AA3726011299915000E1A4FA /* ultra */; };
 		AA3726FA129AEDDD00E1A4FA /* world0level4.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA3726F9129AEDDD00E1A4FA /* world0level4.plist */; };
+		AA42072F12D5F8C500A3A6FE /* AccHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA42072E12D5F8C500A3A6FE /* AccHelper.m */; };
 		AA6450AE12D09653004ABB85 /* world3level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6450AA12D09653004ABB85 /* world3level1.plist */; };
 		AA6450AF12D09653004ABB85 /* world3level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6450AB12D09653004ABB85 /* world3level2.plist */; };
 		AA6450B012D09653004ABB85 /* world3level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6450AC12D09653004ABB85 /* world3level3.plist */; };
@@ -674,6 +675,8 @@
 		AA37259B1299915000E1A4FA /* shrink */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shrink; sourceTree = "<group>"; };
 		AA3726011299915000E1A4FA /* ultra */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ultra; sourceTree = "<group>"; };
 		AA3726F9129AEDDD00E1A4FA /* world0level4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level4.plist; sourceTree = "<group>"; };
+		AA42072D12D5F8C500A3A6FE /* AccHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccHelper.h; sourceTree = "<group>"; };
+		AA42072E12D5F8C500A3A6FE /* AccHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccHelper.m; sourceTree = "<group>"; };
 		AA6450AA12D09653004ABB85 /* world3level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world3level1.plist; sourceTree = "<group>"; };
 		AA6450AB12D09653004ABB85 /* world3level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world3level2.plist; sourceTree = "<group>"; };
 		AA6450AC12D09653004ABB85 /* world3level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world3level3.plist; sourceTree = "<group>"; };
@@ -1048,6 +1051,8 @@
 				AA76B8911246A7AA006ED952 /* LevelParser.m */,
 				AAB4B744128A812D00471976 /* UserData.h */,
 				AAB4B745128A812D00471976 /* UserData.m */,
+				AA42072D12D5F8C500A3A6FE /* AccHelper.h */,
+				AA42072E12D5F8C500A3A6FE /* AccHelper.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1854,6 +1859,7 @@
 				AAF4ECA0127F4394001F5522 /* ScrollView.m in Sources */,
 				AAA49991128582DA001DC13F /* LevelChoice.m in Sources */,
 				AAB4B746128A812D00471976 /* UserData.m in Sources */,
+				AA42072F12D5F8C500A3A6FE /* AccHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

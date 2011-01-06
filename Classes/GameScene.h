@@ -13,7 +13,7 @@
 #import "CCTouchDispatcher.h"
 #import "GameOver.h"
 #import "HelloWorldScene.h"
-
+#import "AccHelper.h"
 
 // HelloWorld Layer
 @interface GameScene : CCLayer
@@ -23,6 +23,7 @@
 	CCSprite *pausedScreen;
 	CCMenu *pauseButton;
 	Countdown *countdown;
+	AccHelper *accHelper;
 }
 
 @property(nonatomic, assign)Sphere *sphere;
@@ -30,6 +31,7 @@
 @property(nonatomic, assign)CCSprite *pausedScreen;
 @property(nonatomic, assign)CCMenu *pauseButton;
 @property(nonatomic, assign)Countdown *countdown;
+@property(nonatomic, retain)AccHelper *accHelper;
 
 + (id) scene;
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
