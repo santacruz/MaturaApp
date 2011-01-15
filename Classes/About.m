@@ -35,7 +35,7 @@
 		textView = [[UITextView alloc] initWithFrame:CGRectMake(38,122,235,260)];
 		textView.backgroundColor = [UIColor clearColor];
 		textView.textColor = [UIColor colorWithRed:239 green:233 blue:223 alpha:255];
-		textView.text = @"Omnivore is the work of";
+		textView.text = @"Code & Design - Zeno Koller\nFont - Volter\n\nCreated with Cocos2d";
 		[textView setEditable:NO];
 		
 		[[[CCDirector sharedDirector]openGLView]addSubview:textView];

@@ -13,18 +13,26 @@
  *
  **********************************************************************/
 
-//Comment this out if you don't want cocos2d support
-//(cleaner to move it to target specific options)
-#define _SPACE_MANAGER_FOR_COCOS2D
+/*
+	ATTENTION! COCOS2D USERS
+ 
+	Large change: Include and use SpaceManagerCocos2d class now found
+	in the ccExtras folder. This design change gives a better seperation
+	and will prove much more flexible in the long run, thanks for
+	understanding.
+ 
+	p.s. You may need to add the ccExtras folder path to your
+	"Header Search Paths" found under your Target Info->Build area.
+ */
 
 // 0x00 HI ME LO
-// 00   00 00 04
-#define SPACE_MANAGER_VERSION 0x00000005
+// 00   00 00 06
+#define SPACE_MANAGER_VERSION 0x00000006
 
-#ifdef _SPACE_MANAGER_FOR_COCOS2D
-#import "cocos2d.h"
-#endif
 #import "chipmunk.h"
+
+//cp extras
+#import "cpExtras/cpPulleyJoint.h"
 
 //A more definitive sounding define
 #define STATIC_MASS	INFINITY
@@ -72,17 +80,15 @@ typedef enum {
 @interface SpaceManager : NSObject
 {
 	
-@private
+@protected
 	/* our chipmunk space! */
 	cpSpace			*_space;
 	
-	/* Internal devices */
+	/* Internal devices (dev: Consider revamping) */
 	NSMutableArray	*_invocations;
 
 	/* Helpful Shapes/Bodies */
 	cpShape			*topWall,*bottomWall,*rightWall,*leftWall;
-	
-	cpBody			*_staticBody;
 	
 	/* Number of steps (across dt) perform on each step call */
 	int		_steps;
@@ -162,35 +168,17 @@ typedef enum {
 -(id) initWithSpace:(cpSpace*)space;
 
 /*! load a cpSerializer file from a user docs file, delegate can be nil */
-- (BOOL) loadSpaceFromUserDocs:(NSString*)file delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
+-(BOOL) loadSpaceFromUserDocs:(NSString*)file delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
 
 /*! save a cpSerializer file to a user docs file, delegate can be nil */
-- (BOOL) saveSpaceToUserDocs:(NSString*)file delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
+-(BOOL) saveSpaceToUserDocs:(NSString*)file delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
 
 /*! load a cpSerializer file from a file (path), delegate can be nil */
-- (BOOL) loadSpaceFromPath:(NSString*)path delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
+-(BOOL) loadSpaceFromPath:(NSString*)path delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
 
 /*! save a cpSerializer file to a resource file (path), delegate can be nil */
-- (BOOL) saveSpaceToPath:(NSString*)path delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
+-(BOOL) saveSpaceToPath:(NSString*)path delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate;
 
-#ifdef _SPACE_MANAGER_FOR_COCOS2D
-
-/*! Schedule a timed loop (against step:) using Cocos2d's default dt */
--(void) start;
-
-/*! Schedule a timed loop (against step:) using dt */
--(void) start:(float)dt;
-
-/*! Stop the timed loop */
--(void) stop;
-
-/*! Attach cpShapeNode's and cpConstraintNode's to shapes/constraints that have NULL data fields */
--(CCLayer*) createDebugLayer;
-
-/*! Convenience method for adding a containment rect around the view */
--(void) addWindowContainmentWithFriction:(cpFloat)friction elasticity:(cpFloat)elasticity inset:(cpVect)inset;
--(void) addWindowContainmentWithFriction:(cpFloat)friction elasticity:(cpFloat)elasticity inset:(cpVect)inset radius:(cpFloat)radius;
-#endif
 -(void) addWindowContainmentWithFriction:(cpFloat)friction elasticity:(cpFloat)elasticity size:(CGSize)wins inset:(cpVect)inset radius:(cpFloat)radius;
 
 /*! Manually advance time within the space */
@@ -223,13 +211,18 @@ typedef enum {
 /*! Use if you move static shapes during simulation */
 -(void) rehashStaticShapes;
 
-/*! Use to only rehash one static shape */
--(void) rehashStaticShape:(cpShape*)shape;
+/*! Use to only rehash one shape */
+-(void) rehashShape:(cpShape*)shape;
 
-/*! Return an array of NSValues with a pointer to a cpShape */
+/*! Given a point, return an array of NSValues with a pointer to a cpShape */
 -(NSArray*) getShapesAt:(cpVect)pos layers:(cpLayers)layers group:(cpLayers)group;
 /*! @see getShapesAt:layers:group: */
 -(NSArray*) getShapesAt:(cpVect)pos;
+
+/*! Given a point and a radius, return an array of NSValues with a pointer to a cpShape */
+-(NSArray*) getShapesAt:(cpVect)pos radius:(float)radius layers:(cpLayers)layers group:(cpLayers)group;
+/*! @see getShapesAt:radius:layers:group: */
+-(NSArray*) getShapesAt:(cpVect)pos radius:(float)radius;
 
 /*! Return first shape hit by the given raycast */
 -(cpShape*) getShapeFromRayCastSegment:(cpVect)start end:(cpVect)end layers:(cpLayers)layers group:(cpGroup)group;
@@ -251,6 +244,11 @@ typedef enum {
 /*! see getInfosFromRayCastSegment:end:layers:group: */
 -(NSArray*) getInfosFromRayCastSegment:(cpVect)start end:(cpVect)end;
 
+/*! Explosion, applied linear force to objects within radius */
+-(void) applyLinearExplosionAt:(cpVect)at radius:(cpFloat)radius maxForce:(cpFloat)maxForce;
+/*! Explosion, applied linear force to objects within radius given a group and layer(s) */
+-(void) applyLinearExplosionAt:(cpVect)at radius:(cpFloat)radius maxForce:(cpFloat)maxForce layers:(cpLayers)layers group:(cpGroup)group;
+
 /*! Queries the space as to whether these two shapes are in persistent contact */
 -(BOOL) isPersistentContactOnShape:(cpShape*)shape contactShape:(cpShape*)shape2;
 
@@ -267,14 +265,8 @@ typedef enum {
 /*! Will return an array of NSValues that point to the cpConstraints on given body */
 -(NSArray*) getConstraintsOnBody:(cpBody*)body;
 
-/*! Schedule is used for removing & freeing shapes during collisions */
--(void) scheduleToRemoveAndFreeShape:(cpShape*)shape;
-
 /*! Use when removing & freeing shapes */
 -(void) removeAndFreeShape:(cpShape*)shape;
-
-/*! Schedule is used for removing shapes during collisions, ownership is given to caller */
--(void) scheduleToRemoveShape:(cpShape*)shape;
 
 /*! Use when removing shapes, will pass ownership to caller */
 -(cpShape*) removeShape:(cpShape*)shape;
@@ -386,16 +378,29 @@ typedef enum {
 /*! This does not work yet */
 -(cpConstraint*) addBreakableToConstraint:(cpConstraint*)breakConstraint maxForce:(cpFloat)max;
 
-/*! */
+/*! Specify a min and a max a body can rotate relative to another body */
 -(cpConstraint*) addRotaryLimitToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody min:(cpFloat)min max:(cpFloat)max;
+/*! Specify a min and a max a body can rotate */
 -(cpConstraint*) addRotaryLimitToBody:(cpBody*)toBody min:(cpFloat)min max:(cpFloat)max;
 
-/*! */
+/*! Add a ratchet between two bodies */
 -(cpConstraint*) addRatchetToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody phase:(cpFloat)phase rachet:(cpFloat)ratchet;
+/*! Add a ratchet to a body */
 -(cpConstraint*) addRatchetToBody:(cpBody*)toBody phase:(cpFloat)phase rachet:(cpFloat)ratchet;
 
-/*! */
+/*! Add a rotary spring between two bodies */
 -(cpConstraint*) addRotarySpringToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody restAngle:(cpFloat)restAngle stiffness:(cpFloat)stiff damping:(cpFloat)damp;
+/*! Add a rotary spring to a body */
 -(cpConstraint*) addRotarySpringToBody:(cpBody*)toBody restAngle:(cpFloat)restAngle stiffness:(cpFloat)stiff damping:(cpFloat)damp;
 
+/*! Add a pulley between two bodies and another body which is the actual pulley */
+-(cpConstraint*) addPulleyToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody pulleyBody:(cpBody*)pulleyBody
+					toBodyAnchor:(cpVect)anchor1 fromBodyAnchor:(cpVect)anchor2
+				  toPulleyAnchor:(cpVect)anchor3a fromPulleyAnchor:(cpVect)anchor3b
+						   ratio:(cpFloat)ratio;
+/*! Add a pulley between two bodies */
+-(cpConstraint*) addPulleyToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody
+					toBodyAnchor:(cpVect)anchor1 fromBodyAnchor:(cpVect)anchor2
+				  toPulleyWorldAnchor:(cpVect)anchor3a fromPulleyWorldAnchor:(cpVect)anchor3b
+						   ratio:(cpFloat)ratio;
 @end

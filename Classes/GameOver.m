@@ -22,7 +22,7 @@
 {
 	if( (self=[super init] )) {
 		//BACKGROUND
-		CCSprite *bg = [CCSprite spriteWithFile:@"BG/bg.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"BG/BG.png"];
 		bg.position = ccp(160,240);
 		[self addChild:bg];
 		

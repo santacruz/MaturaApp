@@ -119,7 +119,6 @@
 
 - (void) drawCircleShape
 {
-	
 	static const GLfloat circleVAR[] = {
 		0.0000,  1.0000,
 		0.2588,  0.9659,
@@ -162,7 +161,7 @@
 		//cpVect center = cpvsub(anchorPoint_, cpv(0.5f, 0.5f));
 		//glTranslatef(-center.x*contentSize_.width, -center.y*contentSize_.height, 0.0f);
 
-		glScalef(circle->r, circle->r, 1.0f);
+		glScalef(circle->r*CC_CONTENT_SCALE_FACTOR(), circle->r*CC_CONTENT_SCALE_FACTOR(), 1.0f);
 		
 		if (_fillShape)
 			glDrawArrays(GL_TRIANGLE_FAN, 0, circleVAR_count-extraPtOffset-1);
@@ -206,12 +205,12 @@
 	
 	cpSegmentShape *seg = (cpSegmentShape*)_implementation.shape;
 	
-	cpVect a = seg->a;//cpvadd(body->p, cpvrotate(seg->a, body->rot));
-	cpVect b = seg->b;//cpvadd(body->p, cpvrotate(seg->b, body->rot));
+	cpVect a = cpvmult(seg->a, CC_CONTENT_SCALE_FACTOR());//cpvadd(body->p, cpvrotate(seg->a, body->rot));
+	cpVect b = cpvmult(seg->b, CC_CONTENT_SCALE_FACTOR());//cpvadd(body->p, cpvrotate(seg->b, body->rot));
 		
 	if(seg->r){
 		cpVect delta = cpvsub(b, a);
-		cpFloat len = cpvlength(delta)/seg->r;
+		cpFloat len = cpvlength(delta)/(seg->r*CC_CONTENT_SCALE_FACTOR());
 		
 		GLfloat VAR[pillVAR_count*2];
 		memcpy(VAR, pillVAR, sizeof(pillVAR));
@@ -260,8 +259,8 @@
 	cpVect *verts = poly->verts;
 	for(int i=0; i<count; i++){
 		cpVect v = verts[i];//cpvadd(body->p, cpvrotate(verts[i], body->rot));
-		VAR[2*i    ] = v.x;
-		VAR[2*i + 1] = v.y;
+		VAR[2*i    ] = v.x*CC_CONTENT_SCALE_FACTOR();
+		VAR[2*i + 1] = v.y*CC_CONTENT_SCALE_FACTOR();
 	}
 	
 	if (_fillShape)

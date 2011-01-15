@@ -236,8 +236,8 @@ cpBody *cpSpaceSerializer::createBody(TiXmlElement *elm)
 	TiXmlElement *bodyElm;;
 	cpBody *body;
 	
-	long id = createValue<long>("body_id", elm);
-	BodyMap::iterator itr = _bodyMap.find(id);
+	long b_id = createValue<long>("body_id", elm);
+	BodyMap::iterator itr = _bodyMap.find(b_id);
 	
 	//If it doesn't exist, try to create it
 	if (itr == _bodyMap.end())
@@ -258,7 +258,7 @@ cpBody *cpSpaceSerializer::createBody(TiXmlElement *elm)
 			body->w = createValue<cpFloat>("w", bodyElm);
 			body->t = createValue<cpFloat>("t", bodyElm);
 			
-			_bodyMap[id] = body;
+			_bodyMap[b_id] = body;
 		}
 		else
 			body = cpBodyNew(INFINITY, INFINITY); //Fail case, should throw or something
@@ -268,7 +268,7 @@ cpBody *cpSpaceSerializer::createBody(TiXmlElement *elm)
 	
 	if (delegate)
 	{
-		if (!delegate->reading(body, id))
+		if (!delegate->reading(body, b_id))
 		{
 			cpBodyFree(body);
 			body = NULL;
@@ -595,11 +595,11 @@ TiXmlElement *cpSpaceSerializer::createShapeElm(cpShape *shape)
 	if (delegate)
 	{
 		id = delegate->makeId(shape);
-		body_id = delegate->makeId(shape);
+		body_id = delegate->makeId(shape->body);
 		
 		//Tell delegate we're about to write
 		delegate->writing(shape, id);
-		delegate->writing(shape->body, id);
+		delegate->writing(shape->body, body_id);
 	}
 	else
 	{
@@ -693,7 +693,16 @@ TiXmlElement *cpSpaceSerializer::createBodyElm(cpBody *body)
 {
 	TiXmlElement *elm = new TiXmlElement("body");
 	
-	elm->LinkEndChild(createValueElm("id", CPSS_DEFAULT_MAKE_ID(body)));
+	long id;
+	if (delegate)
+	{
+		id = delegate->makeId(body);
+		delegate->writing(body, id);
+	}
+	else
+		id = CPSS_DEFAULT_MAKE_ID(body);
+	
+	elm->LinkEndChild(createValueElm("id", id));
 	elm->LinkEndChild(createValueElm("mass", body->m));
 	elm->LinkEndChild(createValueElm("inertia", body->i));
 	elm->LinkEndChild(createPointElm("p", body->p));

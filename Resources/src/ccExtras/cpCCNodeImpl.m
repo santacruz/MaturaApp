@@ -39,7 +39,10 @@
 	{
 		_shape->data = NULL;
 		if (_autoFreeShape)
-			[_spaceManager scheduleToRemoveAndFreeShape:_shape];
+		{
+			assert(_spaceManager != nil);
+			[_spaceManager removeAndFreeShape:_shape];
+		}
 	}
 	_shape = nil;
 		
@@ -62,6 +65,11 @@
 {	
 	if (_shape != nil)
 	{
+		/* 
+			A bit worried doing a != here but apparently copying around
+			floats allows accurate comparisons.
+		 */
+		
 		//If we're out of sync with chipmunk
 		if (_shape->body->p.x != pos.x || _shape->body->p.y != pos.y)
 		{
@@ -74,7 +82,7 @@
 			
 			//If we're static, we need to tell our space that we've changed
 			if (_spaceManager && _shape->body->m == STATIC_MASS)
-				[_spaceManager rehashStaticShape:_shape];
+				[_spaceManager rehashShape:_shape];
 		}
 	}
 }

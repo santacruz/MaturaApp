@@ -21,6 +21,7 @@
 {
 	CPCCNODE_MEM_VARS;
 }
+
 /* **********************************************************************
  SELBST HINZUGEFÜGT:*/
 @property (readwrite,assign) int level, enemyKind; 
@@ -54,30 +55,53 @@
 /*! Reset any forces accrued on this shape's body */
 -(void) resetForces;
 
-/*! Return an autoreleased cpSprite */
+/*! Return an autoreleased cpCCSprite */
 + (id) spriteWithShape:(cpShape*)shape file:(NSString*) filename;
 
-/*! Return an autoreleased cpSprite who is an "AtlasSprite" 
-+ (id) spriteWithShape:(cpShape*)shape spriteSheet:(CCSpriteSheet*)spriteSheet rect:(CGRect)rect;*/
+/*! Return an autoreleased cpCCSprite who is an "spriteSheet" */
++ (id) spriteWithShape:(cpShape*)shape spriteSheet:(CCSpriteBatchNode*)spriteSheet rect:(CGRect)rect;
 
-/*! Return an autoreleased cpSprite */
+/*! Return an autoreleased cpCCSprite */
 + (id) spriteWithShape:(cpShape *)shape texture:(CCTexture2D*)texture;
 
-/*! Return an autoreleased cpSprite who is an "AtlasSprite"
-+ (id) spriteWithShape:(cpShape *)shape texture:(CCTexture2D*)texture rect:(CGRect)rect;*/
+/*! Return an autoreleased cpCCSprite who is an "spriteSheet" */
++ (id) spriteWithShape:(cpShape *)shape texture:(CCTexture2D*)texture rect:(CGRect)rect;
 
+/*! Return an autoreleased cpCCSprite */
++ (id) spriteWithShape:(cpShape *)shape spriteFrameName:(NSString*)frameName;
+
+/*! Return an autoreleased cpCCSprite */
++ (id) spriteWithShape:(cpShape *)shape SpriteFrame:(CCSpriteFrame*)spriteFrame;
+
+/*! Return an autoreleased cpCCSprite */
++ (id) spriteWithShape:(cpShape *)shape batchNode:(CCSpriteBatchNode*)batchNode rect:(CGRect)rect;
+
+/*! Return an autoreleased cpCCSprite */
++ (id) spriteWithShape:(cpShape *)shape batchNode:(CCSpriteBatchNode*)batchNode rectInPixels:(CGRect)rect;
 
 /*! Initialization method for basic cpSprite */
 - (id) initWithShape:(cpShape*)shape file:(NSString*) filename;
 
-/*! Initialization method for "AtlasSprite" cpSprite
-- (id) initWithShape:(cpShape*)shape spriteSheet:(CCSpriteSheet*)spriteSheet rect:(CGRect)rect;*/
+/*! Initialization method for "spriteSheet" cpCCSprite */
+- (id) initWithShape:(cpShape*)shape spriteSheet:(CCSpriteBatchNode*)spriteSheet rect:(CGRect)rect;
 
-/*! Initialization method for basic cpSprite, given a texture */
+/*! Initialization method for basic cpCCSprite, given a texture */
 - (id) initWithShape:(cpShape *)shape texture:(CCTexture2D*)texture;
 
-/*! Initialization method for "AtlasSprite" cpSprite
-- (id) initWithShape:(cpShape *)shape texture:(CCTexture2D*)texture rect:(CGRect)rect;*/
+/*! Initialization method for "AtlasSprite" cpCCSprite */
+- (id) initWithShape:(cpShape *)shape texture:(CCTexture2D*)texture rect:(CGRect)rect;
+
+/*! Initialization method for basic cpCCSprite */
+- (id) initWithShape:(cpShape *)shape spriteFrameName:(NSString*)spriteFrameName;
+
+/*! Initialization method for basic cpCCSprite */
+- (id) initWithShape:(cpShape *)shape spriteFrame:(CCSpriteFrame*)spriteFrame;
+
+/*! Initialization method for basic cpCCSprite */
+- (id) initWithShape:(cpShape *)shape batchNode:(CCSpriteBatchNode*)batchNode rect:(CGRect)rect;
+
+/*! Initialization method for basic cpCCSprite */
+- (id) initWithShape:(cpShape *)shape batchNode:(CCSpriteBatchNode*)batchNode rectInPixels:(CGRect)rect;
 
 @end
 

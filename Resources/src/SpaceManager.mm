@@ -17,6 +17,32 @@
 #import "chipmunk_unsafe.h"
 #import "cpSpaceSerializer.h"
 
+/* Private Method Declarations */
+@interface SpaceManager (PrivateMethods)
+-(void) setupDefaultShape:(cpShape*)s;
+-(void) removeAndMaybeFreeShape:(cpShape*)shape freeShape:(BOOL)freeShape;
+@end
+
+@interface RayCastInfoValue : NSValue
+@end
+@implementation RayCastInfoValue
+- (void) dealloc
+{
+	cpSegmentQueryInfo *info = (cpSegmentQueryInfo*)[self pointerValue];
+	free(info);
+	
+	[super dealloc];
+}
+@end
+
+typedef struct ExplosionQueryContext {
+	cpLayers layers;
+	cpGroup group;
+	cpVect at;
+	float radius;
+	float maxForce;
+} ExplosionQueryContext;
+
 class cpSSDelegate : public cpSpaceSerializerDelegate 
 {
 public:
@@ -98,82 +124,30 @@ private:
 	NSObject<SpaceManagerSerializeDelegate>* _delegate;
 };
 
-void defaultEachShape(void *ptr, void* data)
+static void ExplosionQueryHelper(cpBB *bb, cpShape *shape, ExplosionQueryContext *context)
 {
-	cpShape *shape = (cpShape*) ptr;
-
-#ifdef _SPACE_MANAGER_FOR_COCOS2D	
-	CCNode *node = (CCNode*)shape->data;
-	if(node) 
+	if (!(shape->group && context->group == shape->group) && 
+		(context->layers&shape->layers) &&
+		cpBBintersects(*bb, shape->bb))
 	{
-		cpBody *body = shape->body;
-		[node setPosition:body->p];
-		[node setRotation: CC_RADIANS_TO_DEGREES( -body->a )];
-	}
-#endif
-	//do nothing.... idk
-}
-
-#ifdef _SPACE_MANAGER_FOR_COCOS2D
-
-//These are the only functions that use these....
-#import "cpShapeNode.h"
-#import "cpConstraintNode.h"
-static void createShapeNode(void *ptr, void *layer)
-{
-	cpShape *shape = (cpShape*)ptr;
-	
-	if (shape->data == NULL)
-	{
-		ccColor3B color = ccc3(rand()%256, rand()%256, rand()%256);
+		//incredibly cheesy explosion effect (works decent with small objects)
+		cpVect dxdy = cpvsub(shape->body->p, context->at);
+		float distsq = cpvlengthsq(dxdy);
 		
-		cpShapeNode *node = [cpShapeNode nodeWithShape:shape];
-		node.color = color;
-		[(CCLayer*)layer addChild:node];
-	}
-}
-
-static void createConstraintNode(void *ptr, void *layer)
-{
-	cpConstraint *constraint = (cpConstraint*)ptr;
-	
-	if (constraint->data == NULL)
-	{
-		ccColor3B color = ccc3(rand()%256, rand()%256, rand()%256);
-		
-		cpConstraintNode *node = [cpConstraintNode nodeWithConstraint:constraint];
-		node.color = color;
-		[(CCLayer*)layer addChild:node];
-	}
-}
-
-static void eachShapeAsChildren(void *ptr, void* data)
-{
-	cpShape *shape = (cpShape*) ptr;
-	
-	CCNode *node = (CCNode*)shape->data;
-	if(node) 
-	{
-		cpBody *body = shape->body;
-		CCNode *parent = node.parent;
-		if (parent)
+		// [Factor] = [Distance]/[Explosion Radius] 
+		// [Force] = (1.0 - [Factor]) * [Total Force]
+		// Apply -> [Direction] * [Force]
+		if (distsq <= context->radius*context->radius)
 		{
-			[node setPosition:[node.parent convertToNodeSpace:body->p]];
+			//Distance
+			float dist = cpfsqrt(distsq);
 			
-			cpVect zPt = [node convertToWorldSpace:cpvzero];
-			cpVect dPt = [node convertToWorldSpace:cpvforangle(body->a)];
-			cpVect rPt = cpvsub(dPt,zPt);
-			float angle = cpvtoangle(rPt);
-			[node setRotation: CC_RADIANS_TO_DEGREES(-angle)];
-		}
-		else
-		{
-			[node setPosition:body->p];
-			[node setRotation: CC_RADIANS_TO_DEGREES( -body->a )];
+			//normalize for direction
+			dxdy = cpvmult(dxdy, 1.0f/dist);
+			cpBodyApplyImpulse(shape->body, cpvmult(dxdy, context->maxForce*(1.0f - (dist/context->radius))), cpvzero);
 		}
 	}
 }
-#endif
 
 static int handleInvocations(CollisionMoment moment, cpArbiter *arb, struct cpSpace *space, void *data)
 {
@@ -231,15 +205,21 @@ static void collectAllShapes(cpShape *shape, NSMutableArray *outShapes)
 	[outShapes addObject:[NSValue valueWithPointer:shape]];
 }
 
+
+//static void collectAllCollidingShapes(cpShape *shape, cpContactPointSet *points, NSMutableArray *outShapes)
+//{
+//	[outShapes addObject:[NSValue valueWithPointer:shape]];	
+//}
+
 static void collectAllSegmentQueryInfos(cpShape *shape, cpFloat t, cpVect n, NSMutableArray *outInfos)
 {
 	cpSegmentQueryInfo *info = (cpSegmentQueryInfo*)malloc(sizeof(cpSegmentQueryInfo));
 	info->shape = shape;
 	info->t = t;
 	info->n = n;
-	[outInfos addObject:[NSValue valueWithPointer:info]];
+	[outInfos addObject:[RayCastInfoValue valueWithPointer:info]];
 }
-	 
+
 static void collectAllSegmentQueryShapes(cpShape *shape, cpFloat t, cpVect n, NSMutableArray *outShapes)
 {
 	[outShapes addObject:[NSValue valueWithPointer:shape]];
@@ -252,12 +232,25 @@ static void updateBBCache(cpShape *shape, void *unused)
 
 static void removeShape(cpSpace *space, void *obj, void *data)
 {
-	[(SpaceManager*)(data) removeShape:(cpShape*)(obj)];
+	[(SpaceManager*)(data) removeAndMaybeFreeShape:(cpShape*)(obj) freeShape:NO];
 }
 
-static void removeAndFreeShape(cpSpace *space, void *obj, void *data)
+static void removeAndFreeShape(cpSpace *space, void *shape, void *data)
 {
-	[(SpaceManager*)(data) removeAndFreeShape:(cpShape*)(obj)];
+	[(SpaceManager*)(data) removeAndMaybeFreeShape:(cpShape*)(shape) freeShape:YES];
+}
+
+static void addShape(cpSpace *space, void *obj, void *data)
+{
+	cpShape *shape = (cpShape*)(obj);
+	
+	if (shape->body->m != STATIC_MASS)
+	{
+		cpSpaceAddBody(space, shape->body);
+		cpSpaceAddShape(space, shape);
+	}
+	else
+		cpSpaceAddStaticShape(space, shape);
 }
 
 static void removeCollision(cpSpace *space, void *collision, void *inv_list)
@@ -282,27 +275,6 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 @interface RayCastInfoArray : NSMutableArray
 @end
 
-@implementation RayCastInfoArray
-
-- (void) dealloc
-{
-	for (NSValue *value in self)
-	{
-		cpSegmentQueryInfo *info = (cpSegmentQueryInfo*)[value pointerValue];
-		free(info);
-	}
-	
-	[super dealloc];
-}
-
-@end
-
-
-/* Private Method Declarations */
-@interface SpaceManager (PrivateMethods)
--(void) setupDefaultShape:(cpShape*) s;
-@end
-
 @implementation SpaceManager
 
 @synthesize space = _space;
@@ -312,7 +284,6 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 @synthesize iterateStatic = _iterateStatic;
 @synthesize rehashStaticEveryStep = _rehashStaticEveryStep;
 @synthesize iterateFunc = _iterateFunc;
-@synthesize staticBody = _staticBody;
 @synthesize constantDt = _constantDt;
 @synthesize cleanupBodyDependencies = _cleanupBodyDependencies;
 @synthesize constraintCleanupDelegate = _constraintCleanupDelegate;
@@ -336,15 +307,23 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 -(id) initWithSpace:(cpSpace*)space
 {	
 	[super init];
-		
-	cpInitChipmunk();
+	
+	static BOOL initialized = NO;	
+	if (!initialized)
+	{
+		cpInitChipmunk();
+		initialized = YES;
+	}
 	
 	_space = space;
 	
+	//hmmm this gravity is silly.... sorry -rkb
 	_space->gravity = cpv(0, -9.8*10);
 	_space->elasticIterations = _space->iterations;
+	_space->sleepTimeThreshold = .4;	//this is actually a "large" value
+	//_space->idleSpeedThreshold = 0;	//default is zero, chipmunk decides best speed
+	
 	topWall = bottomWall = rightWall = leftWall = nil;
-	_staticBody = cpBodyNew(STATIC_MASS, INFINITY);
 	_steps = 2;
 	_iterateStatic = YES;
 	_rehashStaticEveryStep = NO;
@@ -353,18 +332,14 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 	_constantDt = 0.0f;
 	_timeAccumulator = 0.0f;
 	
-	_iterateFunc = &defaultEachShape;
+	_iterateFunc = NULL;
 	_invocations = [[NSMutableArray alloc] init];
 	
 	return self;
 }
 
 -(void) dealloc
-{	
-#ifdef _SPACE_MANAGER_FOR_COCOS2D
-	[self stop];
-#endif
-	
+{		
 	if (_space != nil)
 	{
 		cpSpaceFreeChildren(_space);
@@ -374,6 +349,14 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 	[_invocations release];
 	
 	[super dealloc];
+}
+
+- (cpBody*) staticBody
+{
+	if (_space)
+		return &_space->staticBody;
+	else
+		return nil;
 }
 
 - (BOOL) loadSpaceFromUserDocs:(NSString*)file delegate:(NSObject<SpaceManagerSerializeDelegate>*)delegate
@@ -434,47 +417,6 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 	return _space->damping;
 }
 
-#ifdef _SPACE_MANAGER_FOR_COCOS2D
--(void) start:(ccTime)dt
-{	
-	[[CCScheduler sharedScheduler] scheduleSelector:@selector(step:) forTarget:self interval:dt paused:NO];
-}
-
--(void) start
-{
-	[self start:0];
-}
-
--(void) stop
-{
-	[[CCScheduler sharedScheduler] unscheduleSelector:@selector(step:) forTarget:self];
-}
-
--(CCLayer*) createDebugLayer
-{
-	CCLayer *layer = [CCLayer node];
-	
-	cpSpaceHashEach(_space->activeShapes, createShapeNode, layer);
-	cpSpaceHashEach(_space->staticShapes, createShapeNode, layer);
-	
-	cpArrayEach(_space->constraints, createConstraintNode, layer);
-	
-	return layer;
-}
-
--(void) addWindowContainmentWithFriction:(cpFloat)friction elasticity:(cpFloat)elasticity inset:(cpVect)inset
-{
-	[self addWindowContainmentWithFriction:friction elasticity:elasticity inset:inset radius:1.0f];
-}
-
--(void) addWindowContainmentWithFriction:(cpFloat)friction elasticity:(cpFloat)elasticity inset:(cpVect)inset radius:(cpFloat)radius
-{
-	CGSize wins = [[CCDirector sharedDirector] winSize];
-	
-	[self addWindowContainmentWithFriction:friction elasticity:elasticity size:wins inset:inset radius:radius];
-}
-#endif
-
 -(void) addWindowContainmentWithFriction:(cpFloat)friction elasticity:(cpFloat)elasticity size:(CGSize)wins inset:(cpVect)inset radius:(cpFloat)radius
 {	
 	
@@ -534,52 +476,73 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 		_timeAccumulator = delta;*/
 	}
 	
-	cpSpaceHashEach(_space->activeShapes, _iterateFunc, self);
+	if (_iterateFunc)
+	{
+		cpSpaceHashEach(_space->activeShapes, _iterateFunc, self);
 
-	//Since static shapes are stationary, you do not really need this (only for the first sync)
-	if (_iterateStatic)
-		cpSpaceHashEach(_space->staticShapes, _iterateFunc, self);	
+		//Since static shapes are stationary, you do not really need this (only for the first sync)
+		if (_iterateStatic)
+			cpSpaceHashEach(_space->staticShapes, _iterateFunc, self);
+	}
 }
 
-
--(void) scheduleToRemoveShape:(cpShape*)shape
-{
-	cpSpaceAddPostStepCallback(_space, removeShape, shape, self);
-}
-
--(void) removeAndFreeShape:(cpShape*)shape
-{
-	if (_cleanupBodyDependencies)
-		[self removeAndFreeConstraintsOnBody:shape->body];
-	
-	[self removeShape:shape];
-	cpBodyFree(shape->body);
-	cpShapeFree(shape);	
-	
-	if (_cleanupBodyDependencies)
-		[self removeAndFreeConstraintsOnBody:shape->body];
-}
-
--(cpShape*) removeShape:(cpShape*) shape
+-(void) removeAndMaybeFreeShape:(cpShape*)shape freeShape:(BOOL)freeShape
 {
 	if (shape->body->m == STATIC_MASS)
-	{	
-		//Static Bodies are not added (assumption)
-		//cpSpaceRemoveBody(space, shape->body);
 		cpSpaceRemoveStaticShape(_space, shape);
-	}
-	else
-	{
-		cpSpaceRemoveBody(_space, shape->body);
+	else		
 		cpSpaceRemoveShape(_space, shape);
+	
+	//Make sure it's not our static body
+	if (shape->body != &_space->staticBody)
+	{
+		//Checking if this body is shared....!
+		if (shape->body->space == _space)
+		{
+			BOOL shared = NO;
+			
+			//anyone else have this body?
+			for(cpShape *sh = shape->body->shapesList; sh && !shared; sh=sh->next)
+				shared = (sh != shape);
+				
+			//if not then get rid of it
+			if (!shared)
+			{
+				cpSpaceRemoveBody(_space, shape->body);
+				
+				//Free it
+				if (freeShape)
+				{
+					//cleanup any constraints
+					if (_cleanupBodyDependencies)
+						[self removeAndFreeConstraintsOnBody:shape->body];
+					
+					cpBodyFree(shape->body);
+				}
+			}
+		}
 	}
+	
+	if (freeShape)
+		cpShapeFree(shape);	
+}
+
+-(cpShape*) removeShape:(cpShape*)shape
+{
+	if (_space->locked)
+		cpSpaceAddPostStepCallback(_space, removeShape, shape, self);
+	else
+		[self removeAndMaybeFreeShape:shape freeShape:NO];
 	
 	return shape;
 }
 
--(void) scheduleToRemoveAndFreeShape:(cpShape*)shape
+-(void) removeAndFreeShape:(cpShape*)shape
 {
-	cpSpaceAddPostStepCallback(_space, removeAndFreeShape, shape, self);
+	if (_space->locked)
+		cpSpaceAddPostStepCallback(_space, removeAndFreeShape, shape, self);
+	else
+		[self removeAndMaybeFreeShape:shape freeShape:YES];
 }
 
 -(void) setupDefaultShape:(cpShape*) s
@@ -682,7 +645,7 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(cpShape*) getShapeAt:(cpVect)pos
 {
-	return [self getShapeAt:pos layers:-1 group:0];
+	return [self getShapeAt:pos layers:CP_ALL_LAYERS group:CP_NO_GROUP];
 }
 
 -(void) rehashActiveShapes
@@ -696,14 +659,14 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 	cpSpaceRehashStatic(_space);
 }
 
--(void) rehashStaticShape:(cpShape*)shape
+-(void) rehashShape:(cpShape*)shape
 {
-	_rehashNextStep = YES;
-	//NEEDS WORK, slows down simulation
-	//cpSpaceHashRemove(_space->staticShapes, shape, shape->id);
-	////shapeRemovalArbiterReject(_space, shape); //I don't think this is necessary
-	//cpShapeCacheBB(shape);
-	//cpSpaceHashInsert(_space->staticShapes, shape, shape->id, shape->bb);
+	//############# Code taken from Chipmunk repo
+	cpShapeCacheBB(shape);
+	
+	// attempt to rehash the shape in both hashes
+	cpSpaceHashRehashObject(_space->activeShapes, shape, shape->hashid);
+	cpSpaceHashRehashObject(_space->staticShapes, shape, shape->hashid);
 }
 
 -(NSArray*) getShapesAt:(cpVect)pos layers:(cpLayers)layers group:(cpLayers)group
@@ -716,7 +679,26 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(NSArray*) getShapesAt:(cpVect)pos
 {
-	return [self getShapesAt:pos layers:0 group:0];
+	return [self getShapesAt:pos layers:CP_ALL_LAYERS group:CP_NO_GROUP];
+}
+
+-(NSArray*) getShapesAt:(cpVect)pos radius:(float)radius layers:(cpLayers)layers group:(cpLayers)group;
+{
+	NSMutableArray *shapes = [[[NSMutableArray alloc] init] autorelease];
+	
+	cpCircleShape circle;
+	cpCircleShapeInit(&circle, [self staticBody], radius, pos);
+	circle.shape.layers = layers;
+	circle.shape.group = group;
+	
+	//cpSpaceShapeQuery(_space, (cpShape*)(&circle), (cpSpaceShapeQueryFunc)collectAllCollidingShapes, shapes);
+	
+	return shapes;
+}
+
+-(NSArray*) getShapesAt:(cpVect)pos radius:(float)radius
+{
+	return [self getShapesAt:pos radius:radius layers:CP_ALL_LAYERS group:CP_NO_GROUP];
 }
 
 -(cpShape*) getShapeFromRayCastSegment:(cpVect)start end:(cpVect)end layers:(cpLayers)layers group:(cpGroup)group
@@ -726,7 +708,7 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(cpShape*) getShapeFromRayCastSegment:(cpVect)start end:(cpVect)end
 {
-	return [self getShapeFromRayCastSegment:start end:end layers:-1 group:0];
+	return [self getShapeFromRayCastSegment:start end:end layers:CP_ALL_LAYERS group:CP_NO_GROUP];
 }
 
 -(cpSegmentQueryInfo) getInfoFromRayCastSegment:(cpVect)start end:(cpVect)end layers:(cpLayers)layers group:(cpGroup)group
@@ -739,49 +721,58 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 	 
 -(cpSegmentQueryInfo) getInfoFromRayCastSegment:(cpVect)start end:(cpVect)end
 {
-	return [self getInfoFromRayCastSegment:start end:end layers:-1 group:0];
+	return [self getInfoFromRayCastSegment:start end:end layers:CP_ALL_LAYERS group:CP_NO_GROUP];
 }
 
 -(NSArray*) getShapesFromRayCastSegment:(cpVect)start end:(cpVect)end layers:(cpLayers)layers group:(cpGroup)group
 {
-	RayCastInfoArray *array = [[RayCastInfoArray alloc] autorelease];
+	NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 	
-	if (cpSpaceSegmentQuery(_space, start, end, layers, group, (cpSpaceSegmentQueryFunc)collectAllSegmentQueryShapes, array))
-		return array;
-	else 
-		return nil;
+	cpSpaceSegmentQuery(_space, start, end, layers, group, (cpSpaceSegmentQueryFunc)collectAllSegmentQueryShapes, array);
+	
+	return array;
 }
 
 -(NSArray*) getShapesFromRayCastSegment:(cpVect)start end:(cpVect)end
 {
-	return [self getShapesFromRayCastSegment:start end:end layers:-1 group:0];
+	return [self getShapesFromRayCastSegment:start end:end layers:CP_ALL_LAYERS group:CP_NO_GROUP];
 }
 
 -(NSArray*) getInfosFromRayCastSegment:(cpVect)start end:(cpVect)end layers:(cpLayers)layers group:(cpGroup)group
 {
-	RayCastInfoArray *array = [[RayCastInfoArray alloc] autorelease];
+	NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 	
-	if (cpSpaceSegmentQuery(_space, start, end, layers, group, (cpSpaceSegmentQueryFunc)collectAllSegmentQueryInfos, array))
-		return array;
-	else 
-		return nil;
+	cpSpaceSegmentQuery(_space, start, end, layers, group, (cpSpaceSegmentQueryFunc)collectAllSegmentQueryInfos, array);
+	
+	return array;
 }
 
 -(NSArray*) getInfosFromRayCastSegment:(cpVect)start end:(cpVect)end
 {
-	return [self getInfosFromRayCastSegment:start end:end layers:-1 group:0];
+	return [self getInfosFromRayCastSegment:start end:end layers:CP_ALL_LAYERS group:CP_NO_GROUP];
+}
+
+-(void) applyLinearExplosionAt:(cpVect)at radius:(cpFloat)radius maxForce:(cpFloat)maxForce
+{	
+	[self applyLinearExplosionAt:at radius:radius maxForce:maxForce layers:CP_ALL_LAYERS group:CP_NO_GROUP];
+}
+
+-(void) applyLinearExplosionAt:(cpVect)at radius:(cpFloat)radius maxForce:(cpFloat)maxForce layers:(cpLayers)layers group:(cpGroup)group;
+{
+	cpBB bb = {at.x-radius, at.y-radius, at.x+radius, at.y+radius};
+	ExplosionQueryContext context = {layers, group, at, radius, maxForce};
+	cpSpaceHashQuery(_space->activeShapes, &bb, bb, (cpSpaceHashQueryFunc)ExplosionQueryHelper, &context);
 }
 
 -(BOOL) isPersistentContactOnShape:(cpShape*)shape contactShape:(cpShape*)shape2
 {
 	cpShape *shape_pair[] = {shape, shape2};
-	int max_contact_staleness = cp_contact_persistence;
 	
 	//Try and find the the persistent contact
 	cpArbiter *arb = (cpArbiter *)cpHashSetFind(_space->contactSet, CP_HASH_PAIR(shape, shape2), shape_pair);
 	
-	//check the freshness, chipmunk keeps them around for cp_contact_persistence "3" times
-	return (arb && _space->stamp - arb->stamp < max_contact_staleness);
+	//check its there, chipmunk keeps them around for cp_contact_persistence "3" times
+	return (arb != NULL);
 }
 
 -(cpShape*) persistentContactOnShape:(cpShape*)shape
@@ -861,13 +852,10 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(void) addShape:(cpShape*)shape
 {
-	if (shape->body->m != STATIC_MASS)
-	{
-		cpSpaceAddBody(_space, shape->body);
-		cpSpaceAddShape(_space, shape);
-	}
+	if (_space->locked)
+		cpSpaceAddPostStepCallback(_space, addShape, shape, self);
 	else
-		cpSpaceAddStaticShape(_space, shape);
+		addShape(_space, shape, self);	
 }
 
 -(cpShape*) morphShapeToStatic:(cpShape*)shape
@@ -895,7 +883,6 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 								cpMomentForSegment(mass, cpSegmentShapeGetA(shape), cpSegmentShapeGetB(shape)));
 				break;
 			case CP_POLY_SHAPE:
-				
 				cpBodySetMoment(shape->body,
 								cpMomentForPoly(mass, cpPolyShapeGetNumVerts(shape), ((cpPolyShape*)shape)->verts, cpvzero));
 				break;
@@ -1163,9 +1150,8 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 {
 	cpConstraint *constraint;
 	cpArray *array = _space->constraints;
-	const int num = array->num;
 
-	for (int i = 0; i < num; i++)
+	for (int i = 0; i < array->num; i++)
 	{
 		constraint = (cpConstraint*)array->arr[i];
 			
@@ -1270,7 +1256,7 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(cpConstraint*) addMotorToBody:(cpBody*)toBody rate:(cpFloat)rate
 {
-	return [self addMotorToBody:toBody fromBody:_staticBody rate:rate];
+	return [self addMotorToBody:toBody fromBody:&_space->staticBody rate:rate];
 }
 
 -(cpConstraint*) addGearToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody phase:(cpFloat)phase ratio:(cpFloat)ratio
@@ -1300,7 +1286,7 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(cpConstraint*) addRotaryLimitToBody:(cpBody*)toBody min:(cpFloat)min max:(cpFloat)max
 {
-	return [self addRotaryLimitToBody:toBody fromBody:_staticBody min:min max:max];
+	return [self addRotaryLimitToBody:toBody fromBody:&_space->staticBody min:min max:max];
 }
 
 -(cpConstraint*) addRatchetToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody phase:(cpFloat)phase rachet:(cpFloat)ratchet
@@ -1311,7 +1297,7 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(cpConstraint*) addRatchetToBody:(cpBody*)toBody phase:(cpFloat)phase rachet:(cpFloat)ratchet
 {
-	return [self addRatchetToBody:toBody fromBody:_staticBody phase:phase rachet:ratchet];
+	return [self addRatchetToBody:toBody fromBody:&_space->staticBody phase:phase rachet:ratchet];
 }
 
 -(void) ignoreCollionBetweenType:(unsigned int)type1 otherType:(unsigned int)type2
@@ -1327,7 +1313,26 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 
 -(cpConstraint*) addRotarySpringToBody:(cpBody*)toBody restAngle:(cpFloat)restAngle stiffness:(cpFloat)stiff damping:(cpFloat)damp
 {
-	return [self addRotarySpringToBody:toBody fromBody:_staticBody restAngle:restAngle stiffness:stiff damping:damp];
+	return [self addRotarySpringToBody:toBody fromBody:&_space->staticBody restAngle:restAngle stiffness:stiff damping:damp];
+}
+
+-(cpConstraint*) addPulleyToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody pulleyBody:(cpBody*)pulleyBody
+					toBodyAnchor:(cpVect)anchor1 fromBodyAnchor:(cpVect)anchor2
+				  toPulleyAnchor:(cpVect)anchor3a fromPulleyAnchor:(cpVect)anchor3b
+						   ratio:(cpFloat)ratio
+{
+	cpConstraint* pulley = cpPulleyJointNew(toBody, fromBody, pulleyBody, anchor1, anchor2, anchor3a, anchor3b, ratio);
+	return cpSpaceAddConstraint(_space, pulley);
+}
+
+-(cpConstraint*) addPulleyToBody:(cpBody*)toBody fromBody:(cpBody*)fromBody
+					toBodyAnchor:(cpVect)anchor1 fromBodyAnchor:(cpVect)anchor2
+			 toPulleyWorldAnchor:(cpVect)anchor3a fromPulleyWorldAnchor:(cpVect)anchor3b
+						   ratio:(cpFloat)ratio
+{
+	return [self addPulleyToBody:toBody fromBody:fromBody pulleyBody:&_space->staticBody 
+					toBodyAnchor:anchor1 fromBodyAnchor:anchor2
+			 toPulleyAnchor:anchor3a fromPulleyAnchor:anchor3b ratio:ratio];
 }
 
 -(void) addCollisionCallbackBetweenType:(unsigned int)type1 otherType:(unsigned int) type2 target:(id)target selector:(SEL)selector
@@ -1407,7 +1412,12 @@ static void removeCollision(cpSpace *space, void *collision, void *inv_list)
 	
 	//delete the invocation, if there is one
 	if (pair != NULL)
-		cpSpaceAddPostStepCallback(_space, removeCollision, pair, _invocations);
+	{
+		if (_space->locked)
+			cpSpaceAddPostStepCallback(_space, removeCollision, pair, _invocations);
+		else
+			removeCollision(_space, pair, _invocations);
+	}
 }
 
 @end

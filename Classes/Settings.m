@@ -45,13 +45,15 @@
 		[self addChild:cross];
 		//SET BUTTON
 		CCSprite *setSprite = [CCSprite spriteWithFile:@"Buttons/set.png"];
-		CCMenuItemSprite *setSpriteItem = [CCMenuItemSprite itemFromNormalSprite:setSprite selectedSprite:setSprite target:self selector:@selector(calibrate:)];
+		CCSprite *setSprite_s = [CCSprite spriteWithFile:@"Buttons/set.png"];
+		CCMenuItemSprite *setSpriteItem = [CCMenuItemSprite itemFromNormalSprite:setSprite selectedSprite:setSprite_s target:self selector:@selector(calibrate:)];
 		CCMenu *setMenu = [CCMenu menuWithItems:setSpriteItem,nil];
 		setMenu.position = ccp(164, 278);
 		[self addChild:setMenu];
 		//RESET BUTTON
 		CCSprite *resetSprite = [CCSprite spriteWithFile:@"Buttons/reset.png"];
-		CCMenuItemSprite *resetSpriteItem = [CCMenuItemSprite itemFromNormalSprite:resetSprite selectedSprite:resetSprite target:self selector:@selector(resetCalibration:)];
+		CCSprite *resetSprite_s = [CCSprite spriteWithFile:@"Buttons/reset.png"];
+		CCMenuItemSprite *resetSpriteItem = [CCMenuItemSprite itemFromNormalSprite:resetSprite selectedSprite:resetSprite_s target:self selector:@selector(resetCalibration:)];
 		CCMenu *resetMenu = [CCMenu menuWithItems:resetSpriteItem,nil];
 		resetMenu.position = ccp(240, 278);
 		[self addChild:resetMenu];
@@ -67,19 +69,25 @@
 			[self addChild:line];
 			
 			CCSprite *state1Sprite;
+			CCSprite *state1Sprite_s;
 			CCMenuItemSprite *state1SpriteItem;
 			CCSprite *state2Sprite;
+			CCSprite *state2Sprite_s;
 			CCMenuItemSprite *state2SpriteItem;
 			
 			if ([UserData sharedData].isVibrationEnabled) {
 				state1Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
+				state1Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
 				state2Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
+				state2Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
 			} else {
 				state1Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
+				state1Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
 				state2Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
+				state2Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
 			}
-			state1SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state1Sprite selectedSprite:state1Sprite target:self selector:nil];
-			state2SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state2Sprite selectedSprite:state2Sprite target:self selector:nil];
+			state1SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state1Sprite selectedSprite:state1Sprite_s target:self selector:nil];
+			state2SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state2Sprite selectedSprite:state2Sprite_s target:self selector:nil];
 			
 			CCMenuItemToggle *menuItemToggle = [CCMenuItemToggle itemWithTarget:self selector:@selector(toggleVibration:) items:state1SpriteItem,state2SpriteItem,nil];
 			CCMenu * vibrateMenu = [CCMenu menuWithItems:menuItemToggle,nil];
@@ -120,8 +128,8 @@
 
 -(void)nextFrame:(ccTime)dt {
 	NSArray *accelData = [NSArray arrayWithObjects:[NSNumber numberWithFloat:accelX],[NSNumber numberWithFloat:accelY],[NSNumber numberWithFloat:accelZ],nil];
-	float crossAccelX = -1*[accHelper dotVec1:[UserData sharedData].xNorm Vec2:accelData];
-	float crossAccelY = [accHelper dotVec1:[UserData sharedData].yNorm Vec2:accelData];
+	float crossAccelX = -1*[accHelper dotVec1:[UserData sharedData].xGrund Vec2:accelData];
+	float crossAccelY = [accHelper dotVec1:[UserData sharedData].yGrund Vec2:accelData];
 	
 	CGPoint v = ccpMult(ccp(crossAccelX,crossAccelY),150);
 	
@@ -135,13 +143,13 @@
 -(void)calibrate:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE SETZEN
 	if (accelZ > 0) { //GERÄT STEHT KOPF
-		[UserData sharedData].xNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1],[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+		[UserData sharedData].xGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1],[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
 	} else { //GERÄT IST NORMAL ORIENTIERT
-		[UserData sharedData].xNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:1],[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+		[UserData sharedData].xGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:1],[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
 	}
-	NSArray *zNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:accelX],[NSNumber numberWithFloat:accelY], [NSNumber numberWithFloat:accelZ], nil];
-	[UserData sharedData].yNorm = [accHelper crossVec1:[UserData sharedData].xNorm Vec2:zNorm];
-	[UserData sharedData].xNorm = [accHelper crossVec1:[UserData sharedData].yNorm Vec2:zNorm];
+	NSArray *zGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:accelX],[NSNumber numberWithFloat:accelY], [NSNumber numberWithFloat:accelZ], nil];
+	[UserData sharedData].yGrund = [accHelper crossVec1:[UserData sharedData].xGrund Vec2:zGrund];
+	[UserData sharedData].xGrund = [accHelper crossVec1:[UserData sharedData].yGrund Vec2:zGrund];
 	
 	cross.position = ccp(78,278);
 	//SYNCHRONISIEREN
@@ -151,8 +159,8 @@
 
 -(void)resetCalibration:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE RESETTEN
-	[UserData sharedData].xNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
-	[UserData sharedData].yNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:1], [NSNumber numberWithFloat:0], nil];
+	[UserData sharedData].xGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+	[UserData sharedData].yGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:1], [NSNumber numberWithFloat:0], nil];
 	cross.position = ccp(78,278);
 	//SYNCHRONISIEREN
 	[[UserData sharedData] saveAllDataToUserDefaults];

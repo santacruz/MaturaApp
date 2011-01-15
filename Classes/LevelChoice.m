@@ -40,7 +40,8 @@
 			for (int k=0;k<3;k++) {
 				count += 1;
 				CCSprite *levelButton = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LevelButtons/level0%i.png", count]];
-				CCMenuItemSprite *menuItemLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButton selectedSprite:levelButton target:self selector:@selector(selectedLevel:)]; 
+				CCSprite *levelButton_s = [CCSprite spriteWithFile:[NSString stringWithFormat:@"LevelButtons/level0%i.png", count]];
+				CCMenuItemSprite *menuItemLevelButton = [CCMenuItemSprite itemFromNormalSprite:levelButton selectedSprite:levelButton_s target:self selector:@selector(selectedLevel:)]; 
 				menuItemLevelButton.position = ccp(k*80,0-i*80);
 				menuItemLevelButton.tag = count;
 				//SETZE TRANSPARENZ UND BEDIENBARKEIT, FALLS LEVEL NOCH NICHT ERREICHT

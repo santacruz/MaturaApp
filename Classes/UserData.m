@@ -14,7 +14,7 @@ static UserData *sharedData = NULL;
 @implementation UserData
 
 @synthesize highestLevel, currentLevel, highestWorld, currentWorld, isVibrationDevice, isVibrationEnabled;
-@synthesize xNorm, yNorm;
+@synthesize xGrund, yGrund;
 
 -(id)init {
 	if (self = [super init]) {
@@ -30,8 +30,8 @@ static UserData *sharedData = NULL;
 		}
 		isVibrationEnabled = YES;
 		//ARRAYS
-		xNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
-		yNorm = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:1], [NSNumber numberWithFloat:0], nil];
+		xGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
+		yGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0], [NSNumber numberWithFloat:1], [NSNumber numberWithFloat:0], nil];
 
 		//ERSTER APPSTART: USERDEFAULTS MIT PROPERTIES FÜLLEN
 		NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
@@ -53,11 +53,11 @@ static UserData *sharedData = NULL;
 		if ([defaults objectForKey:@"isVibrationEnabled"] == nil) {
 			[defaults setValue:[NSNumber numberWithBool:isVibrationEnabled] forKey:@"isVibrationEnabled"];
 		}
-		if ([defaults objectForKey:@"xNorm"] == nil) {
-			[defaults setValue:xNorm forKey:@"xNorm"];
+		if ([defaults objectForKey:@"xGrund"] == nil) {
+			[defaults setValue:xGrund forKey:@"xGrund"];
 		}
-		if ([defaults objectForKey:@"yNorm"] == nil) {
-			[defaults setValue:yNorm forKey:@"yNorm"];
+		if ([defaults objectForKey:@"yGrund"] == nil) {
+			[defaults setValue:yGrund forKey:@"yGrund"];
 		}
 		//FÜR JEDEN WEITEREN APPSTART: PROPERTIES AUS NSUSERDEFAULTS LESEN
 		if (defaults) {
@@ -67,8 +67,8 @@ static UserData *sharedData = NULL;
 			currentWorld = [[defaults objectForKey:@"currentWorld"] intValue];
 			isVibrationDevice = [[defaults objectForKey:@"isVibrationDevice"] boolValue];
 			isVibrationEnabled = [[defaults objectForKey:@"isVibrationEnabled"] boolValue];
-			xNorm = [defaults objectForKey:@"xNorm"];
-			yNorm = [defaults objectForKey:@"yNorm"];
+			xGrund = [defaults objectForKey:@"xGrund"];
+			yGrund = [defaults objectForKey:@"yGrund"];
 		}
 		
 	}
@@ -95,8 +95,8 @@ static UserData *sharedData = NULL;
 		[defaults setValue:[NSNumber numberWithInt:currentWorld] forKey:@"currentWorld"];
 		[defaults setValue:[NSNumber numberWithBool:isVibrationDevice] forKey:@"isVibrationDevice"];
 		[defaults setValue:[NSNumber numberWithBool:isVibrationEnabled] forKey:@"isVibrationEnabled"];
-		[defaults setValue:xNorm forKey:@"xNorm"];
-		[defaults setValue:yNorm forKey:@"yNorm"];
+		[defaults setValue:xGrund forKey:@"xGrund"];
+		[defaults setValue:yGrund forKey:@"yGrund"];
 		[defaults synchronize];
 	}
 	
@@ -105,8 +105,8 @@ static UserData *sharedData = NULL;
 -(void)dealloc {
 	NSLog(@"Deallocating UserData singleton");
 	//Release Properties
-	[xNorm release];
-	[yNorm release];
+	[xGrund release];
+	[yGrund release];
 	[super dealloc];
 }
 

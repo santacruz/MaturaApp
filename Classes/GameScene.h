@@ -5,7 +5,7 @@
 
 #import "cocos2d.h"
 #import "Sphere.h"
-#import "SpaceManager.h"
+#import "SpaceManagerCocos2d.h"
 #import "GameData.h"
 #import "UserData.h"
 #import "EnemySphere.h"

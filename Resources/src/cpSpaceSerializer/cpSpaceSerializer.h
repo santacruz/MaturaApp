@@ -56,7 +56,7 @@ private:
 	
 	
 	//Reading
-	cpShape *createShape(TiXmlElement *elm);
+	virtual cpShape *createShape(TiXmlElement *elm);
 	cpShape *createCircle(TiXmlElement *elm);
 	cpShape *createSegment(TiXmlElement *elm);
 	cpShape *createPoly(TiXmlElement *elm);
@@ -64,7 +64,7 @@ private:
 	cpBody *createBody(TiXmlElement *elm);
 	
 	void createBodies(TiXmlElement *elm, cpBody **a, cpBody **b);
-	cpConstraint *createConstraint(TiXmlElement *elm);
+	virtual cpConstraint *createConstraint(TiXmlElement *elm);
 	cpConstraint *createPinJoint(TiXmlElement *elm);
 	cpConstraint *createSlideJoint(TiXmlElement *elm);
 	cpConstraint *createPivotJoint(TiXmlElement *elm);
@@ -80,14 +80,14 @@ private:
 	
 	
 	//Writing
-	TiXmlElement *createShapeElm(cpShape *shape);
+	virtual TiXmlElement *createShapeElm(cpShape *shape);
 	TiXmlElement *createCircleElm(cpShape *shape);
 	TiXmlElement *createSegmentElm(cpShape *shape);
 	TiXmlElement *createPolyElm(cpShape *shape);
 
 	TiXmlElement *createBodyElm(cpBody *body);
 	
-	TiXmlElement *createConstraintElm(cpConstraint *constraint);
+	virtual TiXmlElement *createConstraintElm(cpConstraint *constraint);
 	TiXmlElement *createPinJointElm(cpPinJoint *constraint);
 	TiXmlElement *createSlideJointElm(cpSlideJoint *constraint);
 	TiXmlElement *createPivotJointElm(cpPivotJoint *constraint);

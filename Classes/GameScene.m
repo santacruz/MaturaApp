@@ -53,8 +53,9 @@ static float prevHeroRotation = 0;
 		
 		//PAUSEBUTTON
 		CCSprite *paused = [CCSprite spriteWithFile:@"pause.png"];
+		CCSprite *paused_s = [CCSprite spriteWithFile:@"pause.png"];
 		paused.opacity = 50;
-		CCMenuItemSprite *pauseItem = [CCMenuItemSprite itemFromNormalSprite:paused selectedSprite:paused target:self selector:@selector(pause:)];
+		CCMenuItemSprite *pauseItem = [CCMenuItemSprite itemFromNormalSprite:paused selectedSprite:paused_s target:self selector:@selector(pause:)];
 		pauseButton = [CCMenu menuWithItems:pauseItem, nil];
 		pauseButton.position = ccp(35,445);
 		[self addChild:pauseButton z:50];
@@ -79,7 +80,7 @@ static float prevHeroRotation = 0;
 		[self addChild:pausedScreen z:2];
 		
 		//SPACEMGR
-		smgr = [[SpaceManager alloc] init];
+		smgr = [[SpaceManagerCocos2d alloc] init];
 		smgr.gravity=ccp(0,0);
 		
 		//WÄNDE
@@ -180,14 +181,14 @@ static float prevHeroRotation = 0;
 			if (sphere) {
 				[GameData sharedData].isThereAHero = NO;
 				[self removeChild:sphere cleanup:YES];
-				[smgr scheduleToRemoveAndFreeShape:a];
+				[smgr removeAndFreeShape:a];
 				a->data = nil;
 			}
 			
 			if (sprite) {	
 				[[GameData sharedData].enemyArray removeObject:sprite.parent];
 				[self removeChild:sprite.parent cleanup:YES];
-				[smgr scheduleToRemoveAndFreeShape:b];
+				[smgr removeAndFreeShape:b];
 				b->data = nil;
 			}
 		}
@@ -233,11 +234,11 @@ static float prevHeroRotation = 0;
 		//FEINDE ENTFERNEN
 		[[GameData sharedData].enemyArray removeObject:spriteA.parent];
 		[self removeChild:spriteA.parent cleanup:YES];
-		[smgr scheduleToRemoveAndFreeShape:a];
+		[smgr removeAndFreeShape:a];
 		a->data = nil;
 		[[GameData sharedData].enemyArray removeObject:spriteB.parent];
 		[self removeChild:spriteB.parent cleanup:YES];
-		[smgr scheduleToRemoveAndFreeShape:b];
+		[smgr removeAndFreeShape:b];
 		b->data = nil;
 		
 		//DATEN FÜR NEUEN FEIND IN ARRAY
@@ -302,22 +303,22 @@ static float prevHeroRotation = 0;
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
 	
-	static float prevX=0, prevY=0;
+	static float prevVx=0, prevVy=0;
 
 	//BERECHNE BESCHLEUNIGUNG IN ALLEN MÖGLICHEN SYSTEMEN
 	NSArray *accelData = [NSArray arrayWithObjects:[NSNumber numberWithFloat:acceleration.x],[NSNumber numberWithFloat:acceleration.y],[NSNumber numberWithFloat:acceleration.z],nil];
-	float accelX = (float) -1*[accHelper dotVec1:[UserData sharedData].xNorm Vec2:accelData]*kFilterFactor + (1 - kFilterFactor)*prevX;
-	float accelY = (float) [accHelper dotVec1:[UserData sharedData].yNorm Vec2:accelData]*kFilterFactor + (1 - kFilterFactor)*prevY;
+	float Vx = (float) -1*[accHelper dotVec1:[UserData sharedData].xGrund Vec2:accelData]*kFilterFactor + (1 - kFilterFactor)*prevVx;
+	float Vy = (float) [accHelper dotVec1:[UserData sharedData].yGrund Vec2:accelData]*kFilterFactor + (1 - kFilterFactor)*prevVy;
 	
 	//VERHINDERT RAUSCHEN
-	prevX = accelX;
-	prevY = accelY;
+	prevVx= Vx;
+	prevVy = Vy;
 	
 	//ANGENEHMERE BEDIENUNG
-	accelX = [accHelper sign:accelX]*1/(1+exp(-kAccSteilheit*([accHelper sign:accelX]*accelX-kAccInflektion)));
-	accelY = [accHelper sign:accelY]*1/(1+exp(-kAccSteilheit*([accHelper sign:accelY]*accelY-kAccInflektion)));
+	Vx = [accHelper sign:Vx]*1/(1+exp(-kAccSteilheit*([accHelper sign:Vx]*Vx-kAccInflektion)));
+	Vy = [accHelper sign:Vy]*1/(1+exp(-kAccSteilheit*([accHelper sign:Vy]*Vy-kAccInflektion)));
 	
-	CGPoint v = ccp(accelX, accelY);
+	CGPoint v = ccp(Vx, Vy);
 	if ([GameData sharedData].isThereAHero) {
 		sphere.sprite.shape->body->v = ccpMult(v, kImpulseMultiplier);
 	}

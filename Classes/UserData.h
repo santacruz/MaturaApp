@@ -16,13 +16,13 @@
 	int currentWorld;
 	BOOL isVibrationDevice;
 	BOOL isVibrationEnabled;
-	NSArray * xNorm;
-	NSArray * yNorm;
+	NSArray * xGrund;
+	NSArray * yGrund;
 }
 
 @property(readwrite,assign) int highestLevel, currentLevel, highestWorld, currentWorld;
 @property(readwrite,assign) BOOL isVibrationDevice, isVibrationEnabled;
-@property(nonatomic,retain) NSArray *xNorm, *yNorm;
+@property(nonatomic,retain) NSArray *xGrund, *yGrund;
 
 +(UserData *) sharedData;
 -(void)saveAllDataToUserDefaults;
