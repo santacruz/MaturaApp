@@ -2,6 +2,8 @@
 //  Help.m
 //  MaturaApp
 //  © Zeno Koller 2010
+//
+//	Diese Klasse zeigt den Hilfe-Bildschirm an.
 
 #import "Help.h"
 
@@ -93,6 +95,7 @@
 	return self;
 }
 
+//LOOP FÜR POSITIONS-UPDATE VON SPRITES
 -(void)nextFrame:(ccTime)dt {
 	sprite.position = ccpAdd(spriteOriginalPosition, ccpSub(textView.contentOffset, originalOffset));
 	normalEnemy.position = ccpAdd(normalSpriteOriginalPosition, ccpSub(textView.contentOffset, originalOffset));
@@ -102,6 +105,7 @@
 	ultraEnemy.position = ccpAdd(ultraSpriteOriginalPosition, ccpSub(textView.contentOffset, originalOffset));
 }
 
+//ZURÜCK
 -(void)back:(CCMenuItem *)menuItem {
 	[self unschedule:@selector(nextFrame:)];
 	[textView removeFromSuperview];
@@ -112,6 +116,7 @@
 	
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"Help dealloc");

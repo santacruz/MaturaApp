@@ -2,7 +2,8 @@
 //  ScrollView.m
 //  MaturaApp
 //  © Zeno Koller 2010
-
+//
+//	Diese Klasse ermöglicht in der Level-Auswahl das Swipe-Scrolling.
 
 #import "ScrollView.h"
 #define kRadius 70
@@ -11,6 +12,7 @@
 
 @synthesize panelCount, chosenPanel, worldChoice;
 
+//INITIALISIERE INSTANZ
 -(id)initWithFrame:(CGRect)frame{
 	if ((self=[super initWithFrame:frame])) {
 		self.pagingEnabled = YES;
@@ -25,6 +27,7 @@
 	return self;
 }
 
+//BILDSCHIRM WIRD BERÜHRT
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *myTouch = [touches anyObject];
 	CGPoint convert = [[CCDirector sharedDirector] convertToGL:[myTouch locationInView:[myTouch view]]];
@@ -33,6 +36,7 @@
 	}
 }
 
+//FINGER WIRD BEWEGT
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *myTouch = [touches anyObject];
 	CGPoint convert = [[CCDirector sharedDirector] convertToGL:[myTouch locationInView:[myTouch view]]];
@@ -44,10 +48,12 @@
 	
 }
 
+//FINGER VERLÄSST BILDSCHIRM
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
 	[worldChoice deactivate:chosenPanel];
 }
 
+//ENDE DER BERÜHRUNG
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 	UITouch *myTouch = [touches anyObject];
 	CGPoint convert = [[CCDirector sharedDirector] convertToGL:[myTouch locationInView:[myTouch view]]];
@@ -58,7 +64,7 @@
 	}
 }
 
-
+//IST DER FINGER AUF DER SPIELFIGUR?
 -(BOOL) tappedSprite:(CGPoint)touch {
 	for (int i=0; i<panelCount; i++) {
 		float distance = ccpDistance(ccp(160+320*i,340),touch);

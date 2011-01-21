@@ -2,6 +2,8 @@
 //  Settings.m
 //  MaturaApp
 //  © Zeno Koller 2010
+//
+//	Diese Klasse zeigt die Einstellungen des Spiels an.
 
 #import "Settings.h"
 
@@ -116,7 +118,7 @@
 	return self;
 }
 
-
+//BESCHLEUNIGUNGSSENSOR-LOOP
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {		
 
@@ -126,6 +128,7 @@
 	
 }
 
+//LOOP, WELCHER DAS X AUF DEM BILDSCHIRM NEU POSITIONIERT
 -(void)nextFrame:(ccTime)dt {
 	NSArray *accelData = [NSArray arrayWithObjects:[NSNumber numberWithFloat:accelX],[NSNumber numberWithFloat:accelY],[NSNumber numberWithFloat:accelZ],nil];
 	float crossAccelX = -1*[accHelper dotVec1:[UserData sharedData].xGrund Vec2:accelData];
@@ -140,6 +143,7 @@
 	}
 }
 
+//SETZE DIE KALIBRATION IM SPIEL
 -(void)calibrate:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE SETZEN
 	if (accelZ > 0) { //GERÄT STEHT KOPF
@@ -157,6 +161,7 @@
 	
 }
 
+//SETZE DIE AKTUELLE KALIBRATION ZURÜCK AUF DEFAULT
 -(void)resetCalibration:(CCMenuItem *) menuItem {
 	//KORREKTIONSWERTE RESETTEN
 	[UserData sharedData].xGrund = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-1], [NSNumber numberWithFloat:0], [NSNumber numberWithFloat:0], nil];
@@ -166,6 +171,7 @@
 	[[UserData sharedData] saveAllDataToUserDefaults];
 }
 
+//VIBRATION AN UND AUSSCHALTEN
 -(void)toggleVibration:(CCMenuItem *)menuItem {
 	if ([UserData sharedData].isVibrationEnabled) {
 		[UserData sharedData].isVibrationEnabled = NO;
@@ -175,18 +181,21 @@
 	[[UserData sharedData] saveAllDataToUserDefaults];
 }
 
+//ZURÜCK
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[HelloWorld scene]]];
 	
 }
 
+//IST DAS X AUSSERHALB DER BOX?
 -(BOOL)isCrossOutOfBoundsOfBox {
 	CGRect box = CGRectMake(46 ,246 , 65, 65); 
 	if (CGRectContainsPoint(box, cross.position)) return NO;
 	return YES;
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"Settings dealloc");

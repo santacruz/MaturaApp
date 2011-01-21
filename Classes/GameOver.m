@@ -2,7 +2,8 @@
 //  GameOver.m
 //  MaturaApp
 //  © Zeno Koller 2010
-
+//
+//	Diese Klasse zeigt den Game-Over Screen an.
 
 #import "GameOver.h"
 
@@ -131,6 +132,7 @@
 	return self;
 }
 
+//NÄCHSTES LEVEL
 -(void)next:(CCMenuItem *) menuItem {
 	//LEVELDATEN INITIALISIEREN
 	[[GameData sharedData] initLevel:[UserData sharedData].currentLevel withWorld:[UserData sharedData].currentWorld];
@@ -140,7 +142,7 @@
 	
 }
 
-
+//VERSUCHE DIESES LEVEL NOCH EINMAL
 -(void)retry:(CCMenuItem *) menuItem {
 	//LEVELDATEN INITIALISIEREN
 	//********************************
@@ -166,6 +168,7 @@
 
 }
 
+//GEHE ZURÜCK ZUM HAUPTMENU
 -(void)menu:(CCMenuItem *) menuItem {
 	
 	[[CCDirector sharedDirector] replaceScene:
@@ -173,6 +176,7 @@
 	
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"Deallocating GameOver");

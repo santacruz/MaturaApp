@@ -2,7 +2,8 @@
 //  GameScene.m
 //  MaturaApp
 //  © Zeno Koller 2010
-
+//	
+//	Diese Klasse stellt den Spielbildschirm dar.
 
 #import "GameScene.h"
 #import <AudioToolbox/AudioToolbox.h>
@@ -194,6 +195,8 @@ static float prevHeroRotation = 0;
 		}
     }	
 }
+
+//COLLISION HANDLING
 - (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space
 {
 	CP_ARBITER_GET_SHAPES(arb,a,b);
@@ -299,7 +302,7 @@ static float prevHeroRotation = 0;
 	}
 }
 
-
+//BESCHLEUNGIGUNSSENSOR-LOOP
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
 	
@@ -324,6 +327,7 @@ static float prevHeroRotation = 0;
 	}
 }
 
+//PAUSIERE DAS SPIEL
 -(void)pause:(CCMenuItem *) menuItem{
 	if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
 		[smgr stop];
@@ -333,6 +337,7 @@ static float prevHeroRotation = 0;
 	} 
 }
 
+//WIRD AUFGERUFEN, FALLS APPLIKATION IN DEN HINTERGRUND TRITT (WIRD GESCHLOSSEN ETC)
 -(void)enterBackground {
 	if (![GameData sharedData].isGamePaused && [GameData sharedData].isPlaying) {
 		[smgr stop];
@@ -342,6 +347,7 @@ static float prevHeroRotation = 0;
 	} 
 }
 
+//PAUSIERTES SPIEL FORTFAHREN
 -(void)resume:(CCMenuItem *) menuItem {
 	if ([GameData sharedData].isGamePaused) {
 		pausedScreen.visible = NO;
@@ -351,6 +357,7 @@ static float prevHeroRotation = 0;
 	}
 }
 
+//FANGE SPIEL NEU AN
 -(void)restart:(CCMenuItem *)menuItem {
 	if ([GameData sharedData].isGamePaused) {
 		NSLog(@"Ending Game");
@@ -369,6 +376,7 @@ static float prevHeroRotation = 0;
 	}
 }
 
+//BRECHE SPIEL AB UND GEHE ZURÜCK ZUM MENU
 -(void)backToMenu:(CCMenuItem *) menuItem {
 	if ([GameData sharedData].isGamePaused) {
 		NSLog(@"Ending Game");
@@ -389,6 +397,7 @@ static float prevHeroRotation = 0;
 	}
 }
 
+//BEGINNE DAS SPIEL NACHDEM DER COUNTDOWN ABGELAUFEN IST
 -(void) startGame {
 	NSLog(@"Starting Game");
 	self.isAccelerometerEnabled = YES;
@@ -399,7 +408,7 @@ static float prevHeroRotation = 0;
 	[GameData sharedData].isPlaying = YES;
 }
 
-
+//BEENDE DAS SPIEL
 -(void)endGame
 {
 	NSLog(@"Ending Game");
@@ -420,7 +429,7 @@ static float prevHeroRotation = 0;
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:[GameOver scene]]];
 }
 
-
+//INSTANZ WIRD AUS MEMORY GELÖSCHT
 - (void) dealloc
 {
 	NSLog(@"Deallocating GameLayer");

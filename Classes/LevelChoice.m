@@ -2,7 +2,8 @@
 //  LevelChoice.m
 //  MaturaApp
 //  © Zeno Koller 2010
-
+//
+//	Diese Klasse zeigt den Bildschirm mit der Levelauswahl an.
 
 #import "LevelChoice.h"
 
@@ -70,6 +71,7 @@
 	return self;
 }
 
+//LADE DAS AUSGEWÄHLTE LEVEL
 -(void)selectedLevel:(id)sender {
 	CCMenuItem *item = (CCMenuItem *)sender;
 	int level = item.tag;
@@ -79,11 +81,13 @@
 	
 }
 
+//ZURÜCK
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:[UserData sharedData].currentWorld]]];
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"LevelChoice dealloc");

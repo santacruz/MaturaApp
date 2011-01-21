@@ -2,6 +2,8 @@
 //  HelloWorldScene.m
 //  MaturaApp
 //  © Zeno Koller 2010
+//
+//	Diese Klasse zeigt das Hauptmenu an.
 
 #import "HelloWorldScene.h"
 
@@ -48,25 +50,32 @@
 	return self;
 }
 
+//LADE SCREEN MIT WELT-AUSWAHL
 -(void)start:(CCMenuItem  *) menuItem {
 	//Hier World Auswahl starten mit aktueller Welt aus UserData
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[WorldChoice sceneWithWorld:[UserData sharedData].currentWorld]]];
 }
 
+//LADE SCREEN MIT EINSTELLUNGEN
 -(void)settings:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[Settings scene]]];
 }
+
+//LADE SCREEN MIT ABOUT THIS GAME TEXT
 -(void)about:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[About scene]]];
 }
+
+//LADE SCREEN MIT HILFE
 -(void)help:(CCMenuItem  *) menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[Help scene]]];
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"Menu dealloc");

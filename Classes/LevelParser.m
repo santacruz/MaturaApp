@@ -2,6 +2,8 @@
 //  LevelParser.m
 //  MaturaApp
 //  © Zeno Koller 2010
+//
+//	Dies ist der XML-Parser für Level-Dateien
 
 //IMPORTANT NOTE
 //Die Positionen im XML File sind auf einem Koordinatensystem anzugeben, welches
@@ -11,12 +13,12 @@
 
 @implementation LevelParser
 
-
-
+//PARSE EIN LEVEL
 +(id)parseLevel:(int)level withWorld:(int)world{
 	return [[self alloc] initWithLevel:level withWorld:world];
 }
 
+//INITIALISIERE INSTANZ
 -(id) initWithLevel:(int)level withWorld:(int)world{
 	if ((self=[super init])) {
 		NSString *pfad = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[NSString stringWithFormat:@"world%ilevel%i.plist",world,level]];
@@ -42,7 +44,7 @@
 	return self;
 }
 
-
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc {
 
 	[super dealloc];

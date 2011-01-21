@@ -2,7 +2,9 @@
 //  GameData.m
 //  MaturaApp
 //  © Zeno Koller 2010
-
+//
+//	In dieser Klasse werden die Daten bezüglich des Spiels gespeichert.
+//	Ausserdem wird hier das Lesen der XML-Leveldatei veranlasst.
 
 #import "GameData.h"
 #define kInitSize 12.5
@@ -15,6 +17,7 @@ static GameData *sharedData = NULL;
 @synthesize newHero, isThereAHero, isGamePaused, isPlaying, isCountdownFinished, enemySpawnBuffer, enemyArray, enemyCount, enemySpeedMultiplier, wasGameWon, heroStartLevel;
 @synthesize gameScene;
 
+//INITIALISIERE DIE INSTANZ
 - (id)init
 {
 	if ( self = [super init] )
@@ -36,6 +39,7 @@ static GameData *sharedData = NULL;
 	
 }
 
+//INITIALISIERE EIN LEVEL (SETZE DEFAULT-WERTE, LESE STARTPOSITIONEN DER FEINDE AUS)
 -(void)initLevel:(int)level withWorld:(int)world
 {
 	enemySpeedMultiplier = 10;
@@ -52,6 +56,7 @@ static GameData *sharedData = NULL;
 	[parser release];
 }
 
+//NEUER SINGLETON
 + (GameData *)sharedData
 {
 	@synchronized([GameData class])
@@ -65,6 +70,7 @@ static GameData *sharedData = NULL;
 	}
 }
 
+//LÖSCHE DIESE INSTANZ (GESCHIEHT ERST AM SCHLUSS DES APPLIKATIONSLEBENS)
 - (void)dealloc
 {
 	NSLog(@"Deallocating GameData singleton...");

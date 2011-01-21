@@ -13,12 +13,13 @@
 @implementation Sphere
 @synthesize radius, sprite, level, emitter;
 
+//NEUE INSTANZ MIT AUTORELEASE
 +(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location
 {
 	return [[[self alloc] initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location] autorelease];
 }
 
-
+//NEUE INSTANZ
 -(id) initWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location;
 {
 	
@@ -40,6 +41,7 @@
 	return self;
 }
 
+//ZOOM-EFFEKT ZU BEGINN
 -(void)zoom {
 	float originalScale = self.scale;
 	id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f*originalScale];
@@ -47,6 +49,7 @@
 	[sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"Deallocating Hero");

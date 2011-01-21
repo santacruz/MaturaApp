@@ -21,13 +21,13 @@ static float prevDistance = 1000;
 
 @synthesize radius, sprite, moveVector, speed, emitter;
 
+//NEUE INSTANZ MIT AUTORELEASE
 +(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
 {
 	return [[[self alloc] initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location] autorelease];
 }
 
-
-
+//NEUE INSTANZ
 -(id) initWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
 {
 
@@ -108,6 +108,7 @@ static float prevDistance = 1000;
 	return self;
 }
 
+//ZOOM-EFFEKT
 -(void)zoom {
 	float originalScale = self.scale;
 	id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f*originalScale];
@@ -115,6 +116,7 @@ static float prevDistance = 1000;
 	[sprite runAction:[CCSequence actions:zoomIn,zoomOut, nil]];
 }
 
+//BEWEGUNG FÜR NORMALE FEINDE
 - (void)move1:(ccTime)dt {
 	if ([GameData sharedData].isPlaying) {
 		prevDistance = 1000;
@@ -142,7 +144,7 @@ static float prevDistance = 1000;
 	}
 
 }
-
+//BEWEGUNG FÜR SCHNELLE FEINDE
 -(void) move2:(ccTime)dt {
 	if ([GameData sharedData].isPlaying && [GameData sharedData].isThereAHero) {
 		prevDistance = 1000;
@@ -171,6 +173,7 @@ static float prevDistance = 1000;
 	emitter.position = sprite.position;
 }
 
+//BEWEGUNG FÜR ULTRA FEINDE
 -(void) move3:(ccTime)dt {
 	if ([GameData sharedData].isPlaying && [GameData sharedData].isThereAHero) {
 		prevDistance = 1000;
@@ -198,6 +201,7 @@ static float prevDistance = 1000;
 	emitter.position = sprite.position;
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	[sprite release];

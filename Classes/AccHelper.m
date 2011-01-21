@@ -2,6 +2,8 @@
 //  AccHelper.m
 //  MaturaApp
 //  © Zeno Koller 2011
+//
+//	Diese Klasse erledigt Vektorgeometrie.
 
 #import "AccHelper.h"
 

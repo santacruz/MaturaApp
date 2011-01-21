@@ -2,6 +2,8 @@
 //  About.m
 //  MaturaApp
 //  © Zeno Koller 2010
+//
+//	Diese Klasse zeigt den About-Screen an.
 
 #import "About.h"
 #import "HelloWorldScene.h"
@@ -51,6 +53,7 @@
 	return self;
 }
 
+//ZURÜCK
 -(void)back:(CCMenuItem *)menuItem {
 	[textView removeFromSuperview];
 	[textView release];
@@ -60,6 +63,7 @@
 	
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"About dealloc");

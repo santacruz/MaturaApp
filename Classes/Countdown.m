@@ -2,7 +2,8 @@
 //  Countdown.m
 //  MaturaApp
 //  © Zeno Koller 2010
-
+//
+//	Diese Klasse zeigt den Countdown an, welcher zu Beginn des Spiels abläuft.
 
 #import "Countdown.h"
 
@@ -36,6 +37,7 @@
 	return self;
 }
 
+//FÜHRE DEN 3-SEKUNDEN COUNTDOWN AUS
 - (void) countdown:(ccTime)dt {
 	count += 1;
 
@@ -60,11 +62,13 @@
 	
 }
 
+//COUNTDOWN FERTIG, BEGINNE SPIEL
 -(void) endCountdown {
 	[self unschedule:@selector(countdown:)];
 	[GameData sharedData].isCountdownFinished = YES;
 }
 
+//LÖSCHE INSTANZ AUS MEMORY
 - (void) dealloc
 {
 	NSLog(@"Deallocating Countdown");

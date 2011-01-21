@@ -2,9 +2,7 @@
 //  UserData.m
 //  MaturaApp
 //
-//  Created by Zeno Koller on 10.11.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+//	In dieser Klasse werden die Daten bezüglich dem Benutzer gespeichert.
 
 #import "UserData.h"
 
@@ -16,6 +14,7 @@ static UserData *sharedData = NULL;
 @synthesize highestLevel, currentLevel, highestWorld, currentWorld, isVibrationDevice, isVibrationEnabled;
 @synthesize xGrund, yGrund;
 
+//INITIALISIERE DIE INSTANZ
 -(id)init {
 	if (self = [super init]) {
 		//PROPERTIES INITIALISIEREN
@@ -75,7 +74,7 @@ static UserData *sharedData = NULL;
 	return self;
 }
 
-
+//NEUER SINGLETON
 +(UserData *)sharedData {
 	@synchronized([UserData class]) 
 	{
@@ -86,6 +85,7 @@ static UserData *sharedData = NULL;
 	}
 }
 
+//SPEICHERE AKTUELLE EINSTELLUNGEN
 -(void)saveAllDataToUserDefaults {
 	NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
 	if (defaults) {
@@ -102,6 +102,7 @@ static UserData *sharedData = NULL;
 	
 }
 
+//LÖSCHE DIESE INSTANZ (GESCHIEHT ERST AM SCHLUSS DES APPLIKATIONSLEBENS)
 -(void)dealloc {
 	NSLog(@"Deallocating UserData singleton");
 	//Release Properties

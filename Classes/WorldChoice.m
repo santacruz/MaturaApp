@@ -2,6 +2,8 @@
 //  LevelChoice.m
 //  MaturaApp
 //  © Zeno Koller 2010
+//
+//	Diese Klasse stellt die Welt-Auswahl dar.
 
 #import "WorldChoice.h"
 #import "LevelChoice.h"
@@ -87,10 +89,12 @@
 	return self;
 }
 
+//LOOP, WELCHER DIE POSITION DER BILDER UPDATET
 - (void) nextFrame:(ccTime)dt {
 	menu.position = ccpAdd(originalMenuPosition, ccpMult(ccp((originalOffset.x-scrollView.contentOffset.x),0),0.554f));
 }
 
+//EINE WELT WURDE AUSGEWÄHLT, LADE DIE LEVEL-AUSWAHL
 -(void)changeSceneTo:(int)world {
 	if (!(world>[UserData sharedData].highestWorld)) {
 		[UserData sharedData].currentWorld = world;
@@ -101,18 +105,21 @@
 	}
 }
 
+//ZOOM IN EFFEKT
 -(void)activate:(int)panel {
 	CCSprite *sprite = (CCSprite *)[panels objectAtIndex:panel];
 	id zoomIn = [CCScaleTo actionWithDuration:0.1f scale:1.2f];
 	[sprite runAction:zoomIn];
 }
 
+//ZOOM OUT EFFEKT
 -(void)deactivate:(int)panel {
 	CCSprite *sprite = (CCSprite *)[panels objectAtIndex:panel];
 	id zoomOut = [CCScaleTo actionWithDuration:0.1f scale:1.0f];
 	[sprite runAction:zoomOut];
 }
 
+//ZURÜCK
 -(void)back:(CCMenuItem *)menuItem {
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[HelloWorld scene]]];
@@ -126,6 +133,7 @@
     [super onExit];
 }
 
+//LÖSCHE DIESE INSTANZ
 - (void) dealloc
 {
 	NSLog(@"WorldChoice dealloc");
