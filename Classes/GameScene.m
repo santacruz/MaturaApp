@@ -28,6 +28,7 @@ static float prevHeroRotation = 0;
 
 @synthesize sphere, smgr, pausedScreen, pauseButton, countdown, accHelper;
 
+//FÜGE EINE INSTANZ DIESER KLASSE HINZU
 +(id) scene
 {
 	CCScene *scene = [CCScene node];
@@ -276,7 +277,6 @@ static float prevHeroRotation = 0;
 	} else if (![GameData sharedData].isGamePaused) {
 		//ARGUMENT ÄNDERN
 		sphere.sprite.rotation = (-1*ccpToAngle(sphere.sprite.shape->body->v)*180/M_PI-90)*0.2+prevHeroRotation*0.8;
-		sphere.emitter.position = sphere.sprite.position;
 		prevHeroRotation = sphere.sprite.rotation; 
 	}
 	

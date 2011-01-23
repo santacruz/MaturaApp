@@ -19,7 +19,7 @@
 
 static float prevDistance = 1000;
 
-@synthesize radius, sprite, moveVector, speed, emitter;
+@synthesize radius, sprite, moveVector, speed;
 
 //NEUE INSTANZ MIT AUTORELEASE
 +(id) enemyWithMgr:(SpaceManager *)mgr kind:(int)kind level:(int)size position:(CGPoint)location
@@ -140,7 +140,6 @@ static float prevDistance = 1000;
 		sprite.shape->body->v = ccpMult(moveVector, speed);
 		//AUSRICHTUNG DES BILDES ÄNDERN
 		sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
-		emitter.position = sprite.position;
 	}
 
 }
@@ -170,7 +169,6 @@ static float prevDistance = 1000;
 	sprite.shape->body->v = ccpMult(moveVector, speed);
 	//AUSRICHTUNG DES FEINDES ÄNDERN
 	sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
-	emitter.position = sprite.position;
 }
 
 //BEWEGUNG FÜR ULTRA FEINDE
@@ -198,7 +196,6 @@ static float prevDistance = 1000;
 	sprite.shape->body->v = ccpMult(moveVector, speed);
 	//AUSRICHTUNG DES FEINDES ÄNDERN
 	sprite.rotation = -1*ccpToAngle(sprite.shape->body->v)*180/M_PI-90;
-	emitter.position = sprite.position;
 }
 
 //LÖSCHE DIESE INSTANZ

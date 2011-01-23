@@ -11,7 +11,7 @@
 
 
 @implementation Sphere
-@synthesize radius, sprite, level, emitter;
+@synthesize radius, sprite, level;
 
 //NEUE INSTANZ MIT AUTORELEASE
 +(id) sphereWithMgr:(SpaceManager *)mgr level:(int)size position:(CGPoint)location

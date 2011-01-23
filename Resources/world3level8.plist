@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 
-<key>enemySpeedMultiplier</key><string>10</string><key>numberOfEnemies</key><string>4</string><key>heroStartLevel</key><string>1</string><key>enemy1</key><dict><key>kind</key><string>3</string><key>level</key><string>2</string><key>x</key><string>264</string><key>y</key><string>158</string></dict><key>enemy2</key><dict><key>kind</key><string>3</string><key>level</key><string>3</string><key>x</key><string>53</string><key>y</key><string>157</string></dict><key>enemy3</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>109</string><key>y</key><string>359</string></dict><key>enemy4</key><dict><key>kind</key><string>2</string><key>level</key><string>2</string><key>x</key><string>223</string><key>y</key><string>364</string></dict>
+<key>enemySpeedMultiplier</key><string>10</string><key>numberOfEnemies</key><string>3</string><key>heroStartLevel</key><string>1</string><key>enemy1</key><dict><key>kind</key><string>3</string><key>level</key><string>2</string><key>x</key><string>159</string><key>y</key><string>97</string></dict><key>enemy2</key><dict><key>kind</key><string>2</string><key>level</key><string>2</string><key>x</key><string>212</string><key>y</key><string>372</string></dict><key>enemy3</key><dict><key>kind</key><string>1</string><key>level</key><string>1</string><key>x</key><string>111</string><key>y</key><string>370</string></dict>
 </dict>
 </plist>

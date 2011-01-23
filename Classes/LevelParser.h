@@ -12,8 +12,9 @@
 
 }
 
-
-
+//Erstellt Instanz des Levelparsers, welche ein 
+//bestimmtes Level aus dem Speicher liest
 +(id)parseLevel:(int)level withWorld:(int)world;
+//Initialisiere die Instanz
 -(id)initWithLevel:(int)level withWorld:(int)world;
 @end

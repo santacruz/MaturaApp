@@ -16,13 +16,19 @@
 #import "AccHelper.h"
 
 // HelloWorld Layer
+//	Diese Klasse stellt den Spielbildschirm dar.
 @interface GameScene : CCLayer
 {
+	//Held:
 	Sphere *sphere;
+	//Wrapper für Chipmunk:
 	SpaceManager *smgr;
+	//Ansicht, wenn das Spiel pausiert ist:
 	CCSprite *pausedScreen;
 	CCMenu *pauseButton;
-	Countdown *countdown;
+	//Layer, auf welcher der Countdown angezeigt ist:
+	Countdown *countdown; 
+	//Hilfsklasse für Vektorgeometrie:
 	AccHelper *accHelper;
 }
 
@@ -33,14 +39,28 @@
 @property(nonatomic, assign)Countdown *countdown;
 @property(nonatomic, retain)AccHelper *accHelper;
 
+//Fuegt eine Instanz dieser Klasse hinzu:
 + (id) scene;
+//Game Loop:
+- (void) nextFrame:(ccTime)dt;
+//Beschleunigungssensor-Loop
+- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration;
+//Kollisionsmanagement für Held:
 - (void) handleOwnCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
+//Kollisionsmanagement für Feinde:
 - (void) handleEnemyCollision:(CollisionMoment)moment arbiter:(cpArbiter*)arb space:(cpSpace*)space;
-- (void) startGame;
-- (void) endGame;
-- (void) pause:(CCMenuItem *) menuItem;
-- (void) resume:(CCMenuItem *) menuItem;
-- (void) restart:(CCMenuItem *) menuItem;
-- (void) backToMenu:(CCMenuItem *) menuItem;
-- (void) enterBackground;
+//beginnt das Spiel:
+- (void) startGame; 
+//beendet das Spiel:
+- (void) endGame; 
+//pausiert das Spiel:
+- (void) pause:(CCMenuItem *) menuItem; 
+//führt pausiertes Spiel fort:
+- (void) resume:(CCMenuItem *) menuItem; 
+//beginnt das aktuelle Level neu:
+- (void) restart:(CCMenuItem *) menuItem; 
+//beendet das Spiel und startet das Hauptmenu:
+- (void) backToMenu:(CCMenuItem *) menuItem; 
+//handhabt den Eintritt der Applikation in den Hintergrund:
+- (void) enterBackground; 
 @end

@@ -44,6 +44,8 @@
 		AA37266B1299915000E1A4FA /* shrink in Resources */ = {isa = PBXBuildFile; fileRef = AA37259B1299915000E1A4FA /* shrink */; };
 		AA37266C1299915000E1A4FA /* ultra in Resources */ = {isa = PBXBuildFile; fileRef = AA3726011299915000E1A4FA /* ultra */; };
 		AA3726FA129AEDDD00E1A4FA /* world0level4.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA3726F9129AEDDD00E1A4FA /* world0level4.plist */; };
+		AA38986512EC7D3100FF73E8 /* logo-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AA38986312EC7D3100FF73E8 /* logo-hd.png */; };
+		AA38986612EC7D3100FF73E8 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AA38986412EC7D3100FF73E8 /* logo.png */; };
 		AA42072F12D5F8C500A3A6FE /* AccHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA42072E12D5F8C500A3A6FE /* AccHelper.m */; };
 		AA6450AE12D09653004ABB85 /* world3level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6450AA12D09653004ABB85 /* world3level1.plist */; };
 		AA6450AF12D09653004ABB85 /* world3level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA6450AB12D09653004ABB85 /* world3level2.plist */; };
@@ -643,6 +645,8 @@
 		AA37259B1299915000E1A4FA /* shrink */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shrink; sourceTree = "<group>"; };
 		AA3726011299915000E1A4FA /* ultra */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ultra; sourceTree = "<group>"; };
 		AA3726F9129AEDDD00E1A4FA /* world0level4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world0level4.plist; sourceTree = "<group>"; };
+		AA38986312EC7D3100FF73E8 /* logo-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-hd.png"; sourceTree = "<group>"; };
+		AA38986412EC7D3100FF73E8 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		AA42072D12D5F8C500A3A6FE /* AccHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccHelper.h; sourceTree = "<group>"; };
 		AA42072E12D5F8C500A3A6FE /* AccHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccHelper.m; sourceTree = "<group>"; };
 		AA6450AA12D09653004ABB85 /* world3level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = world3level1.plist; sourceTree = "<group>"; };
@@ -1087,6 +1091,8 @@
 		AA8CC302125BBE41008A851C /* Stuff */ = {
 			isa = PBXGroup;
 			children = (
+				AA38986312EC7D3100FF73E8 /* logo-hd.png */,
+				AA38986412EC7D3100FF73E8 /* logo.png */,
 				AAF1DB9712CBC07C00488EF8 /* pause-hd.png */,
 				AAF1DB9812CBC07C00488EF8 /* pause.png */,
 				AA372317129898BA00E1A4FA /* halfBlack-hd.png */,
@@ -1802,6 +1808,8 @@
 				AA64511912D11E94004ABB85 /* world4level7.plist in Resources */,
 				AA64511A12D11E94004ABB85 /* world4level8.plist in Resources */,
 				AA64511B12D11E94004ABB85 /* world4level9.plist in Resources */,
+				AA38986512EC7D3100FF73E8 /* logo-hd.png in Resources */,
+				AA38986612EC7D3100FF73E8 /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

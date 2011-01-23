@@ -10,7 +10,7 @@
 
 @implementation About
 
-@synthesize textView;
+@synthesize textView, textViewRight;
 
 +(id) scene
 {
@@ -33,14 +33,34 @@
 		title.position = ccp(160,420);
 		[self addChild:title];
 		
+		//LOGO
+		CCSprite *logo = [CCSprite spriteWithFile:@"logo.png"];
+		logo.position = ccp(160, 260);
+		[self addChild:logo];
+		
 		//TEXT
 		textView = [[UITextView alloc] initWithFrame:CGRectMake(38,122,235,260)];
 		textView.backgroundColor = [UIColor clearColor];
 		textView.textColor = [UIColor colorWithRed:239 green:233 blue:223 alpha:255];
-		textView.text = @"Code & Design - Zeno Koller\nFont - Volter\n\nCreated with Cocos2d";
+		textView.text = @"Code & Graphics\nFont";
 		[textView setEditable:NO];
-		
 		[[[CCDirector sharedDirector]openGLView]addSubview:textView];
+		
+		textViewRight = [[UITextView alloc] initWithFrame:CGRectMake(44,122,235,260)];
+		textViewRight.textAlignment = UITextAlignmentRight;
+		textViewRight.backgroundColor = [UIColor clearColor];
+		textViewRight.textColor = [UIColor colorWithRed:239 green:233 blue:223 alpha:255];
+		textViewRight.text = @"Zeno Koller\nVolter via daFont.com";
+		[textViewRight setEditable:NO];
+		[[[CCDirector sharedDirector]openGLView]addSubview:textViewRight];		
+		
+		CCLabelBMFont *cocos = [CCLabelBMFont labelWithString:@"Created with Cocos2d" fntFile:@"volter_small.fnt"];
+		cocos.position = ccp(160,290);
+		[self addChild:cocos];
+		
+		CCLabelBMFont *copyright = [CCLabelBMFont labelWithString:@"(c) 2011 by Zeno Koller" fntFile:@"volter_small.fnt"];
+		copyright.position = ccp(160,225<);
+		[self addChild:copyright];
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
@@ -57,6 +77,8 @@
 -(void)back:(CCMenuItem *)menuItem {
 	[textView removeFromSuperview];
 	[textView release];
+	[textViewRight removeFromSuperview];
+	[textViewRight release];
 	
 	[[CCDirector sharedDirector] replaceScene:
 	 [CCTransitionCrossFade transitionWithDuration:0.2f scene:[HelloWorld scene]]];
