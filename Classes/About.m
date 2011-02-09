@@ -59,12 +59,13 @@
 		[self addChild:cocos];
 		
 		CCLabelBMFont *copyright = [CCLabelBMFont labelWithString:@"(c) 2011 by Zeno Koller" fntFile:@"volter_small.fnt"];
-		copyright.position = ccp(160,225<);
+		copyright.position = ccp(160,225);
 		[self addChild:copyright];
 		
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
+		[backSpritePressed setColor:ccc3(172, 224, 250)];
 		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSpritePressed target:self selector:@selector(back:)];
 		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
 		backMenu.position = ccp(160, 50);

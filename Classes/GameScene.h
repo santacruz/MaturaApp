@@ -14,6 +14,7 @@
 #import "GameOver.h"
 #import "HelloWorldScene.h"
 #import "AccHelper.h"
+#import "MenuFont.h"
 
 // HelloWorld Layer
 //	Diese Klasse stellt den Spielbildschirm dar.

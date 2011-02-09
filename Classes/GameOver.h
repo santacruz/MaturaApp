@@ -9,6 +9,7 @@
 #import "HelloWorldScene.h"
 #import "GameScene.h"
 #import "UserData.h"
+#import "MenuFont.h"
 
 @interface GameOver : CCLayer {
 	BOOL hasFinishedGame;

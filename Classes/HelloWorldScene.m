@@ -31,16 +31,16 @@
 		[self addChild:title];
 		
 		CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"play" fntFile:@"volter.fnt"];
-		CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(start:)];
+		MenuFont *menuItem1= [MenuFont itemWithLabel:label1 target:self selector:@selector(start:)];
 		
 		CCLabelBMFont* label3 = [CCLabelBMFont labelWithString:@"settings" fntFile:@"volter.fnt"];
-		CCMenuItemLabel *menuItem3= [CCMenuItemLabel itemWithLabel:label3 target:self selector:@selector(settings:)];
+		MenuFont *menuItem3= [MenuFont itemWithLabel:label3 target:self selector:@selector(settings:)];
 		
 		CCLabelBMFont* label4 = [CCLabelBMFont labelWithString:@"about" fntFile:@"volter.fnt"];
-		CCMenuItemLabel *menuItem4= [CCMenuItemLabel itemWithLabel:label4 target:self selector:@selector(about:)];
+		MenuFont *menuItem4= [MenuFont itemWithLabel:label4 target:self selector:@selector(about:)];
 		
 		CCLabelBMFont* label5 = [CCLabelBMFont labelWithString:@"help" fntFile:@"volter.fnt"];
-		CCMenuItemLabel *menuItem5= [CCMenuItemLabel itemWithLabel:label5 target:self selector:@selector(help:)];
+		MenuFont *menuItem5= [MenuFont itemWithLabel:label5 target:self selector:@selector(help:)];
 		
 		CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem3,menuItem4,menuItem5,nil];
 		[myMenu alignItemsVerticallyWithPadding:20];

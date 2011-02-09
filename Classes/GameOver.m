@@ -78,13 +78,13 @@
 			
 			//MENU
 			CCLabelBMFont* label0 = [CCLabelBMFont labelWithString:@"next" fntFile:@"volter.fnt"];
-			CCMenuItemLabel *menuItem0= [CCMenuItemLabel itemWithLabel:label0 target:self selector:@selector(next:)];
+			MenuFont *menuItem0= [MenuFont itemWithLabel:label0 target:self selector:@selector(next:)];
 				
 			CCLabelBMFont* label1 = [CCLabelBMFont labelWithString:@"retry" fntFile:@"volter.fnt"];
-			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label1 target:self selector:@selector(retry:)];
+			MenuFont *menuItem1= [MenuFont itemWithLabel:label1 target:self selector:@selector(retry:)];
 				
 			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"volter.fnt"];
-			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
+			MenuFont *menuItem2= [MenuFont itemWithLabel:label2 target:self selector:@selector(menu:)];
 			
 			if (hasFinishedGame == YES) {
 				//kein next zeigen, da Spiel fertig ist
@@ -114,10 +114,10 @@
 			
 			//MENU
 			CCLabelBMFont* label = [CCLabelBMFont labelWithString:@"retry" fntFile:@"volter.fnt"];
-			CCMenuItemLabel *menuItem1= [CCMenuItemLabel itemWithLabel:label target:self selector:@selector(retry:)];
+			MenuFont *menuItem1= [MenuFont itemWithLabel:label target:self selector:@selector(retry:)];
 			
 			CCLabelBMFont* label2 = [CCLabelBMFont labelWithString:@"back to menu" fntFile:@"volter.fnt"];
-			CCMenuItemLabel *menuItem2= [CCMenuItemLabel itemWithLabel:label2 target:self selector:@selector(menu:)];
+			MenuFont *menuItem2= [MenuFont itemWithLabel:label2 target:self selector:@selector(menu:)];
 			
 			CCMenu * myMenu = [CCMenu menuWithItems:menuItem1,menuItem2,nil];
 			[myMenu alignItemsVertically];

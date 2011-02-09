@@ -11,6 +11,7 @@
 #import "Settings.h"
 #import "About.h"
 #import "Help.h"
+#import "MenuFont.h"
 
 @interface HelloWorld : CCLayer
 {

@@ -48,6 +48,7 @@
 		//SET BUTTON
 		CCSprite *setSprite = [CCSprite spriteWithFile:@"Buttons/set.png"];
 		CCSprite *setSprite_s = [CCSprite spriteWithFile:@"Buttons/set.png"];
+		[setSprite_s setColor:ccc3(172, 224, 250)];
 		CCMenuItemSprite *setSpriteItem = [CCMenuItemSprite itemFromNormalSprite:setSprite selectedSprite:setSprite_s target:self selector:@selector(calibrate:)];
 		CCMenu *setMenu = [CCMenu menuWithItems:setSpriteItem,nil];
 		setMenu.position = ccp(164, 278);
@@ -55,6 +56,7 @@
 		//RESET BUTTON
 		CCSprite *resetSprite = [CCSprite spriteWithFile:@"Buttons/reset.png"];
 		CCSprite *resetSprite_s = [CCSprite spriteWithFile:@"Buttons/reset.png"];
+		[resetSprite_s setColor:ccc3(172, 224, 250)];
 		CCMenuItemSprite *resetSpriteItem = [CCMenuItemSprite itemFromNormalSprite:resetSprite selectedSprite:resetSprite_s target:self selector:@selector(resetCalibration:)];
 		CCMenu *resetMenu = [CCMenu menuWithItems:resetSpriteItem,nil];
 		resetMenu.position = ccp(240, 278);
@@ -80,13 +82,17 @@
 			if ([UserData sharedData].isVibrationEnabled) {
 				state1Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
 				state1Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
+				[state1Sprite_s setColor:ccc3(172, 224, 250)];
 				state2Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
 				state2Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
+				[state2Sprite_s setColor:ccc3(172, 224, 250)];
 			} else {
 				state1Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
 				state1Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationoff.png"];
+				[state1Sprite_s setColor:ccc3(172, 224, 250)];
 				state2Sprite = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
 				state2Sprite_s = [CCSprite spriteWithFile:@"Buttons/vibrationon.png"];
+				[state2Sprite_s setColor:ccc3(172, 224, 250)];
 			}
 			state1SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state1Sprite selectedSprite:state1Sprite_s target:self selector:nil];
 			state2SpriteItem = [CCMenuItemSprite itemFromNormalSprite:state2Sprite selectedSprite:state2Sprite_s target:self selector:nil];
@@ -100,6 +106,7 @@
 		//BACK MENU
 		CCSprite *backSprite = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
 		CCSprite *backSpritePressed = [CCSprite spriteWithFile:@"Buttons/backbutton.png"];
+		[backSpritePressed setColor:ccc3(172, 224, 250)];
 		CCMenuItemSprite *menuItemBack = [CCMenuItemSprite itemFromNormalSprite:backSprite selectedSprite:backSpritePressed target:self selector:@selector(back:)];
 		CCMenu *backMenu = [CCMenu menuWithItems:menuItemBack,nil];
 		backMenu.position = ccp(160, 50);
