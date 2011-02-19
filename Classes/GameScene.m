@@ -142,10 +142,13 @@ static float prevHeroRotation = 0;
 									otherType:kEnemyCollisionType
 									   target:self 
 									 selector:@selector(handleEnemyCollision:arbiter:space:)];
-		
+				
 		//COUNTDOWN
 		countdown = [Countdown scene];
 		[self addChild:countdown];
+		
+		//SOUND SETUP
+		[self setupSound];
 	}
 	return self;
 }
@@ -270,6 +273,7 @@ static float prevHeroRotation = 0;
 							  position:[[[GameData sharedData].newHero objectAtIndex:1] CGPointValue]];
 		[self addChild:sphere];
 		[sphere zoom];
+		[plop play];
 		[[GameData sharedData].newHero removeAllObjects];
 		[GameData sharedData].isThereAHero = YES;
 		//REDUZIERE ENEMYCOUNT		
@@ -408,6 +412,13 @@ static float prevHeroRotation = 0;
 	[GameData sharedData].isPlaying = YES;
 }
 
+-(void)setupSound {
+	sae = [SimpleAudioEngine sharedEngine];
+	[[CDAudioManager sharedManager] setResignBehavior:kAMRBStopPlay autoHandle:YES];
+	actionManager = [CCActionManager sharedManager];
+	plop = [[sae soundSourceForFile:@"pop.wav"] retain];
+}
+
 //BEENDE DAS SPIEL
 -(void)endGame
 {
@@ -436,6 +447,15 @@ static float prevHeroRotation = 0;
 	[[CCDirector sharedDirector] purgeCachedData];
 	[accHelper release];
 	[smgr release];
+	[actionManager removeAllActionsFromTarget:plop];
+	//This is to stop any actions that may be modifying the background music
+	[actionManager removeAllActionsFromTarget:[[CDAudioManager sharedManager] audioSourceForChannel:kASC_Left]];
+	//This is to stop any actions that may be running against the sound engine i.e. fade sound effects
+	[actionManager removeAllActionsFromTarget:[CDAudioManager sharedManager].soundEngine];
+	[plop release];
+	
+	[SimpleAudioEngine end];
+	sae = nil;
 	[super dealloc];
 }
 @end

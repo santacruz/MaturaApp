@@ -15,6 +15,7 @@
 #import "HelloWorldScene.h"
 #import "AccHelper.h"
 #import "MenuFont.h"
+#import "SimpleAudioEngine.h"
 
 // HelloWorld Layer
 //	Diese Klasse stellt den Spielbildschirm dar.
@@ -31,6 +32,10 @@
 	Countdown *countdown; 
 	//Hilfsklasse für Vektorgeometrie:
 	AccHelper *accHelper;
+	
+	SimpleAudioEngine *sae;
+	CCActionManager *actionManager;
+	CDSoundSource* plop;
 }
 
 @property(nonatomic, assign)Sphere *sphere;
@@ -64,4 +69,5 @@
 - (void) backToMenu:(CCMenuItem *) menuItem; 
 //handhabt den Eintritt der Applikation in den Hintergrund:
 - (void) enterBackground; 
+//handhabt aufsetzen des Sounds:
 @end
